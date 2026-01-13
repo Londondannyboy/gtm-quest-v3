@@ -452,6 +452,11 @@ export default function Home() {
 
   // Track the last user message whenever messages change
   useEffect(() => {
+    // Guard against undefined visibleMessages
+    if (!visibleMessages || !Array.isArray(visibleMessages)) {
+      return;
+    }
+
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const chatMessages = visibleMessages as any[];
     for (let i = chatMessages.length - 1; i >= 0; i--) {
