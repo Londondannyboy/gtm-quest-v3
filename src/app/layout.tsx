@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { Providers } from "@/components/providers";
+import { Header } from "@/components/Header";
 import "./globals.css";
 import "@copilotkit/react-ui/styles.css";
 
@@ -28,7 +29,10 @@ export default function RootLayout({
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <Providers>
-          {children}
+          <Header />
+          <main className="pt-14">
+            {children}
+          </main>
         </Providers>
       </body>
     </html>
