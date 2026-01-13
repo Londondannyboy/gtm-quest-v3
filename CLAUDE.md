@@ -109,12 +109,13 @@ ZEP_API_KEY=your_zep_api_key  # For conversation memory
 - [x] Tool recognition (HubSpot, Clay → show in stack)
 - [x] HITL confirmation pills (frontend sends actual user message)
 - [x] Neon Auth components ready (LoginPromptModal, auth pages)
+- [x] Zep memory integration (conversation history)
+- [x] MDX content system (/articles, /articles/[slug])
 
 ### Needs Work
 - [ ] Configure Neon Auth in dashboard (get auth URL)
 - [ ] AG-UI protocol for tighter CopilotKit ↔ Pydantic AI connection
-- [ ] MDX content for articles/agencies
-- [ ] ZEP memory integration
+- [ ] Add more MDX content (45 articles + 201 agencies)
 
 ## API Endpoints
 
@@ -181,9 +182,16 @@ POST /api/copilotkit           → CopilotKit runtime
   - GET /memory/history - Retrieve conversation history
   - POST /memory/search - Search through past conversations
   - Gracefully handles missing ZEP_API_KEY (no-op)
+- Added MDX content system:
+  - `content/articles/` - MDX article files
+  - `content/agencies/` - MDX agency profiles
+  - `src/lib/content.ts` - Content loading utilities
+  - `mdx-components.tsx` - Custom MDX styling
+  - `/articles` and `/articles/[slug]` routes
 - Key files added:
   - `src/lib/auth.ts` - Auth client and exports
   - `src/components/AuthProvider.tsx` - Conditional auth wrapper
   - `src/components/LoginPromptModal.tsx` - Mid-flow login UI
   - `src/app/auth/[path]/page.tsx` - Auth pages
   - `agent/memory.py` - Zep memory integration
+  - `src/lib/content.ts` - MDX content utilities
