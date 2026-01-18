@@ -7,8 +7,11 @@ import { LoginPromptModal, useShouldPromptLogin } from '@/components/LoginPrompt
 import { HeroSection } from './HeroSection';
 import { ProfileCard } from '@/components/onboarding/ProfileCard';
 import { OnboardingProgress } from '@/components/onboarding/OnboardingProgress';
-import { DashboardGrid } from '@/components/dashboard/DashboardGrid';
+import { EnhancedDashboard } from '@/components/dashboard/EnhancedDashboard';
 import { PlanBuilder } from '@/components/plan/PlanBuilder';
+import { ParticleBackgroundLight } from '@/components/ui/ParticleBackground';
+import { SuccessCelebration } from '@/components/ui/Confetti';
+import { motion } from 'framer-motion';
 
 // Types
 interface Phase {
@@ -589,7 +592,12 @@ export function HomeClient() {
           }}
           className="[&_.copilotKitSidebar]:bg-zinc-900 [&_.copilotKitSidebar]:border-white/10"
         >
-          <div className="min-h-screen bg-black p-6">
+          <div className="min-h-screen bg-black p-6 relative overflow-hidden">
+            {/* Particle Background */}
+            <ParticleBackgroundLight />
+
+            {/* Confetti Celebration - triggers when agencies matched */}
+            <SuccessCelebration show={matched_agencies.length > 0 && requirements_progress >= 50} />
             <div className="max-w-5xl mx-auto">
               {/* Header */}
               <header className="mb-8 text-center">
@@ -639,8 +647,14 @@ export function HomeClient() {
                 </div>
               )}
 
-              {/* Market Data Charts */}
-              {hasData && <DashboardGrid requirements={requirements} />}
+              {/* Enhanced Market Data Dashboard */}
+              {hasData && (
+                <EnhancedDashboard
+                  requirements={requirements}
+                  progress={requirements_progress}
+                  agencyCount={matched_agencies.length}
+                />
+              )}
 
               {/* Dashboard Grid */}
               <div className="grid lg:grid-cols-2 gap-6 mb-8">
