@@ -1,8 +1,9 @@
-"""FastAPI server with AG-UI endpoint for CopilotKit."""
+"""FastAPI server with CopilotKit SDK integration."""
 
 import os
 import sys
 from pathlib import Path
+from typing import Optional
 
 # Add parent directory to path for imports
 sys.path.insert(0, str(Path(__file__).parent))
@@ -14,8 +15,13 @@ from dotenv import load_dotenv
 import json
 import asyncio
 
+# CopilotKit SDK imports
+from copilotkit.integrations.fastapi import add_fastapi_endpoint
+from copilotkit import CopilotKitRemoteEndpoint, Action as CopilotAction
+
 from agent import gtm_agent
 from models import GTMState
+from tools import search_agencies as search_agencies_db
 
 load_dotenv()
 
@@ -29,6 +35,151 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+
+# ============================================
+# CopilotKit Action Handlers
+# ============================================
+
+async def update_requirements_handler(
+    company_name: Optional[str] = None,
+    industry: Optional[str] = None,
+    category: Optional[str] = None,
+    maturity: Optional[str] = None,
+    target_market: Optional[str] = None,
+    target_regions: Optional[list] = None,
+    strategy_type: Optional[str] = None,
+    budget: Optional[int] = None,
+    primary_goal: Optional[str] = None,
+    needed_specializations: Optional[list] = None,
+    tech_stack: Optional[list] = None,
+):
+    """Update GTM requirements from extracted data."""
+    # Build extracted dict from non-None values
+    extracted = {}
+    if company_name:
+        extracted["company_name"] = company_name
+    if industry:
+        extracted["industry"] = industry
+    if category:
+        extracted["category"] = category
+    if maturity:
+        extracted["maturity"] = maturity
+    if target_market:
+        extracted["target_market"] = target_market
+    if target_regions:
+        extracted["target_regions"] = target_regions
+    if strategy_type:
+        extracted["strategy_type"] = strategy_type
+    if budget:
+        extracted["budget"] = budget
+    if primary_goal:
+        extracted["primary_goal"] = primary_goal
+    if needed_specializations:
+        extracted["needed_specializations"] = needed_specializations
+    if tech_stack:
+        extracted["tech_stack"] = tech_stack
+
+    # Update the agent state
+    confirmations = gtm_agent.update_requirements(extracted)
+
+    return {
+        "status": "updated",
+        "progress_percent": gtm_agent.state.progress_percent,
+        "requirements": gtm_agent.state.requirements.model_dump(),
+        "confirmations": [c.model_dump() for c in confirmations],
+    }
+
+
+async def search_agencies_handler(
+    specializations: Optional[list] = None,
+    category_tags: Optional[list] = None,
+    service_areas: Optional[list] = None,
+    max_budget: Optional[int] = None,
+):
+    """Search for matching agencies based on requirements."""
+    agencies = await search_agencies_db(
+        specializations=specializations or [],
+        category_tags=category_tags or [],
+        service_areas=service_areas or [],
+        max_budget=max_budget,
+        limit=5,
+    )
+
+    # Update agent state with matched agencies
+    gtm_agent.state.matched_agencies = agencies
+
+    return {
+        "status": "found",
+        "count": len(agencies),
+        "agencies": [a.model_dump() for a in agencies],
+    }
+
+
+async def get_state_handler():
+    """Get the current GTM state."""
+    state = gtm_agent.state
+    return {
+        "requirements": state.requirements.model_dump(),
+        "progress_percent": state.progress_percent,
+        "industry_data": state.industry_data.model_dump() if state.industry_data else None,
+        "recognized_tools": [t.model_dump() for t in state.recognized_tools],
+        "matched_agencies": [a.model_dump() for a in state.matched_agencies],
+        "pending_confirmations": [c.model_dump() for c in state.pending_confirmations],
+        "confirmed_fields": state.confirmed_fields,
+    }
+
+
+# Define CopilotKit actions
+update_requirements_action = CopilotAction(
+    name="update_requirements",
+    description="Update GTM requirements. Call this after EVERY user message to extract and save their information.",
+    parameters=[
+        {"name": "company_name", "type": "string", "description": "Company or product name"},
+        {"name": "industry", "type": "string", "description": "Industry vertical (gaming, fintech, healthcare, etc.)"},
+        {"name": "category", "type": "string", "description": "Business category: b2b_saas, dtc, enterprise, marketplace, consumer"},
+        {"name": "maturity", "type": "string", "description": "Company stage: idea, pre_launch, early, growth, scale"},
+        {"name": "target_market", "type": "string", "description": "Target customer description"},
+        {"name": "target_regions", "type": "array", "description": "Target regions: US, UK, Europe, APAC, Global"},
+        {"name": "strategy_type", "type": "string", "description": "GTM strategy: plg, sales_led, hybrid"},
+        {"name": "budget", "type": "number", "description": "Monthly marketing budget in USD"},
+        {"name": "primary_goal", "type": "string", "description": "Main goal: awareness, leads, revenue, expansion"},
+        {"name": "needed_specializations", "type": "array", "description": "What help they need: demand_gen, abm, content, plg, brand, seo, paid"},
+        {"name": "tech_stack", "type": "array", "description": "Tools they use: HubSpot, Clay, Salesforce, etc."},
+    ],
+    handler=update_requirements_handler
+)
+
+search_agencies_action = CopilotAction(
+    name="search_agencies",
+    description="Search for matching GTM agencies. Call when you have gathered enough requirements (industry, budget, or specializations).",
+    parameters=[
+        {"name": "specializations", "type": "array", "description": "Required specializations: Demand Generation, ABM, Content Marketing, etc."},
+        {"name": "category_tags", "type": "array", "description": "Category tags: B2B Marketing Agency, GTM Agency, etc."},
+        {"name": "service_areas", "type": "array", "description": "Service areas: North America, Europe, APAC, etc."},
+        {"name": "max_budget", "type": "number", "description": "Maximum monthly budget in USD"},
+    ],
+    handler=search_agencies_handler
+)
+
+get_state_action = CopilotAction(
+    name="get_state",
+    description="Get the current GTM planning state including requirements, progress, and matched agencies.",
+    parameters=[],
+    handler=get_state_handler
+)
+
+# Initialize CopilotKit SDK
+copilotkit_sdk = CopilotKitRemoteEndpoint(
+    actions=[
+        update_requirements_action,
+        search_agencies_action,
+        get_state_action,
+    ]
+)
+
+# Add CopilotKit endpoint at /copilotkit
+add_fastapi_endpoint(app, copilotkit_sdk, "/copilotkit")
 
 
 @app.get("/health")

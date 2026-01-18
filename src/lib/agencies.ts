@@ -218,3 +218,70 @@ export async function getCategoryTags(): Promise<string[]> {
 
   return results.map((r) => (r as { tag: string }).tag);
 }
+
+// Get all agencies for listing page
+export async function getAllAgencies(): Promise<Agency[]> {
+  const results = await sql`
+    SELECT
+      id, name, slug, description, headquarters,
+      specializations, category_tags, service_areas,
+      min_budget, avg_rating, review_count, global_rank,
+      website, logo_url
+    FROM companies
+    WHERE app = 'gtm' AND status = 'published'
+    ORDER BY global_rank NULLS LAST, name
+  `;
+
+  return results as Agency[];
+}
+
+// Get agency by slug
+export async function getAgencyBySlug(slug: string): Promise<Agency | null> {
+  const results = await sql`
+    SELECT
+      id, name, slug, description, headquarters,
+      specializations, category_tags, service_areas,
+      min_budget, avg_rating, review_count, global_rank,
+      website, logo_url
+    FROM companies
+    WHERE app = 'gtm' AND status = 'published' AND slug = ${slug}
+    LIMIT 1
+  `;
+
+  return results.length > 0 ? (results[0] as Agency) : null;
+}
+
+// Get all agency slugs for static generation
+export async function getAllAgencySlugs(): Promise<string[]> {
+  const results = await sql`
+    SELECT slug
+    FROM companies
+    WHERE app = 'gtm' AND status = 'published'
+    ORDER BY slug
+  `;
+
+  return results.map((r) => (r as { slug: string }).slug);
+}
+
+// Get related agencies (same specializations)
+export async function getRelatedAgencies(slug: string, limit = 4): Promise<Agency[]> {
+  const results = await sql`
+    WITH current AS (
+      SELECT specializations FROM companies WHERE slug = ${slug}
+    )
+    SELECT
+      c.id, c.name, c.slug, c.description, c.headquarters,
+      c.specializations, c.category_tags, c.service_areas,
+      c.min_budget, c.avg_rating, c.review_count, c.global_rank,
+      c.website, c.logo_url
+    FROM companies c, current
+    WHERE c.app = 'gtm'
+      AND c.status = 'published'
+      AND c.slug != ${slug}
+      AND c.specializations && current.specializations
+    ORDER BY c.global_rank NULLS LAST
+    LIMIT ${limit}
+  `;
+
+  return results as Agency[];
+}

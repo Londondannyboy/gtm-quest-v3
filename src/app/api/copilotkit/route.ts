@@ -10,7 +10,16 @@ const serviceAdapter = new GoogleGenerativeAIAdapter({
   model: "gemini-2.0-flash",
 });
 
-const runtime = new CopilotRuntime();
+// Configure remote endpoint for Pydantic AI backend
+const AGENT_URL = process.env.AGENT_URL || "http://localhost:8000/copilotkit";
+
+const runtime = new CopilotRuntime({
+  remoteEndpoints: [
+    {
+      url: AGENT_URL,
+    },
+  ],
+});
 
 export const POST = async (req: NextRequest) => {
   const { handleRequest } = copilotRuntimeNextJSAppRouterEndpoint({
