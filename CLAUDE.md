@@ -42,10 +42,21 @@ cd agent && source .venv/bin/activate && python server.py  # → localhost:8000
 ### Frontend (src/)
 | File | Purpose |
 |------|---------|
-| `app/page.tsx` | Main dashboard + CopilotKit actions |
-| `app/api/agencies/search/route.ts` | Agency search API |
-| `app/api/copilotkit/route.ts` | CopilotKit runtime (Gemini) |
-| `lib/agencies.ts` | Neon query functions |
+| `app/page.tsx` | Main entry + SEO content |
+| `app/agencies/page.tsx` | Agency listing (201 agencies) |
+| `app/agencies/[slug]/page.tsx` | Individual agency pages |
+| `app/articles/page.tsx` | Article listing |
+| `app/articles/[slug]/page.tsx` | MDX article pages |
+| `components/home/HomeClient.tsx` | Main dashboard + CopilotKit |
+| `components/layout/Header.tsx` | Global navigation |
+| `components/layout/Footer.tsx` | Global footer |
+| `components/dashboard/EnhancedDashboard.tsx` | Premium visualization dashboard |
+| `components/visualizations/Globe3D.tsx` | 3D globe for market reach |
+| `components/ui/AnimatedStats.tsx` | Animated counters & progress |
+| `components/ui/ParticleBackground.tsx` | Ambient particle effects |
+| `components/ui/Confetti.tsx` | Celebration effects |
+| `components/charts/*.tsx` | TAM, Growth, Budget, Benchmark charts |
+| `lib/agencies-db.ts` | Neon query functions |
 | `lib/db.ts` | Neon connection |
 
 ### Backend (agent/)
@@ -60,11 +71,15 @@ cd agent && source .venv/bin/activate && python server.py  # → localhost:8000
 
 | Layer | Technology |
 |-------|------------|
-| Frontend | Next.js 15, React 19, TypeScript, Tailwind |
-| AI Chat | CopilotKit (useCopilotAction, CopilotSidebar) |
+| Frontend | Next.js 16.1, React 19, TypeScript, Tailwind |
+| AI Chat | CopilotKit 1.51.2 (useCopilotAction, CopilotSidebar) |
 | AI Model | Google Gemini 2.0 Flash |
-| Backend Agent | Pydantic AI + FastAPI |
-| Database | Neon PostgreSQL |
+| Backend Agent | Pydantic AI + FastAPI (deployed on Railway) |
+| Database | Neon PostgreSQL (201 agencies) |
+| Visualizations | framer-motion, react-globe.gl, recharts, tsparticles |
+| PDF Export | @react-pdf/renderer |
+| Email | Resend |
+| Content | MDX (56 articles) |
 
 ## Environment Variables
 
@@ -104,18 +119,35 @@ ZEP_API_KEY=your_zep_api_key  # For conversation memory
 - [x] Progress dashboard with field checklist
 - [x] Agency cards with match scores
 - [x] Timeline generation by strategy type
-- [x] Pydantic AI backend running
+- [x] Pydantic AI backend running (Railway)
 - [x] Industry data extraction (games → $200B market)
 - [x] Tool recognition (HubSpot, Clay → show in stack)
 - [x] HITL confirmation pills (frontend sends actual user message)
 - [x] Neon Auth components ready (LoginPromptModal, auth pages)
 - [x] Zep memory integration (conversation history)
-- [x] MDX content system (/articles, /articles/[slug])
+- [x] MDX content system (56 articles)
+- [x] Dynamic agency pages from Neon (201 agencies)
+- [x] Global navigation header + footer
+- [x] Homepage SEO content sections
+- [x] Visual onboarding profile cards
+- [x] Premium dashboard visualizations:
+  - [x] Animated stat counters (react-countup)
+  - [x] Progress ring animation (framer-motion)
+  - [x] 3D globe for market reach (react-globe.gl)
+  - [x] Particle background effects (tsparticles)
+  - [x] Confetti celebration (canvas-confetti)
+  - [x] TAM/SAM/SOM chart (recharts)
+  - [x] Growth projection chart
+  - [x] Budget allocation chart
+  - [x] Industry benchmark chart
+- [x] GTM Plan Builder with PDF export
+- [x] Email delivery (Resend)
+- [x] Dynamic sitemap.xml (269 pages)
+- [x] 301 redirects for old URLs
 
 ### Needs Work
 - [ ] Configure Neon Auth in dashboard (get auth URL)
 - [ ] AG-UI protocol for tighter CopilotKit ↔ Pydantic AI connection
-- [ ] Add more MDX content (45 articles + 201 agencies)
 
 ## API Endpoints
 
@@ -195,3 +227,37 @@ POST /api/copilotkit           → CopilotKit runtime
   - `src/app/auth/[path]/page.tsx` - Auth pages
   - `agent/memory.py` - Zep memory integration
   - `src/lib/content.ts` - MDX content utilities
+
+### 2026-01-17 (Session 4) - Major Upgrade
+- Implemented 7-phase upgrade plan:
+  1. Global Navigation & Footer
+  2. Dynamic Agency Pages from Neon (201 pages)
+  3. Homepage SEO Content
+  4. Visual Onboarding Profile
+  5. Dashboard with Market Data Charts (recharts)
+  6. GTM Plan Builder with PDF Export
+  7. SEO & Performance (sitemap, robots)
+- Build generates 259 pages
+- Push to GitHub (commit 7423529)
+
+### 2026-01-17 (Session 5) - Missing Pages & Redirects
+- Created 10 new MDX articles for Google-indexed URLs
+- Added 301 redirects in next.config.ts
+- Push to GitHub (commit daf05c5)
+
+### 2026-01-18 (Session 6) - Premium Visualizations
+- Added "shock and awe" visualization libraries:
+  - framer-motion (smooth animations)
+  - react-countup (animated numbers)
+  - @tsparticles/react (particle effects)
+  - canvas-confetti (celebration effects)
+  - react-globe.gl + three (3D globe)
+- Created new components:
+  - `AnimatedStats.tsx` - Animated counters & progress rings
+  - `ParticleBackground.tsx` - Ambient particle effects
+  - `Confetti.tsx` - Celebration effects
+  - `Globe3D.tsx` - Interactive 3D globe for market reach
+  - `EnhancedDashboard.tsx` - Premium visualization dashboard
+- Integrated into HomeClient.tsx
+- Build generates 269 pages
+- Push to GitHub (commit cc6ca44)
