@@ -1,4 +1,4 @@
-import { authApiHandler } from '@neondatabase/neon-js/auth/next/server';
+// Use @neondatabase/auth (not neon-js wrapper) - matches fractional.quest pattern
+import { authApiHandler } from '@neondatabase/auth/next/server';
 
-// Neon Auth API handler - proxies auth requests to Neon Auth server
-export const { GET, POST, PUT } = authApiHandler();
+export const { GET, POST } = authApiHandler();
