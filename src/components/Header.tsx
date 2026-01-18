@@ -2,6 +2,10 @@
 
 import Link from 'next/link';
 import { useState, useEffect, useRef } from 'react';
+import { SignedIn, SignedOut, UserButton } from '@/lib/auth';
+
+// Check if Neon Auth is configured
+const isAuthConfigured = !!process.env.NEXT_PUBLIC_NEON_AUTH_URL;
 
 export function Header() {
   const [mounted, setMounted] = useState(false);
@@ -94,6 +98,23 @@ export function Header() {
           >
             Agencies
           </Link>
+
+          {/* Auth - Sign In / User Button */}
+          {mounted && isAuthConfigured && (
+            <>
+              <SignedOut>
+                <Link
+                  href="/auth/sign-in"
+                  className="text-white/60 hover:text-white text-sm transition"
+                >
+                  Sign In
+                </Link>
+              </SignedOut>
+              <SignedIn>
+                <UserButton />
+              </SignedIn>
+            </>
+          )}
 
           {/* Get Started CTA */}
           {mounted && (
