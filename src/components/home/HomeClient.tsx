@@ -13,6 +13,10 @@ import { ParticleBackgroundLight } from '@/components/ui/ParticleBackground';
 import { SuccessCelebration } from '@/components/ui/Confetti';
 import { motion } from 'framer-motion';
 
+// Backend agent URL - only set in development or when explicitly configured
+const AGENT_URL = process.env.NEXT_PUBLIC_AGENT_URL;
+const isAgentConfigured = !!AGENT_URL;
+
 // Types
 interface Phase {
   name: string;
@@ -381,8 +385,9 @@ export function HomeClient() {
   }, [shouldPromptLogin, hasPromptedLogin]);
 
   const syncWithBackend = useCallback(async () => {
+    if (!isAgentConfigured) return; // Skip if no backend configured
     try {
-      const response = await fetch('http://localhost:8000/state');
+      const response = await fetch(`${AGENT_URL}/state`);
       if (response.ok) {
         const data = await response.json();
         setGtmState(prev => ({
@@ -461,17 +466,17 @@ export function HomeClient() {
     handler: async (args) => {
       const actualUserMessage = lastUserMessageRef.current;
 
-      try {
-        if (actualUserMessage) {
-          await fetch('http://localhost:8000/process', {
+      if (isAgentConfigured && actualUserMessage) {
+        try {
+          await fetch(`${AGENT_URL}/process`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ message: actualUserMessage }),
           });
           await syncWithBackend();
+        } catch {
+          // Backend not available
         }
-      } catch {
-        // Backend not available
       }
 
       const newReq = {
@@ -542,23 +547,23 @@ export function HomeClient() {
   });
 
   const handleConfirm = async (field: string) => {
-    try {
-      await fetch('http://localhost:8000/confirm', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ field }),
-      });
-      setGtmState(prev => ({
-        ...prev,
-        pending_confirmations: prev.pending_confirmations.filter(c => c.field !== field),
-        confirmed_fields: [...prev.confirmed_fields, field],
-      }));
-    } catch {
-      setGtmState(prev => ({
-        ...prev,
-        pending_confirmations: prev.pending_confirmations.filter(c => c.field !== field),
-      }));
+    if (isAgentConfigured) {
+      try {
+        await fetch(`${AGENT_URL}/confirm`, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ field }),
+        });
+      } catch {
+        // Backend not available
+      }
     }
+    // Update UI state regardless of backend
+    setGtmState(prev => ({
+      ...prev,
+      pending_confirmations: prev.pending_confirmations.filter(c => c.field !== field),
+      confirmed_fields: [...prev.confirmed_fields, field],
+    }));
   };
 
   const { requirements, requirements_progress, matched_agencies, timeline_phases, industry_data, recognized_tools, pending_confirmations } = gtmState;
