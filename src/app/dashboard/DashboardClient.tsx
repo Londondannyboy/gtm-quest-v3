@@ -44,7 +44,7 @@ interface GTMRequirements {
   willing_to_outsource?: boolean;
   needed_specializations?: string[];
   challenges?: string[];
-  tech_stack?: string[];
+  tech_stack?: string[]; // HubSpot, Clay, Salesforce, etc.
 }
 
 interface AgencyMatch {
@@ -329,8 +329,14 @@ function generatePhases(req: GTMRequirements): Phase[] {
   return phases;
 }
 
-// Build personalized system instructions
-function buildSystemInstructions(userName?: string, isReturning?: boolean, zepContext?: string): string {
+// Build personalized system instructions with full context
+function buildSystemInstructions(
+  userName?: string,
+  isReturning?: boolean,
+  zepContext?: string,
+  requirements?: GTMRequirements,
+  progressPercent?: number
+): string {
   const greeting = userName
     ? isReturning
       ? `Welcome back, ${userName}! Let's continue building your GTM strategy.`
@@ -338,42 +344,83 @@ function buildSystemInstructions(userName?: string, isReturning?: boolean, zepCo
     : "Hey! Let's build your GTM plan.";
 
   const userContext = zepContext
-    ? `\n## USER CONTEXT\n${zepContext}\n\nUse this context to personalize your responses and remember what they've shared.`
+    ? `\n## USER CONTEXT FROM MEMORY\n${zepContext}\n\nUse this context to personalize your responses.`
     : '';
 
-  return `You are a GTM strategist. You MUST use tools to update the plan.
+  // Build profile completion status
+  const profileFields = [
+    { name: 'Company Name', value: requirements?.company_name, field: 'company_name' },
+    { name: 'Industry', value: requirements?.industry, field: 'industry' },
+    { name: 'Target Customer', value: requirements?.category, field: 'category' },
+    { name: 'GTM Strategy', value: requirements?.strategy_type, field: 'strategy_type' },
+    { name: 'Budget', value: requirements?.budget, field: 'budget' },
+    { name: 'Specializations Needed', value: requirements?.needed_specializations?.length, field: 'needed_specializations' },
+    { name: 'Tech Stack', value: requirements?.tech_stack?.length, field: 'tech_stack' },
+  ];
+
+  const completedFields = profileFields.filter(f => f.value).map(f => `- ${f.name}: ${f.value}`);
+  const missingFields = profileFields.filter(f => !f.value).map(f => f.name);
+
+  const profileStatus = `
+## CURRENT PROFILE STATUS (${progressPercent || 0}% complete)
+${completedFields.length > 0 ? `### Completed:\n${completedFields.join('\n')}` : '### No fields completed yet'}
+${missingFields.length > 0 ? `\n### Still Needed:\n${missingFields.map(f => `- ${f}`).join('\n')}` : ''}
+`;
+
+  return `You are a GTM strategist helping ${userName || 'the user'} build their go-to-market plan. You MUST use tools to update the plan.
 ${userContext}
+${profileStatus}
 
 ## GREETING
 ${greeting}
 
-## CRITICAL REQUIREMENT
+## YOUR ROLE
+You're a friendly, knowledgeable GTM coach. ${userName ? `Address ${userName} by name naturally.` : ''} You help them:
+1. Define their GTM requirements through conversation
+2. Match them with relevant agencies
+3. Create actionable timelines
 
-You have access to the "update_requirements" tool. Call it after EVERY user message.
+## CRITICAL REQUIREMENTS
+
+### Tool Usage
+You have access to the "update_requirements" tool. Call it after EVERY user message where they share info.
 
 Example: User says "I'm building a B2B SaaS product for the games industry"
 Call: update_requirements with:
 - company_name: "B2B SaaS Product"
 - category: "b2b_saas"
-- industry: "games"
+- industry: "gaming"
+
+### HITL Confirmation
+When you extract information, confirm it conversationally:
+- "Got it! So you're in the ${requirements?.industry || '[industry]'} space targeting ${requirements?.category || '[customer type]'}. That's a great market!"
+- "I've noted your $${requirements?.budget?.toLocaleString() || '[X]'}/month budget. Let me find agencies in that range."
+
+### Guide Based on Progress
+${progressPercent && progressPercent < 30 ? "- Focus on gathering basic info: company, industry, target customer" : ""}
+${progressPercent && progressPercent >= 30 && progressPercent < 60 ? "- Good progress! Now let's nail down strategy and budget" : ""}
+${progressPercent && progressPercent >= 60 && progressPercent < 80 ? "- Almost there! Let's identify what help they need" : ""}
+${progressPercent && progressPercent >= 80 ? "- Profile nearly complete! Ready to search for agencies" : ""}
 
 ## CONVERSATION FLOW
 
-Ask one question at a time:
-1. What are you building?
-2. Who's your target customer?
-3. What stage are you at?
-4. What's your marketing budget?
-5. What help do you need?
+Ask one question at a time based on what's missing:
+${!requirements?.company_name ? "1. What company or product are you building?" : ""}
+${!requirements?.industry ? "2. What industry are you in?" : ""}
+${!requirements?.category ? "3. Who's your target customer (B2B, B2C, Enterprise, SMB)?" : ""}
+${!requirements?.strategy_type ? "4. What's your GTM approach (Product-led, Sales-led, Hybrid)?" : ""}
+${!requirements?.budget ? "5. What's your marketing budget?" : ""}
+${!requirements?.needed_specializations?.length ? "6. What marketing help do you need?" : ""}
 
-After 3-4 exchanges with enough info, call search_agencies.
+After 3-4 exchanges with enough info (60%+ progress), call search_agencies.
 
 ## REMEMBER
 
-1. ALWAYS call update_requirements first
-2. Extract any info into parameters
-3. Be conversational and brief
-4. ${userName ? `Address the user by name (${userName}) when appropriate` : 'Be friendly and professional'}`;
+1. ALWAYS call update_requirements to save info
+2. Be conversational and brief
+3. Confirm what you've learned
+4. ${userName ? `Address ${userName} naturally` : 'Be friendly and professional'}
+5. Guide them through the onboarding wizard on the left`;
 }
 
 export function DashboardClient() {
@@ -528,12 +575,12 @@ export function DashboardClient() {
 
       const fields = [
         newReq.company_name,
-        newReq.industry || newReq.category,
-        newReq.target_market,
+        newReq.industry,
+        newReq.category,
         newReq.strategy_type,
         newReq.budget,
-        newReq.primary_goal,
         (newReq.needed_specializations?.length || 0) > 0,
+        (newReq.tech_stack?.length || 0) > 0,
       ];
       const progress = Math.round((fields.filter(Boolean).length / fields.length) * 100);
 
@@ -625,7 +672,9 @@ export function DashboardClient() {
         instructions={buildSystemInstructions(
           user?.name || zepUser?.firstName,
           isReturningUser,
-          buildContext()
+          buildContext(),
+          requirements,
+          requirements_progress
         )}
         labels={{
           title: 'GTM Strategist',
@@ -791,20 +840,28 @@ export function DashboardClient() {
             )}
 
             {/* Onboarding Wizard - always show if profile incomplete */}
-            {requirements_progress < 80 && (
+            {requirements_progress < 100 && (
               <OnboardingWizard
                 requirements={requirements}
+                userId={userId}
+                onProfileLoaded={(profile) => {
+                  // Update state when profile is loaded from Neon
+                  setGtmState(prev => ({
+                    ...prev,
+                    requirements: { ...prev.requirements, ...profile } as GTMRequirements,
+                  }));
+                }}
                 onUpdate={(field, value) => {
                   setGtmState(prev => {
                     const newReq = { ...prev.requirements, [field]: value };
                     const fields = [
                       newReq.company_name,
-                      newReq.industry || newReq.category,
-                      newReq.target_market,
+                      newReq.industry,
+                      newReq.category,
                       newReq.strategy_type,
                       newReq.budget,
-                      newReq.primary_goal,
                       (newReq.needed_specializations?.length || 0) > 0,
+                      (newReq.tech_stack?.length || 0) > 0,
                     ];
                     const progress = Math.round((fields.filter(Boolean).length / fields.length) * 100);
                     return {

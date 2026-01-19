@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 interface OnboardingWizardProps {
@@ -13,7 +13,10 @@ interface OnboardingWizardProps {
     strategy_type?: string;
     budget?: number;
     needed_specializations?: string[];
+    tech_stack?: string[];
   };
+  userId?: string | null;
+  onProfileLoaded?: (profile: Record<string, unknown>) => void;
 }
 
 const INDUSTRIES = [
@@ -56,15 +59,107 @@ const SPECIALIZATIONS = [
   { id: 'brand', label: 'Branding', icon: '🎨' },
 ];
 
-type Step = 'company' | 'industry' | 'category' | 'strategy' | 'budget' | 'specializations';
+const TOOLS = [
+  { id: 'hubspot', label: 'HubSpot', icon: '🟠', category: 'CRM' },
+  { id: 'salesforce', label: 'Salesforce', icon: '☁️', category: 'CRM' },
+  { id: 'clay', label: 'Clay', icon: '🟣', category: 'Data Enrichment' },
+  { id: 'apollo', label: 'Apollo.io', icon: '🚀', category: 'Sales Intelligence' },
+  { id: 'outreach', label: 'Outreach', icon: '📧', category: 'Sales Engagement' },
+  { id: 'gong', label: 'Gong', icon: '🎙️', category: 'Conversation Intelligence' },
+  { id: 'drift', label: 'Drift', icon: '💬', category: 'Conversational Marketing' },
+  { id: 'marketo', label: 'Marketo', icon: '📊', category: 'Marketing Automation' },
+  { id: 'intercom', label: 'Intercom', icon: '💭', category: 'Customer Messaging' },
+  { id: 'segment', label: 'Segment', icon: '🟢', category: 'Customer Data' },
+  { id: 'mixpanel', label: 'Mixpanel', icon: '📈', category: 'Product Analytics' },
+  { id: 'amplitude', label: 'Amplitude', icon: '📉', category: 'Product Analytics' },
+];
 
-export function OnboardingWizard({ onUpdate, requirements }: OnboardingWizardProps) {
+type Step = 'company' | 'industry' | 'category' | 'strategy' | 'budget' | 'specializations' | 'tools';
+
+export function OnboardingWizard({ onUpdate, requirements, userId, onProfileLoaded }: OnboardingWizardProps) {
   const [currentStep, setCurrentStep] = useState<Step>('company');
   const [companyName, setCompanyName] = useState(requirements.company_name || '');
   const [selectedSpecs, setSelectedSpecs] = useState<string[]>(requirements.needed_specializations || []);
+  const [selectedTools, setSelectedTools] = useState<string[]>(requirements.tech_stack || []);
+  const [isSaving, setIsSaving] = useState(false);
+  const [saveStatus, setSaveStatus] = useState<'saved' | 'saving' | 'error' | null>(null);
+  const [profileLoaded, setProfileLoaded] = useState(false);
+
+  // Load profile from Neon on mount
+  useEffect(() => {
+    if (userId && !profileLoaded) {
+      loadProfile();
+    }
+  }, [userId, profileLoaded]);
+
+  const loadProfile = async () => {
+    if (!userId) return;
+
+    try {
+      const response = await fetch('/api/user-profile', {
+        headers: { 'x-user-id': userId },
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        if (data.profile) {
+          // Update local state
+          if (data.profile.company_name) setCompanyName(data.profile.company_name);
+          if (data.profile.needed_specializations) setSelectedSpecs(data.profile.needed_specializations);
+          if (data.profile.tech_stack) setSelectedTools(data.profile.tech_stack);
+
+          // Notify parent about loaded profile
+          if (onProfileLoaded) {
+            onProfileLoaded(data.profile);
+          }
+
+          // Update parent state for each field
+          Object.entries(data.profile).forEach(([field, value]) => {
+            if (value !== null && value !== undefined) {
+              onUpdate(field, value as string | string[] | number);
+            }
+          });
+        }
+        setProfileLoaded(true);
+      }
+    } catch (error) {
+      console.error('Error loading profile:', error);
+    }
+  };
+
+  // Auto-save to Neon
+  const autoSave = useCallback(async (field: string, value: string | string[] | number) => {
+    if (!userId) return;
+
+    setIsSaving(true);
+    setSaveStatus('saving');
+
+    try {
+      const response = await fetch('/api/user-profile', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'x-user-id': userId,
+        },
+        body: JSON.stringify({ field, value }),
+      });
+
+      if (response.ok) {
+        setSaveStatus('saved');
+        setTimeout(() => setSaveStatus(null), 2000);
+      } else {
+        setSaveStatus('error');
+      }
+    } catch (error) {
+      console.error('Auto-save error:', error);
+      setSaveStatus('error');
+    } finally {
+      setIsSaving(false);
+    }
+  }, [userId]);
 
   const handleNext = () => {
-    const steps: Step[] = ['company', 'industry', 'category', 'strategy', 'budget', 'specializations'];
+    const steps: Step[] = ['company', 'industry', 'category', 'strategy', 'budget', 'specializations', 'tools'];
     const currentIndex = steps.indexOf(currentStep);
     if (currentIndex < steps.length - 1) {
       setCurrentStep(steps[currentIndex + 1]);
@@ -74,12 +169,14 @@ export function OnboardingWizard({ onUpdate, requirements }: OnboardingWizardPro
   const handleCompanySubmit = () => {
     if (companyName.trim()) {
       onUpdate('company_name', companyName.trim());
+      autoSave('company_name', companyName.trim());
       handleNext();
     }
   };
 
   const handleSelect = (field: string, value: string | number) => {
     onUpdate(field, value);
+    autoSave(field, value);
     handleNext();
   };
 
@@ -89,18 +186,30 @@ export function OnboardingWizard({ onUpdate, requirements }: OnboardingWizardPro
       : [...selectedSpecs, specId];
     setSelectedSpecs(newSpecs);
     onUpdate('needed_specializations', newSpecs);
+    autoSave('needed_specializations', newSpecs);
   };
 
-  const completedSteps = [
-    requirements.company_name,
-    requirements.industry,
-    requirements.category,
-    requirements.strategy_type,
-    requirements.budget,
-    requirements.needed_specializations?.length,
-  ].filter(Boolean).length;
+  const toggleTool = (toolId: string) => {
+    const newTools = selectedTools.includes(toolId)
+      ? selectedTools.filter(t => t !== toolId)
+      : [...selectedTools, toolId];
+    setSelectedTools(newTools);
+    onUpdate('tech_stack', newTools);
+    autoSave('tech_stack', newTools);
+  };
 
-  const progress = Math.round((completedSteps / 6) * 100);
+  const steps = [
+    { id: 'company' as Step, label: 'Company', icon: '🏢', field: requirements.company_name },
+    { id: 'industry' as Step, label: 'Industry', icon: '🎯', field: requirements.industry },
+    { id: 'category' as Step, label: 'Category', icon: '📊', field: requirements.category },
+    { id: 'strategy' as Step, label: 'Strategy', icon: '🚀', field: requirements.strategy_type },
+    { id: 'budget' as Step, label: 'Budget', icon: '💰', field: requirements.budget },
+    { id: 'specializations' as Step, label: 'Needs', icon: '🛠️', field: requirements.needed_specializations?.length },
+    { id: 'tools' as Step, label: 'Tools', icon: '🔧', field: requirements.tech_stack?.length },
+  ];
+
+  const completedSteps = steps.filter(s => s.field).length;
+  const progress = Math.round((completedSteps / steps.length) * 100);
 
   return (
     <div className="bg-gradient-to-br from-zinc-900 to-zinc-800 rounded-2xl border border-white/10 p-8 mb-8">
@@ -108,9 +217,26 @@ export function OnboardingWizard({ onUpdate, requirements }: OnboardingWizardPro
       <div className="flex items-center justify-between mb-6">
         <div>
           <h2 className="text-xl font-bold text-white">Tell us about your GTM needs</h2>
-          <p className="text-white/50 text-sm">Complete your profile to get matched with agencies</p>
+          <p className="text-white/50 text-sm">
+            {userId ? 'Your progress is saved automatically' : 'Sign in to save your progress'}
+          </p>
         </div>
         <div className="flex items-center gap-3">
+          {/* Save Status Indicator */}
+          {saveStatus && (
+            <motion.span
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0 }}
+              className={`text-xs px-2 py-1 rounded ${
+                saveStatus === 'saved' ? 'bg-emerald-500/20 text-emerald-400' :
+                saveStatus === 'saving' ? 'bg-blue-500/20 text-blue-400' :
+                'bg-red-500/20 text-red-400'
+              }`}
+            >
+              {saveStatus === 'saved' ? 'Saved' : saveStatus === 'saving' ? 'Saving...' : 'Error'}
+            </motion.span>
+          )}
           <span className="text-emerald-400 font-bold">{progress}%</span>
           <div className="w-24 h-2 bg-white/10 rounded-full overflow-hidden">
             <motion.div
@@ -123,32 +249,28 @@ export function OnboardingWizard({ onUpdate, requirements }: OnboardingWizardPro
         </div>
       </div>
 
-      {/* Step Navigation */}
+      {/* Step Navigation - All Clickable */}
       <div className="flex gap-2 mb-8 overflow-x-auto pb-2">
-        {[
-          { id: 'company', label: 'Company', icon: '🏢' },
-          { id: 'industry', label: 'Industry', icon: '🎯' },
-          { id: 'category', label: 'Category', icon: '📊' },
-          { id: 'strategy', label: 'Strategy', icon: '🚀' },
-          { id: 'budget', label: 'Budget', icon: '💰' },
-          { id: 'specializations', label: 'Needs', icon: '🛠️' },
-        ].map((step, index) => {
-          const isComplete = index < completedSteps;
+        {steps.map((step, index) => {
+          const isComplete = !!step.field;
           const isCurrent = step.id === currentStep;
           return (
             <button
               key={step.id}
-              onClick={() => setCurrentStep(step.id as Step)}
+              onClick={() => setCurrentStep(step.id)}
               className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium whitespace-nowrap transition-all ${
                 isCurrent
                   ? 'bg-emerald-500 text-white'
                   : isComplete
                   ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30'
-                  : 'bg-white/5 text-white/40 hover:bg-white/10'
+                  : 'bg-white/5 text-white/40 hover:bg-white/10 hover:text-white/60'
               }`}
             >
               <span>{isComplete ? '✓' : step.icon}</span>
               {step.label}
+              {!isComplete && index > completedSteps && (
+                <span className="text-xs text-white/30">({index - completedSteps} away)</span>
+              )}
             </button>
           );
         })}
@@ -178,10 +300,10 @@ export function OnboardingWizard({ onUpdate, requirements }: OnboardingWizardPro
                 />
                 <button
                   onClick={handleCompanySubmit}
-                  disabled={!companyName.trim()}
+                  disabled={!companyName.trim() || isSaving}
                   className="bg-emerald-500 hover:bg-emerald-600 disabled:bg-white/10 disabled:text-white/30 text-white px-6 py-3 rounded-xl font-medium transition"
                 >
-                  Next
+                  {isSaving ? 'Saving...' : 'Next'}
                 </button>
               </div>
             </div>
@@ -262,7 +384,7 @@ export function OnboardingWizard({ onUpdate, requirements }: OnboardingWizardPro
           {/* Budget Selection */}
           {currentStep === 'budget' && (
             <div className="space-y-4">
-              <label className="block text-white/70 text-sm mb-2">What&apos;s your marketing budget?</label>
+              <label className="block text-white/70 text-sm mb-2">What&apos;s your monthly marketing budget? (USD)</label>
               <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
                 {BUDGETS.map((bud) => (
                   <button
@@ -306,9 +428,51 @@ export function OnboardingWizard({ onUpdate, requirements }: OnboardingWizardPro
                 ))}
               </div>
               {selectedSpecs.length > 0 && (
-                <div className="pt-4">
+                <div className="pt-4 flex items-center justify-between">
                   <p className="text-emerald-400 text-sm">
                     Selected: {selectedSpecs.length} specialization{selectedSpecs.length > 1 ? 's' : ''}
+                  </p>
+                  <button
+                    onClick={handleNext}
+                    className="bg-emerald-500 hover:bg-emerald-600 text-white px-6 py-2 rounded-xl font-medium transition"
+                  >
+                    Continue to Tools
+                  </button>
+                </div>
+              )}
+            </div>
+          )}
+
+          {/* Tools Selection */}
+          {currentStep === 'tools' && (
+            <div className="space-y-4">
+              <label className="block text-white/70 text-sm mb-2">What tools are you using? (Select all that apply)</label>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+                {TOOLS.map((tool) => (
+                  <button
+                    key={tool.id}
+                    onClick={() => toggleTool(tool.id)}
+                    className={`p-4 rounded-xl border text-left transition-all hover:scale-[1.02] ${
+                      selectedTools.includes(tool.id)
+                        ? 'bg-blue-500/20 border-blue-500'
+                        : 'bg-white/5 border-white/10 hover:border-white/20'
+                    }`}
+                  >
+                    <div className="flex items-center gap-2 mb-1">
+                      <span className="text-xl">{tool.icon}</span>
+                      <span className="font-medium text-white">{tool.label}</span>
+                      {selectedTools.includes(tool.id) && (
+                        <span className="ml-auto text-blue-400">✓</span>
+                      )}
+                    </div>
+                    <div className="text-white/40 text-xs">{tool.category}</div>
+                  </button>
+                ))}
+              </div>
+              {selectedTools.length > 0 && (
+                <div className="pt-4">
+                  <p className="text-blue-400 text-sm">
+                    Your Stack: {selectedTools.map(t => TOOLS.find(tool => tool.id === t)?.label).join(', ')}
                   </p>
                 </div>
               )}

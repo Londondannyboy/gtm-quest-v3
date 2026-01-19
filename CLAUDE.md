@@ -261,3 +261,28 @@ POST /api/copilotkit           → CopilotKit runtime
 - Integrated into HomeClient.tsx
 - Build generates 269 pages
 - Push to GitHub (commit cc6ca44)
+
+### 2026-01-19 (Session 7) - Auto-Save, HITL & Tools Recognition
+- **Auto-save to Neon**: Profile data now saves automatically when logged in
+  - Created `/api/user-profile` route for CRUD operations
+  - Uses existing `user_preferences` table in Neon
+  - Real-time save status indicator (Saved/Saving/Error)
+- **Enhanced OnboardingWizard**:
+  - All steps now clickable for direct editing
+  - Added Tools step with 12 GTM tools (HubSpot, Clay, Salesforce, etc.)
+  - Profile loads from Neon on mount when authenticated
+  - 7 steps total: Company, Industry, Category, Strategy, Budget, Needs, Tools
+- **HITL Confirmations in CopilotKit**:
+  - AI now knows user's name and profile completion %
+  - Instructions include current profile status
+  - AI confirms extracted info conversationally
+  - Guides based on progress (< 30%, 30-60%, 60-80%, 80%+)
+- **Full User Context to AI**:
+  - Profile fields (completed vs missing)
+  - Zep memory context
+  - Progress percentage
+  - Tech stack tools
+- Key files modified:
+  - `src/app/api/user-profile/route.ts` - New API for auto-save
+  - `src/components/onboarding/OnboardingWizard.tsx` - Auto-save + tools
+  - `src/app/dashboard/DashboardClient.tsx` - Full context to AI
