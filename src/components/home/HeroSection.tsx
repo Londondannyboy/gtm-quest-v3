@@ -1,8 +1,6 @@
-'use client';
-
 import Link from 'next/link';
 
-export function HeroSection({ onGetStarted }: { onGetStarted?: () => void }) {
+export function HeroSection() {
   return (
     <section className="relative py-16 md:py-24 overflow-hidden">
       {/* Background gradient */}
@@ -29,12 +27,12 @@ export function HeroSection({ onGetStarted }: { onGetStarted?: () => void }) {
 
         {/* CTA Buttons */}
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-          <button
-            onClick={onGetStarted}
+          <Link
+            href="/dashboard"
             className="bg-emerald-500 hover:bg-emerald-600 text-white px-8 py-4 rounded-xl font-bold text-lg transition shadow-lg shadow-emerald-500/25"
           >
             Build Your GTM Plan
-          </button>
+          </Link>
           <Link
             href="/agencies"
             className="text-white/70 hover:text-white px-8 py-4 rounded-xl font-medium transition border border-white/10 hover:border-white/20"

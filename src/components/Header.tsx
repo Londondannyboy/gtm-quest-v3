@@ -99,6 +99,13 @@ export function Header() {
             Agencies
           </Link>
 
+          <Link
+            href="/dashboard"
+            className="text-white/60 hover:text-white text-sm transition"
+          >
+            Dashboard
+          </Link>
+
           {/* Auth - Sign In / User Button */}
           {mounted && isAuthConfigured && (
             <>
@@ -119,7 +126,7 @@ export function Header() {
           {/* Get Started CTA */}
           {mounted && (
             <Link
-              href="/#chat"
+              href="/dashboard"
               className="bg-emerald-500 hover:bg-emerald-600 text-white text-sm px-4 py-2 rounded-lg transition font-medium"
             >
               Get Started
