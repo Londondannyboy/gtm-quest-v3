@@ -406,6 +406,139 @@ async def ag_ui_endpoint(request: Request):
         return StreamingResponse(error_stream(), media_type="text/event-stream")
 
 
+# OpenAI-compatible Chat Completions endpoint for Hume EVI CLM
+@app.post("/chat/completions")
+async def chat_completions(request: Request):
+    """OpenAI-compatible chat completions for Hume voice."""
+    try:
+        body = await request.json()
+        messages = body.get("messages", [])
+        stream = body.get("stream", False)
+
+        # Get the last user message
+        user_message = ""
+        for msg in reversed(messages):
+            if msg.get("role") == "user":
+                content = msg.get("content", "")
+                if isinstance(content, str):
+                    user_message = content
+                elif isinstance(content, list):
+                    for part in content:
+                        if isinstance(part, dict) and part.get("type") == "text":
+                            user_message = part.get("text", "")
+                            break
+                break
+
+        if not user_message:
+            user_message = "Hello"
+
+        # Process the message through our agent
+        result = await gtm_agent.process_message(user_message)
+
+        # Build response based on extracted data
+        extracted = result.get("extracted", {})
+        state = result.get("state", {})
+
+        response_parts = []
+
+        # Acknowledge industry
+        if "industry" in extracted:
+            ind_data = state.get("industry_data")
+            if ind_data:
+                response_parts.append(
+                    f"Great, {ind_data['industry']}! "
+                    f"That's a {ind_data['market_size']} market growing at {ind_data['growth_rate']}."
+                )
+
+        # Acknowledge company
+        if extracted.get("company_name"):
+            response_parts.append(f"Got it, working on a GTM plan for {extracted['company_name']}.")
+
+        # Ask follow-up based on what's missing
+        req = state.get("requirements", {})
+        progress = state.get("progress_percent", 0)
+
+        if progress > 0:
+            response_parts.append(f"We're {progress}% through gathering your requirements.")
+
+        if not req.get("target_market"):
+            response_parts.append("Who's your ideal customer? B2B, B2C, enterprise?")
+        elif not req.get("strategy_type"):
+            response_parts.append("What's your GTM approach - product-led growth, sales-led, or hybrid?")
+        elif not req.get("budget"):
+            response_parts.append("What's your marketing budget range?")
+        elif not req.get("needed_specializations"):
+            response_parts.append("What kind of marketing help do you need? Demand gen, ABM, content?")
+
+        response_text = " ".join(response_parts) if response_parts else "Tell me more about your business and GTM needs."
+
+        if stream:
+            # Streaming response
+            async def stream_response():
+                # Send chunks for streaming
+                chunk = {
+                    "id": "chatcmpl-gtm",
+                    "object": "chat.completion.chunk",
+                    "created": int(__import__('time').time()),
+                    "model": "gtm-agent",
+                    "choices": [{
+                        "index": 0,
+                        "delta": {"content": response_text},
+                        "finish_reason": None
+                    }]
+                }
+                yield f"data: {json.dumps(chunk)}\n\n"
+
+                # Send done marker
+                done_chunk = {
+                    "id": "chatcmpl-gtm",
+                    "object": "chat.completion.chunk",
+                    "created": int(__import__('time').time()),
+                    "model": "gtm-agent",
+                    "choices": [{
+                        "index": 0,
+                        "delta": {},
+                        "finish_reason": "stop"
+                    }]
+                }
+                yield f"data: {json.dumps(done_chunk)}\n\n"
+                yield "data: [DONE]\n\n"
+
+            return StreamingResponse(stream_response(), media_type="text/event-stream")
+        else:
+            # Non-streaming response
+            return JSONResponse({
+                "id": "chatcmpl-gtm",
+                "object": "chat.completion",
+                "created": int(__import__('time').time()),
+                "model": "gtm-agent",
+                "choices": [{
+                    "index": 0,
+                    "message": {
+                        "role": "assistant",
+                        "content": response_text
+                    },
+                    "finish_reason": "stop"
+                }],
+                "usage": {
+                    "prompt_tokens": len(user_message.split()),
+                    "completion_tokens": len(response_text.split()),
+                    "total_tokens": len(user_message.split()) + len(response_text.split())
+                }
+            })
+
+    except Exception as e:
+        print(f"Chat completions error: {e}")
+        import traceback
+        traceback.print_exc()
+        return JSONResponse({
+            "error": {
+                "message": str(e),
+                "type": "internal_error"
+            }
+        }, status_code=500)
+
+
 if __name__ == "__main__":
     import uvicorn
     uvicorn.run(app, host="0.0.0.0", port=8000)
