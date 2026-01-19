@@ -6,6 +6,7 @@ import { useCopilotAction, useCopilotReadable, useCopilotChat } from '@copilotki
 import { LoginPromptModal, useShouldPromptLogin } from '@/components/LoginPromptModal';
 import { ProfileCard } from '@/components/onboarding/ProfileCard';
 import { OnboardingProgress } from '@/components/onboarding/OnboardingProgress';
+import { OnboardingWizard } from '@/components/onboarding/OnboardingWizard';
 import { EnhancedDashboard } from '@/components/dashboard/EnhancedDashboard';
 import { PlanBuilder } from '@/components/plan/PlanBuilder';
 import { ParticleBackgroundLight } from '@/components/ui/ParticleBackground';
@@ -789,15 +790,32 @@ export function DashboardClient() {
               </div>
             )}
 
-            {/* Empty State */}
-            {!hasData && (
-              <div className="bg-zinc-900/50 rounded-2xl border border-white/10 p-12 text-center">
-                <div className="text-6xl mb-6">🚀</div>
-                <h3 className="text-2xl font-bold text-white mb-3">Your GTM Dashboard</h3>
-                <p className="text-white/60 max-w-md mx-auto">
-                  Start chatting and watch your personalized dashboard form with market data, matched agencies, and an execution timeline.
-                </p>
-              </div>
+            {/* Onboarding Wizard - always show if profile incomplete */}
+            {requirements_progress < 80 && (
+              <OnboardingWizard
+                requirements={requirements}
+                onUpdate={(field, value) => {
+                  setGtmState(prev => {
+                    const newReq = { ...prev.requirements, [field]: value };
+                    const fields = [
+                      newReq.company_name,
+                      newReq.industry || newReq.category,
+                      newReq.target_market,
+                      newReq.strategy_type,
+                      newReq.budget,
+                      newReq.primary_goal,
+                      (newReq.needed_specializations?.length || 0) > 0,
+                    ];
+                    const progress = Math.round((fields.filter(Boolean).length / fields.length) * 100);
+                    return {
+                      ...prev,
+                      requirements: newReq,
+                      requirements_progress: progress,
+                      timeline_phases: newReq.strategy_type ? generatePhases(newReq) : prev.timeline_phases,
+                    };
+                  });
+                }}
+              />
             )}
           </div>
         </div>
