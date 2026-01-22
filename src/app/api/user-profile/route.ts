@@ -1,6 +1,69 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { sql } from '@/lib/db';
 
+// Sync profile to Zep memory as facts
+async function syncToZep(userId: string, profile: Record<string, unknown>) {
+  const ZEP_API_KEY = process.env.ZEP_API_KEY;
+  if (!ZEP_API_KEY) return; // Zep not configured
+
+  try {
+    // Build facts from profile data
+    const facts: string[] = [];
+
+    if (profile.company_name) {
+      facts.push(`User's company is called ${profile.company_name}`);
+    }
+    if (profile.industry) {
+      facts.push(`User works in the ${profile.industry} industry`);
+    }
+    if (profile.stage || profile.target_market) {
+      facts.push(`User targets ${profile.target_market || profile.stage} customers`);
+    }
+    if (profile.budget) {
+      facts.push(`User has a monthly marketing budget of $${Number(profile.budget).toLocaleString()}`);
+    }
+    if (profile.strategy_preference) {
+      facts.push(`User prefers a ${profile.strategy_preference} GTM strategy`);
+    }
+    if (Array.isArray(profile.challenges) && profile.challenges.length > 0) {
+      facts.push(`User needs help with: ${(profile.challenges as string[]).join(', ')}`);
+    }
+    if (Array.isArray(profile.interested_agencies) && profile.interested_agencies.length > 0) {
+      facts.push(`User's tech stack includes: ${(profile.interested_agencies as string[]).join(', ')}`);
+    }
+
+    if (facts.length === 0) return;
+
+    // Call internal Zep API to sync facts
+    const baseUrl = process.env.NEXT_PUBLIC_APP_URL || 'http://localhost:3001';
+    await fetch(`${baseUrl}/api/zep/user`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        userId,
+        facts,
+        metadata: {
+          company: profile.company_name,
+          industry: profile.industry,
+          budget: profile.budget,
+          targetMarket: profile.target_market || profile.stage,
+          gtmStrategy: profile.strategy_preference,
+        },
+      }),
+    });
+
+    console.log(`[Zep Sync] Synced ${facts.length} facts for user ${userId}`);
+
+    // Update zep_synced timestamp in database
+    await sql`
+      UPDATE user_preferences SET zep_synced = NOW() WHERE user_id = ${userId}
+    `;
+  } catch (error) {
+    console.error('[Zep Sync] Error syncing to Zep:', error);
+    // Don't throw - Zep sync is non-blocking
+  }
+}
+
 // GET - Fetch user profile
 export async function GET(request: NextRequest) {
   try {
@@ -106,6 +169,9 @@ export async function POST(request: NextRequest) {
       SELECT * FROM user_preferences WHERE user_id = ${userId}
     `;
 
+    // Sync to Zep memory (non-blocking)
+    syncToZep(userId, updated[0]);
+
     return NextResponse.json({
       success: true,
       completionPercent: calculateCompletion(updated[0]),
@@ -180,6 +246,9 @@ export async function PUT(request: NextRequest) {
     const updated = await sql`
       SELECT * FROM user_preferences WHERE user_id = ${userId}
     `;
+
+    // Sync to Zep memory (non-blocking)
+    syncToZep(userId, updated[0]);
 
     return NextResponse.json({
       success: true,

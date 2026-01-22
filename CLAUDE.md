@@ -286,3 +286,14 @@ POST /api/copilotkit           → CopilotKit runtime
   - `src/app/api/user-profile/route.ts` - New API for auto-save
   - `src/components/onboarding/OnboardingWizard.tsx` - Auto-save + tools
   - `src/app/dashboard/DashboardClient.tsx` - Full context to AI
+
+### 2026-01-22 (Session 8) - Zep Memory Sync
+- **Zep Memory Sync on Profile Updates**:
+  - Profile changes now automatically sync to Zep knowledge graph
+  - Facts generated from profile data (company, industry, budget, strategy, etc.)
+  - User metadata updated in Zep for AI personalization
+  - `zep_synced` timestamp tracked in database
+  - Non-blocking async sync (won't slow down profile saves)
+- Key file modified:
+  - `src/app/api/user-profile/route.ts` - Added `syncToZep()` function
+- Build: 273 pages generated successfully
