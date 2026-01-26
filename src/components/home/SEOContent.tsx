@@ -152,6 +152,18 @@ export function SEOContent({ featuredArticles, topAgencies }: SEOContentProps) {
           </div>
         )}
 
+        {/* Public Sector GTM */}
+        <div className="bg-zinc-900/50 rounded-2xl p-8 border border-white/10 mt-12">
+          <h3 className="text-xl font-bold mb-4">Selling to Government?</h3>
+          <p className="text-white/60 mb-4">
+            Public sector contracts represent a significant B2B go-to-market channel, but winning tenders requires a specialized approach.
+            From understanding evaluation criteria to crafting compliant responses, government procurement has its own playbook.
+          </p>
+          <p className="text-white/60">
+            Our partners at <a href="https://rfp.quest" target="_blank" rel="noopener noreferrer" className="text-emerald-400 hover:text-emerald-300 underline">RFP Quest</a> provide AI-powered tender analysis for UK government contracts — helping B2B companies understand requirements, identify gaps, and craft winning bids.
+          </p>
+        </div>
+
         {/* Final CTA */}
         <div className="text-center mt-16">
           <h3 className="text-2xl font-bold mb-4">Ready to build your GTM strategy?</h3>
