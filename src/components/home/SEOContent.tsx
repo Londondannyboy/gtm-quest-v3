@@ -164,11 +164,88 @@ export function SEOContent({ featuredArticles, topAgencies }: SEOContentProps) {
           </p>
         </div>
 
+        {/* Industry Insights - Authority Links */}
+        <div className="bg-zinc-900/50 rounded-2xl p-8 border border-white/10 mt-12">
+          <h3 className="text-xl font-bold mb-4">GTM Industry Insights</h3>
+          <p className="text-white/60 mb-6">
+            Stay informed with research and best practices from leading B2B marketing and GTM experts.
+            These resources from industry authorities can help shape your go-to-market approach.
+          </p>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+            <a
+              href="https://www.hubspot.com/state-of-marketing"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block bg-zinc-800/50 rounded-lg p-4 hover:bg-zinc-800 transition group"
+            >
+              <h4 className="font-semibold text-white group-hover:text-emerald-400 transition">
+                HubSpot State of Marketing
+              </h4>
+              <p className="text-white/40 text-sm">Annual trends in B2B marketing and demand generation</p>
+            </a>
+            <a
+              href="https://www.gartner.com/en/sales"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block bg-zinc-800/50 rounded-lg p-4 hover:bg-zinc-800 transition group"
+            >
+              <h4 className="font-semibold text-white group-hover:text-emerald-400 transition">
+                Gartner Sales Research
+              </h4>
+              <p className="text-white/40 text-sm">Enterprise B2B sales and GTM strategy insights</p>
+            </a>
+            <a
+              href="https://www.forrester.com/b2b-marketing/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block bg-zinc-800/50 rounded-lg p-4 hover:bg-zinc-800 transition group"
+            >
+              <h4 className="font-semibold text-white group-hover:text-emerald-400 transition">
+                Forrester B2B Marketing
+              </h4>
+              <p className="text-white/40 text-sm">Research on B2B buyer journeys and ABM</p>
+            </a>
+            <a
+              href="https://www.demandgen.com/resources/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block bg-zinc-800/50 rounded-lg p-4 hover:bg-zinc-800 transition group"
+            >
+              <h4 className="font-semibold text-white group-hover:text-emerald-400 transition">
+                Demand Gen Report
+              </h4>
+              <p className="text-white/40 text-sm">B2B demand generation benchmarks and case studies</p>
+            </a>
+            <a
+              href="https://www.saastr.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block bg-zinc-800/50 rounded-lg p-4 hover:bg-zinc-800 transition group"
+            >
+              <h4 className="font-semibold text-white group-hover:text-emerald-400 transition">
+                SaaStr
+              </h4>
+              <p className="text-white/40 text-sm">SaaS go-to-market playbooks and scaling advice</p>
+            </a>
+            <a
+              href="https://www.linkedin.com/business/marketing/blog"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block bg-zinc-800/50 rounded-lg p-4 hover:bg-zinc-800 transition group"
+            >
+              <h4 className="font-semibold text-white group-hover:text-emerald-400 transition">
+                LinkedIn Marketing Blog
+              </h4>
+              <p className="text-white/40 text-sm">B2B marketing trends and thought leadership</p>
+            </a>
+          </div>
+        </div>
+
         {/* Final CTA */}
         <div className="text-center mt-16">
           <h3 className="text-2xl font-bold mb-4">Ready to build your GTM strategy?</h3>
           <p className="text-white/60 mb-6">
-            Our AI strategist will help you find the perfect agency match.
+            Our AI strategist will help you find the perfect GTM agency match for your business.
           </p>
           <Link
             href="/#chat"

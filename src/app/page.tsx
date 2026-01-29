@@ -2,15 +2,27 @@ import { getArticles } from '@/lib/content';
 import { getAllAgencies } from '@/lib/agencies';
 import { HomeClient } from '@/components/home/HomeClient';
 import { SEOContent } from '@/components/home/SEOContent';
+import { ExplainerSection } from '@/components/home/ExplainerSection';
+import { FAQSection } from '@/components/home/FAQSection';
+import { HomeSchema } from '@/components/home/HomeSchema';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'GTM Quest | AI-Powered Go-To-Market Strategy & Agency Matching',
-  description: 'Build your go-to-market strategy with AI. Get matched with 200+ agencies specializing in demand generation, ABM, and B2B growth. Free GTM planning tool.',
+  title: 'GTM Agency Matching | AI Go-To-Market Strategy',
+  description: 'GTM agency matching powered by AI. Build your go-to-market strategy and connect with 200+ B2B growth agencies for demand gen and ABM.',
+  alternates: {
+    canonical: 'https://gtm.quest',
+  },
   openGraph: {
-    title: 'GTM Quest - AI-Powered Go-To-Market Strategy',
-    description: 'Build your GTM strategy and get matched with top agencies for B2B growth.',
+    title: 'GTM Agency Matching | AI Go-To-Market Strategy',
+    description: 'GTM agency matching powered by AI. Connect with 200+ B2B growth agencies.',
     type: 'website',
+    url: 'https://gtm.quest',
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'GTM Agency Matching | AI Go-To-Market Strategy',
+    description: 'GTM agency matching powered by AI. Connect with 200+ B2B growth agencies.',
   },
 };
 
@@ -32,11 +44,20 @@ export default async function Home() {
 
   return (
     <>
+      {/* Schema.org structured data */}
+      <HomeSchema />
+
       {/* Client-side interactive app */}
       <HomeClient />
 
+      {/* What is GTM Agency Matching - Explainer section */}
+      <ExplainerSection />
+
       {/* Server-rendered SEO content */}
       <SEOContent featuredArticles={articles} topAgencies={topAgencies} />
+
+      {/* FAQ Section with schema */}
+      <FAQSection />
     </>
   );
 }
