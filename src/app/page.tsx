@@ -8,21 +8,21 @@ import { HomeSchema } from '@/components/home/HomeSchema';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'GTM Agency Matching | AI Go-To-Market Strategy',
-  description: 'GTM agency matching powered by AI. Build your go-to-market strategy and connect with 200+ B2B growth agencies for demand gen and ABM.',
+  title: 'GTM Agency Matching | AI-Powered Go-To-Market Strategy',
+  description: 'GTM agency matching powered by AI. Build your go-to-market strategy and connect with 200+ vetted B2B growth agencies for demand generation and ABM.',
   alternates: {
     canonical: 'https://gtm.quest',
   },
   openGraph: {
-    title: 'GTM Agency Matching | AI Go-To-Market Strategy',
-    description: 'GTM agency matching powered by AI. Connect with 200+ B2B growth agencies.',
+    title: 'GTM Agency Matching | AI-Powered Go-To-Market Strategy',
+    description: 'GTM agency matching powered by AI. Connect with 200+ vetted B2B growth agencies.',
     type: 'website',
     url: 'https://gtm.quest',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'GTM Agency Matching | AI Go-To-Market Strategy',
-    description: 'GTM agency matching powered by AI. Connect with 200+ B2B growth agencies.',
+    title: 'GTM Agency Matching | AI-Powered Go-To-Market Strategy',
+    description: 'GTM agency matching powered by AI. Connect with 200+ vetted B2B growth agencies.',
   },
 };
 
