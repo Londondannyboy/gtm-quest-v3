@@ -15,8 +15,8 @@ export function HeroSection() {
 
         {/* Headline */}
         <h1 className="text-4xl md:text-5xl lg:text-6xl font-black mb-6 leading-tight">
-          Find Your Perfect
-          <span className="block text-emerald-400">GTM Agency Partner</span>
+          <span className="block text-emerald-400">GTM Agency Matching</span>
+          Find Your Perfect Partner
         </h1>
 
         {/* Subheadline */}
