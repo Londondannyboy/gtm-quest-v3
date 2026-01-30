@@ -6,6 +6,65 @@ import Image from 'next/image';
 import { useState } from 'react';
 import CountUp from 'react-countup';
 
+// Bid Manager & Tender Intelligence
+const tenderIntelligence = {
+  title: 'Bid Manager Signal Intelligence',
+  description: 'Proactive scraping of government tender databases to identify companies winning carbon-relevant contracts',
+  sources: [
+    { name: 'Find a Tender', url: 'https://www.find-tender.service.gov.uk', description: 'UK government procurement portal', icon: '🏛️' },
+    { name: 'bidstats.uk', url: 'https://bidstats.uk', description: 'Contract award intelligence', icon: '📊' },
+    { name: 'Contracts Finder', url: 'https://www.gov.uk/contracts-finder', description: 'Public sector opportunities', icon: '🔍' },
+    { name: 'TED Europa', url: 'https://ted.europa.eu', description: 'EU-wide tender notices', icon: '🇪🇺' },
+  ],
+  workflow: [
+    'Daily automated scraping of tender databases',
+    'AI filtering for carbon/sustainability-relevant contracts',
+    'Winner identification + instant enrichment via Clay',
+    'Slack alert with context card for immediate outreach',
+  ],
+  customScraper: {
+    note: 'Building custom scrapers for niche databases not covered by standard APIs',
+    examples: ['NHS Shared Business Services', 'Crown Commercial Service', 'Local authority portals'],
+  },
+};
+
+// Competitor & Influencer LinkedIn Intelligence
+const linkedInIntelligence = {
+  competitors: {
+    title: 'Competitor Social Signals',
+    description: 'Track competitor LinkedIn activity and engagement patterns using Trigify',
+    signals: [
+      { name: 'New follower alerts', description: 'When key accounts start following competitors' },
+      { name: 'Engagement tracking', description: 'Who likes/comments on competitor posts' },
+      { name: 'Content analysis', description: 'What messaging resonates in the market' },
+      { name: 'Employee movement', description: 'Hiring signals and team changes' },
+    ],
+    tool: 'Trigify',
+    toolDescription: 'Real-time LinkedIn signal monitoring at scale',
+  },
+  influencers: {
+    title: 'Industry Influencer Tracking',
+    description: 'Monitor engagement from qualified ICPs on sustainability influencer content',
+    signals: [
+      { name: 'Influencer post engagement', description: 'ICPs engaging with thought leaders' },
+      { name: 'Comment analysis', description: 'Extract intent signals from comment content' },
+      { name: 'Follower overlap', description: 'Build prospect lists from influencer audiences' },
+      { name: 'Content topics', description: 'Track trending sustainability discussions' },
+    ],
+  },
+  icpSignals: {
+    title: 'ICP LinkedIn Activity',
+    description: 'Track when qualified prospects post about carbon, compliance, or sustainability',
+    triggers: [
+      'Post about sustainability challenges',
+      'Share regulatory updates (SECR, net zero)',
+      'Engage with carbon accounting content',
+      'Job changes/promotions in target companies',
+      'Company announcements (funding, expansion)',
+    ],
+  },
+};
+
 // Campaign phases
 const phases = [
   {
@@ -15,7 +74,8 @@ const phases = [
     icon: '🏗️',
     items: [
       'Clay workspace with ICP-specific tables',
-      'Signal scrapers: Find a Tender, bidstats.uk',
+      'Tender scrapers: Find a Tender, bidstats.uk, Contracts Finder',
+      'Trigify setup for competitor & influencer monitoring',
       'Initial enrichment waterfalls',
       'Optional: Supabase/Neon for high-volume storage',
     ],
@@ -72,14 +132,18 @@ const optionalFastTrack = {
   note: 'Not included in standard timeline - we recommend getting baseline metrics first. Available as add-on.',
 };
 
-// ICP Categories
+// ICP Categories - 5 Core Clusters (sub-segments provisional, to be validated in discovery)
 const icpCategories = [
-  { name: 'Regulatory-Driven', count: 12, examples: 'SECR, NHS, PPN 006, PAS 2080', color: 'blue' },
-  { name: 'Supply Chain Pressure', count: 6, examples: 'Tesco, Sainsburys, FMCG', color: 'green' },
-  { name: 'Voluntary/Values-Driven', count: 3, examples: 'B Corp, SBTi, CDP', color: 'purple' },
-  { name: 'Sector-Specific', count: 12, examples: 'MATs, Universities, Manufacturing', color: 'cyan' },
-  { name: 'Emerging', count: 4, examples: 'Insurance, Franchises, Recruitment', color: 'amber' },
+  { name: 'Regulatory-Driven', count: '~12', examples: 'SECR, NHS, PPN 006, PAS 2080', color: 'blue' },
+  { name: 'Supply Chain Pressure', count: '~6', examples: 'Tesco, Sainsburys, FMCG', color: 'green' },
+  { name: 'Voluntary/Values-Driven', count: '~3', examples: 'B Corp, SBTi, CDP', color: 'purple' },
+  { name: 'Sector-Specific', count: '~12', examples: 'MATs, Universities, Manufacturing', color: 'cyan' },
+  { name: 'Emerging', count: '~4', examples: 'Insurance, Franchises, Recruitment', color: 'amber' },
 ];
+
+// Total ICP clusters for display
+const totalIcpClusters = 5;
+const provisionalSubSegments = '~37';
 
 // Tier 1 ICPs (Provisional estimates - to be validated)
 const tier1Icps = [
@@ -193,7 +257,7 @@ const oneOffOptions = [
   { type: 'System Build Sprint', rate: '£1,000/day', description: 'Focused build days for specific deliverables' },
 ];
 
-// Why GTM Quest
+// Why GTM Quest - including personal ICP experience
 const whyGtmQuest = [
   { title: 'Operational Execution', description: 'Not strategy decks - working systems that run' },
   { title: 'RevOps-First Architecture', description: 'Built for handover, not dependency' },
@@ -202,6 +266,55 @@ const whyGtmQuest = [
   { title: 'AI-Native Content', description: 'AEO, Gen-SEO, and llms.txt implementation' },
   { title: 'Local', description: 'Based in Borough - happy to meet in person' },
 ];
+
+// Personal ICP Experience - Competitive Advantage
+const personalExperience = {
+  title: 'We\'ve Been Your Prospect',
+  tagline: 'First-hand experience of the compliance nightmare',
+  story: {
+    company: 'Transmission',
+    role: 'Leadership role',
+    size: '200 staff, approaching £20M turnover',
+    challenge: 'ISO 27001, sustainability accreditations for tenders & existing clients',
+    painPoints: [
+      'Administratively heavy - took months of resource',
+      'Required for winning tenders - no choice',
+      'Existing clients started requiring it',
+      'Real personal hell navigating the process',
+    ],
+    outcome: 'Would have taken a platform like Climatise if one existed that I trusted. Did exactly that for ISO 27001.',
+  },
+  advantage: 'This isn\'t theory - we understand the buyer psychology because we\'ve been the buyer.',
+  availability: 'Available for calls to share real-world experience with prospects. Part of the sales team.',
+};
+
+// Web-Savvy Competitive Edge
+const webAdvantage = {
+  title: 'Web-Savvy Execution',
+  description: 'We don\'t just build campaigns - we can enhance your entire digital presence',
+  proof: 'This pitch deck is proof. Built in hours, not weeks. Interactive, responsive, professional.',
+  capabilities: [
+    'Landing page optimisation',
+    'Conversion rate improvements',
+    'Technical SEO implementation',
+    'Content authority building',
+    'Website performance audits',
+  ],
+  note: 'Most Clay consultants are spreadsheet-first. We\'re full-stack GTM.',
+};
+
+// Risk Mitigation / Flexibility
+const flexibility = {
+  title: 'Total Flexibility',
+  headline: 'Zero Lock-In, Scale As Needed',
+  points: [
+    { title: 'Weekly Break Clause', description: 'Scale up or down based on project phase - no penalties' },
+    { title: '1-3 Days/Week', description: 'Choose your capacity: 1 day for maintenance, 3 days for intensive builds' },
+    { title: 'Transparent Pricing', description: 'Day rate model - you know exactly what you\'re paying for' },
+    { title: 'Full Handover', description: 'Everything is documented and transferable - no dependency' },
+  ],
+  record: 'We\'ve never had a client leave mid-pilot. The flexibility means they don\'t need to.',
+};
 
 const CORRECT_PASSWORD = 'climatisegtmquest2026';
 
@@ -369,8 +482,8 @@ export default function ClimatisePage() {
             >
               UK sustainability standards publish <span className="text-amber-400 font-semibold">February 2026</span>.
               <br />
-              <span className="text-green-400 font-semibold">37 ICPs</span> across UK carbon accounting.
-              <span className="text-blue-400 font-semibold"> 15,200 targets</span> with hard deadlines.
+              <span className="text-green-400 font-semibold">5 ICP clusters</span> across UK carbon accounting.
+              <span className="text-blue-400 font-semibold"> 15,200 Tier 1 targets</span> with hard deadlines.
             </motion.p>
 
             {/* CTA */}
@@ -393,17 +506,15 @@ export default function ClimatisePage() {
                 Book Strategy Call
               </a>
               <div className="flex items-center gap-4">
-                <a
-                  href="https://gamma.app/docs/Climatise-GTM-Pilot-j6g4b0py5xapwxz"
-                  target="_blank"
-                  rel="noopener noreferrer"
+                <button
+                  onClick={() => window.print()}
                   className="text-white hover:text-blue-400 px-6 py-3 rounded-xl font-medium transition border border-white/20 hover:border-blue-500/50 flex items-center gap-2"
                 >
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
                   </svg>
-                  View Presentation
-                </a>
+                  Download PDF
+                </button>
                 <a
                   href="/Climitise ICP.pdf"
                   download
@@ -432,9 +543,9 @@ export default function ClimatisePage() {
               className="text-center"
             >
               <div className="text-3xl font-black text-white">
-                <CountUp end={37} duration={2} enableScrollSpy scrollSpyOnce />
+                <CountUp end={5} duration={1.5} enableScrollSpy scrollSpyOnce />
               </div>
-              <div className="text-white/60 text-sm">ICPs Defined</div>
+              <div className="text-white/60 text-sm">ICP Clusters</div>
             </motion.div>
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
@@ -454,7 +565,7 @@ export default function ClimatisePage() {
               className="text-center"
             >
               <div className="text-3xl font-black text-white">
-                <CountUp end={5} duration={1.5} enableScrollSpy scrollSpyOnce />
+                <CountUp end={7} duration={1.5} enableScrollSpy scrollSpyOnce />
               </div>
               <div className="text-white/60 text-sm">Signal Sources</div>
             </motion.div>
@@ -494,9 +605,9 @@ export default function ClimatisePage() {
               className="text-center"
             >
               <div className="text-4xl font-black text-blue-400 mb-2">
-                <CountUp end={37} duration={2} enableScrollSpy scrollSpyOnce /> ICPs
+                <CountUp end={totalIcpClusters} duration={1.5} enableScrollSpy scrollSpyOnce /> Clusters
               </div>
-              <p className="text-white/60 text-sm">Regulatory, supply chain, voluntary & sector-specific targets</p>
+              <p className="text-white/60 text-sm">{provisionalSubSegments} sub-segments across regulatory, supply chain & sector-specific</p>
             </motion.div>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -563,6 +674,70 @@ export default function ClimatisePage() {
         </div>
       </section>
 
+      {/* Personal ICP Experience - Critical Competitive Advantage */}
+      <section className="py-16 bg-gradient-to-b from-zinc-950 to-black">
+        <div className="max-w-5xl mx-auto px-4">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="bg-gradient-to-r from-amber-500/10 via-orange-500/5 to-amber-500/10 border-2 border-amber-500/30 rounded-2xl p-8 relative overflow-hidden"
+          >
+            <div className="absolute top-4 right-4">
+              <span className="text-xs bg-amber-500/20 text-amber-400 px-3 py-1 rounded-full font-bold border border-amber-500/30">
+                Competitive Edge
+              </span>
+            </div>
+
+            <div className="flex items-start gap-4 mb-6">
+              <div className="text-4xl">🎯</div>
+              <div>
+                <h3 className="text-2xl font-black text-amber-400 mb-2">{personalExperience.title}</h3>
+                <p className="text-white/80 text-lg">{personalExperience.tagline}</p>
+              </div>
+            </div>
+
+            <div className="bg-black/30 rounded-xl p-6 mb-6">
+              <div className="grid md:grid-cols-2 gap-6">
+                <div>
+                  <div className="text-white/50 text-xs uppercase tracking-wider mb-2">The Experience</div>
+                  <div className="space-y-2 text-sm">
+                    <div className="text-white"><strong>{personalExperience.story.company}</strong> - {personalExperience.story.size}</div>
+                    <div className="text-white/70">{personalExperience.story.challenge}</div>
+                  </div>
+                </div>
+                <div>
+                  <div className="text-white/50 text-xs uppercase tracking-wider mb-2">The Pain Points</div>
+                  <ul className="space-y-1">
+                    {personalExperience.story.painPoints.map((point, i) => (
+                      <li key={i} className="flex items-start gap-2 text-white/70 text-sm">
+                        <span className="text-amber-400">•</span>
+                        {point}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div className="space-y-4">
+              <p className="text-white/80 italic border-l-2 border-amber-500/50 pl-4">
+                &quot;{personalExperience.story.outcome}&quot;
+              </p>
+              <div className="flex flex-wrap gap-4 text-sm">
+                <div className="bg-amber-500/10 rounded-lg px-4 py-2">
+                  <span className="text-amber-400 font-semibold">{personalExperience.advantage}</span>
+                </div>
+                <div className="bg-green-500/10 rounded-lg px-4 py-2 flex items-center gap-2">
+                  <span className="text-green-400">✓</span>
+                  <span className="text-green-400 font-semibold">{personalExperience.availability}</span>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
       {/* The Challenge - ICP Categories */}
       <section className="py-20 bg-black">
         <div className="max-w-6xl mx-auto px-4">
@@ -576,10 +751,10 @@ export default function ClimatisePage() {
               The Challenge
             </span>
             <h2 className="text-3xl md:text-4xl font-bold text-white mt-2 mb-4">
-              37 ICPs, Complex Signals, Manual Chaos
+              5 Core Clusters, Complex Signals, Manual Chaos
             </h2>
             <p className="text-white/70 max-w-2xl mx-auto">
-              Without automation, you are leaving pipeline on the table.
+              ~{provisionalSubSegments.replace('~', '')} sub-segments to validate. Without automation, you&apos;re leaving pipeline on the table.
             </p>
           </motion.div>
 
@@ -1001,7 +1176,7 @@ export default function ClimatisePage() {
             </h2>
           </motion.div>
 
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid md:grid-cols-3 gap-4 md:gap-6">
             {signalTypes.map((signal, index) => (
               <motion.div
                 key={signal.name}
@@ -1009,23 +1184,209 @@ export default function ClimatisePage() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.1 }}
-                className="bg-zinc-900 border border-white/10 rounded-2xl p-6 hover:border-green-500/30 transition"
+                className="bg-zinc-900 border border-white/10 rounded-2xl p-5 md:p-6 hover:border-green-500/30 transition"
               >
-                <div className="text-4xl mb-4">{signal.icon}</div>
-                <h3 className="text-lg font-bold text-white mb-4">{signal.name}</h3>
+                <div className="text-3xl md:text-4xl mb-3 md:mb-4">{signal.icon}</div>
+                <h3 className="text-base md:text-lg font-bold text-white mb-3 md:mb-4">{signal.name}</h3>
                 <ul className="space-y-2 mb-4">
                   {signal.triggers.map((trigger, i) => (
-                    <li key={i} className="flex items-start gap-2 text-white/70 text-sm">
+                    <li key={i} className="flex items-start gap-2 text-white/70 text-xs md:text-sm">
                       <span className="text-green-400 mt-0.5">✓</span>
                       {trigger}
                     </li>
                   ))}
                 </ul>
                 <div className="bg-green-500/10 border border-green-500/20 rounded-lg p-3">
-                  <div className="text-green-400 text-sm italic">{signal.message}</div>
+                  <div className="text-green-400 text-xs md:text-sm italic">{signal.message}</div>
                 </div>
               </motion.div>
             ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Bid Manager / Tender Intelligence - Visual Flow */}
+      <section className="py-16 md:py-20 bg-black">
+        <div className="max-w-6xl mx-auto px-4">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-10 md:mb-12"
+          >
+            <span className="text-cyan-400 text-sm font-bold uppercase tracking-wider">
+              Tender Intelligence
+            </span>
+            <h2 className="text-2xl md:text-4xl font-bold text-white mt-2 mb-4">
+              {tenderIntelligence.title}
+            </h2>
+            <p className="text-white/70 max-w-2xl mx-auto text-sm md:text-base">
+              {tenderIntelligence.description}
+            </p>
+          </motion.div>
+
+          {/* Visual Data Sources Grid */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="mb-8"
+          >
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 mb-6">
+              {tenderIntelligence.sources.map((source, index) => (
+                <motion.a
+                  key={source.name}
+                  href={source.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1 }}
+                  className="bg-zinc-900 border border-cyan-500/20 rounded-xl p-4 text-center hover:border-cyan-500/50 transition group"
+                >
+                  <div className="text-2xl md:text-3xl mb-2">{source.icon}</div>
+                  <div className="font-bold text-white text-sm md:text-base group-hover:text-cyan-400 transition">{source.name}</div>
+                  <div className="text-white/50 text-xs mt-1 hidden md:block">{source.description}</div>
+                </motion.a>
+              ))}
+            </div>
+          </motion.div>
+
+          {/* Workflow Visualization - Horizontal Flow on Desktop, Vertical on Mobile */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="bg-gradient-to-r from-cyan-500/10 via-blue-500/5 to-green-500/10 border border-cyan-500/30 rounded-2xl p-6 md:p-8"
+          >
+            <h4 className="text-white font-bold text-center mb-6">Daily Scraping Workflow</h4>
+            <div className="flex flex-col md:flex-row items-center justify-between gap-4 md:gap-2">
+              {tenderIntelligence.workflow.map((step, index) => (
+                <div key={index} className="flex items-center gap-2 md:gap-4 w-full md:w-auto">
+                  <div className="flex-1 md:flex-none bg-zinc-900/80 rounded-xl p-3 md:p-4 text-center border border-white/10">
+                    <div className="text-cyan-400 font-bold text-lg md:text-xl mb-1">{index + 1}</div>
+                    <div className="text-white/80 text-xs md:text-sm">{step}</div>
+                  </div>
+                  {index < tenderIntelligence.workflow.length - 1 && (
+                    <div className="text-white/30 text-xl hidden md:block">→</div>
+                  )}
+                </div>
+              ))}
+            </div>
+
+            {/* Custom Scraper Note */}
+            <div className="mt-6 bg-black/30 rounded-lg p-4">
+              <div className="flex items-start gap-3">
+                <div className="text-lg">🔧</div>
+                <div>
+                  <div className="text-white/80 text-sm">{tenderIntelligence.customScraper.note}</div>
+                  <div className="text-white/50 text-xs mt-1">
+                    Examples: {tenderIntelligence.customScraper.examples.join(', ')}
+                  </div>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* LinkedIn Signal Intelligence */}
+      <section className="py-16 md:py-20 bg-zinc-950">
+        <div className="max-w-6xl mx-auto px-4">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-10 md:mb-12"
+          >
+            <span className="text-purple-400 text-sm font-bold uppercase tracking-wider">
+              LinkedIn Intelligence
+            </span>
+            <h2 className="text-2xl md:text-4xl font-bold text-white mt-2 mb-4">
+              Competitor & Influencer Signal Tracking
+            </h2>
+            <p className="text-white/70 max-w-2xl mx-auto text-sm md:text-base">
+              Know who your competitors are engaging with, and what your ICPs are talking about.
+            </p>
+          </motion.div>
+
+          <div className="grid md:grid-cols-3 gap-4 md:gap-6">
+            {/* Competitor Signals */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="bg-zinc-900 border border-purple-500/30 rounded-2xl p-5 md:p-6"
+            >
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-10 h-10 md:w-12 md:h-12 bg-purple-500/20 rounded-xl flex items-center justify-center text-xl md:text-2xl">
+                  👀
+                </div>
+                <div>
+                  <h3 className="font-bold text-white text-sm md:text-base">{linkedInIntelligence.competitors.title}</h3>
+                  <div className="text-purple-400 text-xs">via {linkedInIntelligence.competitors.tool}</div>
+                </div>
+              </div>
+              <ul className="space-y-2">
+                {linkedInIntelligence.competitors.signals.map((signal, i) => (
+                  <li key={i} className="bg-white/5 rounded-lg p-2 md:p-3">
+                    <div className="font-semibold text-white text-xs md:text-sm">{signal.name}</div>
+                    <div className="text-white/50 text-xs">{signal.description}</div>
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
+
+            {/* Influencer Tracking */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1 }}
+              className="bg-zinc-900 border border-blue-500/30 rounded-2xl p-5 md:p-6"
+            >
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-10 h-10 md:w-12 md:h-12 bg-blue-500/20 rounded-xl flex items-center justify-center text-xl md:text-2xl">
+                  🌟
+                </div>
+                <h3 className="font-bold text-white text-sm md:text-base">{linkedInIntelligence.influencers.title}</h3>
+              </div>
+              <p className="text-white/60 text-xs md:text-sm mb-4">{linkedInIntelligence.influencers.description}</p>
+              <ul className="space-y-2">
+                {linkedInIntelligence.influencers.signals.map((signal, i) => (
+                  <li key={i} className="bg-white/5 rounded-lg p-2 md:p-3">
+                    <div className="font-semibold text-white text-xs md:text-sm">{signal.name}</div>
+                    <div className="text-white/50 text-xs">{signal.description}</div>
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
+
+            {/* ICP Activity Signals */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2 }}
+              className="bg-zinc-900 border border-green-500/30 rounded-2xl p-5 md:p-6"
+            >
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-10 h-10 md:w-12 md:h-12 bg-green-500/20 rounded-xl flex items-center justify-center text-xl md:text-2xl">
+                  📡
+                </div>
+                <h3 className="font-bold text-white text-sm md:text-base">{linkedInIntelligence.icpSignals.title}</h3>
+              </div>
+              <p className="text-white/60 text-xs md:text-sm mb-4">{linkedInIntelligence.icpSignals.description}</p>
+              <ul className="space-y-2">
+                {linkedInIntelligence.icpSignals.triggers.map((trigger, i) => (
+                  <li key={i} className="flex items-start gap-2 text-white/70 text-xs md:text-sm">
+                    <span className="text-green-400">✓</span>
+                    {trigger}
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
           </div>
         </div>
       </section>
@@ -1321,6 +1682,134 @@ export default function ClimatisePage() {
           >
             Optional: Business development involvement - can support with direct outreach and relationship building.
           </motion.p>
+        </div>
+      </section>
+
+      {/* Risk Mitigation / Total Flexibility */}
+      <section className="py-16 md:py-20 bg-zinc-950">
+        <div className="max-w-4xl mx-auto px-4">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-10"
+          >
+            <span className="text-green-400 text-sm font-bold uppercase tracking-wider">
+              {flexibility.title}
+            </span>
+            <h2 className="text-2xl md:text-4xl font-bold text-white mt-2 mb-4">
+              {flexibility.headline}
+            </h2>
+          </motion.div>
+
+          <div className="grid grid-cols-2 gap-4 mb-8">
+            {flexibility.points.map((point, index) => (
+              <motion.div
+                key={point.title}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+                className="bg-zinc-900 border border-green-500/20 rounded-xl p-4 md:p-6"
+              >
+                <div className="flex items-center gap-2 mb-2">
+                  <span className="text-green-400 text-lg">✓</span>
+                  <h3 className="font-bold text-white text-sm md:text-base">{point.title}</h3>
+                </div>
+                <p className="text-white/60 text-xs md:text-sm">{point.description}</p>
+              </motion.div>
+            ))}
+          </div>
+
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            className="bg-gradient-to-r from-green-500/10 to-blue-500/10 border border-green-500/30 rounded-xl p-6 text-center"
+          >
+            <p className="text-white/80 text-sm md:text-base italic">&quot;{flexibility.record}&quot;</p>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Web-Savvy Competitive Edge */}
+      <section className="py-16 md:py-20 bg-black">
+        <div className="max-w-4xl mx-auto px-4">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="bg-gradient-to-r from-blue-500/10 via-purple-500/5 to-blue-500/10 border border-blue-500/30 rounded-2xl p-6 md:p-8"
+          >
+            <div className="flex items-start gap-4 mb-6">
+              <div className="text-3xl md:text-4xl">💻</div>
+              <div>
+                <h3 className="text-xl md:text-2xl font-black text-blue-400 mb-2">{webAdvantage.title}</h3>
+                <p className="text-white/80 text-sm md:text-base">{webAdvantage.description}</p>
+              </div>
+            </div>
+
+            <div className="bg-black/30 rounded-xl p-4 md:p-6 mb-6">
+              <p className="text-white/70 text-sm md:text-base italic border-l-2 border-blue-500/50 pl-4">
+                {webAdvantage.proof}
+              </p>
+            </div>
+
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+              {webAdvantage.capabilities.map((cap, i) => (
+                <div key={i} className="bg-white/5 rounded-lg px-3 py-2 text-center">
+                  <span className="text-white/80 text-xs md:text-sm">{cap}</span>
+                </div>
+              ))}
+            </div>
+
+            <p className="text-blue-400/80 text-xs md:text-sm mt-6 text-center">
+              {webAdvantage.note}
+            </p>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Social Proof - Powered by GTM Quest */}
+      <section className="py-12 md:py-16 bg-zinc-950 border-y border-white/5">
+        <div className="max-w-4xl mx-auto px-4">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center"
+          >
+            <div className="flex items-center justify-center gap-3 mb-4">
+              <Image
+                src="/GTM Logo New.png"
+                alt="GTM Quest"
+                width={100}
+                height={35}
+                className="h-6 md:h-8 w-auto"
+              />
+              <span className="text-xs bg-blue-500/20 text-blue-400 px-2 py-1 rounded-full font-bold border border-blue-500/30">
+                Beta
+              </span>
+            </div>
+
+            <h3 className="text-lg md:text-xl font-bold text-white mb-3">Powered by GTM Quest</h3>
+            <p className="text-white/60 text-sm md:text-base max-w-xl mx-auto mb-6">
+              Climatise is listed on our platform. We&apos;re building the #1 GTM agency matching platform with AI-powered strategy generation.
+            </p>
+
+            <div className="flex flex-wrap items-center justify-center gap-4 text-xs md:text-sm">
+              <a href="https://gtm.quest" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 flex items-center gap-1">
+                <span>gtm.quest</span>
+                <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                </svg>
+              </a>
+              <span className="text-white/30">|</span>
+              <span className="text-white/50">200+ GTM Agencies</span>
+              <span className="text-white/30">|</span>
+              <span className="text-white/50">AI GTM Plan Builder (Beta)</span>
+            </div>
+          </motion.div>
         </div>
       </section>
 
