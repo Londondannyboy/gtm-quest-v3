@@ -84,7 +84,15 @@ export function HomeSchema() {
     },
     description:
       'Free AI-powered matching service connecting B2B companies with specialized GTM agencies for demand generation, ABM, and growth.',
-    areaServed: 'Worldwide',
+    areaServed: [
+      { '@type': 'Country', name: 'United States' },
+      { '@type': 'Country', name: 'United Kingdom' },
+      { '@type': 'Country', name: 'Australia' },
+      { '@type': 'Country', name: 'Canada' },
+      { '@type': 'Country', name: 'New Zealand' },
+      { '@type': 'Country', name: 'Ireland' },
+      { '@type': 'Place', name: 'Worldwide' },
+    ],
     hasOfferCatalog: {
       '@type': 'OfferCatalog',
       name: 'GTM Agency Services',
@@ -128,6 +136,53 @@ export function HomeSchema() {
     },
   };
 
+  // ItemList schema for geo-targeted agency sections
+  const agencyListSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    name: 'GTM Agencies by Region',
+    description: 'Top-rated go-to-market agencies organized by country and region for B2B demand generation, ABM, and revenue growth.',
+    numberOfItems: 200,
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'GTM Agencies in the United States',
+        url: 'https://gtm.quest/#gtm-agencies-us',
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'GTM Agencies in the United Kingdom',
+        url: 'https://gtm.quest/#gtm-agencies-uk',
+      },
+      {
+        '@type': 'ListItem',
+        position: 3,
+        name: 'GTM Agencies in Australia',
+        url: 'https://gtm.quest/#gtm-agencies-au',
+      },
+      {
+        '@type': 'ListItem',
+        position: 4,
+        name: 'GTM Agencies in Canada',
+        url: 'https://gtm.quest/#gtm-agencies-ca',
+      },
+      {
+        '@type': 'ListItem',
+        position: 5,
+        name: 'GTM Agencies in New Zealand',
+        url: 'https://gtm.quest/#gtm-agencies-nz',
+      },
+      {
+        '@type': 'ListItem',
+        position: 6,
+        name: 'GTM Agencies in Ireland',
+        url: 'https://gtm.quest/#gtm-agencies-ie',
+      },
+    ],
+  };
+
   return (
     <>
       <script
@@ -149,6 +204,10 @@ export function HomeSchema() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(agencyListSchema) }}
       />
     </>
   );

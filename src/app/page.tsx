@@ -1,5 +1,5 @@
 import { getArticles } from '@/lib/content';
-import { getAllAgencies } from '@/lib/agencies';
+import { getAllAgencies, getFeaturedAgenciesByRegion, COUNTRY_CONFIG } from '@/lib/agencies';
 import { HomeClient } from '@/components/home/HomeClient';
 import { SEOContent } from '@/components/home/SEOContent';
 import { ExplainerSection } from '@/components/home/ExplainerSection';
@@ -8,6 +8,7 @@ import { HomeSchema } from '@/components/home/HomeSchema';
 import { TLDRSection } from '@/components/home/TLDRSection';
 import { TableOfContents } from '@/components/home/TableOfContents';
 import { TopAgencies2026 } from '@/components/home/TopAgencies2026';
+import { CountrySections } from '@/components/home/CountrySections';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -15,6 +16,15 @@ export const metadata: Metadata = {
   description: 'GTM agency matching powered by AI. Build your go-to-market strategy and connect with 200+ vetted B2B growth agencies for demand generation, ABM, and revenue growth. Free matching service.',
   alternates: {
     canonical: 'https://gtm.quest',
+    languages: {
+      'en-US': 'https://gtm.quest#gtm-agencies-us',
+      'en-GB': 'https://gtm.quest#gtm-agencies-uk',
+      'en-AU': 'https://gtm.quest#gtm-agencies-au',
+      'en-CA': 'https://gtm.quest#gtm-agencies-ca',
+      'en-NZ': 'https://gtm.quest#gtm-agencies-nz',
+      'en-IE': 'https://gtm.quest#gtm-agencies-ie',
+      'x-default': 'https://gtm.quest',
+    },
   },
   openGraph: {
     title: 'Find Your GTM Agency | AI-Powered Go-To-Market Matching',
@@ -37,8 +47,13 @@ export const metadata: Metadata = {
     'GTM strategy',
     'best GTM agency',
     'GTM agency USA',
+    'GTM agency United States',
     'GTM agency UK',
-    'GTM agency Europe',
+    'GTM agency United Kingdom',
+    'GTM agency Australia',
+    'GTM agency Canada',
+    'GTM agency New Zealand',
+    'GTM agency Ireland',
     'B2B growth agency',
     'SaaS marketing agency',
   ],
@@ -49,9 +64,10 @@ export const revalidate = 3600;
 
 export default async function Home() {
   // Fetch data for SEO content
-  const [articles, agencies] = await Promise.all([
+  const [articles, agencies, agenciesByCountry] = await Promise.all([
     getArticles(),
     getAllAgencies(),
+    getFeaturedAgenciesByRegion(),
   ]);
 
   // Get top agencies (first 10 by global_rank for Top Agencies 2026 section)
@@ -85,6 +101,9 @@ export default async function Home() {
 
       {/* Top 10 GTM Agencies 2026 */}
       <TopAgencies2026 agencies={topAgencies} />
+
+      {/* GTM Agencies by Country - geo-targeted sections */}
+      <CountrySections agenciesByCountry={agenciesByCountry} />
 
       {/* Server-rendered SEO content (Resources, Industry Insights) */}
       <div id="resources">

@@ -60,6 +60,9 @@ cd agent && source .venv/bin/activate && python server.py  # → localhost:8000
 | `components/ui/ParticleBackground.tsx` | Ambient particle effects |
 | `components/ui/Confetti.tsx` | Celebration effects |
 | `components/charts/*.tsx` | TAM, Growth, Budget, Benchmark charts |
+| `components/home/CountrySections.tsx` | Geo-targeted agency sections by country |
+| `components/home/HomeSchema.tsx` | Schema.org structured data |
+| `lib/agencies.ts` | Agency queries + COUNTRY_CONFIG |
 | `lib/agencies-db.ts` | Neon query functions |
 | `lib/db.ts` | Neon connection |
 
@@ -301,3 +304,30 @@ POST /api/copilotkit           → CopilotKit runtime
 - Key file modified:
   - `src/app/api/user-profile/route.ts` - Added `syncToZep()` function
 - Build: 273 pages generated successfully
+
+### 2026-01-30 (Session 9) - Agency Enrichment & Geo-Targeting SEO
+- **Agency Data Enrichment Complete**:
+  - Enriched all 33 remaining thin agencies (descriptions < 100 chars)
+  - **0 thin descriptions remaining** (was 33)
+  - **75 agencies now have key_services** (was 42)
+  - **75 agencies now have b2b_description** (was 42)
+  - Added founded_year, employee_count for many agencies
+- **Geo-Targeting SEO for "GTM Agency" keyword**:
+  - Added country sections to homepage (US, UK, AU, CA, NZ, Ireland)
+  - Implemented hreflang tags for geographic targeting
+  - Added internal links from agency pages back to country sections
+  - Updated sitemap with country section URLs
+  - Enhanced Schema.org with geographic ItemList
+  - Updated SEOContent regional directory links
+- Key files added/modified:
+  - `src/components/home/CountrySections.tsx` - New component
+  - `src/app/page.tsx` - hreflang tags, country sections
+  - `src/app/agencies/[slug]/page.tsx` - Internal country links
+  - `src/lib/agencies.ts` - COUNTRY_CONFIG, getAgenciesByCountry()
+  - `src/components/home/TableOfContents.tsx` - New TOC item
+  - `src/components/home/HomeSchema.tsx` - Geographic schema
+  - `src/components/home/SEOContent.tsx` - Regional links
+  - `src/app/sitemap.ts` - Country section URLs
+- Agency distribution by target country:
+  - US: 25 | UK: 10 | AU: 10 | CA: 9 | NZ: 5 | IE: 5
+- Build: 279 pages generated successfully

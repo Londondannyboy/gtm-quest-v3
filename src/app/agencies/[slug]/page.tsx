@@ -1,7 +1,37 @@
-import { getAllAgencySlugs, getAgencyBySlug, getRelatedAgencies, Agency } from '@/lib/agencies';
+import { getAllAgencySlugs, getAgencyBySlug, getRelatedAgencies, Agency, COUNTRY_CONFIG, CountryCode } from '@/lib/agencies';
 import Link from 'next/link';
 import { Metadata } from 'next';
 import { notFound } from 'next/navigation';
+
+// Map headquarters to country code for internal linking
+function getCountryFromHeadquarters(headquarters: string | null): CountryCode | null {
+  if (!headquarters) return null;
+  const hq = headquarters.toLowerCase();
+
+  if (hq.includes('united states') || hq.includes('usa') || hq.includes('us') ||
+      hq.includes('california') || hq.includes('new york') || hq.includes('texas') ||
+      hq.includes('boston') || hq.includes('chicago') || hq.includes('san francisco') ||
+      hq.includes('los angeles') || hq.includes('austin') || hq.includes('minneapolis')) {
+    return 'US';
+  }
+  if (hq.includes('united kingdom') || hq.includes('uk') || hq.includes('london') ||
+      hq.includes('manchester') || hq.includes('england')) {
+    return 'UK';
+  }
+  if (hq.includes('australia') || hq.includes('sydney') || hq.includes('melbourne')) {
+    return 'AU';
+  }
+  if (hq.includes('canada') || hq.includes('toronto') || hq.includes('vancouver')) {
+    return 'CA';
+  }
+  if (hq.includes('new zealand') || hq.includes('auckland') || hq.includes('wellington')) {
+    return 'NZ';
+  }
+  if (hq.includes('ireland') || hq.includes('dublin')) {
+    return 'IE';
+  }
+  return null;
+}
 
 // Generate static params for all agencies
 export async function generateStaticParams() {
@@ -578,6 +608,29 @@ export default async function AgencyPage({
                   </p>
                 </a>
               )}
+
+              {/* Link to country section on homepage */}
+              {(() => {
+                const countryCode = getCountryFromHeadquarters(agency.headquarters);
+                if (countryCode) {
+                  const config = COUNTRY_CONFIG[countryCode];
+                  return (
+                    <Link
+                      href={`/#gtm-agencies-${countryCode.toLowerCase()}`}
+                      className="block bg-zinc-900 rounded-xl p-6 border border-zinc-800 hover:border-emerald-500/30 transition group"
+                    >
+                      <h3 className="font-bold mb-2 flex items-center gap-2 group-hover:text-emerald-400 transition">
+                        <span className="text-xl">{config.flag}</span>
+                        More {config.name} GTM Agencies
+                      </h3>
+                      <p className="text-sm text-white/60">
+                        Browse other top GTM agencies based in {config.name}
+                      </p>
+                    </Link>
+                  );
+                }
+                return null;
+              })()}
             </div>
           </div>
 

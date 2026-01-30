@@ -277,6 +277,52 @@ export async function getAllAgencySlugs(): Promise<string[]> {
   return results.map((r) => (r as { slug: string }).slug);
 }
 
+// Country codes for hreflang and sections
+export const COUNTRY_CONFIG = {
+  US: { code: 'en-US', name: 'United States', flag: '🇺🇸', dbValues: ['United States', 'USA'] },
+  UK: { code: 'en-GB', name: 'United Kingdom', flag: '🇬🇧', dbValues: ['United Kingdom', 'UK'] },
+  AU: { code: 'en-AU', name: 'Australia', flag: '🇦🇺', dbValues: ['Australia'] },
+  CA: { code: 'en-CA', name: 'Canada', flag: '🇨🇦', dbValues: ['Canada'] },
+  NZ: { code: 'en-NZ', name: 'New Zealand', flag: '🇳🇿', dbValues: ['New Zealand'] },
+  IE: { code: 'en-IE', name: 'Ireland', flag: '🇮🇪', dbValues: ['Ireland'] },
+} as const;
+
+export type CountryCode = keyof typeof COUNTRY_CONFIG;
+
+// Get agencies by country for homepage sections
+export async function getAgenciesByCountry(countryCode: CountryCode, limit = 4): Promise<Agency[]> {
+  const config = COUNTRY_CONFIG[countryCode];
+  const results = await sql`
+    SELECT
+      id, name, slug, description, headquarters,
+      specializations, category_tags, service_areas,
+      min_budget, avg_rating, review_count, global_rank,
+      website, logo_url, key_services
+    FROM companies
+    WHERE app = 'gtm'
+      AND status = 'published'
+      AND primary_country = ANY(${config.dbValues}::text[])
+    ORDER BY global_rank NULLS LAST, name
+    LIMIT ${limit}
+  `;
+
+  return results as Agency[];
+}
+
+// Get featured agencies for all target countries
+export async function getFeaturedAgenciesByRegion(): Promise<Record<CountryCode, Agency[]>> {
+  const countries: CountryCode[] = ['US', 'UK', 'AU', 'CA', 'NZ', 'IE'];
+  const results: Record<string, Agency[]> = {};
+
+  await Promise.all(
+    countries.map(async (code) => {
+      results[code] = await getAgenciesByCountry(code, 4);
+    })
+  );
+
+  return results as Record<CountryCode, Agency[]>;
+}
+
 // Get related agencies (same specializations)
 export async function getRelatedAgencies(slug: string, limit = 4): Promise<Agency[]> {
   const results = await sql`

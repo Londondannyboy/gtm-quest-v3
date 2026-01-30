@@ -7,18 +7,23 @@ Enrich the 201 GTM agencies in Neon PostgreSQL with comprehensive data for bette
 - **Project ID:** `morning-rain-33890830`
 - **Table:** `companies` (WHERE app = 'gtm')
 
-## Current State (as of 2026-01-30)
-| Field | Count | Target |
-|-------|-------|--------|
-| Total agencies | 201 | - |
-| description > 100 chars | 168 | 201 |
-| key_services | 42 | 201 |
-| b2b_description | 42 | 201 |
-| founded_year | 27 | ~100 |
-| employee_count | 12 | ~50 |
-| min_budget | 15 | ~50 |
-| logo_url | 0 | 201 |
-| avg_rating | 0 | - |
+## Current State (as of 2026-01-30 - COMPLETED)
+| Field | Count | Target | Status |
+|-------|-------|--------|--------|
+| Total agencies | 201 | - | Complete |
+| description > 100 chars | **201** | 201 | **DONE** |
+| key_services | **75** | 201 | In Progress |
+| b2b_description | **75** | 201 | In Progress |
+| founded_year | 40+ | ~100 | In Progress |
+| employee_count | 20+ | ~50 | In Progress |
+| min_budget | 15 | ~50 | Pending |
+| logo_url | 0 | 201 | Pending |
+| avg_rating | 0 | - | N/A |
+
+## Session Progress
+- **2026-01-30 Session 1:** Enriched 36 agencies (69 thin → 33 thin)
+- **2026-01-30 Session 2:** Enriched remaining 33 agencies (33 thin → **0 thin**)
+- All 201 agencies now have descriptions > 100 characters
 
 ## Agency Data Schema
 ```sql
@@ -82,3 +87,43 @@ Features:
 - Highlight strengths, services, client wins
 - Include awards/recognition where available
 - Focus on what they do well, not limitations
+
+---
+
+## Geo-Targeting SEO (Added 2026-01-30)
+
+### Problem
+GSC data showed impressions but poor CTR and position for "GTM agency":
+| Country | Impressions | Clicks | Position |
+|---------|-------------|--------|----------|
+| US | 303 | 0 | 42.9 |
+| AU | 177 | 0 | 33.4 |
+| UK | 109 | 8 | 37.7 |
+| CA | 33 | 0 | 33.5 |
+
+### Solution: Country Sections on Homepage
+Added country-specific sections showing featured agencies for:
+- **US:** 25 agencies → anchor `#gtm-agencies-us`
+- **UK:** 10 agencies → anchor `#gtm-agencies-uk`
+- **AU:** 10 agencies → anchor `#gtm-agencies-au`
+- **CA:** 9 agencies → anchor `#gtm-agencies-ca`
+- **NZ:** 5 agencies → anchor `#gtm-agencies-nz`
+- **IE:** 5 agencies → anchor `#gtm-agencies-ie`
+
+### Implementation
+1. **CountrySections.tsx** - New component with country-specific agency grids
+2. **hreflang tags** - Added to homepage metadata for geo-targeting
+3. **Internal links** - Agency pages link back to country sections
+4. **Sitemap** - Updated with country section URLs
+5. **Schema.org** - Added ItemList schema for regional agency lists
+6. **SEOContent** - Updated regional links to use anchor fragments
+
+### Files Changed
+- `src/components/home/CountrySections.tsx` (new)
+- `src/app/page.tsx` (hreflang, imports)
+- `src/app/agencies/[slug]/page.tsx` (internal links)
+- `src/lib/agencies.ts` (COUNTRY_CONFIG, getAgenciesByCountry)
+- `src/components/home/TableOfContents.tsx` (new item)
+- `src/components/home/HomeSchema.tsx` (geo schema)
+- `src/components/home/SEOContent.tsx` (regional links)
+- `src/app/sitemap.ts` (country URLs)

@@ -33,6 +33,16 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
   ];
 
+  // Country-specific GTM agency sections (fragment URLs for geo-targeting)
+  const countryPages: MetadataRoute.Sitemap = [
+    { url: `${baseUrl}/#gtm-agencies-us`, lastModified: new Date(), changeFrequency: 'weekly' as const, priority: 0.95 },
+    { url: `${baseUrl}/#gtm-agencies-uk`, lastModified: new Date(), changeFrequency: 'weekly' as const, priority: 0.95 },
+    { url: `${baseUrl}/#gtm-agencies-au`, lastModified: new Date(), changeFrequency: 'weekly' as const, priority: 0.9 },
+    { url: `${baseUrl}/#gtm-agencies-ca`, lastModified: new Date(), changeFrequency: 'weekly' as const, priority: 0.9 },
+    { url: `${baseUrl}/#gtm-agencies-nz`, lastModified: new Date(), changeFrequency: 'weekly' as const, priority: 0.85 },
+    { url: `${baseUrl}/#gtm-agencies-ie`, lastModified: new Date(), changeFrequency: 'weekly' as const, priority: 0.85 },
+  ];
+
   // Article pages
   const articlePages: MetadataRoute.Sitemap = articles.map((article) => ({
     url: `${baseUrl}/articles/${article.slug}`,
@@ -49,5 +59,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.7,
   }));
 
-  return [...staticPages, ...articlePages, ...agencyPages];
+  return [...staticPages, ...countryPages, ...articlePages, ...agencyPages];
 }

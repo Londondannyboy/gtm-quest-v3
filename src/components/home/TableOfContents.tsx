@@ -12,8 +12,9 @@ const tocItems: TOCItem[] = [
   { id: 'tldr', label: 'Quick Summary', icon: '1' },
   { id: 'what-is-gtm', label: 'What is GTM Agency Matching?', icon: '2' },
   { id: 'top-agencies-2026', label: 'Top 10 GTM Agencies 2026', icon: '3' },
-  { id: 'resources', label: 'GTM Resources & Guides', icon: '4' },
-  { id: 'faq', label: 'Frequently Asked Questions', icon: '5' },
+  { id: 'gtm-agencies-by-country', label: 'GTM Agencies by Country', icon: '4' },
+  { id: 'resources', label: 'GTM Resources & Guides', icon: '5' },
+  { id: 'faq', label: 'Frequently Asked Questions', icon: '6' },
 ];
 
 export function TableOfContents() {
