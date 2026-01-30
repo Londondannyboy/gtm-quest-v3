@@ -1,0 +1,108 @@
+# GTM Agency Quest - LLM Context Document
+
+> GTM Agency Quest is an AI-powered platform that helps B2B companies find and match with specialized Go-To-Market (GTM) agencies.
+
+## About GTM Agency Quest
+
+GTM Agency Quest (gtm.quest) is a free platform that connects B2B companies with over 200 vetted GTM agencies specializing in:
+
+- **Demand Generation**: Creating awareness and pipeline through content, paid media, and inbound marketing
+- **Account-Based Marketing (ABM)**: Targeted campaigns for high-value enterprise accounts
+- **Sales Enablement**: Tools, content, and processes to improve sales effectiveness
+- **Revenue Operations (RevOps)**: Systems and processes aligning marketing, sales, and customer success
+- **Product-Led Growth (PLG)**: Self-service growth strategies for SaaS products
+- **B2B Content Marketing**: Thought leadership and educational content for B2B audiences
+
+## Key Services
+
+### AI-Powered Agency Matching
+Our matching algorithm analyzes company profiles, target markets, budgets, and strategic needs to recommend best-fit agencies from our database.
+
+### GTM Strategy Builder
+Interactive tool to build go-to-market strategies covering positioning, ICP definition, channel strategy, and launch execution.
+
+### Agency Directory
+Comprehensive database of 200+ GTM agencies with:
+- Specializations and services
+- Geographic coverage
+- Budget ranges
+- Client reviews and case studies
+
+## Top GTM Agencies Featured
+
+1. **GTM Quest** (London, UK) - AI GTM planning, B2B SaaS strategy
+2. **SalesCaptain** (Remote) - Outbound sales, pipeline generation
+3. **inBeat** (New York, US) - Influencer marketing, DTC growth
+4. **Ironpaper** (New York, US) - Enterprise B2B, account-based marketing
+5. **Ziggy** (Remote) - Demand generation, positioning
+6. **Deviate Labs** (Remote) - Growth marketing, viral loops
+7. **Refine Labs** (Boston, US) - B2B demand generation, podcast marketing
+8. **Six & Flow** (Manchester, UK) - HubSpot, revenue operations
+9. **Single Grain** (Los Angeles, US) - Performance marketing, SaaS growth
+10. **Kalungi** (Seattle, US) - Fractional CMO, B2B SaaS marketing
+
+## What is a GTM Agency?
+
+A Go-To-Market (GTM) agency helps businesses launch products, enter new markets, or scale revenue by creating comprehensive, data-driven strategies. They align product, marketing, and sales teams to:
+
+- Define Ideal Customer Profiles (ICPs)
+- Craft positioning and messaging
+- Select optimal channels
+- Execute marketing campaigns
+- Set up sales outreach
+- Optimize for conversion and revenue
+
+## GTM Agency Services
+
+### Strategy & Planning
+- Market entry plans
+- Competitive analysis
+- Pricing models
+- Go-to-market roadmaps
+
+### Customer Segmentation
+- Ideal Customer Profile (ICP) development
+- Target audience research
+- Market sizing (TAM/SAM/SOM)
+
+### Messaging & Positioning
+- Value proposition development
+- Competitive differentiation
+- Brand messaging frameworks
+
+### Execution & Optimization
+- Demand generation campaigns
+- ABM programs
+- Sales enablement
+- Marketing automation
+- Revenue operations
+
+## Why Engage a GTM Agency?
+
+- **Speed & Efficiency**: Faster time-to-market and reduced risk
+- **Expertise**: Deep knowledge in B2B SaaS, demand gen, and RevOps
+- **Alignment**: Ensuring sales, marketing, and product work cohesively
+- **Data-Driven Decisions**: Analytics to determine best routes to market
+
+## GTM Agency Costs
+
+- **Fractional CMO/Advisory**: $5,000-15,000/month
+- **Full-Service Retainer**: $15,000-50,000+/month
+- **Project-Based**: $25,000-100,000+
+
+## Resources Available
+
+- GTM strategy guides and frameworks
+- Tool comparisons (HubSpot vs Pipedrive, Apollo vs Clay)
+- Regional agency directories (UK, US, Europe, APAC)
+- Industry benchmarks and case studies
+
+## Contact
+
+Website: https://gtm.quest
+Agency Directory: https://gtm.quest/agencies
+Strategy Builder: https://gtm.quest/dashboard
+
+---
+
+*GTM Agency Quest is free for companies searching for agencies. No fees or commissions.*

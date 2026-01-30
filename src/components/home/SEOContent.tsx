@@ -238,6 +238,72 @@ export function SEOContent({ featuredArticles, topAgencies }: SEOContentProps) {
               </h4>
               <p className="text-white/40 text-sm">B2B marketing trends and thought leadership</p>
             </a>
+            <a
+              href="https://www.mckinsey.com/capabilities/growth-marketing-and-sales/our-insights"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block bg-zinc-800/50 rounded-lg p-4 hover:bg-zinc-800 transition group"
+            >
+              <h4 className="font-semibold text-white group-hover:text-emerald-400 transition">
+                McKinsey Growth & Sales
+              </h4>
+              <p className="text-white/40 text-sm">Strategic insights on B2B growth and market entry</p>
+            </a>
+            <a
+              href="https://www.cbinsights.com/research/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block bg-zinc-800/50 rounded-lg p-4 hover:bg-zinc-800 transition group"
+            >
+              <h4 className="font-semibold text-white group-hover:text-emerald-400 transition">
+                CB Insights Research
+              </h4>
+              <p className="text-white/40 text-sm">Market sizing and startup GTM analysis</p>
+            </a>
+            <a
+              href="https://hbr.org/topic/subject/marketing"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block bg-zinc-800/50 rounded-lg p-4 hover:bg-zinc-800 transition group"
+            >
+              <h4 className="font-semibold text-white group-hover:text-emerald-400 transition">
+                Harvard Business Review
+              </h4>
+              <p className="text-white/40 text-sm">Strategic marketing and go-to-market frameworks</p>
+            </a>
+            <a
+              href="https://www.openviewpartners.com/blog/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block bg-zinc-800/50 rounded-lg p-4 hover:bg-zinc-800 transition group"
+            >
+              <h4 className="font-semibold text-white group-hover:text-emerald-400 transition">
+                OpenView Partners
+              </h4>
+              <p className="text-white/40 text-sm">Product-led growth and SaaS GTM expertise</p>
+            </a>
+            <a
+              href="https://www.reforge.com/blog"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block bg-zinc-800/50 rounded-lg p-4 hover:bg-zinc-800 transition group"
+            >
+              <h4 className="font-semibold text-white group-hover:text-emerald-400 transition">
+                Reforge Blog
+              </h4>
+              <p className="text-white/40 text-sm">Growth strategy frameworks from industry leaders</p>
+            </a>
+            <a
+              href="https://www.firstround.com/review"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block bg-zinc-800/50 rounded-lg p-4 hover:bg-zinc-800 transition group"
+            >
+              <h4 className="font-semibold text-white group-hover:text-emerald-400 transition">
+                First Round Review
+              </h4>
+              <p className="text-white/40 text-sm">Tactical startup GTM and growth advice</p>
+            </a>
           </div>
         </div>
 
