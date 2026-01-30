@@ -58,6 +58,20 @@ const phases = [
   },
 ];
 
+// Optional Phase 2 - Fast Track (LinkedIn Ads + Content Authority)
+const optionalFastTrack = {
+  title: 'Fast Track: LinkedIn Ads + Content Authority',
+  description: 'The ultimate playbook for rapid awareness building. LinkedIn ads warm up prospects before outreach, dramatically improving response rates.',
+  when: 'Consider if: urgent need for quick awareness, new product launch, or time-sensitive market opportunity',
+  items: [
+    { name: 'LinkedIn Ads Campaign', description: 'Targeted awareness ads to decision-makers before outreach', icon: '📢' },
+    { name: 'Content Authority Building', description: 'SuperGrowth + LinkedIn Articles for thought leadership', icon: '📝' },
+    { name: 'Smart Link Tracking', description: 'Know who clicked what before you message them', icon: '🔗' },
+    { name: 'Retargeting Sequences', description: 'Ad viewers get prioritised in outreach campaigns', icon: '🎯' },
+  ],
+  note: 'Not included in standard timeline - we recommend getting baseline metrics first. Available as add-on.',
+};
+
 // ICP Categories
 const icpCategories = [
   { name: 'Regulatory-Driven', count: 12, examples: 'SECR, NHS, PPN 006, PAS 2080', color: 'blue' },
@@ -96,7 +110,7 @@ const gtmStack = {
     tagline: 'The Heart of Your GTM Stack',
     description: 'All-in-one platform for data enrichment, waterfall sequences, and outbound orchestration',
     capabilities: [
-      'Waterfall enrichment (Findee, Prospero, LeadMagic)',
+      'Waterfall enrichment (Findy, Prospero, LeadMagic)',
       'LinkedIn deep enrichment via Apify',
       'AI-powered lead scoring & qualification',
       'Signal monitoring & Slack alerts',
@@ -104,7 +118,7 @@ const gtmStack = {
     ],
   },
   enrichment: [
-    { name: 'Findee', description: 'Email discovery & verification' },
+    { name: 'Findy', description: 'Email discovery & verification' },
     { name: 'Prospero', description: 'B2B contact enrichment' },
     { name: 'LeadMagic', description: 'Company data enrichment' },
     { name: 'Icypeas', description: 'Email finder backup' },
@@ -164,9 +178,14 @@ const signalTypes = [
 ];
 
 // Investment options - Retainer vs One-Off
-const retainerOptions = [
-  { type: '3-Month Engagement', rate: '£500/day', description: '2-3 days per week depending on needs. Weekly rolling break clause.', highlight: true, recommended: true },
-];
+const retainerOptions = {
+  title: '3-Month Engagement',
+  rate: '£500/day',
+  daysPerWeek: '1-3 days per week',
+  recommended: '2 days recommended',
+  description: 'Flexible capacity based on project phase. Weekly rolling break clause - scale up or down as needed.',
+  highlight: true,
+};
 
 const oneOffOptions = [
   { type: 'Clay Training Workshop', rate: '£1,000/day', description: 'Intensive hands-on training for your team' },
@@ -1198,9 +1217,13 @@ export default function ClimatisePage() {
               </div>
               <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
                 <div>
-                  <h3 className="text-2xl font-bold text-white mb-2">3-Month Retainer</h3>
+                  <h3 className="text-2xl font-bold text-white mb-2">{retainerOptions.title}</h3>
+                  <div className="flex items-center gap-4 mb-3">
+                    <span className="text-white font-semibold">{retainerOptions.daysPerWeek}</span>
+                    <span className="text-xs bg-blue-500/20 text-blue-400 px-2 py-1 rounded">{retainerOptions.recommended}</span>
+                  </div>
                   <p className="text-white/70 mb-4">
-                    2-3 days per week depending on project phase. Weekly rolling break clause - 100% flexibility.
+                    {retainerOptions.description}
                   </p>
                   <div className="flex flex-wrap gap-3">
                     <span className="text-xs bg-white/5 text-white/60 px-3 py-1 rounded-full">Foundation build</span>
@@ -1209,7 +1232,7 @@ export default function ClimatisePage() {
                   </div>
                 </div>
                 <div className="text-center">
-                  <div className="text-4xl font-black text-green-400">£500</div>
+                  <div className="text-4xl font-black text-green-400">{retainerOptions.rate.replace('/day', '')}</div>
                   <div className="text-white/50 text-sm">per day</div>
                 </div>
               </div>
@@ -1249,7 +1272,7 @@ export default function ClimatisePage() {
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            className="bg-zinc-900/50 border border-white/10 rounded-xl p-6"
+            className="bg-zinc-900/50 border border-white/10 rounded-xl p-6 mb-6"
           >
             <div className="flex items-center gap-3 mb-3">
               <span className="text-2xl">🎓</span>
@@ -1259,6 +1282,35 @@ export default function ClimatisePage() {
               Want to bring Clay in-house? We offer comprehensive training so your team can build and manage
               campaigns independently. Learn waterfall enrichment, signal monitoring, and campaign orchestration.
             </p>
+          </motion.div>
+
+          {/* Optional Fast Track */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="bg-gradient-to-r from-purple-500/10 via-transparent to-purple-500/10 border border-purple-500/20 rounded-xl p-6"
+          >
+            <div className="flex items-start gap-4">
+              <div className="text-2xl">🚀</div>
+              <div className="flex-1">
+                <div className="flex items-center gap-3 mb-2">
+                  <h4 className="font-bold text-purple-400">{optionalFastTrack.title}</h4>
+                  <span className="text-xs bg-purple-500/20 text-purple-400 px-2 py-1 rounded">Optional Add-on</span>
+                </div>
+                <p className="text-white/70 text-sm mb-3">{optionalFastTrack.description}</p>
+                <p className="text-amber-400/80 text-xs mb-4">{optionalFastTrack.when}</p>
+                <div className="grid md:grid-cols-4 gap-3 mb-4">
+                  {optionalFastTrack.items.map((item) => (
+                    <div key={item.name} className="bg-black/30 rounded-lg p-3 text-center">
+                      <div className="text-lg mb-1">{item.icon}</div>
+                      <div className="text-white text-xs font-semibold">{item.name}</div>
+                    </div>
+                  ))}
+                </div>
+                <p className="text-white/40 text-xs italic">{optionalFastTrack.note}</p>
+              </div>
+            </div>
           </motion.div>
 
           <motion.p
@@ -1370,6 +1422,39 @@ export default function ClimatisePage() {
           </motion.div>
         </div>
       </section>
+
+      {/* Sticky CTA Bar */}
+      <div className="fixed bottom-0 left-0 right-0 z-50 bg-gradient-to-r from-zinc-900/95 via-zinc-900/98 to-zinc-900/95 backdrop-blur-md border-t border-white/10 py-4 px-4">
+        <div className="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div className="text-center sm:text-left">
+            <p className="text-white font-semibold">Ready to build your GTM system?</p>
+            <p className="text-white/50 text-sm">Feb 2026 standards are next month</p>
+          </div>
+          <div className="flex items-center gap-4">
+            <a
+              href="https://cal.com/mike-hanley"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-gradient-to-r from-blue-500 to-green-500 hover:from-blue-600 hover:to-green-600 text-white px-6 py-3 rounded-xl font-bold transition shadow-lg shadow-blue-500/25 flex items-center gap-2 animate-pulse-glow"
+            >
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-white"></span>
+              </span>
+              Book Strategy Call
+            </a>
+            <a
+              href="mailto:dan@gtm.quest"
+              className="text-white/70 hover:text-white text-sm hidden sm:block"
+            >
+              dan@gtm.quest
+            </a>
+          </div>
+        </div>
+      </div>
+
+      {/* Spacer for sticky bar */}
+      <div className="h-20" />
     </main>
   );
 }
