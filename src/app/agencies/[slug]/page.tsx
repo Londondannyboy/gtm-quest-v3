@@ -66,24 +66,64 @@ export default async function AgencyPage({
     notFound();
   }
 
-  // JSON-LD structured data
+  // JSON-LD structured data - using LocalBusiness for better local SEO
   const jsonLd = {
     '@context': 'https://schema.org',
-    '@type': 'Organization',
+    '@type': 'LocalBusiness',
+    '@id': `https://gtm.quest/agencies/${agency.slug}`,
     name: agency.name,
     description: agency.description,
     url: agency.website,
+    image: agency.logo_url || 'https://gtm.quest/favicon.svg',
     address: {
       '@type': 'PostalAddress',
-      addressLocality: agency.headquarters,
+      addressLocality: agency.headquarters?.split(',')[0]?.trim(),
+      addressCountry: agency.headquarters?.includes('US') ? 'US' :
+                      agency.headquarters?.includes('UK') ? 'GB' :
+                      agency.headquarters?.includes('Australia') ? 'AU' : undefined,
     },
+    areaServed: agency.service_areas?.map(area => ({
+      '@type': 'GeoCircle',
+      name: area,
+    })),
+    knowsAbout: agency.specializations,
+    priceRange: agency.min_budget ? `$${agency.min_budget.toLocaleString()}+/month` : '$$',
     aggregateRating: agency.avg_rating
       ? {
           '@type': 'AggregateRating',
           ratingValue: agency.avg_rating,
           reviewCount: agency.review_count || 1,
+          bestRating: 5,
+          worstRating: 1,
         }
       : undefined,
+    sameAs: agency.website ? [agency.website] : [],
+  };
+
+  // Breadcrumb schema
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: 'https://gtm.quest',
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'GTM Agencies',
+        item: 'https://gtm.quest/agencies',
+      },
+      {
+        '@type': 'ListItem',
+        position: 3,
+        name: agency.name,
+        item: `https://gtm.quest/agencies/${agency.slug}`,
+      },
+    ],
   };
 
   return (
@@ -91,6 +131,10 @@ export default async function AgencyPage({
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
       />
 
       <div className="min-h-screen bg-black text-white">

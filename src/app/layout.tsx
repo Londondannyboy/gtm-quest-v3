@@ -36,6 +36,11 @@ export default function RootLayout({
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
         <meta name="apple-mobile-web-app-title" content="GTM Agency Quest" />
         <link rel="manifest" href="/site.webmanifest" />
+        {/* Hreflang tags for international SEO */}
+        <link rel="alternate" hrefLang="en" href="https://gtm.quest" />
+        <link rel="alternate" hrefLang="en-US" href="https://gtm.quest" />
+        <link rel="alternate" hrefLang="en-GB" href="https://gtm.quest" />
+        <link rel="alternate" hrefLang="x-default" href="https://gtm.quest" />
       </head>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <Providers>
