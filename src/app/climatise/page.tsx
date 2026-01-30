@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { useState } from 'react';
 import CountUp from 'react-countup';
+import { generateClimatisePDF } from './ClimatisePDF';
 
 // Bid Manager & Tender Intelligence
 const tenderIntelligence = {
@@ -1140,9 +1141,29 @@ export default function ClimatisePage() {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
               </svg>
             </a>
-            <p className="text-white/40 text-sm mt-4">
-              Scroll down for the full proposal ↓
-            </p>
+            <div className="flex items-center justify-center gap-4 mt-4">
+              <p className="text-white/40 text-sm">
+                Scroll down for the full proposal ↓
+              </p>
+              <span className="text-white/20">|</span>
+              <button
+                onClick={async () => {
+                  const blob = await generateClimatisePDF();
+                  const url = URL.createObjectURL(blob);
+                  const a = document.createElement('a');
+                  a.href = url;
+                  a.download = 'Climatise-GTM-Proposal.pdf';
+                  a.click();
+                  URL.revokeObjectURL(url);
+                }}
+                className="text-blue-400 hover:text-blue-300 text-sm flex items-center gap-1"
+              >
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                </svg>
+                Download PDF
+              </button>
+            </div>
           </motion.div>
         </div>
       </section>
