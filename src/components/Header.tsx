@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { useState, useEffect, useRef } from 'react';
+import { usePathname } from 'next/navigation';
 import { SignedIn, SignedOut, UserButton } from '@/lib/auth';
 
 // Check if Neon Auth is configured
@@ -10,10 +11,17 @@ const isAuthConfigured = !!process.env.NEXT_PUBLIC_NEON_AUTH_URL;
 // Calendly booking link
 const BOOKING_LINK = 'https://calendly.com/my-first-quest';
 
+// Pages where we hide the Book a Call button (they have their own CTAs)
+const HIDE_BOOKING_PATHS = ['/climatise'];
+
 export function Header() {
   const [mounted, setMounted] = useState(false);
   const [articlesOpen, setArticlesOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const pathname = usePathname();
+
+  // Hide booking button on certain pages
+  const hideBookingButton = HIDE_BOOKING_PATHS.some(path => pathname?.startsWith(path));
 
   useEffect(() => {
     setMounted(true);
@@ -127,15 +135,17 @@ export function Header() {
           )}
 
           {/* Book a Meeting CTA - Eye-catching */}
-          <a
-            href={BOOKING_LINK}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="relative bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white text-sm px-4 py-2 rounded-lg transition font-semibold animate-pulse-glow flex items-center gap-2"
-          >
-            <span className="w-2 h-2 bg-white rounded-full animate-pulse" />
-            Book a Call
-          </a>
+          {!hideBookingButton && (
+            <a
+              href={BOOKING_LINK}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="relative bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white text-sm px-4 py-2 rounded-lg transition font-semibold animate-pulse-glow flex items-center gap-2"
+            >
+              <span className="w-2 h-2 bg-white rounded-full animate-pulse" />
+              Book a Call
+            </a>
+          )}
 
           {/* Beta Badge */}
           <div className="hidden md:flex items-center">

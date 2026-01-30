@@ -398,47 +398,47 @@ const flexibility = {
 // Expected Outcomes - Targets Framework
 const expectedOutcomes = {
   title: 'Expected Outcomes',
-  subtitle: 'We start conversations. You close deals.',
-  note: 'Final targets calibrated during discovery. Apply your own close rates to conversations started.',
+  subtitle: 'The maths works. One client pays for the pilot.',
+  note: 'All figures provisional - to be confirmed based on your actual metrics.',
   metrics: [
     {
-      name: 'Conversations/Month',
-      description: 'Qualified decision-maker conversations started',
-      formula: 'Tier 1 targets × outreach rate × response rate',
+      name: 'Customer LTV',
+      description: 'Your average lifetime value (provisional)',
+      formula: 'To be confirmed by you',
+      placeholder: '£25,000+',
+      icon: '💰',
+    },
+    {
+      name: 'Leads/Month',
+      description: 'Subject to agreed scale & plan',
+      formula: 'Tier 1 targets × response rate',
       placeholder: '40-80',
-      icon: '💬',
+      icon: '🎯',
     },
     {
-      name: 'Response Rate',
-      description: 'Industry standard for signal-triggered outbound',
-      formula: 'Quality targeting + timing + personalization',
-      placeholder: '2-5%',
-      icon: '📈',
-    },
-    {
-      name: 'Cost Per Conversation',
-      description: 'Your investment per qualified conversation',
-      formula: 'Monthly investment ÷ conversations started',
+      name: 'Cost Per Lead',
+      description: 'Mostly labor (day rate)',
+      formula: 'Project cost ÷ leads generated',
       placeholder: '£50-150',
       icon: '📊',
     },
     {
-      name: 'Your Pipeline',
-      description: 'Apply your close rates',
-      formula: 'Conversations × your close rate × your deal size',
-      placeholder: 'You decide',
-      icon: '🎯',
+      name: 'Payback',
+      description: 'Just ONE client covers the pilot',
+      formula: '1 × LTV > pilot cost',
+      placeholder: '1 client',
+      icon: '✅',
     },
   ],
   inputs: {
     title: 'What We Need From You',
     items: [
+      'Confirm your average LTV',
       'Your close rate from conversations',
-      'Average deal size by tier',
-      'Sales cycle length',
+      'Preferred scale (days/week)',
     ],
   },
-  commitment: 'We start conversations with the right people at the right time. You do what you do best: close them.',
+  commitment: 'One closed deal from this pilot more than covers the investment. The rest is profit.',
 };
 
 // Narrative transitions / scroll prompts
@@ -627,22 +627,26 @@ function ExecutiveSummary({ setCurrentView }: { setCurrentView: (view: ViewType)
           transition={{ delay: 0.2 }}
           className="bg-zinc-900/50 border border-white/5 rounded-xl p-6 mb-8"
         >
-          <h2 className="text-amber-400 text-xs uppercase tracking-wider mb-4">What We Deliver (Ballpark)</h2>
-          <div className="grid grid-cols-3 gap-4 text-center">
+          <h2 className="text-amber-400 text-xs uppercase tracking-wider mb-4">The Maths (Provisional)</h2>
+          <div className="grid grid-cols-4 gap-4 text-center">
             <div>
-              <div className="text-xl font-bold text-white">40-80</div>
-              <div className="text-white/50 text-xs">Conversations/Month</div>
+              <div className="text-xl font-bold text-white">£25K+</div>
+              <div className="text-white/50 text-xs">Your LTV (TBC)</div>
             </div>
             <div>
-              <div className="text-xl font-bold text-white">2-5%</div>
-              <div className="text-white/50 text-xs">Response Rate</div>
+              <div className="text-xl font-bold text-white">40-80</div>
+              <div className="text-white/50 text-xs">Leads/Month</div>
             </div>
             <div>
               <div className="text-xl font-bold text-white">£50-150</div>
-              <div className="text-white/50 text-xs">Cost Per Conversation</div>
+              <div className="text-white/50 text-xs">Cost Per Lead</div>
+            </div>
+            <div>
+              <div className="text-xl font-bold text-emerald-400">1 client</div>
+              <div className="text-white/50 text-xs">Pays Back Pilot</div>
             </div>
           </div>
-          <p className="text-white/40 text-xs mt-3 text-center">We start conversations. You apply your close rates to calculate pipeline.</p>
+          <p className="text-white/40 text-xs mt-3 text-center">One closed deal covers the investment. All figures provisional - to be confirmed.</p>
         </motion.div>
 
         {/* Risks & Mitigations */}
