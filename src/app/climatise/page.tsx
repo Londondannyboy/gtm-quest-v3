@@ -318,11 +318,11 @@ const marketSizing = {
     note: '~21,000 companies with hard deadlines',
   },
   som: {
-    value: '500+',
-    label: 'Year 1 Conversations',
-    description: 'Qualified conversations started with decision-makers',
+    value: 'TBD',
+    label: 'Year 1 Target',
+    description: 'Conversations based on agreed scale & your close rates',
     assumptions: [
-      '~15,200 Tier 1 targets (est.)',
+      'UK obliged companies (SECR, NHS, PPN)',
       '2-5% response rate (industry standard)',
       'Your close rates applied after',
     ],
@@ -424,8 +424,8 @@ const expectedOutcomes = {
     },
     {
       name: 'Payback',
-      description: 'Just ONE client covers the pilot',
-      formula: '1 × LTV > pilot cost',
+      description: '1 client = pilot paid + working system',
+      formula: '1 × LTV > pilot cost + you keep the infrastructure',
       placeholder: '1 client',
       icon: '✅',
     },
@@ -587,7 +587,7 @@ function ExecutiveSummary({ setCurrentView }: { setCurrentView: (view: ViewType)
               </li>
               <li className="flex items-start gap-3">
                 <span className="text-amber-400 text-lg">•</span>
-                <span className="text-white/80"><span className="text-amber-400 font-bold">~15,200</span> Tier 1 targets (est.) with hard deadlines</span>
+                <span className="text-white/80">UK obliged companies with hard compliance deadlines</span>
               </li>
               <li className="flex items-start gap-3">
                 <span className="text-red-400 text-lg">•</span>
@@ -628,14 +628,10 @@ function ExecutiveSummary({ setCurrentView }: { setCurrentView: (view: ViewType)
           className="bg-zinc-900/50 border border-white/5 rounded-xl p-6 mb-8"
         >
           <h2 className="text-amber-400 text-xs uppercase tracking-wider mb-4">The Maths (Provisional)</h2>
-          <div className="grid grid-cols-4 gap-4 text-center">
+          <div className="grid grid-cols-3 gap-4 text-center">
             <div>
               <div className="text-xl font-bold text-white">£25K+</div>
               <div className="text-white/50 text-xs">Your LTV (TBC)</div>
-            </div>
-            <div>
-              <div className="text-xl font-bold text-white">40-80</div>
-              <div className="text-white/50 text-xs">Leads/Month</div>
             </div>
             <div>
               <div className="text-xl font-bold text-white">£50-150</div>
@@ -643,10 +639,10 @@ function ExecutiveSummary({ setCurrentView }: { setCurrentView: (view: ViewType)
             </div>
             <div>
               <div className="text-xl font-bold text-emerald-400">1 client</div>
-              <div className="text-white/50 text-xs">Pays Back Pilot</div>
+              <div className="text-white/50 text-xs">= Pilot Paid</div>
             </div>
           </div>
-          <p className="text-white/40 text-xs mt-3 text-center">One closed deal covers the investment. All figures provisional - to be confirmed.</p>
+          <p className="text-white/40 text-xs mt-3 text-center">One closed deal pays for the pilot + you keep a working GTM system. All figures TBC.</p>
         </motion.div>
 
         {/* Risks & Mitigations */}
@@ -740,7 +736,7 @@ function GetToYes({ setCurrentView }: { setCurrentView: (view: ViewType) => void
         <div className="space-y-3">
           <div className="flex items-center justify-between">
             <span className="text-white font-semibold">5 ICP Clusters</span>
-            <span className="text-green-400 font-bold">~15,200 Tier 1 (est.)</span>
+            <span className="text-green-400 font-bold">UK Obliged Companies</span>
           </div>
           <div className="grid grid-cols-2 gap-2 text-xs">
             {icpCategories.slice(0, 4).map((cat) => (
@@ -963,26 +959,30 @@ export default function ClimatisePage() {
           className="max-w-md w-full"
         >
           <div className="text-center mb-8">
-            <div className="flex items-center justify-center gap-4 mb-6">
-              <Image
-                src="/GTM Logo New.png"
-                alt="GTM Quest"
-                width={100}
-                height={35}
-                className="h-8 w-auto"
-              />
-              <span className="text-white/40 text-xl">×</span>
+            {/* Climatise logo - hero */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 mb-6 inline-block"
+            >
               <Image
                 src="/climatise-logo.png"
                 alt="Climatise"
-                width={110}
-                height={35}
-                className="h-8 w-auto"
+                width={200}
+                height={60}
+                className="h-12 w-auto"
               />
-            </div>
-            <h1 className="text-2xl font-bold text-white mb-2">Protected Content</h1>
-            <p className="text-white/60">
-              This pitch deck contains confidential information prepared exclusively for Climatise.
+            </motion.div>
+
+            {/* Statement of intent */}
+            <h1 className="text-2xl font-bold text-white mb-3">
+              Let&apos;s Fill Your Pipeline
+            </h1>
+            <p className="text-white/70 mb-4">
+              Signal-triggered outbound for UK carbon accounting.
+            </p>
+            <p className="text-white/50 text-sm">
+              GTM proposal prepared exclusively for Climatise.
             </p>
           </div>
 
@@ -1008,16 +1008,15 @@ export default function ClimatisePage() {
               type="submit"
               className="w-full bg-gradient-to-r from-blue-500 to-green-500 hover:from-blue-600 hover:to-green-600 text-white py-3 rounded-lg font-semibold transition"
             >
-              Access Pitch Deck
+              View Proposal
             </button>
           </form>
 
-          <p className="text-center text-white/40 text-sm mt-6">
-            Your data is protected. Contact{' '}
-            <a href="mailto:dan@gtm.quest" className="text-blue-400 hover:text-blue-300">
-              dan@gtm.quest
-            </a>{' '}
-            for access.
+          <p className="text-center text-white/40 text-xs mt-6">
+            Confidential. Prepared by{' '}
+            <a href="https://gtm.quest" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300">
+              GTM Quest
+            </a>
           </p>
         </motion.div>
       </main>
@@ -1077,7 +1076,7 @@ export default function ClimatisePage() {
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="text-amber-400 text-lg">•</span>
-                  <span className="text-white/80"><span className="text-amber-400 font-bold">~15,200</span> Tier 1 targets (est.) with hard deadlines</span>
+                  <span className="text-white/80">UK obliged companies with hard compliance deadlines</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="text-red-400 text-lg">•</span>
@@ -1348,7 +1347,7 @@ export default function ClimatisePage() {
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.6 }}
               >
-                ~15,200 companies
+                UK obliged companies
               </motion.span>
               <br />
               <motion.span
@@ -1357,7 +1356,7 @@ export default function ClimatisePage() {
                 transition={{ delay: 0.8 }}
                 className="text-amber-400"
               >
-                need carbon accounting.
+                need carbon accounting now.
               </motion.span>
               <br />
               <motion.span
@@ -2003,17 +2002,19 @@ export default function ClimatisePage() {
             ))}
           </div>
 
-          {/* Combined TAM */}
+          {/* Tier 1 Target Definition */}
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             className="bg-gradient-to-r from-green-500/10 to-blue-500/10 border border-green-500/30 rounded-2xl p-8 text-center"
           >
-            <div className="text-5xl font-black text-white mb-2">~15,200</div>
-            <div className="text-white/70">Tier 1 Targets (est.): High-Intent Companies with Hard Deadlines</div>
-            <div className="text-white/50 text-sm mt-2">
-              Sources: Companies House, Find a Tender, NHS SBS Framework
+            <div className="text-3xl md:text-4xl font-black text-white mb-2">UK Obliged Companies</div>
+            <div className="text-white/70 mb-3">High-intent companies with hard compliance deadlines</div>
+            <div className="flex flex-wrap justify-center gap-3 text-xs">
+              <a href="https://www.gov.uk/government/publications/environmental-reporting-guidelines-including-mandatory-greenhouse-gas-emissions-reporting-guidance" target="_blank" rel="noopener noreferrer" className="bg-white/5 text-white/60 px-3 py-1 rounded hover:text-blue-400 transition">SECR Obligated →</a>
+              <a href="https://www.england.nhs.uk/greenernhs/get-involved/suppliers/" target="_blank" rel="noopener noreferrer" className="bg-white/5 text-white/60 px-3 py-1 rounded hover:text-blue-400 transition">NHS Suppliers →</a>
+              <a href="https://www.gov.uk/government/publications/ppn-0621-taking-account-of-carbon-reduction-plans-in-the-procurement-of-major-government-contracts" target="_blank" rel="noopener noreferrer" className="bg-white/5 text-white/60 px-3 py-1 rounded hover:text-blue-400 transition">PPN 06/21 →</a>
             </div>
           </motion.div>
         </div>
@@ -2169,7 +2170,7 @@ export default function ClimatisePage() {
               Tier 1 ICPs: Where We Start
             </h2>
             <p className="text-white/70 max-w-2xl mx-auto">
-              ~15,200 high-intent companies (est.) with hard deadlines driving purchase urgency.
+              UK obliged companies with hard compliance deadlines driving purchase urgency.
             </p>
           </motion.div>
 
@@ -3286,48 +3287,52 @@ export default function ClimatisePage() {
             </a>
           </div>
 
-          {/* Desktop: Logo + Personal greeting + urgency + CTA */}
+          {/* Desktop: Logo + Feb 2026 justification + CTA */}
           <div className="hidden sm:flex items-center justify-between gap-4">
-            {/* Climatise logo + greeting */}
-            <div className="flex items-center gap-4">
-              <div className="bg-white/10 rounded-lg p-2">
-                <Image
-                  src="/climatise-logo.png"
-                  alt="Climatise"
-                  width={100}
-                  height={30}
-                  className="h-6 w-auto"
-                />
-              </div>
-              <div className="text-white/50 text-sm">|</div>
-              <div className="text-white text-sm">
-                <span className="font-semibold">Hey Lennon</span>
-                <span className="text-white/50 mx-2">—</span>
-                <span className="text-white/70">ready to win new clients?</span>
-              </div>
+            {/* Climatise logo */}
+            <div className="bg-white/10 rounded-lg p-2">
+              <Image
+                src="/climatise-logo.png"
+                alt="Climatise"
+                width={100}
+                height={30}
+                className="h-6 w-auto"
+              />
             </div>
 
-            {/* Urgency + CTA */}
-            <div className="flex items-center gap-4">
+            {/* Feb 2026 justification with link */}
+            <div className="flex-1 flex items-center justify-center gap-3">
               <div className="flex items-center gap-2 text-amber-400 text-sm font-medium">
                 <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clipRule="evenodd" />
                 </svg>
-                <span>Feb 2026 standards deadline</span>
+                <span>Feb 2026 UK Sustainability Reporting Standards</span>
               </div>
-
               <a
-                href="https://calendly.com/my-first-quest"
+                href="https://www.gov.uk/government/consultations/uk-sustainability-reporting-standards-endorsement-and-adoption"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group flex items-center gap-2 bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white px-6 py-2.5 rounded-xl font-bold text-sm transition shadow-lg shadow-blue-500/25"
+                className="text-blue-400 hover:text-blue-300 text-xs flex items-center gap-1"
               >
-                <span>Let&apos;s Win Clients</span>
-                <svg className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                Source
+                <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                 </svg>
               </a>
             </div>
+
+            {/* CTA */}
+            <a
+              href="https://calendly.com/my-first-quest"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group flex items-center gap-2 bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white px-6 py-2.5 rounded-xl font-bold text-sm transition shadow-lg shadow-blue-500/25"
+            >
+              <span>Let&apos;s Win Clients</span>
+              <svg className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
+            </a>
           </div>
         </div>
       </div>
