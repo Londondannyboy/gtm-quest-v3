@@ -9,8 +9,8 @@ const MuxPlayer = dynamic(
   { ssr: false }
 );
 
-// Cal.com booking link
-const BOOKING_LINK = 'https://cal.com/mike-hanley';
+// Calendly booking link
+const BOOKING_LINK = 'https://calendly.com/my-first-quest';
 
 export function HeroSection() {
   return (

@@ -7,8 +7,8 @@ import { SignedIn, SignedOut, UserButton } from '@/lib/auth';
 // Check if Neon Auth is configured
 const isAuthConfigured = !!process.env.NEXT_PUBLIC_NEON_AUTH_URL;
 
-// Cal.com booking link - replace with your actual link
-const BOOKING_LINK = 'https://cal.com/mike-hanley';
+// Calendly booking link
+const BOOKING_LINK = 'https://calendly.com/my-first-quest';
 
 export function Header() {
   const [mounted, setMounted] = useState(false);

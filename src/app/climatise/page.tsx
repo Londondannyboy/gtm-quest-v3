@@ -322,7 +322,7 @@ const marketSizing = {
     label: 'Year 1 Target',
     description: 'Realistic pipeline with systematic GTM',
     assumptions: [
-      '15,200 Tier 1 targets',
+      '~15,200 Tier 1 targets (est.)',
       '5% → qualified lead',
       '20% close rate',
       '£8K avg deal',
@@ -590,7 +590,7 @@ function ExecutiveSummary({ setCurrentView }: { setCurrentView: (view: ViewType)
               </li>
               <li className="flex items-start gap-3">
                 <span className="text-amber-400 text-lg">•</span>
-                <span className="text-white/80"><span className="text-amber-400 font-bold">15,200+</span> Tier 1 targets with hard deadlines</span>
+                <span className="text-white/80"><span className="text-amber-400 font-bold">~15,200</span> Tier 1 targets (est.) with hard deadlines</span>
               </li>
               <li className="flex items-start gap-3">
                 <span className="text-red-400 text-lg">•</span>
@@ -743,7 +743,7 @@ function GetToYes({ setCurrentView }: { setCurrentView: (view: ViewType) => void
         <div className="space-y-3">
           <div className="flex items-center justify-between">
             <span className="text-white font-semibold">5 ICP Clusters</span>
-            <span className="text-green-400 font-bold">15,200+ Tier 1</span>
+            <span className="text-green-400 font-bold">~15,200 Tier 1 (est.)</span>
           </div>
           <div className="grid grid-cols-2 gap-2 text-xs">
             {icpCategories.slice(0, 4).map((cat) => (
@@ -1071,7 +1071,7 @@ export default function ClimatisePage() {
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="text-amber-400 text-lg">•</span>
-                  <span className="text-white/80"><span className="text-amber-400 font-bold">15,200+</span> Tier 1 targets with hard deadlines</span>
+                  <span className="text-white/80"><span className="text-amber-400 font-bold">~15,200</span> Tier 1 targets (est.) with hard deadlines</span>
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="text-red-400 text-lg">•</span>
@@ -1342,7 +1342,7 @@ export default function ClimatisePage() {
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.6 }}
               >
-                15,200 companies
+                ~15,200 companies
               </motion.span>
               <br />
               <motion.span
@@ -1897,9 +1897,9 @@ export default function ClimatisePage() {
               className="text-center"
             >
               <div className="text-4xl font-black text-green-400 mb-2">
-                <CountUp end={15200} duration={2.5} separator="," enableScrollSpy scrollSpyOnce />
+                ~<CountUp end={15200} duration={2.5} separator="," enableScrollSpy scrollSpyOnce />
               </div>
-              <p className="text-white/60 text-sm">Tier 1 targets with hard compliance deadlines</p>
+              <p className="text-white/60 text-sm">Tier 1 targets (est.) with hard compliance deadlines</p>
             </motion.div>
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -2004,8 +2004,8 @@ export default function ClimatisePage() {
             viewport={{ once: true }}
             className="bg-gradient-to-r from-green-500/10 to-blue-500/10 border border-green-500/30 rounded-2xl p-8 text-center"
           >
-            <div className="text-5xl font-black text-white mb-2">15,200</div>
-            <div className="text-white/70">Tier 1 Targets: High-Intent Companies with Hard Deadlines</div>
+            <div className="text-5xl font-black text-white mb-2">~15,200</div>
+            <div className="text-white/70">Tier 1 Targets (est.): High-Intent Companies with Hard Deadlines</div>
             <div className="text-white/50 text-sm mt-2">
               Sources: Companies House, Find a Tender, NHS SBS Framework
             </div>
@@ -2163,7 +2163,7 @@ export default function ClimatisePage() {
               Tier 1 ICPs: Where We Start
             </h2>
             <p className="text-white/70 max-w-2xl mx-auto">
-              15,200 high-intent companies with hard deadlines driving purchase urgency.
+              ~15,200 high-intent companies (est.) with hard deadlines driving purchase urgency.
             </p>
           </motion.div>
 

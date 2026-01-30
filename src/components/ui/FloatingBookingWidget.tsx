@@ -1,16 +1,26 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 
-// Cal.com booking link
-const BOOKING_LINK = 'https://cal.com/mike-hanley';
+// Calendly booking link
+const BOOKING_LINK = 'https://calendly.com/my-first-quest';
+
+// Pages where we hide this widget (they have their own CTAs)
+const HIDDEN_PATHS = ['/climatise'];
 
 export function FloatingBookingWidget() {
   const [isVisible, setIsVisible] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
+  const pathname = usePathname();
+
+  // Hide on certain pages
+  const isHiddenPage = HIDDEN_PATHS.some(path => pathname?.startsWith(path));
 
   useEffect(() => {
+    if (isHiddenPage) return;
+
     // Show widget after scrolling down a bit
     const handleScroll = () => {
       setIsVisible(window.scrollY > 300);
@@ -18,7 +28,10 @@ export function FloatingBookingWidget() {
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [isHiddenPage]);
+
+  // Don't render on hidden pages
+  if (isHiddenPage) return null;
 
   return (
     <AnimatePresence>
