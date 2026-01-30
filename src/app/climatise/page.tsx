@@ -67,29 +67,49 @@ const icpCategories = [
   { name: 'Emerging', count: 4, examples: 'Insurance, Franchises, Recruitment', color: 'amber' },
 ];
 
-// Tier 1 ICPs
+// Tier 1 ICPs (Provisional estimates - to be validated)
 const tier1Icps = [
-  { name: 'Government Contract Bidders', count: '5,000+', urgency: 'Critical', trigger: 'PPN 006 Carbon Reduction Plan', deadline: 'Immediate' },
-  { name: 'NHS Suppliers Tier 1', count: '2,000', urgency: 'High', trigger: 'Scope 3 reporting requirement', deadline: 'April 2027' },
-  { name: 'SECR December Year-End', count: '3,300', urgency: 'High', trigger: 'Annual compliance deadline', deadline: '30 September' },
-  { name: 'SECR March Year-End', count: '4,400', urgency: 'High', trigger: 'Annual compliance deadline', deadline: '31 December' },
-  { name: 'National Highways Suppliers', count: '500', urgency: 'Critical', trigger: 'PAS 2080 compliance', deadline: 'End of 2025' },
+  { name: 'Government Contract Bidders', count: '5,000+', urgency: 'Critical', trigger: 'PPN 006 Carbon Reduction Plan', deadline: 'Immediate', provisional: true, sourceUrl: 'https://www.gov.uk/government/publications/procurement-policy-note-0621-taking-account-of-carbon-reduction-plans-in-the-procurement-of-major-government-contracts' },
+  { name: 'NHS Suppliers Tier 1', count: '2,000', urgency: 'High', trigger: 'Scope 3 reporting requirement', deadline: 'April 2027', provisional: true, sourceUrl: 'https://www.england.nhs.uk/greenernhs/a-net-zero-nhs/' },
+  { name: 'SECR December Year-End', count: '3,300', urgency: 'High', trigger: 'Annual compliance deadline', deadline: '30 September', provisional: true, sourceUrl: 'https://www.gov.uk/government/publications/streamlined-energy-and-carbon-reporting-secr-for-academy-trusts/streamlined-energy-and-carbon-reporting-secr-for-academy-trusts' },
+  { name: 'SECR March Year-End', count: '4,400', urgency: 'High', trigger: 'Annual compliance deadline', deadline: '31 December', provisional: true, sourceUrl: 'https://www.gov.uk/government/publications/streamlined-energy-and-carbon-reporting-secr-for-academy-trusts/streamlined-energy-and-carbon-reporting-secr-for-academy-trusts' },
+  { name: 'National Highways Suppliers', count: '500', urgency: 'Critical', trigger: 'PAS 2080 compliance', deadline: 'End of 2025', provisional: true, sourceUrl: 'https://nationalhighways.co.uk/suppliers/carbon-management/' },
 ];
 
-// GTM Stack - Clay-Centric
+// SECR Threshold Info
+const secrThreshold = {
+  criteria: 'Companies must meet 2 of 3 criteria',
+  requirements: [
+    { label: 'Turnover', value: '> £36 million' },
+    { label: 'Balance Sheet', value: '> £18 million' },
+    { label: 'Employees', value: '250+' },
+  ],
+  source: 'GOV.UK SECR Guidance',
+  sourceUrl: 'https://www.gov.uk/government/publications/streamlined-energy-and-carbon-reporting-secr-for-academy-trusts/streamlined-energy-and-carbon-reporting-secr-for-academy-trusts',
+  note: 'Quoted companies report regardless of size. Low energy users (<40 MWh) exempt.',
+};
+
+// GTM Stack - Clay-Centric (Provisional - tools selected based on requirements)
 const gtmStack = {
   clay: {
     name: 'Clay',
     tagline: 'The Heart of Your GTM Stack',
     description: 'All-in-one platform for data enrichment, waterfall sequences, and outbound orchestration',
     capabilities: [
-      'Waterfall enrichment (Findy, Icypeas, Prospero)',
+      'Waterfall enrichment (Findee, Prospero, LeadMagic)',
       'LinkedIn deep enrichment via Apify',
       'AI-powered lead scoring & qualification',
       'Signal monitoring & Slack alerts',
       'Campaign orchestration & sequencing',
     ],
   },
+  enrichment: [
+    { name: 'Findee', description: 'Email discovery & verification' },
+    { name: 'Prospero', description: 'B2B contact enrichment' },
+    { name: 'LeadMagic', description: 'Company data enrichment' },
+    { name: 'Icypeas', description: 'Email finder backup' },
+    { name: 'Apify', description: 'LinkedIn deep scraping' },
+  ],
   execution: [
     { name: 'LaGrowthMachine', description: 'LinkedIn automation with 4G proxy protection', primary: true },
     { name: 'Instantly', description: 'Email outreach at scale' },
@@ -97,8 +117,13 @@ const gtmStack = {
     { name: 'Breakcold', description: 'Frontline CRM' },
     { name: 'Surfe', description: 'LinkedIn CRM sync' },
   ],
+  content: [
+    { name: 'SuperGrowth', description: 'AI content authority & thought leadership' },
+    { name: 'LinkedIn Articles', description: 'Organic reach & credibility building' },
+    { name: 'AEO Content', description: 'Answer Engine Optimization for AI search' },
+  ],
   optional: [
-    { name: 'Supabase/Neon', description: 'Extended data storage (optional)', note: 'For high-volume campaigns' },
+    { name: 'Supabase/Neon', description: 'Extended data storage', note: 'For high-volume campaigns' },
     { name: 'Custom Scrapers', description: 'Find a Tender, bidstats.uk, Contract Finder' },
     { name: 'RevOps Dashboards', description: 'Advanced reporting & analytics', note: 'Add-on service' },
   ],
@@ -138,12 +163,15 @@ const signalTypes = [
   },
 ];
 
-// Investment options
-const investmentOptions = [
-  { type: 'Clay Training', rate: '£1,000/day', description: 'Learn to build and manage your own Clay workflows', highlight: true },
-  { type: 'Workshops & Strategy', rate: '£1,000/day', description: 'ICP refinement, campaign strategy, team enablement' },
-  { type: 'System Building', rate: '£750/day', description: 'Clay builds, integrations, campaign setup' },
-  { type: 'Ongoing Support', rate: '£500/day', description: 'Maintenance, optimisation, troubleshooting (3 months)' },
+// Investment options - Retainer vs One-Off
+const retainerOptions = [
+  { type: '3-Month Engagement', rate: '£500/day', description: '2-3 days per week depending on needs. Weekly rolling break clause.', highlight: true, recommended: true },
+];
+
+const oneOffOptions = [
+  { type: 'Clay Training Workshop', rate: '£1,000/day', description: 'Intensive hands-on training for your team' },
+  { type: 'Strategy Session', rate: '£1,000/day', description: 'ICP refinement, campaign planning, stack recommendations' },
+  { type: 'System Build Sprint', rate: '£1,000/day', description: 'Focused build days for specific deliverables' },
 ];
 
 // Why GTM Quest
@@ -159,7 +187,6 @@ const whyGtmQuest = [
 const CORRECT_PASSWORD = 'climatisegtmquest2026';
 
 export default function ClimatisePage() {
-  const [showGammaEmbed, setShowGammaEmbed] = useState(false);
   const [password, setPassword] = useState('');
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [error, setError] = useState('');
@@ -321,10 +348,10 @@ export default function ClimatisePage() {
               transition={{ delay: 0.4 }}
               className="text-xl text-white/80 max-w-3xl mx-auto mb-8"
             >
-              Your end-to-end emissions solution deserves an end-to-end GTM system.
+              UK sustainability standards publish <span className="text-amber-400 font-semibold">February 2026</span>.
               <br />
-              <span className="text-green-400 font-semibold">37 defined ICPs</span> across UK carbon accounting.
-              <span className="text-blue-400 font-semibold"> 15,200 Tier 1 targets.</span>
+              <span className="text-green-400 font-semibold">37 ICPs</span> across UK carbon accounting.
+              <span className="text-blue-400 font-semibold"> 15,200 targets</span> with hard deadlines.
             </motion.p>
 
             {/* CTA */}
@@ -346,33 +373,29 @@ export default function ClimatisePage() {
                 </span>
                 Book Strategy Call
               </a>
-              <button
-                onClick={() => setShowGammaEmbed(!showGammaEmbed)}
-                className="text-white hover:text-blue-400 px-8 py-4 rounded-xl font-medium transition border border-white/20 hover:border-blue-500/50"
-              >
-                {showGammaEmbed ? 'Hide' : 'View'} Presentation
-              </button>
-              <a
-                href="https://gamma.app/docs/Climatise-GTM-Pilot-j6g4b0py5xapwxz"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-white/70 hover:text-white px-6 py-4 rounded-xl font-medium transition flex items-center gap-2"
-              >
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                </svg>
-                Open in Gamma
-              </a>
-              <a
-                href="/Climitise ICP.pdf"
-                download
-                className="text-white/70 hover:text-green-400 px-6 py-4 rounded-xl font-medium transition flex items-center gap-2"
-              >
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                </svg>
-                Download ICP Analysis
-              </a>
+              <div className="flex items-center gap-4">
+                <a
+                  href="https://gamma.app/docs/Climatise-GTM-Pilot-j6g4b0py5xapwxz"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-white hover:text-blue-400 px-6 py-3 rounded-xl font-medium transition border border-white/20 hover:border-blue-500/50 flex items-center gap-2"
+                >
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                  </svg>
+                  View Presentation
+                </a>
+                <a
+                  href="/Climitise ICP.pdf"
+                  download
+                  className="text-white/70 hover:text-green-400 px-6 py-3 rounded-xl font-medium transition flex items-center gap-2"
+                >
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                  </svg>
+                  ICP Analysis
+                </a>
+              </div>
             </motion.div>
           </motion.div>
 
@@ -431,27 +454,95 @@ export default function ClimatisePage() {
         </div>
       </section>
 
-      {/* Gamma Embed (collapsible) */}
-      {showGammaEmbed && (
-        <motion.section
-          initial={{ opacity: 0, height: 0 }}
-          animate={{ opacity: 1, height: 'auto' }}
-          exit={{ opacity: 0, height: 0 }}
-          className="py-8 bg-zinc-950"
-        >
-          <div className="max-w-5xl mx-auto px-4">
-            <div className="bg-zinc-900 rounded-2xl p-4 border border-white/10">
-              <iframe
-                src="https://gamma.app/embed/j6g4b0py5xapwxz"
-                style={{ width: '100%', height: '550px' }}
-                allow="fullscreen"
-                title="Climatise GTM Pilot"
-                className="rounded-xl"
-              />
-            </div>
+      {/* Executive Summary */}
+      <section className="py-16 bg-zinc-950 border-y border-white/5">
+        <div className="max-w-5xl mx-auto px-4">
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            className="text-center mb-10"
+          >
+            <span className="text-white/40 text-sm font-bold uppercase tracking-wider">Executive Summary</span>
+          </motion.div>
+
+          <div className="grid md:grid-cols-3 gap-8 mb-12">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1 }}
+              className="text-center"
+            >
+              <div className="text-4xl font-black text-blue-400 mb-2">
+                <CountUp end={37} duration={2} enableScrollSpy scrollSpyOnce /> ICPs
+              </div>
+              <p className="text-white/60 text-sm">Regulatory, supply chain, voluntary & sector-specific targets</p>
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2 }}
+              className="text-center"
+            >
+              <div className="text-4xl font-black text-green-400 mb-2">
+                <CountUp end={15200} duration={2.5} separator="," enableScrollSpy scrollSpyOnce />
+              </div>
+              <p className="text-white/60 text-sm">Tier 1 targets with hard compliance deadlines</p>
+            </motion.div>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.3 }}
+              className="text-center"
+            >
+              <div className="text-4xl font-black text-amber-400 mb-2">Feb 2026</div>
+              <p className="text-white/60 text-sm">UK sustainability standards finalise - next month</p>
+            </motion.div>
           </div>
-        </motion.section>
-      )}
+
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="bg-zinc-900/50 border border-white/10 rounded-2xl p-8"
+          >
+            <h3 className="font-bold text-white text-lg mb-4">The Proposition</h3>
+            <div className="grid md:grid-cols-2 gap-6 text-sm">
+              <div className="space-y-3">
+                <div className="flex items-start gap-3">
+                  <span className="text-green-400">✓</span>
+                  <span className="text-white/80"><strong className="text-white">Signal-triggered outbound</strong> - reach prospects at the moment of buying intent</span>
+                </div>
+                <div className="flex items-start gap-3">
+                  <span className="text-green-400">✓</span>
+                  <span className="text-white/80"><strong className="text-white">Clay-powered enrichment</strong> - 250+ data points per prospect</span>
+                </div>
+                <div className="flex items-start gap-3">
+                  <span className="text-green-400">✓</span>
+                  <span className="text-white/80"><strong className="text-white">Human-in-the-loop</strong> - 100% review for Tier 1 before first message</span>
+                </div>
+              </div>
+              <div className="space-y-3">
+                <div className="flex items-start gap-3">
+                  <span className="text-green-400">✓</span>
+                  <span className="text-white/80"><strong className="text-white">RevOps-first architecture</strong> - built for handover, not dependency</span>
+                </div>
+                <div className="flex items-start gap-3">
+                  <span className="text-green-400">✓</span>
+                  <span className="text-white/80"><strong className="text-white">LinkedIn safety</strong> - 4G proxies, proper protocols, zero account flags</span>
+                </div>
+                <div className="flex items-start gap-3">
+                  <span className="text-green-400">✓</span>
+                  <span className="text-white/80"><strong className="text-white">Training available</strong> - bring Clay expertise in-house</span>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
 
       {/* The Challenge - ICP Categories */}
       <section className="py-20 bg-black">
@@ -512,6 +603,50 @@ export default function ClimatisePage() {
         </div>
       </section>
 
+      {/* Regulatory Momentum - Why Now */}
+      <section className="py-16 bg-gradient-to-b from-black to-zinc-950">
+        <div className="max-w-4xl mx-auto px-4">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="bg-gradient-to-r from-amber-500/10 via-transparent to-amber-500/10 border border-amber-500/20 rounded-2xl p-8"
+          >
+            <div className="flex items-start gap-4">
+              <div className="text-3xl">⚡</div>
+              <div className="flex-1">
+                <h3 className="text-xl font-bold text-amber-400 mb-3">Why Now: The Window is Closing</h3>
+                <div className="grid md:grid-cols-2 gap-4 mb-4">
+                  <div className="bg-black/30 rounded-lg p-4">
+                    <div className="text-amber-400 font-bold text-lg">February 2026</div>
+                    <p className="text-white/60 text-sm">UK publishes final sustainability standards - next month</p>
+                  </div>
+                  <div className="bg-black/30 rounded-lg p-4">
+                    <div className="text-amber-400 font-bold text-lg">50% Threshold Increase</div>
+                    <p className="text-white/60 text-sm">Company size thresholds changing - more companies in scope</p>
+                  </div>
+                </div>
+                <p className="text-white/70 text-sm mb-4">
+                  Companies are making compliance decisions now. First-mover advantage in reaching decision-makers before the standards are finalised.
+                  Plus: smaller companies coming into scope = perfect timing for Climatise&apos;s new SME product launch.
+                </p>
+                <div className="flex flex-wrap gap-3 text-xs">
+                  <a href="https://www.responsible-investor.com/esg-round-up-uk-to-publish-final-sustainability-standards-next-month/" target="_blank" rel="noopener noreferrer" className="text-amber-400/70 hover:text-amber-400">
+                    UK Standards Feb 2026 →
+                  </a>
+                  <a href="https://pkf-francisclark.co.uk/insights/uk-company-size-thresholds-to-increase-by-50/" target="_blank" rel="noopener noreferrer" className="text-amber-400/70 hover:text-amber-400">
+                    Threshold Changes →
+                  </a>
+                  <a href="https://www.edie.net/navigating-esg-reporting-standards-in-2026-what-eu-and-uk-firms-need-to-know/" target="_blank" rel="noopener noreferrer" className="text-amber-400/70 hover:text-amber-400">
+                    2026 Standards Guide →
+                  </a>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
       {/* Tier 1 Priority ICPs */}
       <section className="py-20 bg-zinc-950">
         <div className="max-w-6xl mx-auto px-4">
@@ -553,7 +688,14 @@ export default function ClimatisePage() {
                       <div className="text-white/50 text-xs">Companies</div>
                     </div>
                     <div className="text-center">
-                      <div className="text-sm font-semibold text-blue-400">{icp.deadline}</div>
+                      <a
+                        href={icp.sourceUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-sm font-semibold text-blue-400 hover:text-blue-300 hover:underline"
+                      >
+                        {icp.deadline} ↗
+                      </a>
                       <div className="text-white/50 text-xs">Deadline</div>
                     </div>
                     <span
@@ -571,13 +713,48 @@ export default function ClimatisePage() {
             ))}
           </div>
 
-          {/* Citations */}
+          {/* SECR Threshold Info */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="mt-8 bg-gradient-to-r from-blue-500/10 to-transparent border border-blue-500/20 rounded-xl p-6"
+          >
+            <div className="flex items-start gap-4">
+              <div className="text-2xl">📊</div>
+              <div>
+                <h4 className="font-bold text-white mb-2">SECR Reporting Thresholds</h4>
+                <p className="text-white/70 text-sm mb-3">
+                  {secrThreshold.criteria}:
+                </p>
+                <div className="flex flex-wrap gap-4 mb-3">
+                  {secrThreshold.requirements.map((req) => (
+                    <div key={req.label} className="bg-white/5 rounded-lg px-4 py-2">
+                      <div className="text-blue-400 font-bold">{req.value}</div>
+                      <div className="text-white/50 text-xs">{req.label}</div>
+                    </div>
+                  ))}
+                </div>
+                <p className="text-white/40 text-xs">
+                  {secrThreshold.note} Source:{' '}
+                  <a href={secrThreshold.sourceUrl} target="_blank" rel="noopener noreferrer" className="text-blue-400/70 hover:text-blue-400">
+                    {secrThreshold.source}
+                  </a>
+                </p>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Citations & Provisional Note */}
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            className="mt-8 bg-zinc-900/30 border border-white/5 rounded-lg p-4"
+            className="mt-6 bg-zinc-900/30 border border-white/5 rounded-lg p-4"
           >
+            <p className="text-amber-400/80 text-xs mb-2">
+              <span className="font-bold">⚠️ Provisional Estimates:</span> All figures are initial estimates to be validated during discovery phase.
+            </p>
             <p className="text-white/40 text-xs">
               <span className="font-semibold">Data Sources:</span> Government Contract Bidders estimated from{' '}
               <a href="https://www.gov.uk/contracts-finder" target="_blank" rel="noopener noreferrer" className="text-blue-400/70 hover:text-blue-400">
@@ -656,32 +833,70 @@ export default function ClimatisePage() {
             </div>
           </motion.div>
 
-          <div className="grid md:grid-cols-2 gap-6">
-            {/* Execution Layer */}
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {/* Enrichment Layer */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.1 }}
+              className="bg-zinc-900 border border-blue-500/30 rounded-2xl p-6"
+            >
+              <div className="w-12 h-12 bg-blue-500/20 rounded-xl flex items-center justify-center text-2xl mb-4">
+                🔍
+              </div>
+              <h3 className="text-xl font-bold text-white mb-4">Enrichment</h3>
+              <div className="space-y-2">
+                {gtmStack.enrichment.map((tool) => (
+                  <div key={tool.name} className="text-sm">
+                    <div className="font-semibold text-white">{tool.name}</div>
+                    <div className="text-white/40 text-xs">{tool.description}</div>
+                  </div>
+                ))}
+              </div>
+            </motion.div>
+
+            {/* Execution Layer */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.15 }}
               className="bg-zinc-900 border border-green-500/30 rounded-2xl p-6"
             >
               <div className="w-12 h-12 bg-green-500/20 rounded-xl flex items-center justify-center text-2xl mb-4">
                 🚀
               </div>
-              <h3 className="text-xl font-bold text-white mb-4">Campaign Execution</h3>
-              <div className="space-y-3">
+              <h3 className="text-xl font-bold text-white mb-4">Execution</h3>
+              <div className="space-y-2">
                 {gtmStack.execution.map((tool) => (
-                  <div
-                    key={tool.name}
-                    className={`flex items-center gap-3 ${tool.primary ? 'bg-green-500/10 -mx-2 px-2 py-2 rounded-lg' : ''}`}
-                  >
-                    {tool.primary && <span className="text-green-400">★</span>}
-                    <div>
-                      <div className={`font-semibold ${tool.primary ? 'text-green-400' : 'text-white'}`}>
-                        {tool.name}
-                      </div>
-                      <div className="text-white/50 text-sm">{tool.description}</div>
+                  <div key={tool.name} className="text-sm">
+                    <div className={`font-semibold ${tool.primary ? 'text-green-400' : 'text-white'}`}>
+                      {tool.name}
                     </div>
+                    <div className="text-white/40 text-xs">{tool.description}</div>
+                  </div>
+                ))}
+              </div>
+            </motion.div>
+
+            {/* Content Authority */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2 }}
+              className="bg-zinc-900 border border-purple-500/30 rounded-2xl p-6"
+            >
+              <div className="w-12 h-12 bg-purple-500/20 rounded-xl flex items-center justify-center text-2xl mb-4">
+                📝
+              </div>
+              <h3 className="text-xl font-bold text-white mb-4">Content Authority</h3>
+              <div className="space-y-2">
+                {gtmStack.content.map((tool) => (
+                  <div key={tool.name} className="text-sm">
+                    <div className="font-semibold text-white">{tool.name}</div>
+                    <div className="text-white/40 text-xs">{tool.description}</div>
                   </div>
                 ))}
               </div>
@@ -692,35 +907,34 @@ export default function ClimatisePage() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ delay: 0.2 }}
+              transition={{ delay: 0.25 }}
               className="bg-zinc-900/50 border border-white/10 rounded-2xl p-6"
             >
-              <div className="flex items-center gap-3 mb-4">
-                <div className="w-12 h-12 bg-white/5 rounded-xl flex items-center justify-center text-2xl">
-                  ⚡
-                </div>
-                <div>
-                  <h3 className="text-xl font-bold text-white">Optional Add-ons</h3>
-                  <p className="text-white/50 text-sm">For high-volume campaigns</p>
-                </div>
+              <div className="w-12 h-12 bg-white/5 rounded-xl flex items-center justify-center text-2xl mb-4">
+                ⚡
               </div>
-              <div className="space-y-3">
+              <h3 className="text-xl font-bold text-white mb-1">Optional</h3>
+              <p className="text-white/40 text-xs mb-4">High-volume campaigns</p>
+              <div className="space-y-2">
                 {gtmStack.optional.map((tool) => (
-                  <div key={tool.name} className="flex items-center justify-between gap-3">
-                    <div>
-                      <div className="font-semibold text-white/80">{tool.name}</div>
-                      <div className="text-white/40 text-sm">{tool.description}</div>
-                    </div>
-                    {tool.note && (
-                      <span className="text-xs bg-white/5 text-white/50 px-2 py-1 rounded whitespace-nowrap">
-                        {tool.note}
-                      </span>
-                    )}
+                  <div key={tool.name} className="text-sm">
+                    <div className="font-semibold text-white/70">{tool.name}</div>
+                    <div className="text-white/30 text-xs">{tool.description}</div>
                   </div>
                 ))}
               </div>
             </motion.div>
           </div>
+
+          {/* Provisional Note */}
+          <motion.p
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            className="text-center text-white/40 text-xs mt-6"
+          >
+            * Stack is provisional and will be refined based on your specific requirements and existing tools.
+          </motion.p>
 
           {/* Simplified Architecture Flow */}
           <motion.div
@@ -962,50 +1176,80 @@ export default function ClimatisePage() {
               Investment
             </span>
             <h2 className="text-3xl md:text-4xl font-bold text-white mt-2 mb-4">
-              Flexible 2 Days Per Week Engagement
+              Flexible Engagement Options
             </h2>
             <p className="text-white/70">
-              Weekly rolling break clause. 100% flexibility.
+              Choose the model that works best for your needs.
             </p>
           </motion.div>
 
-          <div className="space-y-4">
-            {investmentOptions.map((option, index) => (
-              <motion.div
-                key={option.type}
-                initial={{ opacity: 0, x: -20 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                className={`rounded-xl p-6 flex flex-col md:flex-row md:items-center justify-between gap-4 transition ${
-                  option.highlight
-                    ? 'bg-gradient-to-r from-blue-500/20 to-green-500/20 border-2 border-blue-500/40 hover:border-blue-500/60'
-                    : 'bg-zinc-900 border border-white/10 hover:border-green-500/30'
-                }`}
-              >
+          {/* Retainer Option - Highlighted */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="mb-8"
+          >
+            <div className="bg-gradient-to-r from-blue-500/20 via-green-500/10 to-blue-500/20 border-2 border-green-500/40 rounded-2xl p-8 relative overflow-hidden">
+              <div className="absolute top-4 right-4">
+                <span className="text-xs bg-green-500/20 text-green-400 px-3 py-1 rounded-full font-bold border border-green-500/30">
+                  Recommended
+                </span>
+              </div>
+              <div className="flex flex-col md:flex-row md:items-center justify-between gap-6">
                 <div>
-                  <div className="flex items-center gap-3">
-                    <h3 className={`font-bold text-lg ${option.highlight ? 'text-blue-400' : 'text-white'}`}>{option.type}</h3>
-                    {option.highlight && (
-                      <span className="text-xs bg-blue-500/20 text-blue-400 px-2 py-1 rounded-full font-bold">
-                        Recommended
-                      </span>
-                    )}
+                  <h3 className="text-2xl font-bold text-white mb-2">3-Month Retainer</h3>
+                  <p className="text-white/70 mb-4">
+                    2-3 days per week depending on project phase. Weekly rolling break clause - 100% flexibility.
+                  </p>
+                  <div className="flex flex-wrap gap-3">
+                    <span className="text-xs bg-white/5 text-white/60 px-3 py-1 rounded-full">Foundation build</span>
+                    <span className="text-xs bg-white/5 text-white/60 px-3 py-1 rounded-full">Campaign launch</span>
+                    <span className="text-xs bg-white/5 text-white/60 px-3 py-1 rounded-full">Training & handover</span>
                   </div>
-                  <p className="text-white/60">{option.description}</p>
                 </div>
-                <div className={`text-2xl font-black whitespace-nowrap ${option.highlight ? 'text-blue-400' : 'text-green-400'}`}>
-                  {option.rate}
+                <div className="text-center">
+                  <div className="text-4xl font-black text-green-400">£500</div>
+                  <div className="text-white/50 text-sm">per day</div>
                 </div>
-              </motion.div>
-            ))}
-          </div>
+              </div>
+            </div>
+          </motion.div>
 
+          {/* One-Off Options */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="mb-8"
+          >
+            <h4 className="text-sm font-bold text-white/50 uppercase tracking-wider mb-4">
+              One-Off Engagements
+            </h4>
+            <div className="grid md:grid-cols-3 gap-4">
+              {oneOffOptions.map((option, index) => (
+                <motion.div
+                  key={option.type}
+                  initial={{ opacity: 0, y: 10 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1 }}
+                  className="bg-zinc-900 border border-white/10 rounded-xl p-5 hover:border-blue-500/30 transition"
+                >
+                  <h5 className="font-bold text-white mb-2">{option.type}</h5>
+                  <p className="text-white/50 text-sm mb-4">{option.description}</p>
+                  <div className="text-xl font-black text-blue-400">{option.rate}</div>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+
+          {/* Training Callout */}
           <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
-            className="mt-8 bg-zinc-900/50 border border-white/10 rounded-xl p-6"
+            className="bg-zinc-900/50 border border-white/10 rounded-xl p-6"
           >
             <div className="flex items-center gap-3 mb-3">
               <span className="text-2xl">🎓</span>
