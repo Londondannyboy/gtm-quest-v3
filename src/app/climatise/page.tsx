@@ -548,7 +548,7 @@ function ExecutiveSummary({ setCurrentView }: { setCurrentView: (view: ViewType)
           className="text-center mb-8"
         >
           <span className="inline-flex items-center gap-2 bg-amber-500/10 border border-amber-500/30 text-amber-400 text-sm font-bold uppercase tracking-wider px-4 py-2 rounded-full">
-            <span>Too Busy, Didn&apos;t Read</span>
+            <span>TL;DR</span>
           </span>
         </motion.div>
 
@@ -930,7 +930,6 @@ export default function ClimatisePage() {
   const [password, setPassword] = useState('');
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [error, setError] = useState('');
-  const [currentView, setCurrentView] = useState<ViewType>('executive');
 
   const handlePasswordSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -1015,27 +1014,140 @@ export default function ClimatisePage() {
 
   return (
     <main className="min-h-screen bg-black">
-      {/* Sticky View Navigation */}
-      <ViewNavigation currentView={currentView} setCurrentView={setCurrentView} />
+      {/* TL;DR Section - TL;DR */}
+      <section className="py-12 md:py-16 bg-gradient-to-b from-zinc-950 to-black border-b border-white/10">
+        <div className="max-w-4xl mx-auto px-4">
+          {/* TL;DR Badge */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            className="text-center mb-8"
+          >
+            <span className="inline-flex items-center gap-2 bg-amber-500/10 border border-amber-500/30 text-amber-400 text-sm font-bold uppercase tracking-wider px-4 py-2 rounded-full">
+              TL;DR
+            </span>
+          </motion.div>
 
-      {/* Conditional View Rendering */}
-      {currentView === 'executive' && <ExecutiveSummary setCurrentView={setCurrentView} />}
-      {currentView === 'gettoyes' && <GetToYes setCurrentView={setCurrentView} />}
-
-      {/* Full Comprehensive View */}
-      {currentView === 'full' && (
-        <>
-          {/* Full Comprehensive Header */}
-          <section className="py-6 bg-gradient-to-b from-zinc-950 to-black border-b border-white/10">
-            <div className="max-w-4xl mx-auto px-4 text-center">
-              <span className="bg-purple-500/10 text-purple-400 text-xs uppercase tracking-wider px-3 py-1 rounded-full">
-                Full Comprehensive
-              </span>
-              <p className="text-white/50 text-sm mt-3">The complete deep-dive. ~20 minutes.</p>
+          {/* Header */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.1 }}
+            className="text-center mb-10"
+          >
+            <div className="flex items-center justify-center gap-4 mb-4">
+              <Image src="/GTM Logo New.png" alt="GTM Quest" width={80} height={28} className="h-6 w-auto" />
+              <span className="text-white/30">×</span>
+              <Image src="/climatise-logo.png" alt="Climatise" width={90} height={28} className="h-6 w-auto bg-white/10 rounded px-2 py-1" />
             </div>
-          </section>
+            <h1 className="text-2xl md:text-3xl font-black text-white mb-1">GTM Proposal</h1>
+            <p className="text-white/50 text-sm">Prepared for {lennonProfile.name}, {lennonProfile.title}</p>
+          </motion.div>
 
-          {/* Personalized Intro - "This is for you, Lennon" */}
+          {/* Two Column: Opportunity + Ask */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
+            className="grid md:grid-cols-2 gap-6 mb-8"
+          >
+            {/* The Opportunity */}
+            <div className="bg-zinc-900 border border-white/10 rounded-xl p-6">
+              <h2 className="text-blue-400 text-xs uppercase tracking-wider mb-4">The Opportunity</h2>
+              <ul className="space-y-3">
+                <li className="flex items-start gap-3">
+                  <span className="text-blue-400 text-lg">•</span>
+                  <span className="text-white/80"><span className="text-blue-400 font-bold">£2.1B+</span> UK carbon accounting market</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-green-400 text-lg">•</span>
+                  <span className="text-white/80"><span className="text-green-400 font-bold">76%</span> prefer UK-based solutions</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-amber-400 text-lg">•</span>
+                  <span className="text-white/80"><span className="text-amber-400 font-bold">15,200+</span> Tier 1 targets with hard deadlines</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-red-400 text-lg">•</span>
+                  <span className="text-white/80"><span className="text-red-400 font-bold">&lt;50%</span> UK businesses have sustainability targets</span>
+                </li>
+              </ul>
+            </div>
+
+            {/* The Ask */}
+            <div className="bg-zinc-900 border border-green-500/20 rounded-xl p-6">
+              <h2 className="text-green-400 text-xs uppercase tracking-wider mb-4">The Ask</h2>
+              <ul className="space-y-3">
+                <li className="flex items-start gap-3">
+                  <span className="text-green-400">✓</span>
+                  <span className="text-white/80"><span className="font-semibold text-white">2-3 days/week</span> for 8-12 weeks</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-green-400">✓</span>
+                  <span className="text-white/80"><span className="font-semibold text-white">Weekly break clause</span> — zero lock-in</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-green-400">✓</span>
+                  <span className="text-white/80"><span className="font-semibold text-white">£500/day</span> — transparent pricing</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-green-400">✓</span>
+                  <span className="text-white/80"><span className="font-semibold text-white">Full handover</span> — no dependency</span>
+                </li>
+              </ul>
+            </div>
+          </motion.div>
+
+          {/* Risks & Mitigations */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3 }}
+            className="bg-zinc-900/50 border border-white/5 rounded-xl p-6 mb-8"
+          >
+            <h2 className="text-white/50 text-xs uppercase tracking-wider mb-4">Risks & Mitigations</h2>
+            <div className="grid md:grid-cols-3 gap-4 text-sm">
+              <div className="flex items-start gap-2">
+                <span className="text-green-400">✓</span>
+                <span className="text-white/70"><span className="text-white">Zero lock-in:</span> Weekly break clause</span>
+              </div>
+              <div className="flex items-start gap-2">
+                <span className="text-green-400">✓</span>
+                <span className="text-white/70"><span className="text-white">No dependency:</span> Full system handover</span>
+              </div>
+              <div className="flex items-start gap-2">
+                <span className="text-green-400">✓</span>
+                <span className="text-white/70"><span className="text-white">Transparent:</span> Day rate pricing</span>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* CTA */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.4 }}
+            className="text-center"
+          >
+            <a
+              href="https://calendly.com/my-first-quest"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-500 to-green-500 hover:from-blue-600 hover:to-green-600 text-white px-8 py-4 rounded-xl font-bold text-lg transition"
+            >
+              Book Discovery Call
+              <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+              </svg>
+            </a>
+            <p className="text-white/40 text-sm mt-4">
+              Scroll down for the full proposal ↓
+            </p>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Personalized Intro - "This is for you, Lennon" */}
           <section className="py-8 md:py-12 bg-gradient-to-b from-zinc-950 to-black border-b border-white/5">
         <div className="max-w-4xl mx-auto px-4">
           <motion.div
@@ -1280,7 +1392,7 @@ export default function ClimatisePage() {
             className="flex flex-col sm:flex-row items-center justify-center gap-4"
           >
             <a
-              href="https://cal.com/mike-hanley"
+              href="https://calendly.com/my-first-quest"
               target="_blank"
               rel="noopener noreferrer"
               className="bg-gradient-to-r from-blue-500 to-green-500 hover:from-blue-600 hover:to-green-600 text-white px-8 py-4 rounded-xl font-bold text-lg transition shadow-lg shadow-blue-500/25 flex items-center gap-2"
@@ -3053,7 +3165,7 @@ export default function ClimatisePage() {
 
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <a
-                href="https://cal.com/mike-hanley"
+                href="https://calendly.com/my-first-quest"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="bg-gradient-to-r from-blue-500 to-green-500 hover:from-blue-600 hover:to-green-600 text-white px-8 py-4 rounded-xl font-bold text-lg transition shadow-lg shadow-blue-500/25 flex items-center gap-2"
@@ -3084,7 +3196,7 @@ export default function ClimatisePage() {
           </div>
           <div className="flex items-center gap-4">
             <a
-              href="https://cal.com/mike-hanley"
+              href="https://calendly.com/my-first-quest"
               target="_blank"
               rel="noopener noreferrer"
               className="bg-gradient-to-r from-blue-500 to-green-500 hover:from-blue-600 hover:to-green-600 text-white px-6 py-3 rounded-xl font-bold transition shadow-lg shadow-blue-500/25 flex items-center gap-2 animate-pulse-glow"
@@ -3105,37 +3217,8 @@ export default function ClimatisePage() {
         </div>
       </div>
 
-      {/* Spacer for sticky bar */}
+      {/* Spacer */}
       <div className="h-20" />
-
-      {/* Back to other views - Full Comprehensive footer */}
-      <section className="py-10 bg-zinc-950 border-t border-white/10">
-        <div className="max-w-4xl mx-auto px-4 text-center">
-          <p className="text-white/50 text-sm mb-4">Want a quicker overview?</p>
-          <div className="flex flex-wrap justify-center gap-4">
-            <button
-              onClick={() => {
-                setCurrentView('executive');
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-              }}
-              className="text-blue-400 hover:text-blue-300 text-sm flex items-center gap-1"
-            >
-              ← Executive Summary (30 sec)
-            </button>
-            <button
-              onClick={() => {
-                setCurrentView('gettoyes');
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-              }}
-              className="text-green-400 hover:text-green-300 text-sm flex items-center gap-1"
-            >
-              ← Sales Deck (5 min)
-            </button>
-          </div>
-        </div>
-      </section>
-        </>
-      )}
     </main>
   );
 }

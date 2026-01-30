@@ -192,7 +192,7 @@ async function generateGammaDeck() {
     const response = await fetch(GAMMA_API_URL, {
       method: 'POST',
       headers: {
-        'X-Gamma-Api-Key': GAMMA_API_KEY,
+        'X-API-KEY': GAMMA_API_KEY,
         'Content-Type': 'application/json',
       },
       body: JSON.stringify(requestBody),
