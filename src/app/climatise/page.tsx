@@ -1,7 +1,6 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import Link from 'next/link';
 import Image from 'next/image';
 import { useState } from 'react';
 import CountUp from 'react-countup';
@@ -301,6 +300,62 @@ const webAdvantage = {
     'Website performance audits',
   ],
   note: 'Most Clay consultants are spreadsheet-first. We\'re full-stack GTM.',
+};
+
+// TAM/SAM/SOM - Market Sizing (PROVISIONAL - first pass estimates)
+const marketSizing = {
+  tam: {
+    value: '£2.1B+',
+    label: 'Total Addressable Market',
+    description: 'UK carbon accounting & sustainability software (provisional)',
+    note: 'Part of €1.3T European sustainable finance market',
+  },
+  sam: {
+    value: '£340M',
+    label: 'Serviceable Addressable',
+    description: 'Companies with regulatory/compliance requirements',
+    note: '~21,000 companies with hard deadlines',
+  },
+  som: {
+    value: '£12M',
+    label: 'Year 1 Target',
+    description: 'Realistic pipeline with systematic GTM',
+    assumptions: [
+      '15,200 Tier 1 targets',
+      '5% → qualified lead',
+      '20% close rate',
+      '£8K avg deal',
+    ],
+    calculation: '= £12.2M pipeline',
+  },
+  provisional: true,
+  sources: [
+    { name: 'Grant Thornton UK Business Survey', url: 'https://www.grantthornton.co.uk/news-centre/less-than-half-of-uk-businesses-have-sustainability-targets-in-place/' },
+    { name: 'FCA UK ESG Ratings Market', url: 'https://www.fca.org.uk/publication/research-notes/understanding-uk-esg-ratings-market-findings-our-surveys.pdf' },
+    { name: 'Europe Sustainable Finance Market', url: 'https://www.marketdataforecast.com/market-reports/europe-sustainable-finance-market' },
+    { name: 'Octopus Investments UK Carbon Credits Survey', url: 'https://www.netzeroinvestor.net/news-and-views/briefs/uk-firms-prioritise-domestic-carbon-credits-amid-net-zero-push' },
+  ],
+};
+
+// UK Domestic Preference - Competitive Advantage for Climatise
+const ukAdvantage = {
+  headline: 'UK Firms Prefer Domestic Solutions',
+  stat: '76%',
+  description: 'of UK businesses would be more inclined to purchase carbon credits if sourced domestically',
+  source: 'Octopus Investments Survey, 300 UK Business Leaders',
+  sourceUrl: 'https://www.netzeroinvestor.net/news-and-views/briefs/uk-firms-prioritise-domestic-carbon-credits-amid-net-zero-push',
+  supportingStats: [
+    { value: '92%', label: 'express confidence in meeting net-zero targets' },
+    { value: '73%', label: 'plan to offset emissions via carbon credits' },
+    { value: '64%', label: 'have already purchased carbon credits' },
+    { value: '86%', label: 'have net-zero targets established' },
+  ],
+  knowledgeGap: {
+    stat: '42%',
+    description: 'Only 42% can accurately define what carbon credits are',
+    opportunity: '30% cite lack of understanding as the primary barrier to purchasing - education opportunity',
+  },
+  implication: 'UK-based Climatise has a natural trust advantage over international competitors.',
 };
 
 // Lennon Harding-Wade - Personal Profile (from LinkedIn enrichment)
@@ -622,34 +677,57 @@ export default function ClimatisePage() {
         </div>
       </section>
 
-      {/* Animated Challenge Statement - The Hook */}
-      <section className="py-12 md:py-16 bg-black">
-        <div className="max-w-4xl mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.5 }}
-            className="text-center"
-          >
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.6 }}
-              className="text-white/40 text-sm uppercase tracking-wider mb-4"
-            >
-              The Challenge
-            </motion.div>
+      {/* Combined Hero + Challenge - One Seamless Intro */}
+      <section className="relative py-16 md:py-20 bg-black overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-blue-600/10 via-transparent to-green-600/5" />
+        <div className="absolute inset-0">
+          <div className="absolute top-20 left-10 w-72 h-72 bg-blue-500/5 rounded-full blur-3xl" />
+          <div className="absolute bottom-20 right-10 w-96 h-96 bg-green-500/5 rounded-full blur-3xl" />
+        </div>
 
-            <motion.h2
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.7, duration: 0.5 }}
-              className="text-2xl md:text-4xl lg:text-5xl font-black text-white mb-6 leading-tight"
-            >
+        <div className="relative max-w-4xl mx-auto px-4 text-center">
+          {/* Partnership Logos */}
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3 }}
+            className="flex items-center justify-center gap-4 md:gap-6 mb-8"
+          >
+            <Image
+              src="/GTM Logo New.png"
+              alt="GTM Quest"
+              width={100}
+              height={35}
+              className="h-7 md:h-9 w-auto"
+            />
+            <span className="text-white/30 text-xl">×</span>
+            <div className="bg-white/10 backdrop-blur-sm rounded-lg p-2">
+              <Image
+                src="/climatise-logo.png"
+                alt="Climatise"
+                width={100}
+                height={35}
+                className="h-6 md:h-8 w-auto"
+              />
+            </div>
+          </motion.div>
+
+          {/* The Challenge Statement */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.5 }}
+            className="mb-8"
+          >
+            <div className="text-white/40 text-xs uppercase tracking-wider mb-4">
+              The Opportunity
+            </div>
+
+            <h1 className="text-3xl md:text-5xl lg:text-6xl font-black text-white mb-6 leading-tight">
               <motion.span
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                transition={{ delay: 0.8 }}
+                transition={{ delay: 0.6 }}
               >
                 15,200 companies
               </motion.span>
@@ -657,7 +735,7 @@ export default function ClimatisePage() {
               <motion.span
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                transition={{ delay: 1.0 }}
+                transition={{ delay: 0.8 }}
                 className="text-amber-400"
               >
                 need carbon accounting.
@@ -666,29 +744,112 @@ export default function ClimatisePage() {
               <motion.span
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                transition={{ delay: 1.2 }}
-                className="text-white/60"
+                transition={{ delay: 1.0 }}
+                className="text-white/50 text-2xl md:text-4xl"
               >
                 Most don&apos;t know yet.
               </motion.span>
-            </motion.h2>
+            </h1>
+
+            <motion.p
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 1.2 }}
+              className="text-white/70 text-base md:text-lg max-w-2xl mx-auto mb-4"
+            >
+              UK sustainability standards publish <span className="text-amber-400 font-semibold">February 2026</span>.
+              <span className="text-green-400 font-semibold"> 5 ICP clusters</span> with hard compliance deadlines.
+            </motion.p>
 
             <motion.div
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1.4 }}
-              className="flex flex-wrap justify-center gap-4 text-sm"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 1.3 }}
+              className="mb-6 flex flex-wrap justify-center items-center gap-x-1 gap-y-2"
             >
-              <span className="bg-red-500/10 text-red-400 px-4 py-2 rounded-full border border-red-500/20">
-                Compliance deadlines looming
-              </span>
-              <span className="bg-amber-500/10 text-amber-400 px-4 py-2 rounded-full border border-amber-500/20">
-                Manual outreach doesn&apos;t scale
-              </span>
-              <span className="bg-blue-500/10 text-blue-400 px-4 py-2 rounded-full border border-blue-500/20">
-                Competitors are moving fast
-              </span>
+              <a
+                href="https://www.grantthornton.co.uk/news-centre/less-than-half-of-uk-businesses-have-sustainability-targets-in-place/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 text-sm text-white/50 hover:text-blue-400 transition"
+              >
+                <span className="text-blue-400 font-semibold">&lt;50%</span> of UK businesses have sustainability targets
+                <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                </svg>
+                <span className="text-white/30">— Grant Thornton</span>
+              </a>
+              <span className="text-white/20 hidden md:inline">|</span>
+              <a
+                href="https://www.netzeroinvestor.net/news-and-views/briefs/uk-firms-prioritise-domestic-carbon-credits-amid-net-zero-push"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 text-sm text-white/50 hover:text-green-400 transition"
+              >
+                <span className="text-green-400 font-semibold">76%</span> prefer UK-based carbon solutions
+                <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                </svg>
+                <span className="text-white/30">— Octopus</span>
+              </a>
             </motion.div>
+          </motion.div>
+
+          {/* Pain Point Badges */}
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.4 }}
+            className="flex flex-wrap justify-center gap-3 mb-10"
+          >
+            <span className="bg-red-500/10 text-red-400 px-4 py-2 rounded-full border border-red-500/20 text-sm">
+              Compliance deadlines looming
+            </span>
+            <span className="bg-amber-500/10 text-amber-400 px-4 py-2 rounded-full border border-amber-500/20 text-sm">
+              Manual outreach doesn&apos;t scale
+            </span>
+            <span className="bg-blue-500/10 text-blue-400 px-4 py-2 rounded-full border border-blue-500/20 text-sm">
+              Competitors are moving fast
+            </span>
+          </motion.div>
+
+          {/* Primary CTAs */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.6 }}
+            className="flex flex-col sm:flex-row items-center justify-center gap-4"
+          >
+            <a
+              href="https://cal.com/mike-hanley"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-gradient-to-r from-blue-500 to-green-500 hover:from-blue-600 hover:to-green-600 text-white px-8 py-4 rounded-xl font-bold text-lg transition shadow-lg shadow-blue-500/25 flex items-center gap-2"
+            >
+              <span className="relative flex h-3 w-3">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-3 w-3 bg-white"></span>
+              </span>
+              Book Strategy Call
+            </a>
+            <div className="flex items-center gap-3">
+              <button
+                onClick={() => window.print()}
+                className="text-white/70 hover:text-white px-4 py-2 rounded-lg font-medium transition flex items-center gap-2 text-sm"
+              >
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                </svg>
+                Download PDF
+              </button>
+              <a
+                href="/Climatise-ICP.pdf"
+                download
+                className="text-white/50 hover:text-green-400 px-4 py-2 text-sm"
+              >
+                ICP Analysis →
+              </a>
+            </div>
           </motion.div>
         </div>
       </section>
@@ -859,185 +1020,186 @@ export default function ClimatisePage() {
         </div>
       </section>
 
-      {/* Hero Section */}
-      <section className="relative py-20 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-blue-600/20 via-transparent to-green-600/10" />
-        <div className="absolute inset-0">
-          <div className="absolute top-20 left-10 w-72 h-72 bg-blue-500/10 rounded-full blur-3xl" />
-          <div className="absolute bottom-20 right-10 w-96 h-96 bg-green-500/10 rounded-full blur-3xl" />
-        </div>
-
-        <div className="relative max-w-6xl mx-auto px-4 text-center">
+      {/* UK Domestic Preference - Climatise's Natural Advantage */}
+      <section className="py-12 md:py-16 bg-gradient-to-b from-zinc-950 to-black">
+        <div className="max-w-5xl mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="mb-8"
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-10"
           >
-            <Link href="/" className="text-blue-400 text-sm hover:text-blue-300 mb-4 inline-block">
-              ← Back to GTM Quest
-            </Link>
-
-            <div className="flex items-center justify-center gap-6 mb-6">
-              <motion.div
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.2 }}
-              >
-                <Image
-                  src="/GTM Logo New.png"
-                  alt="GTM Quest"
-                  width={120}
-                  height={40}
-                  className="h-10 w-auto"
-                />
-              </motion.div>
-              <motion.span
-                initial={{ opacity: 0, scale: 0 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.4 }}
-                className="text-white/40 text-2xl"
-              >
-                ×
-              </motion.span>
-              <motion.div
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.2 }}
-              >
-                <Image
-                  src="/climatise-logo.png"
-                  alt="Climatise"
-                  width={140}
-                  height={40}
-                  className="h-10 w-auto"
-                />
-              </motion.div>
-            </div>
-
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3 }}
-              className="text-4xl md:text-5xl lg:text-6xl font-black mb-6"
-            >
-              <span className="text-white">AI-Powered</span>
-              <br />
-              <span className="bg-gradient-to-r from-blue-400 via-cyan-400 to-green-400 bg-clip-text text-transparent">
-                Go-To-Market Engineering
-              </span>
-            </motion.h1>
-
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4 }}
-              className="text-xl text-white/80 max-w-3xl mx-auto mb-8"
-            >
-              UK sustainability standards publish <span className="text-amber-400 font-semibold">February 2026</span>.
-              <br />
-              <span className="text-green-400 font-semibold">5 ICP clusters</span> across UK carbon accounting.
-              <span className="text-blue-400 font-semibold"> 15,200 Tier 1 targets</span> with hard deadlines.
-            </motion.p>
-
-            {/* CTA */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.5 }}
-              className="flex flex-col sm:flex-row items-center justify-center gap-4"
-            >
-              <a
-                href="https://cal.com/mike-hanley"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="bg-gradient-to-r from-blue-500 to-green-500 hover:from-blue-600 hover:to-green-600 text-white px-8 py-4 rounded-xl font-bold text-lg transition shadow-lg shadow-blue-500/25 flex items-center gap-2"
-              >
-                <span className="relative flex h-3 w-3">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-3 w-3 bg-white"></span>
-                </span>
-                Book Strategy Call
-              </a>
-              <div className="flex items-center gap-4">
-                <button
-                  onClick={() => window.print()}
-                  className="text-white hover:text-blue-400 px-6 py-3 rounded-xl font-medium transition border border-white/20 hover:border-blue-500/50 flex items-center gap-2"
-                >
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
-                  </svg>
-                  Download PDF
-                </button>
-                <a
-                  href="/Climatise-ICP.pdf"
-                  download
-                  className="text-white/70 hover:text-green-400 px-6 py-3 rounded-xl font-medium transition flex items-center gap-2"
-                >
-                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                  </svg>
-                  ICP Analysis
-                </a>
-              </div>
-            </motion.div>
+            <span className="text-green-400 text-xs uppercase tracking-wider">Climatise Advantage</span>
+            <h3 className="text-xl md:text-2xl font-bold text-white mt-2">{ukAdvantage.headline}</h3>
           </motion.div>
 
-          {/* Key Stats with Animation */}
+          {/* Hero Stat */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            className="bg-gradient-to-br from-green-500/10 to-blue-500/10 border border-green-500/30 rounded-2xl p-8 md:p-10 text-center mb-8"
+          >
+            <div className="text-5xl md:text-7xl font-black text-green-400 mb-3">{ukAdvantage.stat}</div>
+            <p className="text-white/80 text-lg md:text-xl max-w-2xl mx-auto mb-4">{ukAdvantage.description}</p>
+            <a
+              href={ukAdvantage.sourceUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-white/40 text-sm hover:text-green-400 inline-flex items-center gap-1"
+            >
+              {ukAdvantage.source}
+              <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+              </svg>
+            </a>
+          </motion.div>
+
+          {/* Supporting Stats */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+            {ukAdvantage.supportingStats.map((stat, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
+                className="bg-zinc-900/50 border border-white/5 rounded-xl p-4 text-center"
+              >
+                <div className="text-2xl font-bold text-white mb-1">{stat.value}</div>
+                <div className="text-white/50 text-xs">{stat.label}</div>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Knowledge Gap = Opportunity */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            className="bg-amber-500/10 border border-amber-500/20 rounded-xl p-5 text-center"
+          >
+            <div className="text-amber-400 font-bold mb-2">Knowledge Gap = Opportunity</div>
+            <p className="text-white/70 text-sm mb-1">
+              <span className="text-amber-400 font-semibold">{ukAdvantage.knowledgeGap.stat}</span> {ukAdvantage.knowledgeGap.description}
+            </p>
+            <p className="text-white/50 text-xs">{ukAdvantage.knowledgeGap.opportunity}</p>
+          </motion.div>
+
+          {/* Implication */}
+          <motion.p
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            className="text-center text-green-400/80 text-sm mt-6 font-medium"
+          >
+            {ukAdvantage.implication}
+          </motion.p>
+        </div>
+      </section>
+
+      {/* TAM/SAM/SOM - Market Sizing */}
+      <section className="py-12 md:py-16 bg-black">
+        <div className="max-w-5xl mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.6 }}
-            className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-3xl mx-auto mt-12"
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-10"
           >
+            <div className="flex items-center justify-center gap-2 mb-2">
+              <span className="text-blue-400 text-xs uppercase tracking-wider">Market Opportunity</span>
+              <span className="bg-amber-500/20 text-amber-400 text-xs px-2 py-0.5 rounded-full border border-amber-500/30">
+                Provisional
+              </span>
+            </div>
+            <h3 className="text-xl md:text-2xl font-bold text-white mt-2">The Size of the Prize</h3>
+            <p className="text-white/50 text-xs mt-1">First-pass estimates — to be validated in discovery</p>
+          </motion.div>
+
+          <div className="grid md:grid-cols-3 gap-4 md:gap-6 mb-8">
+            {/* TAM */}
             <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.7 }}
-              className="text-center"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="bg-zinc-900 border border-white/10 rounded-xl p-5 md:p-6 text-center"
             >
-              <div className="text-3xl font-black text-white">
-                <CountUp end={5} duration={1.5} enableScrollSpy scrollSpyOnce />
-              </div>
-              <div className="text-white/60 text-sm">ICP Clusters</div>
+              <div className="text-3xl md:text-4xl font-black text-blue-400 mb-2">{marketSizing.tam.value}</div>
+              <div className="font-semibold text-white text-sm mb-1">{marketSizing.tam.label}</div>
+              <div className="text-white/50 text-xs">{marketSizing.tam.description}</div>
             </motion.div>
+
+            {/* SAM */}
             <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.8 }}
-              className="text-center"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1 }}
+              className="bg-zinc-900 border border-green-500/20 rounded-xl p-5 md:p-6 text-center"
             >
-              <div className="text-3xl font-black text-white">
-                <CountUp end={15200} duration={2.5} separator="," enableScrollSpy scrollSpyOnce />
-              </div>
-              <div className="text-white/60 text-sm">Tier 1 Targets</div>
+              <div className="text-3xl md:text-4xl font-black text-green-400 mb-2">{marketSizing.sam.value}</div>
+              <div className="font-semibold text-white text-sm mb-1">{marketSizing.sam.label}</div>
+              <div className="text-white/50 text-xs">{marketSizing.sam.description}</div>
             </motion.div>
+
+            {/* SOM */}
             <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.9 }}
-              className="text-center"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2 }}
+              className="bg-gradient-to-br from-amber-500/10 to-green-500/10 border-2 border-amber-500/30 rounded-xl p-5 md:p-6 text-center"
             >
-              <div className="text-3xl font-black text-white">
-                <CountUp end={7} duration={1.5} enableScrollSpy scrollSpyOnce />
-              </div>
-              <div className="text-white/60 text-sm">Signal Sources</div>
+              <div className="text-3xl md:text-4xl font-black text-amber-400 mb-2">{marketSizing.som.value}</div>
+              <div className="font-semibold text-white text-sm mb-1">{marketSizing.som.label}</div>
+              <div className="text-white/50 text-xs">{marketSizing.som.description}</div>
             </motion.div>
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 1.0 }}
-              className="text-center"
-            >
-              <div className="text-3xl font-black text-white flex items-center justify-center gap-2">
-                <span>🏺</span> Clay
+          </div>
+
+          {/* SOM Calculation */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            className="bg-zinc-900/50 border border-white/5 rounded-xl p-4 md:p-5"
+          >
+            <div className="text-white/50 text-xs uppercase tracking-wider mb-3">Year 1 Pipeline Calculation</div>
+            <div className="flex flex-wrap items-center justify-center gap-2 md:gap-3 text-sm">
+              {marketSizing.som.assumptions.map((assumption, i) => (
+                <span key={i} className="flex items-center gap-2">
+                  <span className="bg-white/5 text-white/80 px-3 py-1 rounded">{assumption}</span>
+                  {i < marketSizing.som.assumptions.length - 1 && <span className="text-white/30">×</span>}
+                </span>
+              ))}
+            </div>
+            <div className="text-center mt-4">
+              <span className="text-amber-400 font-bold">{marketSizing.som.calculation}</span>
+            </div>
+            <div className="text-center mt-4 pt-4 border-t border-white/5">
+              <div className="text-white/30 text-xs mb-2">Sources</div>
+              <div className="flex flex-wrap justify-center gap-x-4 gap-y-1">
+                {marketSizing.sources.map((source, i) => (
+                  <a
+                    key={i}
+                    href={source.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-white/40 text-xs hover:text-blue-400 inline-flex items-center gap-1"
+                  >
+                    {source.name}
+                    <svg className="w-2.5 h-2.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                    </svg>
+                  </a>
+                ))}
               </div>
-              <div className="text-white/60 text-sm">Powered</div>
-            </motion.div>
+            </div>
           </motion.div>
         </div>
       </section>
 
-      {/* Narrative Prompt 1 */}
+      {/* Narrative Prompt - Trust Building */}
       <ScrollPrompt text={narrativeFlow[0].prompt} color="amber" />
 
       {/* Personal ICP Experience - MOVED UP for trust building */}
