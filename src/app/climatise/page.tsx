@@ -2,7 +2,7 @@
 
 import { motion } from 'framer-motion';
 import Image from 'next/image';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import CountUp from 'react-countup';
 import { generateClimatisePDF } from './ClimatisePDF';
 
@@ -318,16 +318,15 @@ const marketSizing = {
     note: '~21,000 companies with hard deadlines',
   },
   som: {
-    value: '£12M',
-    label: 'Year 1 Target',
-    description: 'Realistic pipeline with systematic GTM',
+    value: '500+',
+    label: 'Year 1 Conversations',
+    description: 'Qualified conversations started with decision-makers',
     assumptions: [
       '~15,200 Tier 1 targets (est.)',
-      '5% → qualified lead',
-      '20% close rate',
-      '£8K avg deal',
+      '2-5% response rate (industry standard)',
+      'Your close rates applied after',
     ],
-    calculation: '= £12.2M pipeline',
+    calculation: 'We start conversations. You close deals.',
   },
   provisional: true,
   sources: [
@@ -399,49 +398,47 @@ const flexibility = {
 // Expected Outcomes - Targets Framework
 const expectedOutcomes = {
   title: 'Expected Outcomes',
-  subtitle: 'Targets to be agreed based on your current metrics',
-  note: 'Final targets calibrated during discovery based on your conversion rates, deal size, and sales cycle',
+  subtitle: 'We start conversations. You close deals.',
+  note: 'Final targets calibrated during discovery. Apply your own close rates to conversations started.',
   metrics: [
     {
-      name: 'Qualified Leads/Month',
-      description: 'Net new companies entering pipeline',
-      formula: 'Based on: Tier 1 targets × outreach rate × response rate',
-      placeholder: 'TBD',
-      icon: '🎯',
+      name: 'Conversations/Month',
+      description: 'Qualified decision-maker conversations started',
+      formula: 'Tier 1 targets × outreach rate × response rate',
+      placeholder: '40-80',
+      icon: '💬',
     },
     {
-      name: 'Pipeline Value',
-      description: 'Monthly pipeline generated',
-      formula: 'Qualified leads × average deal size × stage probability',
-      placeholder: 'TBD',
-      icon: '💰',
+      name: 'Response Rate',
+      description: 'Industry standard for signal-triggered outbound',
+      formula: 'Quality targeting + timing + personalization',
+      placeholder: '2-5%',
+      icon: '📈',
     },
     {
-      name: 'Cost Per Lead',
-      description: 'Fully loaded acquisition cost',
-      formula: 'Monthly investment ÷ qualified leads',
-      placeholder: 'TBD',
+      name: 'Cost Per Conversation',
+      description: 'Your investment per qualified conversation',
+      formula: 'Monthly investment ÷ conversations started',
+      placeholder: '£50-150',
       icon: '📊',
     },
     {
-      name: 'Payback Period',
-      description: 'Time to ROI',
-      formula: 'Investment ÷ (pipeline × close rate × LTV)',
-      placeholder: 'TBD',
-      icon: '⏱️',
+      name: 'Your Pipeline',
+      description: 'Apply your close rates',
+      formula: 'Conversations × your close rate × your deal size',
+      placeholder: 'You decide',
+      icon: '🎯',
     },
   ],
   inputs: {
     title: 'What We Need From You',
     items: [
-      'Current website conversion rate',
+      'Your close rate from conversations',
       'Average deal size by tier',
       'Sales cycle length',
-      'Current close rate',
-      'Customer lifetime value',
     ],
   },
-  commitment: 'We don\'t promise vanity metrics. We agree targets together and track what matters.',
+  commitment: 'We start conversations with the right people at the right time. You do what you do best: close them.',
 };
 
 // Narrative transitions / scroll prompts
@@ -630,15 +627,11 @@ function ExecutiveSummary({ setCurrentView }: { setCurrentView: (view: ViewType)
           transition={{ delay: 0.2 }}
           className="bg-zinc-900/50 border border-white/5 rounded-xl p-6 mb-8"
         >
-          <h2 className="text-amber-400 text-xs uppercase tracking-wider mb-4">Expected Outcomes (Ballpark)</h2>
-          <div className="grid grid-cols-4 gap-4 text-center">
+          <h2 className="text-amber-400 text-xs uppercase tracking-wider mb-4">What We Deliver (Ballpark)</h2>
+          <div className="grid grid-cols-3 gap-4 text-center">
             <div>
-              <div className="text-xl font-bold text-white">£200K+</div>
-              <div className="text-white/50 text-xs">Pipeline/Quarter</div>
-            </div>
-            <div>
-              <div className="text-xl font-bold text-white">50-100</div>
-              <div className="text-white/50 text-xs">Qualified Leads/mo</div>
+              <div className="text-xl font-bold text-white">40-80</div>
+              <div className="text-white/50 text-xs">Conversations/Month</div>
             </div>
             <div>
               <div className="text-xl font-bold text-white">2-5%</div>
@@ -646,10 +639,10 @@ function ExecutiveSummary({ setCurrentView }: { setCurrentView: (view: ViewType)
             </div>
             <div>
               <div className="text-xl font-bold text-white">£50-150</div>
-              <div className="text-white/50 text-xs">Cost Per Lead</div>
+              <div className="text-white/50 text-xs">Cost Per Conversation</div>
             </div>
           </div>
-          <p className="text-white/40 text-xs mt-3 text-center">Industry standard cold outbound. Final targets calibrated to your metrics.</p>
+          <p className="text-white/40 text-xs mt-3 text-center">We start conversations. You apply your close rates to calculate pipeline.</p>
         </motion.div>
 
         {/* Risks & Mitigations */}
@@ -937,10 +930,19 @@ export default function ClimatisePage() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [error, setError] = useState('');
 
+  // Check for existing session on mount
+  useEffect(() => {
+    const savedAuth = sessionStorage.getItem('climatise-auth');
+    if (savedAuth === 'true') {
+      setIsAuthenticated(true);
+    }
+  }, []);
+
   const handlePasswordSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (password === CORRECT_PASSWORD) {
       setIsAuthenticated(true);
+      sessionStorage.setItem('climatise-auth', 'true');
       setError('');
     } else {
       setError('Incorrect password. Please try again.');
