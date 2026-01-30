@@ -66,7 +66,7 @@ export function FloatingBookingWidget() {
                   </div>
                   <h3 className="font-bold text-white text-lg mb-2">Hey there!</h3>
                   <p className="text-white/70 text-sm mb-4">
-                    Ready to scale your GTM? Book a free 30-min strategy call with Mike.
+                    Ready to scale your GTM? Book a free 30-min strategy call.
                   </p>
                   <a
                     href={BOOKING_LINK}

@@ -4,7 +4,6 @@ import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { useState, useEffect } from 'react';
 import CountUp from 'react-countup';
-import { generateClimatisePDF } from './ClimatisePDF';
 
 // Bid Manager & Tender Intelligence
 const tenderIntelligence = {
@@ -65,55 +64,43 @@ const linkedInIntelligence = {
   },
 };
 
-// Campaign phases
+// Campaign phases - 3-Month Pilot, Action-Heavy Week 1
 const phases = [
   {
     phase: 1,
-    title: 'Foundation',
-    weeks: 'Weeks 1-2',
-    icon: '🏗️',
+    title: 'Week 1: Intensive Build',
+    weeks: 'Days 1-5',
+    icon: '⚡',
     items: [
-      'Clay workspace with ICP-specific tables',
-      'Tender scrapers: Find a Tender, bidstats.uk, Contracts Finder',
-      'Trigify setup for competitor & influencer monitoring',
-      'Initial enrichment waterfalls',
-      'Optional: Supabase/Neon for high-volume storage',
+      'Day 1 AM: Workshop - ICP prioritization, signal mapping, success metrics',
+      'Day 1 PM: Stack setup begins - database, Clay workspace, scrapers',
+      'Days 2-3: Enrichment waterfalls, LaGrowthMachine + proxies, email infra',
+      'Days 4-5: Tier 1 campaigns configured, prospect lists enriched',
+      'End of Week 1: First sequences ready to deploy',
     ],
   },
   {
     phase: 2,
-    title: 'Campaign Infrastructure',
-    weeks: 'Weeks 2-3',
-    icon: '⚙️',
+    title: 'Month 1: Launch & Learn',
+    weeks: 'Weeks 2-4',
+    icon: '🚀',
     items: [
-      'LaGrowthMachine setup with proxy config',
-      'Instantly domains and warmup',
-      'LinkedIn safety protocols',
-      'HubSpot integration',
+      'Campaigns live with signal-triggered messaging',
+      'Daily monitoring and iteration',
+      'Response rate optimization',
+      'Database expansion to Tier 2 ICPs',
     ],
   },
   {
     phase: 3,
-    title: 'Launch Tier 1 ICPs',
-    weeks: 'Week 4+',
-    icon: '🚀',
+    title: 'Months 2-3: Optimize & Scale',
+    weeks: 'Weeks 5-12',
+    icon: '📈',
     items: [
-      'Government Contract Bidders campaign live',
-      'SECR December YE sequence active',
-      'NHS Tier 1 outreach running',
-      'Signal monitoring in Slack',
-    ],
-  },
-  {
-    phase: 4,
-    title: 'Training & Handover',
-    weeks: 'Ongoing',
-    icon: '🎓',
-    items: [
-      'Clay training sessions (build your own)',
-      'Documentation and runbooks',
-      'Ongoing optimisation support',
-      'Full system handover',
+      'Campaign optimization based on data',
+      'Scale what works, cut what doesn\'t',
+      'Advanced signal sources added',
+      'System documentation for handover',
     ],
   },
 ];
@@ -257,16 +244,6 @@ const oneOffOptions = [
   { type: 'System Build Sprint', rate: '£1,000/day', description: 'Focused build days for specific deliverables' },
 ];
 
-// Why GTM Quest - including personal ICP experience
-const whyGtmQuest = [
-  { title: 'Operational Execution', description: 'Not strategy decks - working systems that run' },
-  { title: 'RevOps-First Architecture', description: 'Built for handover, not dependency' },
-  { title: 'LinkedIn Safety Expertise', description: '4G mobile proxies, proper protocols, zero flags' },
-  { title: 'Signal-Triggered Outbound', description: 'Scraper-first approach beats list-buying' },
-  { title: 'AI-Native Content', description: 'AEO, Gen-SEO, and llms.txt implementation' },
-  { title: 'Local', description: 'Based in Borough - happy to meet in person' },
-];
-
 // Personal ICP Experience - Competitive Advantage
 const personalExperience = {
   title: 'We\'ve Been Your Prospect',
@@ -395,51 +372,6 @@ const flexibility = {
   record: 'We\'ve never had a client leave mid-pilot. The flexibility means they don\'t need to.',
 };
 
-// Expected Outcomes - Targets Framework
-const expectedOutcomes = {
-  title: 'Expected Outcomes',
-  subtitle: 'The maths works. One client pays for the pilot.',
-  note: 'All figures provisional - to be confirmed based on your actual metrics.',
-  metrics: [
-    {
-      name: 'Customer LTV',
-      description: 'Your average lifetime value (provisional)',
-      formula: 'To be confirmed by you',
-      placeholder: '£25,000+',
-      icon: '💰',
-    },
-    {
-      name: 'Leads/Month',
-      description: 'Subject to agreed scale & plan',
-      formula: 'Tier 1 targets × response rate',
-      placeholder: '40-80',
-      icon: '🎯',
-    },
-    {
-      name: 'Cost Per Lead',
-      description: 'Mostly labor (day rate)',
-      formula: 'Project cost ÷ leads generated',
-      placeholder: '£50-150',
-      icon: '📊',
-    },
-    {
-      name: 'Payback',
-      description: '1 client = pilot paid + working system',
-      formula: '1 × LTV > pilot cost + you keep the infrastructure',
-      placeholder: '1 client',
-      icon: '✅',
-    },
-  ],
-  inputs: {
-    title: 'What We Need From You',
-    items: [
-      'Confirm your average LTV',
-      'Your close rate from conversations',
-      'Preferred scale (days/week)',
-    ],
-  },
-  commitment: 'One closed deal from this pilot more than covers the investment. The rest is profit.',
-};
 
 // Narrative transitions / scroll prompts
 const narrativeFlow = [
@@ -485,445 +417,6 @@ function ScrollPrompt({ text, color = 'blue' }: { text: string; color?: string }
 }
 
 const CORRECT_PASSWORD = 'climatisegtmquest';
-
-// View types for the three-tier navigation
-type ViewType = 'executive' | 'gettoyes' | 'full';
-
-// View Navigation Component - Sticky tabs
-function ViewNavigation({
-  currentView,
-  setCurrentView
-}: {
-  currentView: ViewType;
-  setCurrentView: (view: ViewType) => void;
-}) {
-  const views = [
-    { id: 'executive' as ViewType, label: 'Executive Summary', time: '30 sec', icon: '📋' },
-    { id: 'gettoyes' as ViewType, label: 'Sales Deck', time: '5 min', icon: '🎯' },
-    { id: 'full' as ViewType, label: 'Full Comprehensive', time: '20 min', icon: '📚' },
-  ];
-
-  return (
-    <div className="sticky top-0 z-50 bg-black/95 backdrop-blur-sm border-b border-white/10">
-      <div className="max-w-5xl mx-auto px-4">
-        <div className="flex items-center justify-center gap-1 md:gap-2 py-3">
-          {views.map((view) => (
-            <button
-              key={view.id}
-              onClick={() => {
-                setCurrentView(view.id);
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-              }}
-              className={`flex items-center gap-1.5 px-3 md:px-4 py-2 rounded-lg text-xs md:text-sm font-medium transition-all ${
-                currentView === view.id
-                  ? 'bg-blue-500/20 text-blue-400 border border-blue-500/30'
-                  : 'text-white/60 hover:text-white hover:bg-white/5'
-              }`}
-            >
-              <span className="hidden md:inline">{view.icon}</span>
-              <span className="hidden sm:inline">{view.label}</span>
-              <span className="sm:hidden">{view.label.split(' ')[0]}</span>
-              <span className={`text-xs ${currentView === view.id ? 'text-blue-400/70' : 'text-white/40'}`}>
-                ({view.time})
-              </span>
-            </button>
-          ))}
-        </div>
-      </div>
-    </div>
-  );
-}
-
-// Executive Summary Component - 30 second boardroom view
-function ExecutiveSummary({ setCurrentView }: { setCurrentView: (view: ViewType) => void }) {
-  return (
-    <section className="min-h-[80vh] py-12 md:py-16 bg-gradient-to-b from-zinc-950 to-black flex items-center">
-      <div className="max-w-4xl mx-auto px-4 w-full">
-        {/* Executive Summary Badge */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.9 }}
-          animate={{ opacity: 1, scale: 1 }}
-          className="text-center mb-8"
-        >
-          <span className="inline-flex items-center gap-2 bg-amber-500/10 border border-amber-500/30 text-amber-400 text-sm font-bold uppercase tracking-wider px-4 py-2 rounded-full">
-            <span>Executive Summary</span>
-          </span>
-        </motion.div>
-
-        {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.1 }}
-          className="text-center mb-10"
-        >
-          <div className="flex items-center justify-center gap-4 mb-4">
-            <Image src="/GTM Logo New.png" alt="GTM Quest" width={80} height={28} className="h-6 w-auto" />
-            <span className="text-white/30">×</span>
-            <Image src="/climatise-logo.png" alt="Climatise" width={90} height={28} className="h-6 w-auto bg-white/10 rounded px-2 py-1" />
-          </div>
-          <h1 className="text-2xl md:text-3xl font-black text-white mb-1">GTM Proposal</h1>
-          <p className="text-white/50 text-sm">Prepared for {lennonProfile.name}, {lennonProfile.title}</p>
-        </motion.div>
-
-        {/* Two Column: Opportunity + Ask */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.1 }}
-          className="grid md:grid-cols-2 gap-6 mb-8"
-        >
-          {/* The Opportunity */}
-          <div className="bg-zinc-900 border border-white/10 rounded-xl p-6">
-            <h2 className="text-blue-400 text-xs uppercase tracking-wider mb-4">The Opportunity</h2>
-            <ul className="space-y-3">
-              <li className="flex items-start gap-3">
-                <span className="text-blue-400 text-lg">•</span>
-                <span className="text-white/80"><span className="text-blue-400 font-bold">£2.1B+</span> UK carbon accounting market</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <span className="text-green-400 text-lg">•</span>
-                <span className="text-white/80"><span className="text-green-400 font-bold">76%</span> prefer UK-based solutions</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <span className="text-amber-400 text-lg">•</span>
-                <span className="text-white/80">UK obliged companies with hard compliance deadlines</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <span className="text-red-400 text-lg">•</span>
-                <span className="text-white/80"><span className="text-red-400 font-bold">&lt;50%</span> UK businesses have sustainability targets</span>
-              </li>
-            </ul>
-          </div>
-
-          {/* The Ask */}
-          <div className="bg-zinc-900 border border-green-500/20 rounded-xl p-6">
-            <h2 className="text-green-400 text-xs uppercase tracking-wider mb-4">The Ask</h2>
-            <ul className="space-y-3">
-              <li className="flex items-start gap-3">
-                <span className="text-green-400">✓</span>
-                <span className="text-white/80"><span className="font-semibold text-white">2-3 days/week</span> for 8-12 weeks</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <span className="text-green-400">✓</span>
-                <span className="text-white/80"><span className="font-semibold text-white">Weekly break clause</span> — zero lock-in</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <span className="text-green-400">✓</span>
-                <span className="text-white/80"><span className="font-semibold text-white">£500/day</span> — transparent pricing</span>
-              </li>
-              <li className="flex items-start gap-3">
-                <span className="text-green-400">✓</span>
-                <span className="text-white/80"><span className="font-semibold text-white">Full handover</span> — no dependency</span>
-              </li>
-            </ul>
-          </div>
-        </motion.div>
-
-        {/* Expected Outcomes */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2 }}
-          className="bg-zinc-900/50 border border-white/5 rounded-xl p-6 mb-8"
-        >
-          <h2 className="text-amber-400 text-xs uppercase tracking-wider mb-4">The Maths (Provisional)</h2>
-          <div className="grid grid-cols-3 gap-4 text-center">
-            <div>
-              <div className="text-xl font-bold text-white">£25K+</div>
-              <div className="text-white/50 text-xs">Your LTV (TBC)</div>
-            </div>
-            <div>
-              <div className="text-xl font-bold text-white">£50-150</div>
-              <div className="text-white/50 text-xs">Cost Per Lead</div>
-            </div>
-            <div>
-              <div className="text-xl font-bold text-emerald-400">1 client</div>
-              <div className="text-white/50 text-xs">= Pilot Paid</div>
-            </div>
-          </div>
-          <p className="text-white/40 text-xs mt-3 text-center">One closed deal pays for the pilot + you keep a working GTM system. All figures TBC.</p>
-        </motion.div>
-
-        {/* Risks & Mitigations */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.3 }}
-          className="bg-zinc-900/50 border border-white/5 rounded-xl p-6 mb-10"
-        >
-          <h2 className="text-white/50 text-xs uppercase tracking-wider mb-4">Risks & Mitigations</h2>
-          <div className="grid md:grid-cols-3 gap-4 text-sm">
-            <div className="flex items-start gap-2">
-              <span className="text-green-400">✓</span>
-              <span className="text-white/70"><span className="text-white">Zero lock-in:</span> Weekly break clause</span>
-            </div>
-            <div className="flex items-start gap-2">
-              <span className="text-green-400">✓</span>
-              <span className="text-white/70"><span className="text-white">No dependency:</span> Full system handover</span>
-            </div>
-            <div className="flex items-start gap-2">
-              <span className="text-green-400">✓</span>
-              <span className="text-white/70"><span className="text-white">Transparent:</span> Day rate pricing</span>
-            </div>
-          </div>
-        </motion.div>
-
-        {/* CTA */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4 }}
-          className="text-center"
-        >
-          <a
-            href="https://calendly.com/my-first-quest"
-            className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-500 to-green-500 hover:from-blue-600 hover:to-green-600 text-white px-8 py-4 rounded-xl font-bold text-lg transition mb-6"
-          >
-            Discuss Proposal
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-            </svg>
-          </a>
-
-          {/* Links to other views */}
-          <div className="flex flex-wrap justify-center gap-4 text-sm">
-            <button
-              onClick={() => setCurrentView('gettoyes')}
-              className="text-blue-400 hover:text-blue-300 flex items-center gap-1"
-            >
-              Want the 5-min pitch? <span className="font-semibold">Sales Deck →</span>
-            </button>
-            <button
-              onClick={() => setCurrentView('full')}
-              className="text-white/50 hover:text-white/70 flex items-center gap-1"
-            >
-              Want everything? <span className="font-semibold">Full Comprehensive →</span>
-            </button>
-          </div>
-        </motion.div>
-      </div>
-    </section>
-  );
-}
-
-// Get to Yes Component - 5 minute sales deck (7 slides)
-function GetToYes({ setCurrentView }: { setCurrentView: (view: ViewType) => void }) {
-  const slides = [
-    {
-      title: 'The Market',
-      color: 'blue',
-      content: (
-        <div className="space-y-4">
-          <div className="grid grid-cols-2 gap-4">
-            <div className="bg-white/5 rounded-lg p-4 text-center">
-              <div className="text-3xl font-black text-green-400">76%</div>
-              <div className="text-white/60 text-xs">prefer UK solutions</div>
-            </div>
-            <div className="bg-white/5 rounded-lg p-4 text-center">
-              <div className="text-3xl font-black text-blue-400">&lt;50%</div>
-              <div className="text-white/60 text-xs">have sustainability targets</div>
-            </div>
-          </div>
-          <p className="text-white/70 text-sm">Only 42% can define carbon credits. Knowledge gap = opportunity.</p>
-        </div>
-      ),
-    },
-    {
-      title: 'Your ICPs',
-      color: 'green',
-      content: (
-        <div className="space-y-3">
-          <div className="flex items-center justify-between">
-            <span className="text-white font-semibold">5 ICP Clusters</span>
-            <span className="text-green-400 font-bold">UK Obliged Companies</span>
-          </div>
-          <div className="grid grid-cols-2 gap-2 text-xs">
-            {icpCategories.slice(0, 4).map((cat) => (
-              <div key={cat.name} className="bg-white/5 rounded px-2 py-1.5">
-                <span className="text-white/80">{cat.name}</span>
-              </div>
-            ))}
-          </div>
-          <p className="text-white/60 text-xs">Hard compliance deadlines: PPN 006, SECR, NHS Scope 3</p>
-        </div>
-      ),
-    },
-    {
-      title: 'The System',
-      color: 'purple',
-      content: (
-        <div className="flex items-center justify-center gap-2 text-sm py-4">
-          <span className="bg-blue-500/20 text-blue-400 px-3 py-2 rounded-lg font-semibold">Clay</span>
-          <span className="text-white/30">→</span>
-          <span className="bg-cyan-500/20 text-cyan-400 px-3 py-2 rounded-lg font-semibold">Signals</span>
-          <span className="text-white/30">→</span>
-          <span className="bg-purple-500/20 text-purple-400 px-3 py-2 rounded-lg font-semibold">Outreach</span>
-          <span className="text-white/30">→</span>
-          <span className="bg-green-500/20 text-green-400 px-3 py-2 rounded-lg font-semibold">Pipeline</span>
-        </div>
-      ),
-    },
-    {
-      title: 'The Intelligence',
-      color: 'cyan',
-      content: (
-        <div className="grid grid-cols-3 gap-2 text-xs">
-          <div className="bg-white/5 rounded-lg p-3 text-center">
-            <div className="text-lg mb-1">🏛️</div>
-            <div className="text-white/80">Tender Scraping</div>
-          </div>
-          <div className="bg-white/5 rounded-lg p-3 text-center">
-            <div className="text-lg mb-1">📡</div>
-            <div className="text-white/80">LinkedIn Signals</div>
-          </div>
-          <div className="bg-white/5 rounded-lg p-3 text-center">
-            <div className="text-lg mb-1">🔍</div>
-            <div className="text-white/80">Competitor Intel</div>
-          </div>
-        </div>
-      ),
-    },
-    {
-      title: 'The Timeline',
-      color: 'amber',
-      content: (
-        <div className="flex justify-between items-center text-xs">
-          {phases.map((phase, i) => (
-            <div key={phase.phase} className="flex items-center">
-              <div className="text-center">
-                <div className="text-lg mb-1">{phase.icon}</div>
-                <div className="text-white/80 font-semibold">{phase.title}</div>
-                <div className="text-white/50">{phase.weeks}</div>
-              </div>
-              {i < phases.length - 1 && <span className="text-white/20 mx-2">→</span>}
-            </div>
-          ))}
-        </div>
-      ),
-    },
-    {
-      title: 'The Investment',
-      color: 'green',
-      content: (
-        <div className="space-y-3">
-          <div className="flex justify-between items-center">
-            <span className="text-white/70">Day rate</span>
-            <span className="text-white font-bold">£500/day</span>
-          </div>
-          <div className="flex justify-between items-center">
-            <span className="text-white/70">Commitment</span>
-            <span className="text-white font-bold">2-3 days/week</span>
-          </div>
-          <div className="flex justify-between items-center">
-            <span className="text-white/70">Duration</span>
-            <span className="text-white font-bold">8-12 weeks</span>
-          </div>
-          <div className="bg-green-500/10 text-green-400 text-xs px-3 py-2 rounded text-center">
-            Weekly break clause — scale up/down anytime
-          </div>
-        </div>
-      ),
-    },
-    {
-      title: 'Next Step',
-      color: 'blue',
-      content: (
-        <div className="text-center py-2">
-          <p className="text-white/70 mb-4">30-minute discovery call to discuss your metrics and targets.</p>
-          <a
-            href="https://calendly.com/my-first-quest"
-            className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-500 to-green-500 text-white px-6 py-3 rounded-lg font-bold"
-          >
-            Book Call
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-            </svg>
-          </a>
-        </div>
-      ),
-    },
-  ];
-
-  const colorMap: Record<string, string> = {
-    blue: 'border-blue-500/30 bg-blue-500/5',
-    green: 'border-green-500/30 bg-green-500/5',
-    purple: 'border-purple-500/30 bg-purple-500/5',
-    cyan: 'border-cyan-500/30 bg-cyan-500/5',
-    amber: 'border-amber-500/30 bg-amber-500/5',
-  };
-
-  const textColorMap: Record<string, string> = {
-    blue: 'text-blue-400',
-    green: 'text-green-400',
-    purple: 'text-purple-400',
-    cyan: 'text-cyan-400',
-    amber: 'text-amber-400',
-  };
-
-  return (
-    <section className="py-12 md:py-16 bg-black">
-      <div className="max-w-3xl mx-auto px-4">
-        {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="text-center mb-10"
-        >
-          <span className="bg-blue-500/10 text-blue-400 text-xs uppercase tracking-wider px-3 py-1 rounded-full">
-            Sales Deck
-          </span>
-          <h2 className="text-2xl md:text-3xl font-black text-white mt-4">The 5-Minute Pitch</h2>
-          <p className="text-white/50 text-sm mt-2">Everything you need to know, nothing you don&apos;t.</p>
-        </motion.div>
-
-        {/* Slides */}
-        <div className="space-y-6">
-          {slides.map((slide, i) => (
-            <motion.div
-              key={slide.title}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: i * 0.1 }}
-              className={`border rounded-xl p-6 ${colorMap[slide.color]}`}
-            >
-              <div className="flex items-center gap-3 mb-4">
-                <span className={`text-xs font-bold ${textColorMap[slide.color]}`}>
-                  {String(i + 1).padStart(2, '0')}
-                </span>
-                <h3 className="font-bold text-white">{slide.title}</h3>
-              </div>
-              {slide.content}
-            </motion.div>
-          ))}
-        </div>
-
-        {/* Links to other views */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.8 }}
-          className="text-center mt-10 pt-10 border-t border-white/10"
-        >
-          <div className="flex flex-wrap justify-center gap-4 text-sm">
-            <button
-              onClick={() => setCurrentView('executive')}
-              className="text-white/50 hover:text-white/70 flex items-center gap-1"
-            >
-              ← Back to <span className="font-semibold">Executive Summary</span>
-            </button>
-            <button
-              onClick={() => setCurrentView('full')}
-              className="text-blue-400 hover:text-blue-300 flex items-center gap-1"
-            >
-              Want the full picture? <span className="font-semibold">Full Comprehensive →</span>
-            </button>
-          </div>
-        </motion.div>
-      </div>
-    </section>
-  );
-}
 
 export default function ClimatisePage() {
   const [password, setPassword] = useState('');
@@ -1025,20 +518,9 @@ export default function ClimatisePage() {
 
   return (
     <main className="min-h-screen bg-black">
-      {/* Executive Summary Section - Executive Summary */}
+      {/* Proposal Header */}
       <section className="py-12 md:py-16 bg-gradient-to-b from-zinc-950 to-black border-b border-white/10">
         <div className="max-w-4xl mx-auto px-4">
-          {/* Executive Summary Badge */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            className="text-center mb-8"
-          >
-            <span className="inline-flex items-center gap-2 bg-amber-500/10 border border-amber-500/30 text-amber-400 text-sm font-bold uppercase tracking-wider px-4 py-2 rounded-full">
-              Executive Summary
-            </span>
-          </motion.div>
-
           {/* Header */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -1151,29 +633,9 @@ export default function ClimatisePage() {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
               </svg>
             </a>
-            <div className="flex items-center justify-center gap-4 mt-4">
-              <p className="text-white/40 text-sm">
-                Scroll down for the full proposal ↓
-              </p>
-              <span className="text-white/20">|</span>
-              <button
-                onClick={async () => {
-                  const blob = await generateClimatisePDF();
-                  const url = URL.createObjectURL(blob);
-                  const a = document.createElement('a');
-                  a.href = url;
-                  a.download = 'Climatise-GTM-Proposal.pdf';
-                  a.click();
-                  URL.revokeObjectURL(url);
-                }}
-                className="text-blue-400 hover:text-blue-300 text-sm flex items-center gap-1"
-              >
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                </svg>
-                Download PDF
-              </button>
-            </div>
+            <p className="text-white/40 text-sm mt-4">
+              Scroll down for the full proposal ↓
+            </p>
           </motion.div>
         </div>
       </section>
@@ -2058,93 +1520,6 @@ export default function ClimatisePage() {
                     2026 Standards Guide →
                   </a>
                 </div>
-              </div>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Narrative Prompt - What does success look like? */}
-      <ScrollPrompt text={narrativeFlow[3].prompt} color="green" />
-
-      {/* Expected Outcomes - THE MISSING PIECE */}
-      <section className="py-16 md:py-20 bg-black">
-        <div className="max-w-5xl mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-10 md:mb-12"
-          >
-            <span className="text-green-400 text-sm font-bold uppercase tracking-wider">
-              {expectedOutcomes.title}
-            </span>
-            <h2 className="text-2xl md:text-4xl font-bold text-white mt-2 mb-4">
-              {expectedOutcomes.subtitle}
-            </h2>
-            <p className="text-white/60 text-sm md:text-base max-w-2xl mx-auto">
-              {expectedOutcomes.note}
-            </p>
-          </motion.div>
-
-          {/* Metrics Grid */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-            {expectedOutcomes.metrics.map((metric, index) => (
-              <motion.div
-                key={metric.name}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                className="bg-zinc-900 border border-green-500/20 rounded-xl p-4 md:p-5 text-center hover:border-green-500/40 transition"
-              >
-                <div className="text-2xl md:text-3xl mb-2">{metric.icon}</div>
-                <div className="text-2xl md:text-3xl font-black text-green-400 mb-1">{metric.placeholder}</div>
-                <div className="font-semibold text-white text-xs md:text-sm mb-1">{metric.name}</div>
-                <div className="text-white/40 text-xs hidden md:block">{metric.description}</div>
-              </motion.div>
-            ))}
-          </div>
-
-          {/* Formula explanations - collapsed on mobile */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="bg-zinc-900/50 border border-white/10 rounded-xl p-5 md:p-6 mb-8 hidden md:block"
-          >
-            <h4 className="text-white/50 text-xs uppercase tracking-wider mb-4">How We Calculate</h4>
-            <div className="grid md:grid-cols-2 gap-4">
-              {expectedOutcomes.metrics.map((metric) => (
-                <div key={metric.name} className="text-sm">
-                  <span className="text-white font-semibold">{metric.name}:</span>
-                  <span className="text-white/50 ml-2">{metric.formula}</span>
-                </div>
-              ))}
-            </div>
-          </motion.div>
-
-          {/* What We Need From You */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="bg-gradient-to-r from-blue-500/10 to-green-500/10 border border-blue-500/30 rounded-xl p-5 md:p-6"
-          >
-            <div className="flex items-start gap-4">
-              <div className="text-2xl">📋</div>
-              <div className="flex-1">
-                <h4 className="font-bold text-white mb-3">{expectedOutcomes.inputs.title}</h4>
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {expectedOutcomes.inputs.items.map((item, i) => (
-                    <span key={i} className="text-xs bg-white/5 text-white/70 px-3 py-1.5 rounded-lg">
-                      {item}
-                    </span>
-                  ))}
-                </div>
-                <p className="text-green-400 text-sm font-semibold">
-                  {expectedOutcomes.commitment}
-                </p>
               </div>
             </div>
           </motion.div>
@@ -3116,171 +2491,8 @@ export default function ClimatisePage() {
         </div>
       </section>
 
-      {/* Social Proof - Powered by GTM Quest */}
-      <section className="py-12 md:py-16 bg-zinc-950 border-y border-white/5">
-        <div className="max-w-4xl mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center"
-          >
-            <div className="flex items-center justify-center gap-3 mb-4">
-              <Image
-                src="/GTM Logo New.png"
-                alt="GTM Quest"
-                width={100}
-                height={35}
-                className="h-6 md:h-8 w-auto"
-              />
-              <span className="text-xs bg-blue-500/20 text-blue-400 px-2 py-1 rounded-full font-bold border border-blue-500/30">
-                Beta
-              </span>
-            </div>
-
-            <h3 className="text-lg md:text-xl font-bold text-white mb-3">Powered by GTM Quest</h3>
-            <p className="text-white/60 text-sm md:text-base max-w-xl mx-auto mb-6">
-              Climatise is listed on our platform. We&apos;re building the #1 GTM agency matching platform with AI-powered strategy generation.
-            </p>
-
-            <div className="flex flex-wrap items-center justify-center gap-4 text-xs md:text-sm">
-              <a href="https://gtm.quest" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 flex items-center gap-1">
-                <span>gtm.quest</span>
-                <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                </svg>
-              </a>
-              <span className="text-white/30">|</span>
-              <span className="text-white/50">200+ GTM Agencies</span>
-              <span className="text-white/30">|</span>
-              <span className="text-white/50">AI GTM Plan Builder (Beta)</span>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Why GTM Quest */}
-      <section className="py-20 bg-zinc-950">
-        <div className="max-w-6xl mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-12"
-          >
-            <span className="text-blue-400 text-sm font-bold uppercase tracking-wider">
-              Why Us
-            </span>
-            <h2 className="text-3xl md:text-4xl font-bold text-white mt-2 mb-4">
-              Why GTM Quest
-            </h2>
-          </motion.div>
-
-          <div className="grid md:grid-cols-3 gap-6">
-            {whyGtmQuest.map((reason, index) => (
-              <motion.div
-                key={reason.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                className="bg-zinc-900 border border-white/10 rounded-xl p-6 hover:border-blue-500/30 transition text-center"
-              >
-                <h3 className="font-bold text-white mb-2">{reason.title}</h3>
-                <p className="text-white/60 text-sm">{reason.description}</p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Next Steps CTA */}
-      <section className="py-20 bg-gradient-to-b from-black to-zinc-950">
-        <div className="max-w-4xl mx-auto px-4 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-          >
-            <span className="text-green-400 text-sm font-bold uppercase tracking-wider">
-              Next Steps
-            </span>
-            <h2 className="text-3xl md:text-4xl font-bold text-white mt-2 mb-8">
-              Let&apos;s Build Your GTM System
-            </h2>
-
-            <div className="bg-zinc-900 border border-white/10 rounded-2xl p-8 mb-8">
-              <div className="grid md:grid-cols-4 gap-4 text-left">
-                <div className="bg-white/5 rounded-xl p-4">
-                  <div className="text-blue-400 font-bold mb-1">This Week</div>
-                  <div className="text-white/70 text-sm">Confirm engagement scope and start date</div>
-                </div>
-                <div className="bg-white/5 rounded-xl p-4">
-                  <div className="text-blue-400 font-bold mb-1">Week 1</div>
-                  <div className="text-white/70 text-sm">Workshop - finalise Tier 1 ICP prioritisation</div>
-                </div>
-                <div className="bg-white/5 rounded-xl p-4">
-                  <div className="text-blue-400 font-bold mb-1">Week 2-3</div>
-                  <div className="text-white/70 text-sm">Build foundation infrastructure</div>
-                </div>
-                <div className="bg-white/5 rounded-xl p-4">
-                  <div className="text-green-400 font-bold mb-1">Week 4+</div>
-                  <div className="text-white/70 text-sm">Launch campaigns, iterate on data</div>
-                </div>
-              </div>
-            </div>
-
-            <p className="text-xl text-white/70 mb-8">
-              Let&apos;s build a GTM system as sophisticated as your emissions platform.
-            </p>
-
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <a
-                href="https://calendly.com/my-first-quest"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="bg-gradient-to-r from-blue-500 to-green-500 hover:from-blue-600 hover:to-green-600 text-white px-8 py-4 rounded-xl font-bold text-lg transition shadow-lg shadow-blue-500/25 flex items-center gap-2"
-              >
-                <span className="relative flex h-3 w-3">
-                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
-                  <span className="relative inline-flex rounded-full h-3 w-3 bg-white"></span>
-                </span>
-                Discuss Proposal
-              </a>
-              <a
-                href="mailto:dan@gtm.quest"
-                className="text-white hover:text-blue-400 px-8 py-4 rounded-xl font-medium transition border border-white/20 hover:border-blue-500/50"
-              >
-                dan@gtm.quest
-              </a>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Footer - Download PDF */}
-      <section className="py-12 pb-28 bg-zinc-950 border-t border-white/10">
-        <div className="max-w-4xl mx-auto px-4 text-center">
-          <p className="text-white/50 text-sm mb-4">Save this proposal for your records, Lennon</p>
-          <button
-            onClick={async () => {
-              const blob = await generateClimatisePDF();
-              const url = URL.createObjectURL(blob);
-              const a = document.createElement('a');
-              a.href = url;
-              a.download = 'Lennon-Climatise-GTM-Proposal.pdf';
-              a.click();
-              URL.revokeObjectURL(url);
-            }}
-            className="inline-flex items-center gap-2 text-blue-400 hover:text-blue-300 text-sm border border-blue-500/30 px-4 py-2 rounded-lg hover:bg-blue-500/10 transition"
-          >
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-            </svg>
-            Download Lennon&apos;s Proposal (PDF)
-          </button>
-        </div>
-      </section>
+      {/* Spacer for sticky CTA bar */}
+      <div className="h-20 bg-zinc-950"></div>
 
       {/* Sticky CTA Bar - Personal, urgency-focused, with Climatise branding */}
       <div className="fixed bottom-0 left-0 right-0 z-50 bg-gradient-to-r from-zinc-900/98 via-zinc-900 to-zinc-900/98 backdrop-blur-md border-t border-white/10">
@@ -3322,25 +2534,23 @@ export default function ClimatisePage() {
               />
             </div>
 
-            {/* Feb 2026 justification with link */}
-            <div className="flex-1 flex items-center justify-center gap-3">
+            {/* Feb 2026 justification with explanation */}
+            <div className="flex-1 flex flex-col items-center justify-center">
               <div className="flex items-center gap-2 text-amber-400 text-sm font-medium">
                 <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
                   <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clipRule="evenodd" />
                 </svg>
                 <span>Feb 2026 UK Sustainability Reporting Standards</span>
+                <a
+                  href="https://www.gov.uk/government/consultations/uk-sustainability-reporting-standards-endorsement-and-adoption"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-blue-400 hover:text-blue-300 text-xs"
+                >
+                  ↗
+                </a>
               </div>
-              <a
-                href="https://www.gov.uk/government/consultations/uk-sustainability-reporting-standards-endorsement-and-adoption"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-blue-400 hover:text-blue-300 text-xs flex items-center gap-1"
-              >
-                Source
-                <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-                </svg>
-              </a>
+              <p className="text-white/40 text-xs mt-1">Companies must report on carbon from this date — many are preparing now</p>
             </div>
 
             {/* CTA */}
