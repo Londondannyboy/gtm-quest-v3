@@ -431,7 +431,7 @@ function ScrollPrompt({ text, color = 'blue' }: { text: string; color?: string }
   );
 }
 
-const CORRECT_PASSWORD = 'climatisegtmquest2026';
+const CORRECT_PASSWORD = 'climatisegtmquest';
 
 export default function ClimatisePage() {
   const [password, setPassword] = useState('');
@@ -468,7 +468,7 @@ export default function ClimatisePage() {
               />
               <span className="text-white/40 text-xl">×</span>
               <Image
-                src="/climistise logo.png"
+                src="/climatise-logo.png"
                 alt="Climatise"
                 width={110}
                 height={35}
@@ -575,7 +575,7 @@ export default function ClimatisePage() {
             <div className="flex-shrink-0">
               <div className="bg-white/10 backdrop-blur-sm rounded-xl p-3 md:p-4 border border-white/10">
                 <Image
-                  src="/climistise logo.png"
+                  src="/climatise-logo.png"
                   alt="Climatise"
                   width={100}
                   height={35}
@@ -619,6 +619,243 @@ export default function ClimatisePage() {
               This is what our enrichment does — for every prospect in your pipeline.
             </p>
           </motion.div>
+        </div>
+      </section>
+
+      {/* Animated Challenge Statement - The Hook */}
+      <section className="py-12 md:py-16 bg-black">
+        <div className="max-w-4xl mx-auto px-4">
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.5 }}
+            className="text-center"
+          >
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.6 }}
+              className="text-white/40 text-sm uppercase tracking-wider mb-4"
+            >
+              The Challenge
+            </motion.div>
+
+            <motion.h2
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.7, duration: 0.5 }}
+              className="text-2xl md:text-4xl lg:text-5xl font-black text-white mb-6 leading-tight"
+            >
+              <motion.span
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.8 }}
+              >
+                15,200 companies
+              </motion.span>
+              <br />
+              <motion.span
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 1.0 }}
+                className="text-amber-400"
+              >
+                need carbon accounting.
+              </motion.span>
+              <br />
+              <motion.span
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 1.2 }}
+                className="text-white/60"
+              >
+                Most don&apos;t know yet.
+              </motion.span>
+            </motion.h2>
+
+            <motion.div
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 1.4 }}
+              className="flex flex-wrap justify-center gap-4 text-sm"
+            >
+              <span className="bg-red-500/10 text-red-400 px-4 py-2 rounded-full border border-red-500/20">
+                Compliance deadlines looming
+              </span>
+              <span className="bg-amber-500/10 text-amber-400 px-4 py-2 rounded-full border border-amber-500/20">
+                Manual outreach doesn&apos;t scale
+              </span>
+              <span className="bg-blue-500/10 text-blue-400 px-4 py-2 rounded-full border border-blue-500/20">
+                Competitors are moving fast
+              </span>
+            </motion.div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Current Approach - What's Working */}
+      <section className="py-10 md:py-12 bg-zinc-950/50">
+        <div className="max-w-4xl mx-auto px-4">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-8"
+          >
+            <span className="text-white/40 text-xs uppercase tracking-wider">Your Current Approach</span>
+          </motion.div>
+
+          <div className="grid md:grid-cols-2 gap-4 mb-8">
+            {/* Webinars - Working */}
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="bg-green-500/5 border border-green-500/20 rounded-xl p-5"
+            >
+              <div className="flex items-center gap-3 mb-3">
+                <span className="text-green-400 text-xl">✓</span>
+                <span className="font-bold text-white">Webinar Outreach</span>
+                <span className="text-xs bg-green-500/20 text-green-400 px-2 py-0.5 rounded">Working</span>
+              </div>
+              <p className="text-white/60 text-sm">
+                Great for education and lead generation. Keep this — it builds authority and trust.
+              </p>
+            </motion.div>
+
+            {/* Manual LinkedIn - Bottleneck */}
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              className="bg-amber-500/5 border border-amber-500/20 rounded-xl p-5"
+            >
+              <div className="flex items-center gap-3 mb-3">
+                <span className="text-amber-400 text-xl">⚠</span>
+                <span className="font-bold text-white">Manual LinkedIn</span>
+                <span className="text-xs bg-amber-500/20 text-amber-400 px-2 py-0.5 rounded">Bottleneck</span>
+              </div>
+              <p className="text-white/60 text-sm">
+                One person messaging manually. Can&apos;t scale. Limited to ~50 connections/week safely.
+              </p>
+            </motion.div>
+          </div>
+
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            className="text-center"
+          >
+            <p className="text-white/70 text-sm md:text-base">
+              <span className="text-white font-semibold">The goal:</span> Industrialize, scale, and optimize your GTM machine.
+              <br />
+              <span className="text-green-400">Keep what works.</span> <span className="text-blue-400">Automate what doesn&apos;t.</span>
+            </p>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* ICP Challenges - Barriers to Sign-up */}
+      <section className="py-10 md:py-12 bg-black">
+        <div className="max-w-5xl mx-auto px-4">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-8"
+          >
+            <span className="text-white/40 text-xs uppercase tracking-wider mb-2 block">By ICP Cluster</span>
+            <h3 className="text-xl md:text-2xl font-bold text-white">Challenges We Need to Overcome</h3>
+          </motion.div>
+
+          <div className="grid md:grid-cols-3 gap-4">
+            {/* Regulatory-Driven */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="bg-zinc-900 border border-blue-500/20 rounded-xl p-5"
+            >
+              <div className="text-blue-400 font-bold text-sm mb-2">Regulatory-Driven</div>
+              <div className="text-white/50 text-xs mb-3">SECR, NHS, PPN 006</div>
+              <ul className="space-y-2 text-xs">
+                <li className="flex items-start gap-2 text-white/70">
+                  <span className="text-red-400">•</span>
+                  &quot;We already have a spreadsheet&quot;
+                </li>
+                <li className="flex items-start gap-2 text-white/70">
+                  <span className="text-red-400">•</span>
+                  &quot;Our accountant handles it&quot;
+                </li>
+                <li className="flex items-start gap-2 text-white/70">
+                  <span className="text-red-400">•</span>
+                  Don&apos;t know deadline is approaching
+                </li>
+              </ul>
+            </motion.div>
+
+            {/* Supply Chain */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1 }}
+              className="bg-zinc-900 border border-green-500/20 rounded-xl p-5"
+            >
+              <div className="text-green-400 font-bold text-sm mb-2">Supply Chain Pressure</div>
+              <div className="text-white/50 text-xs mb-3">Tesco, Sainsbury&apos;s suppliers</div>
+              <ul className="space-y-2 text-xs">
+                <li className="flex items-start gap-2 text-white/70">
+                  <span className="text-red-400">•</span>
+                  &quot;We&apos;ll deal with it when required&quot;
+                </li>
+                <li className="flex items-start gap-2 text-white/70">
+                  <span className="text-red-400">•</span>
+                  Don&apos;t see competitive advantage
+                </li>
+                <li className="flex items-start gap-2 text-white/70">
+                  <span className="text-red-400">•</span>
+                  Budget constraints
+                </li>
+              </ul>
+            </motion.div>
+
+            {/* Voluntary/Values */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2 }}
+              className="bg-zinc-900 border border-purple-500/20 rounded-xl p-5"
+            >
+              <div className="text-purple-400 font-bold text-sm mb-2">Values-Driven</div>
+              <div className="text-white/50 text-xs mb-3">B Corp, SBTi targets</div>
+              <ul className="space-y-2 text-xs">
+                <li className="flex items-start gap-2 text-white/70">
+                  <span className="text-red-400">•</span>
+                  &quot;We&apos;re already doing enough&quot;
+                </li>
+                <li className="flex items-start gap-2 text-white/70">
+                  <span className="text-red-400">•</span>
+                  Internal team handling it
+                </li>
+                <li className="flex items-start gap-2 text-white/70">
+                  <span className="text-red-400">•</span>
+                  Consultant relationship
+                </li>
+              </ul>
+            </motion.div>
+          </div>
+
+          <motion.p
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            className="text-center text-white/50 text-xs mt-6"
+          >
+            Signal-triggered outreach overcomes these objections by reaching them <span className="text-green-400">at the moment of need</span>.
+          </motion.p>
         </div>
       </section>
 
@@ -668,7 +905,7 @@ export default function ClimatisePage() {
                 transition={{ delay: 0.2 }}
               >
                 <Image
-                  src="/climistise logo.png"
+                  src="/climatise-logo.png"
                   alt="Climatise"
                   width={140}
                   height={40}
@@ -732,7 +969,7 @@ export default function ClimatisePage() {
                   Download PDF
                 </button>
                 <a
-                  href="/Climitise ICP.pdf"
+                  href="/Climatise-ICP.pdf"
                   download
                   className="text-white/70 hover:text-green-400 px-6 py-3 rounded-xl font-medium transition flex items-center gap-2"
                 >
