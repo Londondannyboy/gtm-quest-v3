@@ -501,7 +501,7 @@ function ViewNavigation({
 }) {
   const views = [
     { id: 'executive' as ViewType, label: 'Executive Summary', time: '30 sec', icon: '📋' },
-    { id: 'gettoyes' as ViewType, label: 'Get to Yes', time: '5 min', icon: '🎯' },
+    { id: 'gettoyes' as ViewType, label: 'Sales Deck', time: '5 min', icon: '🎯' },
     { id: 'full' as ViewType, label: 'Full Comprehensive', time: '20 min', icon: '📚' },
   ];
 
@@ -541,10 +541,22 @@ function ExecutiveSummary({ setCurrentView }: { setCurrentView: (view: ViewType)
   return (
     <section className="min-h-[80vh] py-12 md:py-16 bg-gradient-to-b from-zinc-950 to-black flex items-center">
       <div className="max-w-4xl mx-auto px-4 w-full">
+        {/* TL;DR Badge */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          className="text-center mb-8"
+        >
+          <span className="inline-flex items-center gap-2 bg-amber-500/10 border border-amber-500/30 text-amber-400 text-sm font-bold uppercase tracking-wider px-4 py-2 rounded-full">
+            <span>Too Busy, Didn&apos;t Read</span>
+          </span>
+        </motion.div>
+
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.1 }}
           className="text-center mb-10"
         >
           <div className="flex items-center justify-center gap-4 mb-4">
@@ -681,7 +693,7 @@ function ExecutiveSummary({ setCurrentView }: { setCurrentView: (view: ViewType)
               onClick={() => setCurrentView('gettoyes')}
               className="text-blue-400 hover:text-blue-300 flex items-center gap-1"
             >
-              Want the 5-min pitch? <span className="font-semibold">Get to Yes →</span>
+              Want the 5-min pitch? <span className="font-semibold">Sales Deck →</span>
             </button>
             <button
               onClick={() => setCurrentView('full')}
@@ -860,7 +872,7 @@ function GetToYes({ setCurrentView }: { setCurrentView: (view: ViewType) => void
           className="text-center mb-10"
         >
           <span className="bg-blue-500/10 text-blue-400 text-xs uppercase tracking-wider px-3 py-1 rounded-full">
-            Get to Yes
+            Sales Deck
           </span>
           <h2 className="text-2xl md:text-3xl font-black text-white mt-4">The 5-Minute Pitch</h2>
           <p className="text-white/50 text-sm mt-2">Everything you need to know, nothing you don&apos;t.</p>
@@ -3117,7 +3129,7 @@ export default function ClimatisePage() {
               }}
               className="text-green-400 hover:text-green-300 text-sm flex items-center gap-1"
             >
-              ← Get to Yes (5 min)
+              ← Sales Deck (5 min)
             </button>
           </div>
         </div>
