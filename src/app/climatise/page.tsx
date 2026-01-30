@@ -488,10 +488,437 @@ function ScrollPrompt({ text, color = 'blue' }: { text: string; color?: string }
 
 const CORRECT_PASSWORD = 'climatisegtmquest';
 
+// View types for the three-tier navigation
+type ViewType = 'executive' | 'gettoyes' | 'full';
+
+// View Navigation Component - Sticky tabs
+function ViewNavigation({
+  currentView,
+  setCurrentView
+}: {
+  currentView: ViewType;
+  setCurrentView: (view: ViewType) => void;
+}) {
+  const views = [
+    { id: 'executive' as ViewType, label: 'Executive Summary', time: '30 sec', icon: '📋' },
+    { id: 'gettoyes' as ViewType, label: 'Get to Yes', time: '5 min', icon: '🎯' },
+    { id: 'full' as ViewType, label: 'Full Comprehensive', time: '20 min', icon: '📚' },
+  ];
+
+  return (
+    <div className="sticky top-0 z-50 bg-black/95 backdrop-blur-sm border-b border-white/10">
+      <div className="max-w-5xl mx-auto px-4">
+        <div className="flex items-center justify-center gap-1 md:gap-2 py-3">
+          {views.map((view) => (
+            <button
+              key={view.id}
+              onClick={() => {
+                setCurrentView(view.id);
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }}
+              className={`flex items-center gap-1.5 px-3 md:px-4 py-2 rounded-lg text-xs md:text-sm font-medium transition-all ${
+                currentView === view.id
+                  ? 'bg-blue-500/20 text-blue-400 border border-blue-500/30'
+                  : 'text-white/60 hover:text-white hover:bg-white/5'
+              }`}
+            >
+              <span className="hidden md:inline">{view.icon}</span>
+              <span className="hidden sm:inline">{view.label}</span>
+              <span className="sm:hidden">{view.label.split(' ')[0]}</span>
+              <span className={`text-xs ${currentView === view.id ? 'text-blue-400/70' : 'text-white/40'}`}>
+                ({view.time})
+              </span>
+            </button>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// Executive Summary Component - 30 second boardroom view
+function ExecutiveSummary({ setCurrentView }: { setCurrentView: (view: ViewType) => void }) {
+  return (
+    <section className="min-h-[80vh] py-12 md:py-16 bg-gradient-to-b from-zinc-950 to-black flex items-center">
+      <div className="max-w-4xl mx-auto px-4 w-full">
+        {/* Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="text-center mb-10"
+        >
+          <div className="flex items-center justify-center gap-4 mb-4">
+            <Image src="/GTM Logo New.png" alt="GTM Quest" width={80} height={28} className="h-6 w-auto" />
+            <span className="text-white/30">×</span>
+            <Image src="/climatise-logo.png" alt="Climatise" width={90} height={28} className="h-6 w-auto bg-white/10 rounded px-2 py-1" />
+          </div>
+          <h1 className="text-2xl md:text-3xl font-black text-white mb-1">GTM Proposal</h1>
+          <p className="text-white/50 text-sm">Prepared for {lennonProfile.name}, {lennonProfile.title}</p>
+        </motion.div>
+
+        {/* Two Column: Opportunity + Ask */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.1 }}
+          className="grid md:grid-cols-2 gap-6 mb-8"
+        >
+          {/* The Opportunity */}
+          <div className="bg-zinc-900 border border-white/10 rounded-xl p-6">
+            <h2 className="text-blue-400 text-xs uppercase tracking-wider mb-4">The Opportunity</h2>
+            <ul className="space-y-3">
+              <li className="flex items-start gap-3">
+                <span className="text-blue-400 text-lg">•</span>
+                <span className="text-white/80"><span className="text-blue-400 font-bold">£2.1B+</span> UK carbon accounting market</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <span className="text-green-400 text-lg">•</span>
+                <span className="text-white/80"><span className="text-green-400 font-bold">76%</span> prefer UK-based solutions</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <span className="text-amber-400 text-lg">•</span>
+                <span className="text-white/80"><span className="text-amber-400 font-bold">15,200+</span> Tier 1 targets with hard deadlines</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <span className="text-red-400 text-lg">•</span>
+                <span className="text-white/80"><span className="text-red-400 font-bold">&lt;50%</span> UK businesses have sustainability targets</span>
+              </li>
+            </ul>
+          </div>
+
+          {/* The Ask */}
+          <div className="bg-zinc-900 border border-green-500/20 rounded-xl p-6">
+            <h2 className="text-green-400 text-xs uppercase tracking-wider mb-4">The Ask</h2>
+            <ul className="space-y-3">
+              <li className="flex items-start gap-3">
+                <span className="text-green-400">✓</span>
+                <span className="text-white/80"><span className="font-semibold text-white">2-3 days/week</span> for 8-12 weeks</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <span className="text-green-400">✓</span>
+                <span className="text-white/80"><span className="font-semibold text-white">Weekly break clause</span> — zero lock-in</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <span className="text-green-400">✓</span>
+                <span className="text-white/80"><span className="font-semibold text-white">£500/day</span> — transparent pricing</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <span className="text-green-400">✓</span>
+                <span className="text-white/80"><span className="font-semibold text-white">Full handover</span> — no dependency</span>
+              </li>
+            </ul>
+          </div>
+        </motion.div>
+
+        {/* Expected Outcomes */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2 }}
+          className="bg-zinc-900/50 border border-white/5 rounded-xl p-6 mb-8"
+        >
+          <h2 className="text-amber-400 text-xs uppercase tracking-wider mb-4">Expected Outcomes (TBD based on your metrics)</h2>
+          <div className="grid grid-cols-3 gap-4 text-center">
+            <div>
+              <div className="text-2xl font-bold text-white">TBD</div>
+              <div className="text-white/50 text-xs">Pipeline Value</div>
+            </div>
+            <div>
+              <div className="text-2xl font-bold text-white">TBD</div>
+              <div className="text-white/50 text-xs">Qualified Leads/mo</div>
+            </div>
+            <div>
+              <div className="text-2xl font-bold text-white">TBD</div>
+              <div className="text-white/50 text-xs">Cost Per Lead</div>
+            </div>
+          </div>
+        </motion.div>
+
+        {/* Risks & Mitigations */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.3 }}
+          className="bg-zinc-900/50 border border-white/5 rounded-xl p-6 mb-10"
+        >
+          <h2 className="text-white/50 text-xs uppercase tracking-wider mb-4">Risks & Mitigations</h2>
+          <div className="grid md:grid-cols-3 gap-4 text-sm">
+            <div className="flex items-start gap-2">
+              <span className="text-green-400">✓</span>
+              <span className="text-white/70"><span className="text-white">Zero lock-in:</span> Weekly break clause</span>
+            </div>
+            <div className="flex items-start gap-2">
+              <span className="text-green-400">✓</span>
+              <span className="text-white/70"><span className="text-white">No dependency:</span> Full system handover</span>
+            </div>
+            <div className="flex items-start gap-2">
+              <span className="text-green-400">✓</span>
+              <span className="text-white/70"><span className="text-white">Transparent:</span> Day rate pricing</span>
+            </div>
+          </div>
+        </motion.div>
+
+        {/* CTA */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.4 }}
+          className="text-center"
+        >
+          <a
+            href="https://calendly.com/my-first-quest"
+            className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-500 to-green-500 hover:from-blue-600 hover:to-green-600 text-white px-8 py-4 rounded-xl font-bold text-lg transition mb-6"
+          >
+            Book Discovery Call
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </a>
+
+          {/* Links to other views */}
+          <div className="flex flex-wrap justify-center gap-4 text-sm">
+            <button
+              onClick={() => setCurrentView('gettoyes')}
+              className="text-blue-400 hover:text-blue-300 flex items-center gap-1"
+            >
+              Want the 5-min pitch? <span className="font-semibold">Get to Yes →</span>
+            </button>
+            <button
+              onClick={() => setCurrentView('full')}
+              className="text-white/50 hover:text-white/70 flex items-center gap-1"
+            >
+              Want everything? <span className="font-semibold">Full Comprehensive →</span>
+            </button>
+          </div>
+        </motion.div>
+      </div>
+    </section>
+  );
+}
+
+// Get to Yes Component - 5 minute sales deck (7 slides)
+function GetToYes({ setCurrentView }: { setCurrentView: (view: ViewType) => void }) {
+  const slides = [
+    {
+      title: 'The Market',
+      color: 'blue',
+      content: (
+        <div className="space-y-4">
+          <div className="grid grid-cols-2 gap-4">
+            <div className="bg-white/5 rounded-lg p-4 text-center">
+              <div className="text-3xl font-black text-green-400">76%</div>
+              <div className="text-white/60 text-xs">prefer UK solutions</div>
+            </div>
+            <div className="bg-white/5 rounded-lg p-4 text-center">
+              <div className="text-3xl font-black text-blue-400">&lt;50%</div>
+              <div className="text-white/60 text-xs">have sustainability targets</div>
+            </div>
+          </div>
+          <p className="text-white/70 text-sm">Only 42% can define carbon credits. Knowledge gap = opportunity.</p>
+        </div>
+      ),
+    },
+    {
+      title: 'Your ICPs',
+      color: 'green',
+      content: (
+        <div className="space-y-3">
+          <div className="flex items-center justify-between">
+            <span className="text-white font-semibold">5 ICP Clusters</span>
+            <span className="text-green-400 font-bold">15,200+ Tier 1</span>
+          </div>
+          <div className="grid grid-cols-2 gap-2 text-xs">
+            {icpCategories.slice(0, 4).map((cat) => (
+              <div key={cat.name} className="bg-white/5 rounded px-2 py-1.5">
+                <span className="text-white/80">{cat.name}</span>
+              </div>
+            ))}
+          </div>
+          <p className="text-white/60 text-xs">Hard compliance deadlines: PPN 006, SECR, NHS Scope 3</p>
+        </div>
+      ),
+    },
+    {
+      title: 'The System',
+      color: 'purple',
+      content: (
+        <div className="flex items-center justify-center gap-2 text-sm py-4">
+          <span className="bg-blue-500/20 text-blue-400 px-3 py-2 rounded-lg font-semibold">Clay</span>
+          <span className="text-white/30">→</span>
+          <span className="bg-cyan-500/20 text-cyan-400 px-3 py-2 rounded-lg font-semibold">Signals</span>
+          <span className="text-white/30">→</span>
+          <span className="bg-purple-500/20 text-purple-400 px-3 py-2 rounded-lg font-semibold">Outreach</span>
+          <span className="text-white/30">→</span>
+          <span className="bg-green-500/20 text-green-400 px-3 py-2 rounded-lg font-semibold">Pipeline</span>
+        </div>
+      ),
+    },
+    {
+      title: 'The Intelligence',
+      color: 'cyan',
+      content: (
+        <div className="grid grid-cols-3 gap-2 text-xs">
+          <div className="bg-white/5 rounded-lg p-3 text-center">
+            <div className="text-lg mb-1">🏛️</div>
+            <div className="text-white/80">Tender Scraping</div>
+          </div>
+          <div className="bg-white/5 rounded-lg p-3 text-center">
+            <div className="text-lg mb-1">📡</div>
+            <div className="text-white/80">LinkedIn Signals</div>
+          </div>
+          <div className="bg-white/5 rounded-lg p-3 text-center">
+            <div className="text-lg mb-1">🔍</div>
+            <div className="text-white/80">Competitor Intel</div>
+          </div>
+        </div>
+      ),
+    },
+    {
+      title: 'The Timeline',
+      color: 'amber',
+      content: (
+        <div className="flex justify-between items-center text-xs">
+          {phases.map((phase, i) => (
+            <div key={phase.phase} className="flex items-center">
+              <div className="text-center">
+                <div className="text-lg mb-1">{phase.icon}</div>
+                <div className="text-white/80 font-semibold">{phase.title}</div>
+                <div className="text-white/50">{phase.weeks}</div>
+              </div>
+              {i < phases.length - 1 && <span className="text-white/20 mx-2">→</span>}
+            </div>
+          ))}
+        </div>
+      ),
+    },
+    {
+      title: 'The Investment',
+      color: 'green',
+      content: (
+        <div className="space-y-3">
+          <div className="flex justify-between items-center">
+            <span className="text-white/70">Day rate</span>
+            <span className="text-white font-bold">£500/day</span>
+          </div>
+          <div className="flex justify-between items-center">
+            <span className="text-white/70">Commitment</span>
+            <span className="text-white font-bold">2-3 days/week</span>
+          </div>
+          <div className="flex justify-between items-center">
+            <span className="text-white/70">Duration</span>
+            <span className="text-white font-bold">8-12 weeks</span>
+          </div>
+          <div className="bg-green-500/10 text-green-400 text-xs px-3 py-2 rounded text-center">
+            Weekly break clause — scale up/down anytime
+          </div>
+        </div>
+      ),
+    },
+    {
+      title: 'Next Step',
+      color: 'blue',
+      content: (
+        <div className="text-center py-2">
+          <p className="text-white/70 mb-4">30-minute discovery call to discuss your metrics and targets.</p>
+          <a
+            href="https://calendly.com/my-first-quest"
+            className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-500 to-green-500 text-white px-6 py-3 rounded-lg font-bold"
+          >
+            Book Call
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </a>
+        </div>
+      ),
+    },
+  ];
+
+  const colorMap: Record<string, string> = {
+    blue: 'border-blue-500/30 bg-blue-500/5',
+    green: 'border-green-500/30 bg-green-500/5',
+    purple: 'border-purple-500/30 bg-purple-500/5',
+    cyan: 'border-cyan-500/30 bg-cyan-500/5',
+    amber: 'border-amber-500/30 bg-amber-500/5',
+  };
+
+  const textColorMap: Record<string, string> = {
+    blue: 'text-blue-400',
+    green: 'text-green-400',
+    purple: 'text-purple-400',
+    cyan: 'text-cyan-400',
+    amber: 'text-amber-400',
+  };
+
+  return (
+    <section className="py-12 md:py-16 bg-black">
+      <div className="max-w-3xl mx-auto px-4">
+        {/* Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="text-center mb-10"
+        >
+          <span className="bg-blue-500/10 text-blue-400 text-xs uppercase tracking-wider px-3 py-1 rounded-full">
+            Get to Yes
+          </span>
+          <h2 className="text-2xl md:text-3xl font-black text-white mt-4">The 5-Minute Pitch</h2>
+          <p className="text-white/50 text-sm mt-2">Everything you need to know, nothing you don&apos;t.</p>
+        </motion.div>
+
+        {/* Slides */}
+        <div className="space-y-6">
+          {slides.map((slide, i) => (
+            <motion.div
+              key={slide.title}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: i * 0.1 }}
+              className={`border rounded-xl p-6 ${colorMap[slide.color]}`}
+            >
+              <div className="flex items-center gap-3 mb-4">
+                <span className={`text-xs font-bold ${textColorMap[slide.color]}`}>
+                  {String(i + 1).padStart(2, '0')}
+                </span>
+                <h3 className="font-bold text-white">{slide.title}</h3>
+              </div>
+              {slide.content}
+            </motion.div>
+          ))}
+        </div>
+
+        {/* Links to other views */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.8 }}
+          className="text-center mt-10 pt-10 border-t border-white/10"
+        >
+          <div className="flex flex-wrap justify-center gap-4 text-sm">
+            <button
+              onClick={() => setCurrentView('executive')}
+              className="text-white/50 hover:text-white/70 flex items-center gap-1"
+            >
+              ← Back to <span className="font-semibold">Executive Summary</span>
+            </button>
+            <button
+              onClick={() => setCurrentView('full')}
+              className="text-blue-400 hover:text-blue-300 flex items-center gap-1"
+            >
+              Want the full picture? <span className="font-semibold">Full Comprehensive →</span>
+            </button>
+          </div>
+        </motion.div>
+      </div>
+    </section>
+  );
+}
+
 export default function ClimatisePage() {
   const [password, setPassword] = useState('');
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [error, setError] = useState('');
+  const [currentView, setCurrentView] = useState<ViewType>('executive');
 
   const handlePasswordSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -576,8 +1003,28 @@ export default function ClimatisePage() {
 
   return (
     <main className="min-h-screen bg-black">
-      {/* Personalized Intro - "This is for you, Lennon" */}
-      <section className="py-8 md:py-12 bg-gradient-to-b from-zinc-950 to-black border-b border-white/5">
+      {/* Sticky View Navigation */}
+      <ViewNavigation currentView={currentView} setCurrentView={setCurrentView} />
+
+      {/* Conditional View Rendering */}
+      {currentView === 'executive' && <ExecutiveSummary setCurrentView={setCurrentView} />}
+      {currentView === 'gettoyes' && <GetToYes setCurrentView={setCurrentView} />}
+
+      {/* Full Comprehensive View */}
+      {currentView === 'full' && (
+        <>
+          {/* Full Comprehensive Header */}
+          <section className="py-6 bg-gradient-to-b from-zinc-950 to-black border-b border-white/10">
+            <div className="max-w-4xl mx-auto px-4 text-center">
+              <span className="bg-purple-500/10 text-purple-400 text-xs uppercase tracking-wider px-3 py-1 rounded-full">
+                Full Comprehensive
+              </span>
+              <p className="text-white/50 text-sm mt-3">The complete deep-dive. ~20 minutes.</p>
+            </div>
+          </section>
+
+          {/* Personalized Intro - "This is for you, Lennon" */}
+          <section className="py-8 md:py-12 bg-gradient-to-b from-zinc-950 to-black border-b border-white/5">
         <div className="max-w-4xl mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -832,24 +1279,6 @@ export default function ClimatisePage() {
               </span>
               Book Strategy Call
             </a>
-            <div className="flex items-center gap-3">
-              <button
-                onClick={() => window.print()}
-                className="text-white/70 hover:text-white px-4 py-2 rounded-lg font-medium transition flex items-center gap-2 text-sm"
-              >
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
-                </svg>
-                Download PDF
-              </button>
-              <a
-                href="/Climatise-ICP.pdf"
-                download
-                className="text-white/50 hover:text-green-400 px-4 py-2 text-sm"
-              >
-                ICP Analysis →
-              </a>
-            </div>
           </motion.div>
         </div>
       </section>
@@ -2666,6 +3095,35 @@ export default function ClimatisePage() {
 
       {/* Spacer for sticky bar */}
       <div className="h-20" />
+
+      {/* Back to other views - Full Comprehensive footer */}
+      <section className="py-10 bg-zinc-950 border-t border-white/10">
+        <div className="max-w-4xl mx-auto px-4 text-center">
+          <p className="text-white/50 text-sm mb-4">Want a quicker overview?</p>
+          <div className="flex flex-wrap justify-center gap-4">
+            <button
+              onClick={() => {
+                setCurrentView('executive');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }}
+              className="text-blue-400 hover:text-blue-300 text-sm flex items-center gap-1"
+            >
+              ← Executive Summary (30 sec)
+            </button>
+            <button
+              onClick={() => {
+                setCurrentView('gettoyes');
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }}
+              className="text-green-400 hover:text-green-300 text-sm flex items-center gap-1"
+            >
+              ← Get to Yes (5 min)
+            </button>
+          </div>
+        </div>
+      </section>
+        </>
+      )}
     </main>
   );
 }
