@@ -316,6 +316,97 @@ const flexibility = {
   record: 'We\'ve never had a client leave mid-pilot. The flexibility means they don\'t need to.',
 };
 
+// Expected Outcomes - Targets Framework
+const expectedOutcomes = {
+  title: 'Expected Outcomes',
+  subtitle: 'Targets to be agreed based on your current metrics',
+  note: 'Final targets calibrated during discovery based on your conversion rates, deal size, and sales cycle',
+  metrics: [
+    {
+      name: 'Qualified Leads/Month',
+      description: 'Net new companies entering pipeline',
+      formula: 'Based on: Tier 1 targets × outreach rate × response rate',
+      placeholder: 'TBD',
+      icon: '🎯',
+    },
+    {
+      name: 'Pipeline Value',
+      description: 'Monthly pipeline generated',
+      formula: 'Qualified leads × average deal size × stage probability',
+      placeholder: 'TBD',
+      icon: '💰',
+    },
+    {
+      name: 'Cost Per Lead',
+      description: 'Fully loaded acquisition cost',
+      formula: 'Monthly investment ÷ qualified leads',
+      placeholder: 'TBD',
+      icon: '📊',
+    },
+    {
+      name: 'Payback Period',
+      description: 'Time to ROI',
+      formula: 'Investment ÷ (pipeline × close rate × LTV)',
+      placeholder: 'TBD',
+      icon: '⏱️',
+    },
+  ],
+  inputs: {
+    title: 'What We Need From You',
+    items: [
+      'Current website conversion rate',
+      'Average deal size by tier',
+      'Sales cycle length',
+      'Current close rate',
+      'Customer lifetime value',
+    ],
+  },
+  commitment: 'We don\'t promise vanity metrics. We agree targets together and track what matters.',
+};
+
+// Narrative transitions / scroll prompts
+const narrativeFlow = [
+  { from: 'hero', prompt: 'But first, let us tell you why we understand this challenge...' },
+  { from: 'personal', prompt: 'Now let\'s look at the scale of opportunity...' },
+  { from: 'challenge', prompt: 'And the timing couldn\'t be better...' },
+  { from: 'whynow', prompt: 'So what does success look like?' },
+  { from: 'outcomes', prompt: 'Here\'s how we make it happen...' },
+  { from: 'solution', prompt: 'Powered by a battle-tested stack...' },
+  { from: 'stack', prompt: 'Delivered in a structured build...' },
+  { from: 'timeline', prompt: 'With investment that makes sense...' },
+  { from: 'investment', prompt: 'And zero lock-in...' },
+  { from: 'flexibility', prompt: 'Here\'s why we\'re different...' },
+];
+
+// Scroll Prompt Component - narrative guide between sections
+function ScrollPrompt({ text, color = 'blue' }: { text: string; color?: string }) {
+  const colorClasses: Record<string, string> = {
+    blue: 'text-blue-400 border-blue-500/20',
+    green: 'text-green-400 border-green-500/20',
+    amber: 'text-amber-400 border-amber-500/20',
+    purple: 'text-purple-400 border-purple-500/20',
+    cyan: 'text-cyan-400 border-cyan-500/20',
+  };
+
+  return (
+    <motion.div
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      viewport={{ once: true }}
+      className="py-8 md:py-12 flex flex-col items-center justify-center"
+    >
+      <p className={`text-sm md:text-base italic ${colorClasses[color]} mb-4 text-center px-4`}>
+        {text}
+      </p>
+      <motion.div
+        animate={{ y: [0, 8, 0] }}
+        transition={{ repeat: Infinity, duration: 1.5 }}
+        className={`w-6 h-6 border-b-2 border-r-2 ${colorClasses[color]} transform rotate-45`}
+      />
+    </motion.div>
+  );
+}
+
 const CORRECT_PASSWORD = 'climatisegtmquest2026';
 
 export default function ClimatisePage() {
@@ -584,6 +675,76 @@ export default function ClimatisePage() {
         </div>
       </section>
 
+      {/* Narrative Prompt 1 */}
+      <ScrollPrompt text={narrativeFlow[0].prompt} color="amber" />
+
+      {/* Personal ICP Experience - MOVED UP for trust building */}
+      <section className="py-12 md:py-16 bg-gradient-to-b from-black to-zinc-950">
+        <div className="max-w-5xl mx-auto px-4">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="bg-gradient-to-r from-amber-500/10 via-orange-500/5 to-amber-500/10 border-2 border-amber-500/30 rounded-2xl p-6 md:p-8 relative overflow-hidden"
+          >
+            <div className="absolute top-4 right-4">
+              <span className="text-xs bg-amber-500/20 text-amber-400 px-3 py-1 rounded-full font-bold border border-amber-500/30">
+                Why We Get It
+              </span>
+            </div>
+
+            <div className="flex items-start gap-3 md:gap-4 mb-6">
+              <div className="text-3xl md:text-4xl">🎯</div>
+              <div>
+                <h3 className="text-xl md:text-2xl font-black text-amber-400 mb-2">{personalExperience.title}</h3>
+                <p className="text-white/80 text-sm md:text-lg">{personalExperience.tagline}</p>
+              </div>
+            </div>
+
+            <div className="bg-black/30 rounded-xl p-4 md:p-6 mb-6">
+              <div className="grid md:grid-cols-2 gap-4 md:gap-6">
+                <div>
+                  <div className="text-white/50 text-xs uppercase tracking-wider mb-2">The Experience</div>
+                  <div className="space-y-2 text-sm">
+                    <div className="text-white"><strong>{personalExperience.story.company}</strong> - {personalExperience.story.size}</div>
+                    <div className="text-white/70">{personalExperience.story.challenge}</div>
+                  </div>
+                </div>
+                <div>
+                  <div className="text-white/50 text-xs uppercase tracking-wider mb-2">The Pain Points</div>
+                  <ul className="space-y-1">
+                    {personalExperience.story.painPoints.map((point, i) => (
+                      <li key={i} className="flex items-start gap-2 text-white/70 text-xs md:text-sm">
+                        <span className="text-amber-400">•</span>
+                        {point}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <div className="space-y-3 md:space-y-4">
+              <p className="text-white/80 text-sm md:text-base italic border-l-2 border-amber-500/50 pl-4">
+                &quot;{personalExperience.story.outcome}&quot;
+              </p>
+              <div className="flex flex-col md:flex-row gap-3 md:gap-4 text-xs md:text-sm">
+                <div className="bg-amber-500/10 rounded-lg px-4 py-2">
+                  <span className="text-amber-400 font-semibold">{personalExperience.advantage}</span>
+                </div>
+                <div className="bg-green-500/10 rounded-lg px-4 py-2 flex items-center gap-2">
+                  <span className="text-green-400">✓</span>
+                  <span className="text-green-400 font-semibold">{personalExperience.availability}</span>
+                </div>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Narrative Prompt 2 */}
+      <ScrollPrompt text={narrativeFlow[1].prompt} color="green" />
+
       {/* Executive Summary */}
       <section className="py-16 bg-zinc-950 border-y border-white/5">
         <div className="max-w-5xl mx-auto px-4">
@@ -667,70 +828,6 @@ export default function ClimatisePage() {
                 <div className="flex items-start gap-3">
                   <span className="text-green-400">✓</span>
                   <span className="text-white/80"><strong className="text-white">Training available</strong> - bring Clay expertise in-house</span>
-                </div>
-              </div>
-            </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Personal ICP Experience - Critical Competitive Advantage */}
-      <section className="py-16 bg-gradient-to-b from-zinc-950 to-black">
-        <div className="max-w-5xl mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="bg-gradient-to-r from-amber-500/10 via-orange-500/5 to-amber-500/10 border-2 border-amber-500/30 rounded-2xl p-8 relative overflow-hidden"
-          >
-            <div className="absolute top-4 right-4">
-              <span className="text-xs bg-amber-500/20 text-amber-400 px-3 py-1 rounded-full font-bold border border-amber-500/30">
-                Competitive Edge
-              </span>
-            </div>
-
-            <div className="flex items-start gap-4 mb-6">
-              <div className="text-4xl">🎯</div>
-              <div>
-                <h3 className="text-2xl font-black text-amber-400 mb-2">{personalExperience.title}</h3>
-                <p className="text-white/80 text-lg">{personalExperience.tagline}</p>
-              </div>
-            </div>
-
-            <div className="bg-black/30 rounded-xl p-6 mb-6">
-              <div className="grid md:grid-cols-2 gap-6">
-                <div>
-                  <div className="text-white/50 text-xs uppercase tracking-wider mb-2">The Experience</div>
-                  <div className="space-y-2 text-sm">
-                    <div className="text-white"><strong>{personalExperience.story.company}</strong> - {personalExperience.story.size}</div>
-                    <div className="text-white/70">{personalExperience.story.challenge}</div>
-                  </div>
-                </div>
-                <div>
-                  <div className="text-white/50 text-xs uppercase tracking-wider mb-2">The Pain Points</div>
-                  <ul className="space-y-1">
-                    {personalExperience.story.painPoints.map((point, i) => (
-                      <li key={i} className="flex items-start gap-2 text-white/70 text-sm">
-                        <span className="text-amber-400">•</span>
-                        {point}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-            </div>
-
-            <div className="space-y-4">
-              <p className="text-white/80 italic border-l-2 border-amber-500/50 pl-4">
-                &quot;{personalExperience.story.outcome}&quot;
-              </p>
-              <div className="flex flex-wrap gap-4 text-sm">
-                <div className="bg-amber-500/10 rounded-lg px-4 py-2">
-                  <span className="text-amber-400 font-semibold">{personalExperience.advantage}</span>
-                </div>
-                <div className="bg-green-500/10 rounded-lg px-4 py-2 flex items-center gap-2">
-                  <span className="text-green-400">✓</span>
-                  <span className="text-green-400 font-semibold">{personalExperience.availability}</span>
                 </div>
               </div>
             </div>
@@ -840,6 +937,96 @@ export default function ClimatisePage() {
           </motion.div>
         </div>
       </section>
+
+      {/* Narrative Prompt - What does success look like? */}
+      <ScrollPrompt text={narrativeFlow[3].prompt} color="green" />
+
+      {/* Expected Outcomes - THE MISSING PIECE */}
+      <section className="py-16 md:py-20 bg-black">
+        <div className="max-w-5xl mx-auto px-4">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-10 md:mb-12"
+          >
+            <span className="text-green-400 text-sm font-bold uppercase tracking-wider">
+              {expectedOutcomes.title}
+            </span>
+            <h2 className="text-2xl md:text-4xl font-bold text-white mt-2 mb-4">
+              {expectedOutcomes.subtitle}
+            </h2>
+            <p className="text-white/60 text-sm md:text-base max-w-2xl mx-auto">
+              {expectedOutcomes.note}
+            </p>
+          </motion.div>
+
+          {/* Metrics Grid */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+            {expectedOutcomes.metrics.map((metric, index) => (
+              <motion.div
+                key={metric.name}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+                className="bg-zinc-900 border border-green-500/20 rounded-xl p-4 md:p-5 text-center hover:border-green-500/40 transition"
+              >
+                <div className="text-2xl md:text-3xl mb-2">{metric.icon}</div>
+                <div className="text-2xl md:text-3xl font-black text-green-400 mb-1">{metric.placeholder}</div>
+                <div className="font-semibold text-white text-xs md:text-sm mb-1">{metric.name}</div>
+                <div className="text-white/40 text-xs hidden md:block">{metric.description}</div>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Formula explanations - collapsed on mobile */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="bg-zinc-900/50 border border-white/10 rounded-xl p-5 md:p-6 mb-8 hidden md:block"
+          >
+            <h4 className="text-white/50 text-xs uppercase tracking-wider mb-4">How We Calculate</h4>
+            <div className="grid md:grid-cols-2 gap-4">
+              {expectedOutcomes.metrics.map((metric) => (
+                <div key={metric.name} className="text-sm">
+                  <span className="text-white font-semibold">{metric.name}:</span>
+                  <span className="text-white/50 ml-2">{metric.formula}</span>
+                </div>
+              ))}
+            </div>
+          </motion.div>
+
+          {/* What We Need From You */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="bg-gradient-to-r from-blue-500/10 to-green-500/10 border border-blue-500/30 rounded-xl p-5 md:p-6"
+          >
+            <div className="flex items-start gap-4">
+              <div className="text-2xl">📋</div>
+              <div className="flex-1">
+                <h4 className="font-bold text-white mb-3">{expectedOutcomes.inputs.title}</h4>
+                <div className="flex flex-wrap gap-2 mb-4">
+                  {expectedOutcomes.inputs.items.map((item, i) => (
+                    <span key={i} className="text-xs bg-white/5 text-white/70 px-3 py-1.5 rounded-lg">
+                      {item}
+                    </span>
+                  ))}
+                </div>
+                <p className="text-green-400 text-sm font-semibold">
+                  {expectedOutcomes.commitment}
+                </p>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Narrative Prompt - How we make it happen */}
+      <ScrollPrompt text={narrativeFlow[4].prompt} color="blue" />
 
       {/* Tier 1 Priority ICPs */}
       <section className="py-20 bg-zinc-950">
@@ -1129,6 +1316,11 @@ export default function ClimatisePage() {
           >
             * Stack is provisional and will be refined based on your specific requirements and existing tools.
           </motion.p>
+
+          {/* Narrative Prompt - Delivered in a structured build */}
+          <div className="mt-12">
+            <ScrollPrompt text={narrativeFlow[6].prompt} color="green" />
+          </div>
 
           {/* Simplified Architecture Flow */}
           <motion.div
@@ -1543,6 +1735,9 @@ export default function ClimatisePage() {
         </div>
       </section>
 
+      {/* Narrative Prompt - Investment */}
+      <ScrollPrompt text={narrativeFlow[7].prompt} color="green" />
+
       {/* Investment Options */}
       <section className="py-20 bg-black">
         <div className="max-w-4xl mx-auto px-4">
@@ -1684,6 +1879,9 @@ export default function ClimatisePage() {
           </motion.p>
         </div>
       </section>
+
+      {/* Narrative Prompt - Zero lock-in */}
+      <ScrollPrompt text={narrativeFlow[8].prompt} color="green" />
 
       {/* Risk Mitigation / Total Flexibility */}
       <section className="py-16 md:py-20 bg-zinc-950">
