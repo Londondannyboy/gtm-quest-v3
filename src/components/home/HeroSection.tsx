@@ -19,6 +19,8 @@ export function HeroSection() {
           autoPlay="muted"
           loop
           muted
+          preload="auto"
+          poster={`https://image.mux.com/qIS6PGKxIZyzjrDBzxQuqPRBOhHofDnXq1chdsqAY9Y/thumbnail.webp?time=0`}
           className="absolute inset-0 w-full h-full object-cover"
           style={{
             '--controls': 'none',
