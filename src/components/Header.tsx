@@ -7,6 +7,9 @@ import { SignedIn, SignedOut, UserButton } from '@/lib/auth';
 // Check if Neon Auth is configured
 const isAuthConfigured = !!process.env.NEXT_PUBLIC_NEON_AUTH_URL;
 
+// Cal.com booking link - replace with your actual link
+const BOOKING_LINK = 'https://cal.com/mike-hanley';
+
 export function Header() {
   const [mounted, setMounted] = useState(false);
   const [articlesOpen, setArticlesOpen] = useState(false);
@@ -32,14 +35,14 @@ export function Header() {
       <div className="max-w-7xl mx-auto px-4 h-14 flex items-center justify-between">
         {/* Logo */}
         <Link href="/" className="font-bold text-white text-lg flex items-center gap-2">
-          <span className="text-emerald-400">GTM</span>
+          <span className="text-blue-400">GTM</span>
           <span>Quest</span>
         </Link>
 
         {/* Nav Links */}
-        <nav className="flex items-center gap-6">
+        <nav className="flex items-center gap-4 md:gap-6">
           {/* Articles Dropdown */}
-          <div className="relative" ref={dropdownRef}>
+          <div className="relative hidden md:block" ref={dropdownRef}>
             <button
               onClick={() => setArticlesOpen(!articlesOpen)}
               className="text-white/60 hover:text-white text-sm transition flex items-center gap-1"
@@ -69,7 +72,7 @@ export function Header() {
                   onClick={() => setArticlesOpen(false)}
                   className="block px-4 py-3 text-white/60 hover:bg-white/5 hover:text-white text-sm"
                 >
-                  <span className="text-emerald-400 mr-2">📘</span>
+                  <span className="text-blue-400 mr-2">📘</span>
                   Guides & Frameworks
                 </Link>
                 <Link
@@ -94,14 +97,14 @@ export function Header() {
 
           <Link
             href="/agencies"
-            className="text-white/60 hover:text-white text-sm transition"
+            className="text-white/60 hover:text-white text-sm transition hidden md:block"
           >
             Agencies
           </Link>
 
           <Link
             href="/dashboard"
-            className="text-white/60 hover:text-white text-sm transition"
+            className="text-white/60 hover:text-white text-sm transition hidden md:block"
           >
             Dashboard
           </Link>
@@ -112,7 +115,7 @@ export function Header() {
               <SignedOut>
                 <Link
                   href="/auth/sign-in"
-                  className="text-white/60 hover:text-white text-sm transition"
+                  className="text-white/60 hover:text-white text-sm transition hidden md:block"
                 >
                   Sign In
                 </Link>
@@ -123,21 +126,22 @@ export function Header() {
             </>
           )}
 
-          {/* Get Started CTA */}
-          {mounted && (
-            <Link
-              href="/dashboard"
-              className="bg-emerald-500 hover:bg-emerald-600 text-white text-sm px-4 py-2 rounded-lg transition font-medium"
-            >
-              Get Started
-            </Link>
-          )}
+          {/* Book a Meeting CTA - Eye-catching */}
+          <a
+            href={BOOKING_LINK}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="relative bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white text-sm px-4 py-2 rounded-lg transition font-semibold animate-pulse-glow flex items-center gap-2"
+          >
+            <span className="w-2 h-2 bg-white rounded-full animate-pulse" />
+            Book a Call
+          </a>
 
           {/* Beta Badge */}
-          <div className="flex items-center">
-            <span className="inline-flex items-center gap-1.5 bg-emerald-500/10 border border-emerald-500/30 rounded-full px-3 py-1">
-              <span className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse" />
-              <span className="text-xs font-bold text-emerald-400 uppercase tracking-wider">
+          <div className="hidden md:flex items-center">
+            <span className="inline-flex items-center gap-1.5 bg-blue-500/10 border border-blue-500/30 rounded-full px-3 py-1">
+              <span className="w-2 h-2 bg-blue-500 rounded-full animate-pulse" />
+              <span className="text-xs font-bold text-blue-400 uppercase tracking-wider">
                 Beta
               </span>
             </span>

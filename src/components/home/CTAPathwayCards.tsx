@@ -10,7 +10,7 @@ const pathways = [
     description: 'Get hands-on help with your go-to-market strategy and execution from our expert team.',
     icon: '🎯',
     href: '/contact',
-    color: 'emerald',
+    color: 'blue',
     badge: 'Recommended',
   },
   {
@@ -19,7 +19,7 @@ const pathways = [
     description: 'Let our AI match you with the ideal agency from 200+ vetted GTM specialists.',
     icon: '🔍',
     href: '/dashboard',
-    color: 'blue',
+    color: 'cyan',
     badge: null,
   },
   {
@@ -37,23 +37,23 @@ const pathways = [
     description: 'Explore our complete directory of 200+ GTM agencies by specialization and region.',
     icon: '📚',
     href: '/agencies',
-    color: 'amber',
+    color: 'indigo',
     badge: null,
   },
 ];
 
 const colorClasses: Record<string, { border: string; shadow: string; iconBg: string; iconText: string }> = {
-  emerald: {
-    border: 'hover:border-emerald-500/50',
-    shadow: 'hover:shadow-emerald-500/10',
-    iconBg: 'bg-emerald-500/20',
-    iconText: 'text-emerald-400',
-  },
   blue: {
     border: 'hover:border-blue-500/50',
     shadow: 'hover:shadow-blue-500/10',
     iconBg: 'bg-blue-500/20',
     iconText: 'text-blue-400',
+  },
+  cyan: {
+    border: 'hover:border-cyan-500/50',
+    shadow: 'hover:shadow-cyan-500/10',
+    iconBg: 'bg-cyan-500/20',
+    iconText: 'text-cyan-400',
   },
   purple: {
     border: 'hover:border-purple-500/50',
@@ -61,11 +61,11 @@ const colorClasses: Record<string, { border: string; shadow: string; iconBg: str
     iconBg: 'bg-purple-500/20',
     iconText: 'text-purple-400',
   },
-  amber: {
-    border: 'hover:border-amber-500/50',
-    shadow: 'hover:shadow-amber-500/10',
-    iconBg: 'bg-amber-500/20',
-    iconText: 'text-amber-400',
+  indigo: {
+    border: 'hover:border-indigo-500/50',
+    shadow: 'hover:shadow-indigo-500/10',
+    iconBg: 'bg-indigo-500/20',
+    iconText: 'text-indigo-400',
   },
 };
 
@@ -74,10 +74,10 @@ export function CTAPathwayCards() {
     <section className="py-16 bg-gradient-to-b from-black to-zinc-950">
       <div className="max-w-6xl mx-auto px-4">
         <div className="text-center mb-12">
-          <h2 className="text-2xl md:text-3xl font-bold mb-4">
+          <h2 className="text-2xl md:text-3xl font-bold mb-4 text-white">
             Choose Your Path to GTM Success
           </h2>
-          <p className="text-white/60 max-w-2xl mx-auto">
+          <p className="text-white/70 max-w-2xl mx-auto">
             Whether you need hands-on help or want to explore on your own,
             we have the right solution for your go-to-market journey.
           </p>
@@ -109,7 +109,7 @@ export function CTAPathwayCards() {
                     </div>
                     <div className="flex-1">
                       <div className="flex items-center gap-2 mb-2">
-                        <h3 className="font-bold text-lg text-white group-hover:text-emerald-400 transition">
+                        <h3 className="font-bold text-lg text-white group-hover:text-blue-400 transition">
                           {pathway.title}
                         </h3>
                         {pathway.badge && (
@@ -118,17 +118,17 @@ export function CTAPathwayCards() {
                               ${
                                 pathway.badge === 'Beta'
                                   ? 'bg-purple-500/20 text-purple-400'
-                                  : 'bg-emerald-500/20 text-emerald-400'
+                                  : 'bg-blue-500/20 text-blue-400'
                               }`}
                           >
                             {pathway.badge}
                           </span>
                         )}
                       </div>
-                      <p className="text-white/60 text-sm">{pathway.description}</p>
+                      <p className="text-white/70 text-sm">{pathway.description}</p>
                     </div>
                     <svg
-                      className="w-5 h-5 text-white/30 group-hover:text-emerald-400 group-hover:translate-x-1 transition flex-shrink-0 mt-1"
+                      className="w-5 h-5 text-white/30 group-hover:text-blue-400 group-hover:translate-x-1 transition flex-shrink-0 mt-1"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"

@@ -41,7 +41,7 @@ export function SocialProof() {
                   scrollSpyOnce
                 />
               </div>
-              <div className="text-white/50 text-sm flex items-center justify-center gap-2">
+              <div className="text-white/70 text-sm flex items-center justify-center gap-2">
                 <span>{stat.icon}</span>
                 {stat.label}
               </div>
@@ -55,11 +55,11 @@ export function SocialProof() {
           whileInView={{ opacity: 1 }}
           viewport={{ once: true }}
           transition={{ delay: 0.4 }}
-          className="flex flex-wrap items-center justify-center gap-6 text-white/40 text-sm"
+          className="flex flex-wrap items-center justify-center gap-6 text-white/60 text-sm"
         >
           {trustBadges.map((badge) => (
             <span key={badge.text} className="flex items-center gap-2">
-              <span className="text-emerald-400">{badge.icon}</span>
+              <span className="text-blue-400">{badge.icon}</span>
               {badge.text}
             </span>
           ))}

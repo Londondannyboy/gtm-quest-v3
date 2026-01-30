@@ -43,15 +43,15 @@ export default function ContactPage() {
         >
           <Link
             href="/"
-            className="text-emerald-400 text-sm font-medium hover:text-emerald-300 mb-4 inline-block"
+            className="text-blue-400 text-sm font-medium hover:text-blue-300 mb-4 inline-block"
           >
             ← Back to Home
           </Link>
           <h1 className="text-4xl md:text-5xl font-black mb-4">
             <span className="text-white">Work with </span>
-            <span className="text-emerald-400">GTM Quest</span>
+            <span className="bg-gradient-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent">GTM Quest</span>
           </h1>
-          <p className="text-xl text-white/60 max-w-2xl mx-auto">
+          <p className="text-xl text-white/80 max-w-2xl mx-auto">
             Get hands-on help with your go-to-market strategy and execution from our expert team
           </p>
         </motion.div>
@@ -79,14 +79,14 @@ export default function ContactPage() {
               title: 'Ongoing Optimization',
               description: 'Continuous improvement based on data and results',
             },
-          ].map((benefit, index) => (
+          ].map((benefit) => (
             <div
               key={benefit.title}
-              className="bg-zinc-900/50 border border-white/10 rounded-xl p-6 text-center"
+              className="bg-zinc-900/50 border border-white/10 rounded-xl p-6 text-center hover:border-blue-500/30 transition"
             >
               <div className="text-3xl mb-3">{benefit.icon}</div>
               <h3 className="font-semibold text-white mb-2">{benefit.title}</h3>
-              <p className="text-white/50 text-sm">{benefit.description}</p>
+              <p className="text-white/60 text-sm">{benefit.description}</p>
             </div>
           ))}
         </motion.div>
@@ -102,12 +102,12 @@ export default function ContactPage() {
             <div className="text-center py-12">
               <div className="text-5xl mb-4">🎉</div>
               <h2 className="text-2xl font-bold text-white mb-2">Thank You!</h2>
-              <p className="text-white/60 mb-6">
+              <p className="text-white/70 mb-6">
                 We&apos;ve received your message and will get back to you within 24 hours.
               </p>
               <Link
                 href="/"
-                className="inline-flex items-center gap-2 text-emerald-400 hover:text-emerald-300"
+                className="inline-flex items-center gap-2 text-blue-400 hover:text-blue-300"
               >
                 ← Back to Home
               </Link>
@@ -116,7 +116,7 @@ export default function ContactPage() {
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid md:grid-cols-2 gap-6">
                 <div>
-                  <label htmlFor="name" className="block text-sm font-medium text-white/80 mb-2">
+                  <label htmlFor="name" className="block text-sm font-medium text-white mb-2">
                     Your Name *
                   </label>
                   <input
@@ -126,12 +126,12 @@ export default function ContactPage() {
                     required
                     value={formState.name}
                     onChange={handleChange}
-                    className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white placeholder-white/30 focus:outline-none focus:border-emerald-500/50 focus:ring-1 focus:ring-emerald-500/50 transition"
+                    className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white placeholder-white/30 focus:outline-none focus:border-blue-500/50 focus:ring-1 focus:ring-blue-500/50 transition"
                     placeholder="John Smith"
                   />
                 </div>
                 <div>
-                  <label htmlFor="email" className="block text-sm font-medium text-white/80 mb-2">
+                  <label htmlFor="email" className="block text-sm font-medium text-white mb-2">
                     Work Email *
                   </label>
                   <input
@@ -141,14 +141,14 @@ export default function ContactPage() {
                     required
                     value={formState.email}
                     onChange={handleChange}
-                    className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white placeholder-white/30 focus:outline-none focus:border-emerald-500/50 focus:ring-1 focus:ring-emerald-500/50 transition"
+                    className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white placeholder-white/30 focus:outline-none focus:border-blue-500/50 focus:ring-1 focus:ring-blue-500/50 transition"
                     placeholder="john@company.com"
                   />
                 </div>
               </div>
 
               <div>
-                <label htmlFor="company" className="block text-sm font-medium text-white/80 mb-2">
+                <label htmlFor="company" className="block text-sm font-medium text-white mb-2">
                   Company Name *
                 </label>
                 <input
@@ -158,13 +158,13 @@ export default function ContactPage() {
                   required
                   value={formState.company}
                   onChange={handleChange}
-                  className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white placeholder-white/30 focus:outline-none focus:border-emerald-500/50 focus:ring-1 focus:ring-emerald-500/50 transition"
+                  className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white placeholder-white/30 focus:outline-none focus:border-blue-500/50 focus:ring-1 focus:ring-blue-500/50 transition"
                   placeholder="Acme Inc."
                 />
               </div>
 
               <div>
-                <label htmlFor="message" className="block text-sm font-medium text-white/80 mb-2">
+                <label htmlFor="message" className="block text-sm font-medium text-white mb-2">
                   Tell us about your GTM challenges *
                 </label>
                 <textarea
@@ -174,19 +174,19 @@ export default function ContactPage() {
                   rows={5}
                   value={formState.message}
                   onChange={handleChange}
-                  className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white placeholder-white/30 focus:outline-none focus:border-emerald-500/50 focus:ring-1 focus:ring-emerald-500/50 transition resize-none"
+                  className="w-full bg-white/5 border border-white/10 rounded-lg px-4 py-3 text-white placeholder-white/30 focus:outline-none focus:border-blue-500/50 focus:ring-1 focus:ring-blue-500/50 transition resize-none"
                   placeholder="What GTM challenges are you facing? What are your growth goals? What have you tried so far?"
                 />
               </div>
 
               <div className="flex flex-col sm:flex-row items-center justify-between gap-4 pt-4">
-                <p className="text-white/40 text-sm">
+                <p className="text-white/50 text-sm">
                   We typically respond within 24 hours
                 </p>
                 <button
                   type="submit"
                   disabled={isSubmitting}
-                  className="w-full sm:w-auto bg-emerald-500 hover:bg-emerald-600 disabled:bg-emerald-500/50 disabled:cursor-not-allowed text-white px-8 py-3 rounded-xl font-bold transition flex items-center justify-center gap-2"
+                  className="w-full sm:w-auto bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 disabled:from-blue-500/50 disabled:to-blue-600/50 disabled:cursor-not-allowed text-white px-8 py-3 rounded-xl font-bold transition flex items-center justify-center gap-2"
                 >
                   {isSubmitting ? (
                     <>
@@ -242,17 +242,17 @@ export default function ContactPage() {
           transition={{ delay: 0.3 }}
           className="mt-8 text-center"
         >
-          <div className="flex flex-wrap items-center justify-center gap-6 text-white/40 text-sm">
+          <div className="flex flex-wrap items-center justify-center gap-6 text-white/50 text-sm">
             <span className="flex items-center gap-2">
-              <span className="text-emerald-400">✓</span>
+              <span className="text-blue-400">✓</span>
               No obligation
             </span>
             <span className="flex items-center gap-2">
-              <span className="text-emerald-400">✓</span>
+              <span className="text-blue-400">✓</span>
               Free consultation
             </span>
             <span className="flex items-center gap-2">
-              <span className="text-emerald-400">✓</span>
+              <span className="text-blue-400">✓</span>
               24hr response time
             </span>
           </div>

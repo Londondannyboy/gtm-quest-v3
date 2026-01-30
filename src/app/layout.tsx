@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import { Providers } from "@/components/providers";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
+import { FloatingBookingWidget } from "@/components/ui/FloatingBookingWidget";
 import "./globals.css";
 import "@copilotkit/react-ui/styles.css";
 
@@ -50,6 +51,7 @@ export default function RootLayout({
               {children}
             </main>
             <Footer />
+            <FloatingBookingWidget />
           </div>
         </Providers>
       </body>

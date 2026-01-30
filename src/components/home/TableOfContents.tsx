@@ -54,7 +54,7 @@ export function TableOfContents() {
   const scrollToSection = (id: string) => {
     const el = document.getElementById(id);
     if (el) {
-      const offset = 80; // Account for fixed header
+      const offset = 80;
       const top = el.getBoundingClientRect().top + window.scrollY - offset;
       window.scrollTo({ top, behavior: 'smooth' });
     }
@@ -65,9 +65,9 @@ export function TableOfContents() {
 
   return (
     <>
-      {/* Mobile: Horizontal scrollable pills (sticky below header) */}
+      {/* Mobile: Horizontal scrollable pills */}
       <nav
-        className="lg:hidden sticky top-14 z-30 bg-black/90 backdrop-blur-sm border-b border-white/10 -mx-4 px-4"
+        className="lg:hidden sticky top-14 z-30 bg-black/95 backdrop-blur-sm border-b border-white/10 -mx-4 px-4"
         aria-label="Table of contents"
       >
         <div className="flex gap-2 py-3 overflow-x-auto no-scrollbar">
@@ -77,8 +77,8 @@ export function TableOfContents() {
               onClick={() => scrollToSection(item.id)}
               className={`flex items-center gap-2 px-3 py-2 rounded-lg text-sm whitespace-nowrap transition ${
                 activeSection === item.id
-                  ? 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30'
-                  : 'bg-white/5 text-white/60 hover:text-white hover:bg-white/10'
+                  ? 'bg-blue-500/20 text-blue-400 border border-blue-500/30'
+                  : 'bg-white/5 text-white/80 hover:text-white hover:bg-white/10'
               }`}
             >
               <span>{item.icon}</span>
@@ -96,8 +96,8 @@ export function TableOfContents() {
         style={{ pointerEvents: isSticky ? 'auto' : 'none' }}
         aria-label="Table of contents"
       >
-        <div className="bg-zinc-900/90 backdrop-blur-sm border border-white/10 rounded-2xl p-4 shadow-xl">
-          <div className="text-xs font-bold text-white/50 uppercase tracking-wider mb-4">
+        <div className="bg-zinc-900/95 backdrop-blur-sm border border-white/10 rounded-2xl p-4 shadow-xl">
+          <div className="text-xs font-bold text-white uppercase tracking-wider mb-4">
             On This Page
           </div>
           <ul className="space-y-1">
@@ -111,15 +111,15 @@ export function TableOfContents() {
                     onClick={() => scrollToSection(item.id)}
                     className={`flex items-center gap-3 w-full text-left px-3 py-2 rounded-lg transition group ${
                       isActive
-                        ? 'bg-emerald-500/20 text-emerald-400'
+                        ? 'bg-blue-500/20 text-blue-400'
                         : isPast
-                          ? 'text-white/40 hover:text-white/60'
-                          : 'text-white/60 hover:text-white hover:bg-white/5'
+                          ? 'text-white/50 hover:text-white/70'
+                          : 'text-white/80 hover:text-white hover:bg-white/5'
                     }`}
                   >
                     <span
                       className={`w-8 h-8 rounded-lg flex items-center justify-center text-sm
-                        ${isActive ? 'bg-emerald-500/30' : 'bg-white/5 group-hover:bg-white/10'}`}
+                        ${isActive ? 'bg-blue-500/30' : 'bg-white/5 group-hover:bg-white/10'}`}
                     >
                       {isPast ? '✓' : item.icon}
                     </span>
@@ -132,16 +132,16 @@ export function TableOfContents() {
 
           {/* Progress indicator */}
           <div className="mt-4 pt-4 border-t border-white/10">
-            <div className="flex items-center gap-2 text-xs text-white/40">
+            <div className="flex items-center gap-2 text-xs text-white/50">
               <div className="w-full h-1 bg-white/10 rounded-full overflow-hidden">
                 <motion.div
-                  className="h-full bg-emerald-500"
+                  className="h-full bg-gradient-to-r from-blue-500 to-blue-400"
                   initial={{ width: 0 }}
                   animate={{ width: `${progress}%` }}
                   transition={{ duration: 0.3 }}
                 />
               </div>
-              <span>
+              <span className="text-white/70">
                 {activeIndex + 1}/{tocItems.length}
               </span>
             </div>
@@ -149,22 +149,22 @@ export function TableOfContents() {
         </div>
       </motion.nav>
 
-      {/* Inline TOC for when sidebar isn't sticky (desktop) */}
-      <div className="hidden lg:block bg-zinc-900/50 border border-white/10 rounded-xl p-6 mb-8">
-        <h2 className="text-sm font-bold text-white/80 uppercase tracking-wider mb-4">
+      {/* Inline TOC for desktop - cleaner design */}
+      <div className="hidden lg:block bg-zinc-900/80 backdrop-blur-sm border border-white/10 rounded-2xl p-6 mb-8">
+        <h2 className="text-sm font-bold text-white uppercase tracking-wider mb-4">
           On This Page
         </h2>
-        <ul className="grid grid-cols-2 gap-2">
+        <ul className="grid grid-cols-2 gap-3">
           {tocItems.map((item) => (
             <li key={item.id}>
               <button
                 onClick={() => scrollToSection(item.id)}
-                className="flex items-center gap-3 text-white/60 hover:text-emerald-400 transition py-2 group w-full text-left"
+                className="flex items-center gap-3 text-white/80 hover:text-blue-400 transition py-2 group w-full text-left"
               >
-                <span className="w-8 h-8 rounded-lg bg-white/5 group-hover:bg-emerald-500/20 flex items-center justify-center text-sm">
+                <span className="w-8 h-8 rounded-lg bg-white/5 group-hover:bg-blue-500/20 flex items-center justify-center text-sm transition">
                   {item.icon}
                 </span>
-                <span className="text-sm">{item.label}</span>
+                <span className="text-sm font-medium">{item.label}</span>
               </button>
             </li>
           ))}

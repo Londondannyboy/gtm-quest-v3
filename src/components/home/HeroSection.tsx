@@ -9,6 +9,9 @@ const MuxPlayer = dynamic(
   { ssr: false }
 );
 
+// Cal.com booking link
+const BOOKING_LINK = 'https://cal.com/mike-hanley';
+
 export function HeroSection() {
   return (
     <section className="relative min-h-[90vh] overflow-hidden flex items-center">
@@ -20,6 +23,7 @@ export function HeroSection() {
           loop
           muted
           preload="auto"
+          streamType="on-demand"
           poster={`https://image.mux.com/qIS6PGKxIZyzjrDBzxQuqPRBOhHofDnXq1chdsqAY9Y/thumbnail.webp?time=0`}
           className="absolute inset-0 w-full h-full object-cover"
           style={{
@@ -38,20 +42,37 @@ export function HeroSection() {
         {/* Hidden SEO H2 - accessible to screen readers and search engines */}
         <h2 className="sr-only">GTM Agency Matching</h2>
 
+        {/* Top CTA - Book a Call */}
+        <a
+          href={BOOKING_LINK}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-3 bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white px-6 py-3 rounded-full font-bold text-sm mb-8 animate-pulse-glow transition-all hover:scale-105"
+        >
+          <span className="relative flex h-3 w-3">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
+            <span className="relative inline-flex rounded-full h-3 w-3 bg-white"></span>
+          </span>
+          Book a Free Strategy Call with Mike
+          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+          </svg>
+        </a>
+
         {/* Badge */}
-        <div className="inline-flex items-center gap-2 bg-emerald-500/10 border border-emerald-500/20 rounded-full px-4 py-2 mb-6">
-          <span className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse" />
-          <span className="text-sm text-emerald-400">AI-Powered GTM Strategy</span>
+        <div className="inline-flex items-center gap-2 bg-blue-500/10 border border-blue-500/20 rounded-full px-4 py-2 mb-6">
+          <span className="w-2 h-2 bg-blue-500 rounded-full animate-pulse" />
+          <span className="text-sm text-blue-400">AI-Powered GTM Strategy</span>
         </div>
 
         {/* New Prominent H1 */}
         <h1 className="text-5xl md:text-6xl lg:text-7xl font-black mb-6 leading-tight">
           <span className="block text-white">Your #1</span>
-          <span className="block text-emerald-400">GTM Agency Platform</span>
+          <span className="block bg-gradient-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent">GTM Agency Platform</span>
         </h1>
 
-        {/* Confident Subheadline */}
-        <p className="text-xl md:text-2xl text-white/70 max-w-3xl mx-auto mb-10">
+        {/* Confident Subheadline - WHITE text */}
+        <p className="text-xl md:text-2xl text-white max-w-3xl mx-auto mb-10">
           Build your go-to-market strategy with AI, find your perfect agency,
           or work directly with our GTM experts.
         </p>
@@ -60,20 +81,20 @@ export function HeroSection() {
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
           <Link
             href="/dashboard"
-            className="bg-emerald-500 hover:bg-emerald-600 text-white px-8 py-4 rounded-xl font-bold text-lg transition shadow-lg shadow-emerald-500/25"
+            className="bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white px-8 py-4 rounded-xl font-bold text-lg transition shadow-lg shadow-blue-500/25"
           >
             Build Your GTM Plan
           </Link>
           <Link
             href="/agencies"
-            className="text-white/70 hover:text-white px-8 py-4 rounded-xl font-medium transition border border-white/10 hover:border-white/20"
+            className="text-white hover:text-blue-400 px-8 py-4 rounded-xl font-medium transition border border-white/20 hover:border-blue-500/50"
           >
             Browse 200+ Agencies
           </Link>
         </div>
 
         {/* Stats */}
-        <div className="flex flex-wrap items-center justify-center gap-8 mt-12 text-sm text-white/50">
+        <div className="flex flex-wrap items-center justify-center gap-8 mt-12 text-sm text-white/70">
           <div className="flex items-center gap-2">
             <span className="text-2xl font-bold text-white">200+</span>
             <span>GTM Agencies</span>
