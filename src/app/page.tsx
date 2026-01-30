@@ -35,8 +35,12 @@ export const metadata: Metadata = {
     'demand generation agency',
     'ABM agency',
     'GTM strategy',
-    'best GTM agency UK',
-    'GTM agency London',
+    'best GTM agency',
+    'GTM agency USA',
+    'GTM agency UK',
+    'GTM agency Europe',
+    'B2B growth agency',
+    'SaaS marketing agency',
   ],
 };
 

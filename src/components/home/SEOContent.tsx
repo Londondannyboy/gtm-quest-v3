@@ -152,6 +152,41 @@ export function SEOContent({ featuredArticles, topAgencies }: SEOContentProps) {
           </div>
         )}
 
+        {/* Regional Agency Directories */}
+        <div className="bg-zinc-900/50 rounded-2xl p-8 border border-white/10 mt-12">
+          <h3 className="text-xl font-bold mb-4">Find GTM Agencies by Region</h3>
+          <p className="text-white/60 mb-6">
+            Browse specialized B2B marketing and GTM agencies in your region. Our directory covers agencies across North America, Europe, and APAC.
+          </p>
+          <div className="grid md:grid-cols-3 gap-4">
+            <div>
+              <h4 className="font-semibold text-white mb-2">Americas</h4>
+              <ul className="space-y-1 text-sm">
+                <li><Link href="/agencies?region=usa" className="text-white/60 hover:text-emerald-400">United States</Link></li>
+                <li><Link href="/agencies?region=remote" className="text-white/60 hover:text-emerald-400">Remote / Global</Link></li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="font-semibold text-white mb-2">Europe</h4>
+              <ul className="space-y-1 text-sm">
+                <li><Link href="/articles/b2b-marketing-agency-uk" className="text-white/60 hover:text-emerald-400">United Kingdom</Link></li>
+                <li><Link href="/articles/b2b-marketing-agency-barcelona" className="text-white/60 hover:text-emerald-400">Spain (Barcelona)</Link></li>
+                <li><Link href="/articles/b2b-marketing-agency-rome" className="text-white/60 hover:text-emerald-400">Italy (Rome)</Link></li>
+                <li><Link href="/articles/best-b2b-marketing-agency-belgium" className="text-white/60 hover:text-emerald-400">Belgium</Link></li>
+                <li><Link href="/articles/best-b2b-marketing-agency-finland" className="text-white/60 hover:text-emerald-400">Finland</Link></li>
+                <li><Link href="/articles/best-b2b-marketing-agency-poland" className="text-white/60 hover:text-emerald-400">Poland</Link></li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="font-semibold text-white mb-2">APAC</h4>
+              <ul className="space-y-1 text-sm">
+                <li><Link href="/agencies?region=apac" className="text-white/60 hover:text-emerald-400">Australia & New Zealand</Link></li>
+                <li><Link href="/agencies?region=apac" className="text-white/60 hover:text-emerald-400">Singapore</Link></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
         {/* Public Sector GTM */}
         <div className="bg-zinc-900/50 rounded-2xl p-8 border border-white/10 mt-12">
           <h3 className="text-xl font-bold mb-4">Selling to Government?</h3>
@@ -160,7 +195,7 @@ export function SEOContent({ featuredArticles, topAgencies }: SEOContentProps) {
             From understanding evaluation criteria to crafting compliant responses, government procurement has its own playbook.
           </p>
           <p className="text-white/60">
-            Our partners at <a href="https://rfp.quest" target="_blank" rel="noopener noreferrer" className="text-emerald-400 hover:text-emerald-300 underline">RFP Quest</a> provide AI-powered tender analysis for UK government contracts — helping B2B companies understand requirements, identify gaps, and craft winning bids.
+            Our partners at <a href="https://rfp.quest" target="_blank" rel="noopener noreferrer" className="text-emerald-400 hover:text-emerald-300 underline">RFP Quest</a> provide AI-powered tender analysis for government contracts — helping B2B companies understand requirements, identify gaps, and craft winning bids.
           </p>
         </div>
 

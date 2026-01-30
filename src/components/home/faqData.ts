@@ -50,9 +50,14 @@ export const faqs: FAQ[] = [
       'Traditional marketing agencies focus on specific channels like advertising, content, or social media. GTM agencies take a holistic approach, aligning product positioning, sales enablement, and marketing execution to drive revenue. GTM agencies typically work closer to the sales process, focusing on pipeline generation and revenue metrics rather than just brand awareness or engagement metrics.',
   },
   {
-    question: 'What are the best GTM agencies in London and the UK?',
+    question: 'What are the best GTM agencies in the US?',
     answer:
-      'Top GTM agencies in the UK include GTM Quest (AI-powered GTM planning), Six & Flow (HubSpot Elite Partner in Manchester), and several boutique specialists focusing on B2B SaaS and tech. UK-based agencies often specialize in European market entry, EMEA expansion, and serving US companies entering the UK market. Browse our full UK agency directory for vetted partners.',
+      'Top GTM agencies in the United States include Ironpaper (New York, enterprise B2B), Refine Labs (Boston, demand generation), Single Grain (Los Angeles, performance marketing), and Kalungi (Seattle, fractional CMO for SaaS). US agencies often specialize in scaling startups, enterprise ABM, and product-led growth strategies. Browse our full agency directory filtered by US region.',
+  },
+  {
+    question: 'What are the best GTM agencies in the UK and Europe?',
+    answer:
+      'Top GTM agencies in the UK include GTM Quest (London, AI-powered GTM planning), Six & Flow (Manchester, HubSpot Elite Partner), and specialists across Europe including agencies in Barcelona, Rome, Belgium, Finland, and Poland. European agencies excel at EMEA market entry, localization, and serving US companies expanding internationally.',
   },
   {
     question: 'What services do demand generation agencies provide?',

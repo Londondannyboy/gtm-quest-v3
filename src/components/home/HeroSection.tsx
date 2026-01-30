@@ -13,9 +13,9 @@ export function HeroSection() {
           <span className="text-sm text-emerald-400">AI-Powered GTM Strategy</span>
         </div>
 
-        {/* Headline - H1 optimized for SEO (under 40 chars) */}
+        {/* Headline - H1 optimized for SEO (under 40 chars, keyword position 1) */}
         <h1 className="text-4xl md:text-5xl lg:text-6xl font-black mb-6 leading-tight">
-          <span className="block text-emerald-400">Find Your GTM Agency</span>
+          <span className="block text-emerald-400">GTM Agency Matching</span>
         </h1>
 
         {/* Subheadline */}

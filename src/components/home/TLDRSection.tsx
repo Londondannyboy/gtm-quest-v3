@@ -12,8 +12,9 @@ export function TLDRSection() {
 
           <p className="text-lg text-white/80 mb-6 leading-relaxed">
             <strong className="text-white">GTM Agency Quest</strong> is a free AI-powered platform that matches B2B companies
-            with specialized <strong className="text-emerald-400">go-to-market agencies</strong>. We help you find the right
-            partner for demand generation, ABM, sales enablement, and revenue growth from our database of 200+ vetted agencies.
+            with specialized <strong className="text-emerald-400">go-to-market agencies</strong> worldwide. Find the right
+            partner for demand generation, ABM, sales enablement, and revenue growth from our database of 200+ vetted agencies
+            across the <strong className="text-white">US, UK, Europe, and APAC</strong>.
           </p>
 
           <div className="grid md:grid-cols-3 gap-4 mb-6">
