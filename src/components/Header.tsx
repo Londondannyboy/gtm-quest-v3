@@ -132,6 +132,16 @@ export function Header() {
               Get Started
             </Link>
           )}
+
+          {/* Beta Badge */}
+          <div className="flex items-center">
+            <span className="inline-flex items-center gap-1.5 bg-emerald-500/10 border border-emerald-500/30 rounded-full px-3 py-1">
+              <span className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse" />
+              <span className="text-xs font-bold text-emerald-400 uppercase tracking-wider">
+                Beta
+              </span>
+            </span>
+          </div>
         </nav>
       </div>
     </header>
