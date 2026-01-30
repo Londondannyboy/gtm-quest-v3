@@ -240,8 +240,8 @@ const retainerOptions = {
 
 const oneOffOptions = [
   { type: 'Clay Training Workshop', rate: '£1,000/day', description: 'Intensive hands-on training for your team' },
-  { type: 'Strategy Session', rate: '£1,000/day', description: 'ICP refinement, campaign planning, stack recommendations' },
-  { type: 'System Build Sprint', rate: '£1,000/day', description: 'Focused build days for specific deliverables' },
+  { type: 'Strategy Session', rate: '£750/day', description: 'ICP refinement, campaign planning, stack recommendations' },
+  { type: 'System Build Sprint', rate: '£750/day', description: 'Focused build days for specific deliverables' },
 ];
 
 // Personal ICP Experience - Competitive Advantage
@@ -2488,6 +2488,91 @@ export default function ClimatisePage() {
               {webAdvantage.note}
             </p>
           </motion.div>
+        </div>
+      </section>
+
+      {/* Social Proof - Powered by GTM Quest */}
+      <section className="py-12 md:py-16 bg-zinc-950 border-y border-white/5">
+        <div className="max-w-4xl mx-auto px-4">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center"
+          >
+            <div className="flex items-center justify-center gap-3 mb-4">
+              <Image
+                src="/GTM Logo New.png"
+                alt="GTM Quest"
+                width={100}
+                height={35}
+                className="h-6 md:h-8 w-auto"
+              />
+              <span className="text-xs bg-blue-500/20 text-blue-400 px-2 py-1 rounded-full font-bold border border-blue-500/30">
+                Beta
+              </span>
+            </div>
+
+            <h3 className="text-lg md:text-xl font-bold text-white mb-3">Powered by GTM Quest</h3>
+            <p className="text-white/60 text-sm md:text-base max-w-xl mx-auto mb-6">
+              We&apos;re building the #1 GTM agency matching platform with AI-powered strategy generation.
+            </p>
+
+            <div className="flex flex-wrap items-center justify-center gap-4 text-xs md:text-sm">
+              <a href="https://gtm.quest" target="_blank" rel="noopener noreferrer" className="text-blue-400 hover:text-blue-300 flex items-center gap-1">
+                <span>gtm.quest</span>
+                <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                </svg>
+              </a>
+              <span className="text-white/30">|</span>
+              <span className="text-white/50">200+ GTM Agencies</span>
+              <span className="text-white/30">|</span>
+              <span className="text-white/50">AI GTM Plan Builder</span>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Why GTM Quest */}
+      <section className="py-16 md:py-20 bg-black">
+        <div className="max-w-5xl mx-auto px-4">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-12"
+          >
+            <span className="text-blue-400 text-sm font-bold uppercase tracking-wider">
+              Why Us
+            </span>
+            <h2 className="text-3xl md:text-4xl font-bold text-white mt-2 mb-4">
+              Why GTM Quest
+            </h2>
+          </motion.div>
+
+          <div className="grid md:grid-cols-3 gap-6">
+            {[
+              { title: 'Operational Execution', description: 'Not strategy decks - working systems that run' },
+              { title: 'RevOps-First Architecture', description: 'Built for handover, not dependency' },
+              { title: 'LinkedIn Safety Expertise', description: '4G mobile proxies, proper protocols, zero flags' },
+              { title: 'Signal-Triggered Outbound', description: 'Scraper-first approach beats list-buying' },
+              { title: 'AI-Native Content', description: 'AEO, Gen-SEO, and llms.txt implementation' },
+              { title: 'Local', description: 'Based in Borough - happy to meet in person' },
+            ].map((reason, index) => (
+              <motion.div
+                key={reason.title}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: index * 0.1 }}
+                className="bg-zinc-900 border border-white/10 rounded-xl p-6 hover:border-blue-500/30 transition text-center"
+              >
+                <h3 className="font-bold text-white mb-2">{reason.title}</h3>
+                <p className="text-white/60 text-sm">{reason.description}</p>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </section>
 
