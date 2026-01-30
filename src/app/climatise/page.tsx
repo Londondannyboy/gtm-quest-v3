@@ -3253,10 +3253,10 @@ export default function ClimatisePage() {
         </div>
       </section>
 
-      {/* Sticky CTA Bar - Personal, outcome-focused, with Climatise branding */}
+      {/* Sticky CTA Bar - Personal, urgency-focused, with Climatise branding */}
       <div className="fixed bottom-0 left-0 right-0 z-50 bg-gradient-to-r from-zinc-900/98 via-zinc-900 to-zinc-900/98 backdrop-blur-md border-t border-white/10">
         <div className="max-w-5xl mx-auto px-4 py-3 sm:py-4">
-          {/* Mobile: Logo + CTA */}
+          {/* Mobile: Logo + Urgency + CTA */}
           <div className="flex sm:hidden items-center justify-between gap-3">
             <div className="flex items-center gap-3">
               <div className="bg-white/10 rounded-lg p-1.5">
@@ -3268,7 +3268,7 @@ export default function ClimatisePage() {
                   className="h-5 w-auto"
                 />
               </div>
-              <div className="text-emerald-400 text-xs font-medium">15,200 targets ready</div>
+              <div className="text-amber-400 text-xs font-medium">Feb 2026 deadline</div>
             </div>
             <a
               href="https://calendly.com/my-first-quest"
@@ -3276,13 +3276,13 @@ export default function ClimatisePage() {
               rel="noopener noreferrer"
               className="flex-shrink-0 bg-gradient-to-r from-blue-500 to-blue-600 text-white px-4 py-2.5 rounded-xl font-bold text-sm shadow-lg shadow-blue-500/25"
             >
-              Let&apos;s Go
+              Let&apos;s Win Clients
             </a>
           </div>
 
-          {/* Desktop: Logo + Personal greeting + outcome + CTA */}
+          {/* Desktop: Logo + Personal greeting + urgency + CTA */}
           <div className="hidden sm:flex items-center justify-between gap-4">
-            {/* Climatise logo */}
+            {/* Climatise logo + greeting */}
             <div className="flex items-center gap-4">
               <div className="bg-white/10 rounded-lg p-2">
                 <Image
@@ -3301,13 +3301,13 @@ export default function ClimatisePage() {
               </div>
             </div>
 
-            {/* Outcome + CTA */}
+            {/* Urgency + CTA */}
             <div className="flex items-center gap-4">
-              <div className="flex items-center gap-2 text-emerald-400 text-sm font-medium">
+              <div className="flex items-center gap-2 text-amber-400 text-sm font-medium">
                 <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
-                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm1-12a1 1 0 10-2 0v4a1 1 0 00.293.707l2.828 2.829a1 1 0 101.415-1.415L11 9.586V6z" clipRule="evenodd" />
                 </svg>
-                <span>15,200 targets ready</span>
+                <span>Feb 2026 standards deadline</span>
               </div>
 
               <a
@@ -3316,7 +3316,7 @@ export default function ClimatisePage() {
                 rel="noopener noreferrer"
                 className="group flex items-center gap-2 bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white px-6 py-2.5 rounded-xl font-bold text-sm transition shadow-lg shadow-blue-500/25"
               >
-                <span>Let&apos;s Build This</span>
+                <span>Let&apos;s Win Clients</span>
                 <svg className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
                 </svg>
