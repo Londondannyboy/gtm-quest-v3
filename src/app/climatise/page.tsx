@@ -303,6 +303,30 @@ const webAdvantage = {
   note: 'Most Clay consultants are spreadsheet-first. We\'re full-stack GTM.',
 };
 
+// Lennon Harding-Wade - Personal Profile (from LinkedIn enrichment)
+const lennonProfile = {
+  name: 'Lennon Harding-Wade',
+  title: 'CEO',
+  company: 'Climatise',
+  location: 'London, England',
+  image: '/Lennon.jpg',
+  linkedinFollowers: '3,277',
+  connections: '500+',
+  tenure: 'Jan 2024 - Present',
+  previousRole: 'Finance Transformation Consultant',
+  previousCompany: 'The Consultancy Group',
+  previousTenure: 'Sep 2022 - Jan 2024',
+  previousDescription: 'Senior mandates in global programmes across UK, Europe & Asia. FTSE 100 to PE-backed startups.',
+  education: 'Bryanston School',
+  topSkills: ['Sustainability', 'Net-Zero Carbon Emissions', 'Climate Change', 'Decarbonization', 'Carbon Footprinting'],
+  interests: {
+    topVoices: ['Steven Bartlett'],
+    following: 'Entrepreneurial & leadership content',
+  },
+  aboutClimatise: 'Simplify and enhance sustainability reporting obligations. Platform that streamlines processes, enabling organisations to harness the true value of their data and make informed decisions in real-time.',
+  mission: 'Visibility and transparency is everything.',
+};
+
 // Risk Mitigation / Flexibility
 const flexibility = {
   title: 'Total Flexibility',
@@ -497,6 +521,107 @@ export default function ClimatisePage() {
 
   return (
     <main className="min-h-screen bg-black">
+      {/* Personalized Intro - "This is for you, Lennon" */}
+      <section className="py-8 md:py-12 bg-gradient-to-b from-zinc-950 to-black border-b border-white/5">
+        <div className="max-w-4xl mx-auto px-4">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="flex flex-col md:flex-row items-center gap-6 md:gap-8"
+          >
+            {/* Lennon's Photo */}
+            <div className="relative flex-shrink-0">
+              <div className="w-24 h-24 md:w-32 md:h-32 rounded-full overflow-hidden border-2 border-blue-500/30 shadow-lg shadow-blue-500/20">
+                <Image
+                  src={lennonProfile.image}
+                  alt={lennonProfile.name}
+                  width={128}
+                  height={128}
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div className="absolute -bottom-1 -right-1 w-8 h-8 bg-green-500 rounded-full flex items-center justify-center border-2 border-black">
+                <span className="text-xs">✓</span>
+              </div>
+            </div>
+
+            {/* Profile Info */}
+            <div className="text-center md:text-left flex-1">
+              <div className="text-white/50 text-xs uppercase tracking-wider mb-1">
+                Prepared exclusively for
+              </div>
+              <h2 className="text-2xl md:text-3xl font-black text-white mb-1">
+                {lennonProfile.name}
+              </h2>
+              <p className="text-blue-400 font-semibold mb-3">
+                {lennonProfile.title} at {lennonProfile.company}
+              </p>
+
+              {/* Quick Stats */}
+              <div className="flex flex-wrap justify-center md:justify-start gap-3 text-xs">
+                <span className="bg-white/5 text-white/60 px-3 py-1 rounded-full">
+                  {lennonProfile.linkedinFollowers} followers
+                </span>
+                <span className="bg-white/5 text-white/60 px-3 py-1 rounded-full">
+                  {lennonProfile.location}
+                </span>
+                <span className="bg-blue-500/10 text-blue-400 px-3 py-1 rounded-full">
+                  {lennonProfile.tenure}
+                </span>
+              </div>
+            </div>
+
+            {/* Company Logo with dark background fix */}
+            <div className="flex-shrink-0">
+              <div className="bg-white/10 backdrop-blur-sm rounded-xl p-3 md:p-4 border border-white/10">
+                <Image
+                  src="/climistise logo.png"
+                  alt="Climatise"
+                  width={100}
+                  height={35}
+                  className="h-8 md:h-10 w-auto"
+                />
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Enrichment Preview - shows we've done our homework */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.3 }}
+            className="mt-6 bg-zinc-900/50 border border-white/5 rounded-xl p-4 md:p-5"
+          >
+            <div className="flex items-center gap-2 mb-3">
+              <span className="text-lg">🔍</span>
+              <span className="text-white/50 text-xs uppercase tracking-wider">What we found</span>
+            </div>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 text-xs">
+              <div>
+                <div className="text-white/40">Previous</div>
+                <div className="text-white/80">{lennonProfile.previousRole}</div>
+                <div className="text-white/50">{lennonProfile.previousCompany}</div>
+              </div>
+              <div>
+                <div className="text-white/40">Education</div>
+                <div className="text-white/80">{lennonProfile.education}</div>
+              </div>
+              <div>
+                <div className="text-white/40">Follows</div>
+                <div className="text-white/80">{lennonProfile.interests.topVoices.join(', ')}</div>
+              </div>
+              <div>
+                <div className="text-white/40">Skills</div>
+                <div className="text-white/80">{lennonProfile.topSkills.slice(0, 2).join(', ')}</div>
+              </div>
+            </div>
+            <p className="text-white/40 text-xs mt-3 italic">
+              This is what our enrichment does — for every prospect in your pipeline.
+            </p>
+          </motion.div>
+        </div>
+      </section>
+
       {/* Hero Section */}
       <section className="relative py-20 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-br from-blue-600/20 via-transparent to-green-600/10" />
