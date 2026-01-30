@@ -2305,7 +2305,7 @@ export default function ClimatisePage() {
             </p>
           </motion.div>
 
-          {/* Clay Hero Card */}
+          {/* Clay Hero Card - BIG LOGO */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -2313,23 +2313,35 @@ export default function ClimatisePage() {
             className="mb-8"
           >
             <div className="bg-gradient-to-r from-blue-500/20 via-blue-500/10 to-green-500/20 border-2 border-blue-500/40 rounded-2xl p-8 relative overflow-hidden">
-              <div className="absolute top-4 right-4">
-                <Image
-                  src="/Clay image 2.jpg"
-                  alt="Clay"
-                  width={60}
-                  height={60}
-                  className="rounded-xl opacity-80"
-                />
+              {/* Clay Logo - Big & Centered */}
+              <div className="flex justify-center mb-6">
+                <motion.div
+                  animate={{
+                    boxShadow: [
+                      "0 0 20px rgba(59, 130, 246, 0.2)",
+                      "0 0 40px rgba(59, 130, 246, 0.3)",
+                      "0 0 20px rgba(59, 130, 246, 0.2)"
+                    ]
+                  }}
+                  transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+                  className="bg-white rounded-2xl p-4"
+                >
+                  <Image
+                    src="/clay-agencies-claygencies.png"
+                    alt="Clay"
+                    width={200}
+                    height={60}
+                    className="h-14 w-auto"
+                  />
+                </motion.div>
               </div>
-              <div className="flex items-center gap-4 mb-4">
-                <div className="text-5xl">🏺</div>
-                <div>
-                  <h3 className="text-3xl font-black text-white">{gtmStack.clay.name}</h3>
-                  <p className="text-blue-400 font-semibold">{gtmStack.clay.tagline}</p>
-                </div>
+
+              <div className="text-center mb-6">
+                <p className="text-blue-400 font-semibold text-lg">{gtmStack.clay.tagline}</p>
               </div>
-              <p className="text-white/80 text-lg mb-6 max-w-2xl">{gtmStack.clay.description}</p>
+
+              <p className="text-white/80 text-lg mb-6 max-w-2xl mx-auto text-center">{gtmStack.clay.description}</p>
+
               <div className="grid md:grid-cols-5 gap-3">
                 {gtmStack.clay.capabilities.map((cap, i) => (
                   <div key={i} className="bg-white/5 rounded-lg px-4 py-3 text-center">
@@ -2579,15 +2591,25 @@ export default function ClimatisePage() {
             className="bg-gradient-to-r from-cyan-500/10 via-blue-500/5 to-green-500/10 border border-cyan-500/30 rounded-2xl p-6 md:p-8"
           >
             <h4 className="text-white font-bold text-center mb-6">Daily Scraping Workflow</h4>
-            <div className="flex flex-col md:flex-row items-center justify-between gap-4 md:gap-2">
+            {/* Mobile: Vertical stack */}
+            <div className="md:hidden grid grid-cols-2 gap-3">
               {tenderIntelligence.workflow.map((step, index) => (
-                <div key={index} className="flex items-center gap-2 md:gap-4 w-full md:w-auto">
-                  <div className="flex-1 md:flex-none bg-zinc-900/80 rounded-xl p-3 md:p-4 text-center border border-white/10">
-                    <div className="text-cyan-400 font-bold text-lg md:text-xl mb-1">{index + 1}</div>
-                    <div className="text-white/80 text-xs md:text-sm">{step}</div>
+                <div key={index} className="bg-zinc-900/80 rounded-xl p-4 text-center border border-white/10">
+                  <div className="text-cyan-400 font-bold text-lg mb-1">{index + 1}</div>
+                  <div className="text-white/80 text-xs">{step}</div>
+                </div>
+              ))}
+            </div>
+            {/* Desktop: Horizontal flow */}
+            <div className="hidden md:flex items-center justify-between gap-2">
+              {tenderIntelligence.workflow.map((step, index) => (
+                <div key={index} className="flex items-center gap-4">
+                  <div className="bg-zinc-900/80 rounded-xl p-4 text-center border border-white/10 min-w-[140px]">
+                    <div className="text-cyan-400 font-bold text-xl mb-1">{index + 1}</div>
+                    <div className="text-white/80 text-sm">{step}</div>
                   </div>
                   {index < tenderIntelligence.workflow.length - 1 && (
-                    <div className="text-white/30 text-xl hidden md:block">→</div>
+                    <div className="text-white/30 text-xl">→</div>
                   )}
                 </div>
               ))}
