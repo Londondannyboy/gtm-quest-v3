@@ -16,6 +16,17 @@ export interface Agency {
   global_rank: number | null;
   website: string | null;
   logo_url: string | null;
+  // Extended fields
+  key_services: string[] | null;
+  b2b_description: string | null;
+  overview: string | null;
+  founded_year: number | null;
+  employee_count: number | null;
+  key_facts: Record<string, unknown> | null;
+  pricing_model: string | null;
+  case_study_url: string | null;
+  tags: string[] | null;
+  primary_color: string | null;
 }
 
 export interface AgencyMatch extends Agency {
@@ -242,7 +253,10 @@ export async function getAgencyBySlug(slug: string): Promise<Agency | null> {
       id, name, slug, description, headquarters,
       specializations, category_tags, service_areas,
       min_budget, avg_rating, review_count, global_rank,
-      website, logo_url
+      website, logo_url,
+      key_services, b2b_description, overview,
+      founded_year, employee_count, key_facts,
+      pricing_model, case_study_url, tags, primary_color
     FROM companies
     WHERE app = 'gtm' AND status = 'published' AND slug = ${slug}
     LIMIT 1

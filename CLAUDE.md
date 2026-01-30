@@ -2,6 +2,10 @@
 
 > **Cole Medin Methodology**: PRD-first, modular rules, command-ify, context reset, system evolution.
 
+## PRD Documents
+Detailed specs in `.claude/prd/`:
+- `agency-data-enrichment.md` - Agency database enrichment (Neon project: morning-rain-33890830)
+
 ## Quick Start
 
 ```bash
