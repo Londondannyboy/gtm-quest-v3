@@ -542,14 +542,14 @@ function ExecutiveSummary({ setCurrentView }: { setCurrentView: (view: ViewType)
   return (
     <section className="min-h-[80vh] py-12 md:py-16 bg-gradient-to-b from-zinc-950 to-black flex items-center">
       <div className="max-w-4xl mx-auto px-4 w-full">
-        {/* TL;DR Badge */}
+        {/* Executive Summary Badge */}
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           className="text-center mb-8"
         >
           <span className="inline-flex items-center gap-2 bg-amber-500/10 border border-amber-500/30 text-amber-400 text-sm font-bold uppercase tracking-wider px-4 py-2 rounded-full">
-            <span>TL;DR</span>
+            <span>Executive Summary</span>
           </span>
         </motion.div>
 
@@ -630,21 +630,26 @@ function ExecutiveSummary({ setCurrentView }: { setCurrentView: (view: ViewType)
           transition={{ delay: 0.2 }}
           className="bg-zinc-900/50 border border-white/5 rounded-xl p-6 mb-8"
         >
-          <h2 className="text-amber-400 text-xs uppercase tracking-wider mb-4">Expected Outcomes (TBD based on your metrics)</h2>
-          <div className="grid grid-cols-3 gap-4 text-center">
+          <h2 className="text-amber-400 text-xs uppercase tracking-wider mb-4">Expected Outcomes (Ballpark)</h2>
+          <div className="grid grid-cols-4 gap-4 text-center">
             <div>
-              <div className="text-2xl font-bold text-white">TBD</div>
-              <div className="text-white/50 text-xs">Pipeline Value</div>
+              <div className="text-xl font-bold text-white">£200K+</div>
+              <div className="text-white/50 text-xs">Pipeline/Quarter</div>
             </div>
             <div>
-              <div className="text-2xl font-bold text-white">TBD</div>
+              <div className="text-xl font-bold text-white">50-100</div>
               <div className="text-white/50 text-xs">Qualified Leads/mo</div>
             </div>
             <div>
-              <div className="text-2xl font-bold text-white">TBD</div>
+              <div className="text-xl font-bold text-white">2-5%</div>
+              <div className="text-white/50 text-xs">Response Rate</div>
+            </div>
+            <div>
+              <div className="text-xl font-bold text-white">£50-150</div>
               <div className="text-white/50 text-xs">Cost Per Lead</div>
             </div>
           </div>
+          <p className="text-white/40 text-xs mt-3 text-center">Industry standard cold outbound. Final targets calibrated to your metrics.</p>
         </motion.div>
 
         {/* Risks & Mitigations */}
@@ -682,7 +687,7 @@ function ExecutiveSummary({ setCurrentView }: { setCurrentView: (view: ViewType)
             href="https://calendly.com/my-first-quest"
             className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-500 to-green-500 hover:from-blue-600 hover:to-green-600 text-white px-8 py-4 rounded-xl font-bold text-lg transition mb-6"
           >
-            Book Discovery Call
+            Discuss Proposal
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
             </svg>
@@ -1015,17 +1020,17 @@ export default function ClimatisePage() {
 
   return (
     <main className="min-h-screen bg-black">
-      {/* TL;DR Section - TL;DR */}
+      {/* Executive Summary Section - Executive Summary */}
       <section className="py-12 md:py-16 bg-gradient-to-b from-zinc-950 to-black border-b border-white/10">
         <div className="max-w-4xl mx-auto px-4">
-          {/* TL;DR Badge */}
+          {/* Executive Summary Badge */}
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             className="text-center mb-8"
           >
             <span className="inline-flex items-center gap-2 bg-amber-500/10 border border-amber-500/30 text-amber-400 text-sm font-bold uppercase tracking-wider px-4 py-2 rounded-full">
-              TL;DR
+              Executive Summary
             </span>
           </motion.div>
 
@@ -1136,7 +1141,7 @@ export default function ClimatisePage() {
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-500 to-green-500 hover:from-blue-600 hover:to-green-600 text-white px-8 py-4 rounded-xl font-bold text-lg transition"
             >
-              Book Discovery Call
+              Discuss Proposal
               <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
               </svg>
@@ -1278,28 +1283,44 @@ export default function ClimatisePage() {
         </div>
 
         <div className="relative max-w-4xl mx-auto px-4 text-center">
-          {/* Partnership Logos */}
+          {/* Climatise Logo - THE HERO */}
           <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3 }}
-            className="flex items-center justify-center gap-4 md:gap-6 mb-8"
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.2, duration: 0.6, ease: "easeOut" }}
+            className="flex flex-col items-center justify-center mb-10"
           >
-            <Image
-              src="/GTM Logo New.png"
-              alt="GTM Quest"
-              width={100}
-              height={35}
-              className="h-7 md:h-9 w-auto"
-            />
-            <span className="text-white/30 text-xl">×</span>
-            <div className="bg-white/10 backdrop-blur-sm rounded-lg p-2">
+            {/* Big animated Climatise logo */}
+            <motion.div
+              animate={{
+                boxShadow: [
+                  "0 0 20px rgba(74, 222, 128, 0.1)",
+                  "0 0 40px rgba(74, 222, 128, 0.2)",
+                  "0 0 20px rgba(74, 222, 128, 0.1)"
+                ]
+              }}
+              transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+              className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 md:p-8 border border-white/20"
+            >
               <Image
                 src="/climatise-logo.png"
                 alt="Climatise"
-                width={100}
-                height={35}
-                className="h-6 md:h-8 w-auto"
+                width={280}
+                height={80}
+                className="h-16 md:h-20 lg:h-24 w-auto"
+                priority
+              />
+            </motion.div>
+
+            {/* Subtle GTM Quest credit */}
+            <div className="flex items-center gap-2 mt-4 text-white/40 text-xs">
+              <span>GTM proposal by</span>
+              <Image
+                src="/GTM Logo New.png"
+                alt="GTM Quest"
+                width={60}
+                height={20}
+                className="h-4 w-auto opacity-60"
               />
             </div>
           </motion.div>
@@ -1422,7 +1443,7 @@ export default function ClimatisePage() {
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-3 w-3 bg-white"></span>
               </span>
-              Book Strategy Call
+              Discuss Proposal
             </a>
           </motion.div>
         </div>
@@ -3195,7 +3216,7 @@ export default function ClimatisePage() {
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
                   <span className="relative inline-flex rounded-full h-3 w-3 bg-white"></span>
                 </span>
-                Book Strategy Call
+                Discuss Proposal
               </a>
               <a
                 href="mailto:dan@gtm.quest"
@@ -3208,38 +3229,102 @@ export default function ClimatisePage() {
         </div>
       </section>
 
-      {/* Sticky CTA Bar */}
-      <div className="fixed bottom-0 left-0 right-0 z-50 bg-gradient-to-r from-zinc-900/95 via-zinc-900/98 to-zinc-900/95 backdrop-blur-md border-t border-white/10 py-4 px-4">
-        <div className="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-4">
-          <div className="text-center sm:text-left">
-            <p className="text-white font-semibold">Ready to build your GTM system?</p>
-            <p className="text-white/50 text-sm">Feb 2026 standards are next month</p>
-          </div>
-          <div className="flex items-center gap-4">
+      {/* Footer - Download PDF */}
+      <section className="py-12 pb-28 bg-zinc-950 border-t border-white/10">
+        <div className="max-w-4xl mx-auto px-4 text-center">
+          <p className="text-white/50 text-sm mb-4">Save this proposal for your records, Lennon</p>
+          <button
+            onClick={async () => {
+              const blob = await generateClimatisePDF();
+              const url = URL.createObjectURL(blob);
+              const a = document.createElement('a');
+              a.href = url;
+              a.download = 'Lennon-Climatise-GTM-Proposal.pdf';
+              a.click();
+              URL.revokeObjectURL(url);
+            }}
+            className="inline-flex items-center gap-2 text-blue-400 hover:text-blue-300 text-sm border border-blue-500/30 px-4 py-2 rounded-lg hover:bg-blue-500/10 transition"
+          >
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+            </svg>
+            Download Lennon&apos;s Proposal (PDF)
+          </button>
+        </div>
+      </section>
+
+      {/* Sticky CTA Bar - Personal, outcome-focused, with Climatise branding */}
+      <div className="fixed bottom-0 left-0 right-0 z-50 bg-gradient-to-r from-zinc-900/98 via-zinc-900 to-zinc-900/98 backdrop-blur-md border-t border-white/10">
+        <div className="max-w-5xl mx-auto px-4 py-3 sm:py-4">
+          {/* Mobile: Logo + CTA */}
+          <div className="flex sm:hidden items-center justify-between gap-3">
+            <div className="flex items-center gap-3">
+              <div className="bg-white/10 rounded-lg p-1.5">
+                <Image
+                  src="/climatise-logo.png"
+                  alt="Climatise"
+                  width={80}
+                  height={24}
+                  className="h-5 w-auto"
+                />
+              </div>
+              <div className="text-emerald-400 text-xs font-medium">15,200 targets ready</div>
+            </div>
             <a
               href="https://calendly.com/my-first-quest"
               target="_blank"
               rel="noopener noreferrer"
-              className="bg-gradient-to-r from-blue-500 to-green-500 hover:from-blue-600 hover:to-green-600 text-white px-6 py-3 rounded-xl font-bold transition shadow-lg shadow-blue-500/25 flex items-center gap-2 animate-pulse-glow"
+              className="flex-shrink-0 bg-gradient-to-r from-blue-500 to-blue-600 text-white px-4 py-2.5 rounded-xl font-bold text-sm shadow-lg shadow-blue-500/25"
             >
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
-                <span className="relative inline-flex rounded-full h-2 w-2 bg-white"></span>
-              </span>
-              Book Strategy Call
+              Let&apos;s Go
             </a>
-            <a
-              href="mailto:dan@gtm.quest"
-              className="text-white/70 hover:text-white text-sm hidden sm:block"
-            >
-              dan@gtm.quest
-            </a>
+          </div>
+
+          {/* Desktop: Logo + Personal greeting + outcome + CTA */}
+          <div className="hidden sm:flex items-center justify-between gap-4">
+            {/* Climatise logo */}
+            <div className="flex items-center gap-4">
+              <div className="bg-white/10 rounded-lg p-2">
+                <Image
+                  src="/climatise-logo.png"
+                  alt="Climatise"
+                  width={100}
+                  height={30}
+                  className="h-6 w-auto"
+                />
+              </div>
+              <div className="text-white/50 text-sm">|</div>
+              <div className="text-white text-sm">
+                <span className="font-semibold">Hey Lennon</span>
+                <span className="text-white/50 mx-2">—</span>
+                <span className="text-white/70">ready to win new clients?</span>
+              </div>
+            </div>
+
+            {/* Outcome + CTA */}
+            <div className="flex items-center gap-4">
+              <div className="flex items-center gap-2 text-emerald-400 text-sm font-medium">
+                <svg className="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                  <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
+                </svg>
+                <span>15,200 targets ready</span>
+              </div>
+
+              <a
+                href="https://calendly.com/my-first-quest"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex items-center gap-2 bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white px-6 py-2.5 rounded-xl font-bold text-sm transition shadow-lg shadow-blue-500/25"
+              >
+                <span>Let&apos;s Build This</span>
+                <svg className="w-4 h-4 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </a>
+            </div>
           </div>
         </div>
       </div>
-
-      {/* Spacer */}
-      <div className="h-20" />
     </main>
   );
 }
