@@ -14,6 +14,7 @@ import { SocialProof } from '@/components/home/SocialProof';
 import { ProcessJourney } from '@/components/home/ProcessJourney';
 import { TechStack } from '@/components/home/TechStack';
 import { DashboardShowcase } from '@/components/home/DashboardShowcase';
+import { QuestSystemSection } from '@/components/home/QuestSystemSection';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -109,6 +110,9 @@ export default async function Home() {
 
       {/* How It Works - Process Journey */}
       <ProcessJourney />
+
+      {/* Quest System - 4-Channel ABM Methodology */}
+      <QuestSystemSection />
 
       {/* Tech Stack - Clay Specialist & Tools */}
       <TechStack />

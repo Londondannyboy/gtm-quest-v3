@@ -13,7 +13,14 @@ export {
 } from './sections';
 
 // Calculator Components
-export { BudgetCalculator, ROICalculator } from './calculators';
+export {
+  BudgetCalculator,
+  ROICalculator,
+  ChannelFlowDiagram,
+  IntentTrackingSection,
+  LinkedInAdsCalculator,
+  TimelineProjection,
+} from './calculators';
 
 // Dashboard Components
 export {

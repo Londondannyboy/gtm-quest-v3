@@ -2,8 +2,16 @@
 
 import { useState } from 'react';
 import { motion } from 'framer-motion';
-import { PasswordGate, BudgetCalculator, ROICalculator } from '@/components/pitch';
-import type { BudgetTier, CurrencyConfig } from '@/types/pitch';
+import {
+  PasswordGate,
+  BudgetCalculator,
+  ROICalculator,
+  ChannelFlowDiagram,
+  IntentTrackingSection,
+  LinkedInAdsCalculator,
+  TimelineProjection,
+} from '@/components/pitch';
+import type { BudgetTier, CurrencyConfig, ABMChannels, RegionId } from '@/types/pitch';
 
 // Infrastructure cost categories
 interface InfraCost {
@@ -171,6 +179,14 @@ export default function TemplatePage() {
   });
   const [infraCosts, setInfraCosts] = useState<InfraCost[]>(defaultInfraCosts);
   const [engagementMonths] = useState(3);
+  const [region, setRegion] = useState<RegionId>('uk_eu');
+  const [intentTrackingCost, setIntentTrackingCost] = useState(249); // Default
+  const [abmChannels, setAbmChannels] = useState<ABMChannels>({
+    linkedinAds: true,
+    content: true,
+    intentTracking: true,
+    outbound: true,
+  });
 
   // Calculate monthly infrastructure cost
   const monthlyInfraCost = infraCosts.reduce(
@@ -229,6 +245,89 @@ export default function TemplatePage() {
             <p className="text-white/60">
               Testing ground for Budget Calculator and ROI Calculator components
             </p>
+          </div>
+        </section>
+
+        {/* 4-Channel ABM System */}
+        <section className="py-16 bg-black">
+          <div className="max-w-6xl mx-auto px-4">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="text-center mb-8"
+            >
+              <span className="text-green-400 text-sm font-bold uppercase tracking-wider">
+                The System
+              </span>
+              <h2 className="text-2xl md:text-3xl font-bold text-white mt-2 mb-4">
+                4-Channel ABM System
+              </h2>
+              <p className="text-white/70 max-w-xl mx-auto">
+                Based on ColdIQ&apos;s $7.83M pipeline methodology. Click channels to see impact.
+              </p>
+            </motion.div>
+
+            <ChannelFlowDiagram
+              activeChannels={abmChannels}
+              region={region}
+              onChannelToggle={(channel) =>
+                setAbmChannels((prev) => ({
+                  ...prev,
+                  [channel]: !prev[channel],
+                }))
+              }
+              onRegionChange={setRegion}
+            />
+          </div>
+        </section>
+
+        {/* Intent Tracking */}
+        <section className="py-16 bg-zinc-950">
+          <div className="max-w-4xl mx-auto px-4">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="text-center mb-8"
+            >
+              <span className="text-purple-400 text-sm font-bold uppercase tracking-wider">
+                Channel 3
+              </span>
+              <h2 className="text-2xl md:text-3xl font-bold text-white mt-2 mb-4">
+                Intent Tracking Setup
+              </h2>
+              <p className="text-white/70 max-w-xl mx-auto">
+                Configure your tracking tools to identify buying signals.
+              </p>
+            </motion.div>
+
+            <IntentTrackingSection
+              region={region}
+              currency={currency}
+              onCostChange={setIntentTrackingCost}
+            />
+          </div>
+        </section>
+
+        {/* LinkedIn Ads Calculator */}
+        <section className="py-16 bg-black">
+          <div className="max-w-4xl mx-auto px-4">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="text-center mb-8"
+            >
+              <span className="text-green-400 text-sm font-bold uppercase tracking-wider">
+                Channel 1
+              </span>
+              <h2 className="text-2xl md:text-3xl font-bold text-white mt-2 mb-4">
+                LinkedIn Ads Budget
+              </h2>
+              <p className="text-white/70 max-w-xl mx-auto">
+                Build awareness with Thought Leader ads, Document ads, and Smart Links.
+              </p>
+            </motion.div>
+
+            <LinkedInAdsCalculator currency={currency} />
           </div>
         </section>
 
@@ -440,8 +539,8 @@ export default function TemplatePage() {
               channels: {
                 linkedinOutreach: true,
                 emailOutreach: true,
-                contentMarketing: false,
-                linkedinAds: false,
+                contentMarketing: abmChannels.content,
+                linkedinAds: abmChannels.linkedinAds,
               },
               linkedin: {
                 identities: 2,
@@ -460,7 +559,38 @@ export default function TemplatePage() {
               conservativeReduction: 0.2,
             }}
             currency={currency.code}
-            investment={totalInvestment}
+            investment={totalInvestment + (intentTrackingCost * engagementMonths * currency.rate)}
+          />
+        </div>
+      </section>
+
+      {/* Timeline Projection */}
+      <section className="py-16 bg-black">
+        <div className="max-w-5xl mx-auto px-4">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="text-center mb-8"
+          >
+            <span className="text-amber-400 text-sm font-bold uppercase tracking-wider">
+              12-Month Forecast
+            </span>
+            <h2 className="text-2xl md:text-3xl font-bold text-white mt-2 mb-4">
+              Pipeline Timeline
+            </h2>
+            <p className="text-white/70 max-w-xl mx-auto">
+              Based on ColdIQ benchmarks: Month 2 meetings, Month 3-4 first deals.
+            </p>
+          </motion.div>
+
+          <TimelineProjection
+            currency={currency}
+            monthlyTouches={2000}
+            responseRate={abmChannels.intentTracking ? 0.14 : 0.05}
+            meetingRate={0.25}
+            closeRate={0.183}
+            avgDealSize={25000}
+            totalInvestment={totalInvestment + (intentTrackingCost * engagementMonths * currency.rate)}
           />
         </div>
       </section>
@@ -468,29 +598,50 @@ export default function TemplatePage() {
       {/* Feedback Notes */}
       <section className="py-12 bg-black border-t border-white/10">
         <div className="max-w-4xl mx-auto px-4">
-          <h3 className="text-lg font-bold text-white mb-4">Testing Notes</h3>
+          <h3 className="text-lg font-bold text-white mb-4">4-Channel ABM System - Features</h3>
           <ul className="space-y-2 text-sm text-white/60">
             <li className="flex items-start gap-2">
               <span className="text-green-400">✓</span>
-              Strategy and Workshop default to 0
+              4-Channel flow diagram (LinkedIn Ads → Content → Intent Tracking → Outbound)
             </li>
             <li className="flex items-start gap-2">
               <span className="text-green-400">✓</span>
-              Infrastructure costs broken down by category (Platform, Email, LinkedIn, Tools)
+              UK/EU vs US region selector with GDPR tracking differences
             </li>
             <li className="flex items-start gap-2">
               <span className="text-green-400">✓</span>
-              Adjustable quantities for mailboxes, LinkedIn seats, proxies
+              Intent tracking tools: Leadfeeder, Trigify, Smart Links
             </li>
             <li className="flex items-start gap-2">
               <span className="text-green-400">✓</span>
-              Combined total (Consulting + Software) passed to ROI Calculator
+              LinkedIn Ads calculator with Smart Links (GTM Quest unique)
             </li>
             <li className="flex items-start gap-2">
-              <span className="text-amber-400">!</span>
-              TODO: ROI Calculator should update reactively when deal size/LTV changes
+              <span className="text-green-400">✓</span>
+              12-month timeline projection with ColdIQ benchmarks
+            </li>
+            <li className="flex items-start gap-2">
+              <span className="text-green-400">✓</span>
+              Timeline: Month 2 meetings, Month 3-4 first deals
+            </li>
+            <li className="flex items-start gap-2">
+              <span className="text-green-400">✓</span>
+              Response rate: 14% (intent-based) vs 1% (cold) - based on Trigify method
             </li>
           </ul>
+
+          <h4 className="text-md font-bold text-white mt-6 mb-3">Reference</h4>
+          <p className="text-sm text-white/50">
+            Based on ColdIQ&apos;s 4-Channel ABM System: $7.83M pipeline, $1.52M closed, 19.4% conversion.
+          </p>
+          <a
+            href="https://coldiq.com/blog/the-4-channel-abm-system-behind-7-8m-in-pipeline"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-sm text-green-400 hover:underline"
+          >
+            Read the ColdIQ article →
+          </a>
         </div>
       </section>
     </main>

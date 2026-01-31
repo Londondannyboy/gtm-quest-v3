@@ -105,10 +105,92 @@ const phases = [
   },
 ];
 
-// Optional Phase 2 - Fast Track (LinkedIn Ads + Content Authority)
+// Timeline Expectations (Conservative - indicative, not guarantees)
+const timelineExpectations = {
+  note: 'Timeline is indicative and depends on ICP responsiveness. Results compound - early signals inform later optimization.',
+  milestones: [
+    { period: 'Month 1', expectation: 'System build + initial campaigns live' },
+    { period: 'Month 2', expectation: 'Pipeline forming (meetings becoming possible)' },
+    { period: 'Month 3+', expectation: 'Meaningful data to optimize against' },
+  ],
+};
+
+// Version History
+const versionHistory = [
+  { version: '1.0', date: '30 Jan 2026', changes: 'Initial proposal' },
+  { version: '1.1', date: '31 Jan 2026', changes: 'Quest System methodology, UK/GDPR tracking, ABM scaling options' },
+];
+
+// The Quest System - 4-Channel ABM (formerly Fast Track)
+const questSystem = {
+  title: 'The Quest System: 4-Channel ABM',
+  subtitle: 'Signal-triggered multi-channel outreach that compounds over time',
+  description: 'Intent-based outreach typically outperforms cold by significant margins. The exact lift depends on ICP and market - we\'ll measure actual performance and optimize from there.',
+  channels: [
+    { name: 'LinkedIn Ads', purpose: 'Awareness', description: 'Build recognition before outreach', icon: '📢' },
+    { name: 'Content', purpose: 'Trust', description: 'Thought leadership that softens outreach', icon: '📝' },
+    { name: 'Intent Tracking', purpose: 'Timing', description: 'Know when prospects are ready', icon: '🎯' },
+    { name: 'Outbound', purpose: 'Conversion', description: 'Contextual, relevant outreach', icon: '🚀' },
+  ],
+  synergy: 'Your LinkedIn ad mentions a framework → Your content breaks it down → Your website offers a deeper dive → Your outreach ties it all together.',
+  magic: 'The magic happens when channels reinforce each other.',
+};
+
+// UK/GDPR Tracking Capabilities
+const ukGdprTracking = {
+  title: 'UK/GDPR-Compliant Tracking',
+  whatWeCanTrack: [
+    { name: 'Company-level website visits', tool: 'Leadfeeder, Clearbit Reveal', icon: '🏢' },
+    { name: 'Smart Link engagement', tool: 'Sales Navigator', description: 'Know exactly who clicked', icon: '🔗' },
+    { name: 'Personalization landing pages', description: 'Track which company/individual views', icon: '🎯' },
+    { name: 'LinkedIn post engagement', tool: 'Trigify', icon: '👍' },
+    { name: 'Email engagement', description: 'Opens, clicks, replies', icon: '📧' },
+  ],
+  ukDifference: 'Cannot identify individual website visitors without consent. Smart Links bridge this gap by tracking individual content views.',
+};
+
+// ABM Light vs Full ABM
+const abmScaling = {
+  light: {
+    title: 'ABM Light (Quest System Core)',
+    items: [
+      'Signal-triggered outreach to qualified accounts',
+      'Multi-channel touchpoints (ads → content → outreach)',
+      'Company-level targeting with intent signals',
+    ],
+  },
+  full: {
+    title: 'Full ABM Extension (Available)',
+    items: [
+      { name: '1:1 Campaigns', description: 'Hyper-personalized content for key accounts' },
+      { name: '1:Many Clusters', description: 'Same company, different decision makers with tailored messaging' },
+      { name: 'Account-Specific Content', description: 'Bespoke materials amplified directly to target' },
+      { name: 'Cluster Messaging', description: 'Pain point + company objective combination' },
+    ],
+  },
+};
+
+// Decision Maker Cluster Strategy
+const decisionMakerClusters = {
+  title: 'Decision Maker Cluster Strategy',
+  description: 'We don\'t just spray the same message - we orchestrate coordinated touches that feel relevant to each stakeholder while maintaining a coherent company-level story.',
+  example: [
+    { role: 'CFO', focus: 'Cost savings, compliance risk, ROI focus' },
+    { role: 'Sustainability Director', focus: 'Technical requirements, reporting, certifications' },
+    { role: 'CEO', focus: 'Competitive advantage, brand reputation, market position' },
+  ],
+  delivers: [
+    'Different LinkedIn ad creative',
+    'Different content themes',
+    'Different outreach messaging angle',
+    'But unified company narrative',
+  ],
+};
+
+// Legacy export for backwards compatibility
 const optionalFastTrack = {
-  title: 'Fast Track: LinkedIn Ads + Content Authority',
-  description: 'The ultimate playbook for rapid awareness building. LinkedIn ads warm up prospects before outreach, dramatically improving response rates.',
+  title: questSystem.title,
+  description: questSystem.description,
   when: 'Consider if: urgent need for quick awareness, new product launch, or time-sensitive market opportunity',
   items: [
     { name: 'LinkedIn Ads Campaign', description: 'Targeted awareness ads to decision-makers before outreach', icon: '📢' },
@@ -116,7 +198,7 @@ const optionalFastTrack = {
     { name: 'Smart Link Tracking', description: 'Know who clicked what before you message them', icon: '🔗' },
     { name: 'Retargeting Sequences', description: 'Ad viewers get prioritised in outreach campaigns', icon: '🎯' },
   ],
-  note: 'Not included in standard timeline - we recommend getting baseline metrics first. Available as add-on.',
+  note: 'Available as add-on to accelerate results. We recommend getting baseline metrics first.',
 };
 
 // ICP Categories - 5 Core Clusters (sub-segments provisional, to be validated in discovery)
@@ -535,6 +617,23 @@ export default function ClimatisePage() {
             </div>
             <h1 className="text-2xl md:text-3xl font-black text-white mb-1">GTM Proposal</h1>
             <p className="text-white/50 text-sm">Prepared for {lennonProfile.name}, {lennonProfile.title}</p>
+          </motion.div>
+
+          {/* Version History */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.15 }}
+            className="text-center mb-6"
+          >
+            <div className="inline-flex flex-col items-start bg-zinc-900/50 border border-white/5 rounded-lg px-4 py-2">
+              <p className="text-[10px] text-zinc-500 uppercase tracking-wider mb-1">Version History</p>
+              {versionHistory.map((v, i) => (
+                <p key={v.version} className={`text-[11px] ${i === versionHistory.length - 1 ? 'text-green-400/80' : 'text-zinc-500'}`}>
+                  v{v.version} • {v.date} • {v.changes}
+                </p>
+              ))}
+            </div>
           </motion.div>
 
           {/* Two Column: Opportunity + Ask */}
@@ -2255,6 +2354,26 @@ export default function ClimatisePage() {
               </motion.div>
             ))}
           </div>
+
+          {/* Timeline Expectations Note */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+            className="mt-12 text-center"
+          >
+            <div className="inline-flex flex-col items-center bg-zinc-900/50 border border-white/5 rounded-lg px-6 py-4 max-w-2xl">
+              <p className="text-white/50 text-xs mb-3">{timelineExpectations.note}</p>
+              <div className="flex flex-wrap justify-center gap-4">
+                {timelineExpectations.milestones.map((m) => (
+                  <div key={m.period} className="text-center">
+                    <div className="text-white text-sm font-semibold">{m.period}</div>
+                    <div className="text-white/40 text-xs">{m.expectation}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </motion.div>
         </div>
       </section>
 
@@ -2400,6 +2519,124 @@ export default function ClimatisePage() {
           >
             Optional: Business development involvement - can support with direct outreach and relationship building.
           </motion.p>
+
+          {/* Quest System 4-Channel Flow */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="mt-10 bg-zinc-900/50 border border-white/10 rounded-xl p-6"
+          >
+            <h4 className="text-lg font-bold text-white mb-2">{questSystem.title}</h4>
+            <p className="text-white/60 text-sm mb-4">{questSystem.subtitle}</p>
+
+            {/* 4-Channel Visual */}
+            <div className="flex flex-wrap items-center justify-center gap-2 md:gap-4 mb-6">
+              {questSystem.channels.map((channel, i) => (
+                <div key={channel.name} className="flex items-center">
+                  <div className="bg-black/50 border border-white/10 rounded-lg p-3 text-center min-w-[100px]">
+                    <div className="text-xl mb-1">{channel.icon}</div>
+                    <div className="text-white text-xs font-semibold">{channel.name}</div>
+                    <div className="text-white/40 text-[10px]">{channel.purpose}</div>
+                  </div>
+                  {i < questSystem.channels.length - 1 && (
+                    <span className="text-white/30 mx-1 md:mx-2">→</span>
+                  )}
+                </div>
+              ))}
+            </div>
+
+            {/* Synergy Quote */}
+            <div className="bg-gradient-to-r from-green-500/10 to-emerald-500/10 rounded-lg p-4 border border-green-500/20">
+              <p className="text-white/70 text-sm italic mb-2">&ldquo;{questSystem.synergy}&rdquo;</p>
+              <p className="text-green-400 text-xs font-semibold">{questSystem.magic}</p>
+            </div>
+          </motion.div>
+
+          {/* UK/GDPR Tracking */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="mt-6 bg-zinc-900/50 border border-amber-500/20 rounded-xl p-6"
+          >
+            <div className="flex items-center gap-2 mb-4">
+              <span className="text-amber-400">🇬🇧</span>
+              <h4 className="text-lg font-bold text-white">{ukGdprTracking.title}</h4>
+            </div>
+            <div className="grid md:grid-cols-5 gap-3 mb-4">
+              {ukGdprTracking.whatWeCanTrack.map((item) => (
+                <div key={item.name} className="bg-black/30 rounded-lg p-3 text-center">
+                  <div className="text-lg mb-1">{item.icon}</div>
+                  <div className="text-white text-xs font-semibold mb-1">{item.name}</div>
+                  {item.tool && <div className="text-white/40 text-[10px]">{item.tool}</div>}
+                </div>
+              ))}
+            </div>
+            <p className="text-amber-400/80 text-xs">{ukGdprTracking.ukDifference}</p>
+          </motion.div>
+
+          {/* ABM Scaling */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="mt-6 grid md:grid-cols-2 gap-4"
+          >
+            {/* ABM Light */}
+            <div className="bg-zinc-900/50 border border-blue-500/20 rounded-xl p-5">
+              <h5 className="text-sm font-bold text-blue-400 mb-3">{abmScaling.light.title}</h5>
+              <ul className="space-y-2">
+                {abmScaling.light.items.map((item) => (
+                  <li key={item} className="flex items-start gap-2 text-xs text-white/70">
+                    <span className="text-blue-400">•</span>
+                    {item}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Full ABM */}
+            <div className="bg-zinc-900/50 border border-purple-500/20 rounded-xl p-5">
+              <h5 className="text-sm font-bold text-purple-400 mb-3">{abmScaling.full.title}</h5>
+              <ul className="space-y-2">
+                {abmScaling.full.items.map((item) => (
+                  <li key={item.name} className="text-xs">
+                    <span className="text-white font-semibold">{item.name}:</span>
+                    <span className="text-white/60 ml-1">{item.description}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </motion.div>
+
+          {/* Decision Maker Clusters */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="mt-6 bg-zinc-900/50 border border-white/10 rounded-xl p-6"
+          >
+            <h4 className="text-lg font-bold text-white mb-2">{decisionMakerClusters.title}</h4>
+            <p className="text-white/60 text-sm mb-4">{decisionMakerClusters.description}</p>
+
+            <div className="grid md:grid-cols-3 gap-3 mb-4">
+              {decisionMakerClusters.example.map((dm) => (
+                <div key={dm.role} className="bg-black/30 rounded-lg p-3">
+                  <div className="text-white text-sm font-semibold mb-1">{dm.role}</div>
+                  <div className="text-white/50 text-xs">{dm.focus}</div>
+                </div>
+              ))}
+            </div>
+
+            <div className="flex flex-wrap gap-2">
+              {decisionMakerClusters.delivers.map((item, i) => (
+                <span key={item} className={`text-xs px-2 py-1 rounded ${i === decisionMakerClusters.delivers.length - 1 ? 'bg-green-500/20 text-green-400' : 'bg-white/5 text-white/60'}`}>
+                  {i === decisionMakerClusters.delivers.length - 1 ? '✓ ' : '• '}{item}
+                </span>
+              ))}
+            </div>
+          </motion.div>
         </div>
       </section>
 

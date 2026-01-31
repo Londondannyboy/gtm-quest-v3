@@ -66,7 +66,7 @@ export const SIGNAL_WARMTH_TIERS: SignalWarmthTier[] = [
     emailReplyRate: 0.14,
     linkedinReplyRate: 0.25,
     example: 'Liked/commented on industry thought leader posts',
-    tools: ['Triggify', 'Clay'],
+    tools: ['Trigify', 'Clay'],
   },
   {
     id: 'inbound',
@@ -108,14 +108,17 @@ export const ICP_BENCHMARKS: ICPBenchmarks = {
   },
 };
 
-// Channel Multipliers
+// Channel Multipliers (Updated with ColdIQ data)
 export const CHANNEL_MULTIPLIERS = {
   linkedinOutreach: 1.0,
   emailOutreach: 1.0,
   contentMarketing: 1.4,
   linkedinAds: 1.25,
+  intentTracking: 1.8,           // Intent tracking adds 80% lift
+  smartLinks: 1.3,               // Smart Links add 30%
   contentPlusOutreach: 1.6,
   fullStack: 2.2,
+  fullStackWithIntent: 2.8,      // All 4 channels + intent tracking
 };
 
 // Current State
@@ -261,4 +264,182 @@ export interface TimelinePhase {
   weeks: string;
   icon: string;
   items: string[];
+}
+
+// ============================================
+// 4-CHANNEL ABM SYSTEM TYPES (ColdIQ-inspired)
+// ============================================
+
+// Region Configuration (GDPR Handling)
+export type RegionId = 'uk_eu' | 'us';
+
+export interface RegionConfig {
+  region: RegionId;
+  label: string;
+  trackingCapabilities: {
+    individualVisitors: boolean;    // US: true, UK/EU: false (GDPR)
+    companyIdentification: boolean; // Both: true
+    cookieConsent: 'strict' | 'flexible';
+    linkedinEngagement: boolean;    // Both: true
+    emailEngagement: boolean;       // Both: true
+  };
+}
+
+export const REGION_CONFIGS: Record<RegionId, RegionConfig> = {
+  uk_eu: {
+    region: 'uk_eu',
+    label: 'UK / EU',
+    trackingCapabilities: {
+      individualVisitors: false,  // GDPR - company only
+      companyIdentification: true,
+      cookieConsent: 'strict',
+      linkedinEngagement: true,
+      emailEngagement: true,
+    },
+  },
+  us: {
+    region: 'us',
+    label: 'United States',
+    trackingCapabilities: {
+      individualVisitors: true,   // Can track individuals
+      companyIdentification: true,
+      cookieConsent: 'flexible',
+      linkedinEngagement: true,
+      emailEngagement: true,
+    },
+  },
+};
+
+// 4-Channel ABM Active Channels
+export interface ABMChannels {
+  linkedinAds: boolean;
+  content: boolean;
+  intentTracking: boolean;
+  outbound: boolean;
+}
+
+// Intent Tracking Tools
+export type VisitorIdTool = 'leadfeeder' | 'clearbit_reveal' | 'albacross' | 'none';
+export type SocialTrackingTool = 'teamfluence' | 'trigify' | 'phantom_buster' | 'none';
+
+export interface IntentTrackingTool {
+  id: string;
+  name: string;
+  monthlyCost: number;
+  description: string;
+}
+
+export const VISITOR_ID_TOOLS: Record<VisitorIdTool, IntentTrackingTool | null> = {
+  leadfeeder: { id: 'leadfeeder', name: 'Leadfeeder', monthlyCost: 150, description: 'Website visitor identification' },
+  clearbit_reveal: { id: 'clearbit_reveal', name: 'Clearbit Reveal', monthlyCost: 350, description: 'Company identification + enrichment' },
+  albacross: { id: 'albacross', name: 'Albacross', monthlyCost: 200, description: 'B2B intent data platform' },
+  none: null,
+};
+
+export const SOCIAL_TRACKING_TOOLS: Record<SocialTrackingTool, IntentTrackingTool | null> = {
+  teamfluence: { id: 'teamfluence', name: 'Teamfluence', monthlyCost: 99, description: 'Team post engagement tracking' },
+  trigify: { id: 'trigify', name: 'Trigify', monthlyCost: 99, description: 'LinkedIn engagement signals & triggers' },
+  phantom_buster: { id: 'phantom_buster', name: 'PhantomBuster', monthlyCost: 69, description: 'LinkedIn automation & scraping' },
+  none: null,
+};
+
+export interface IntentTrackingInputs {
+  tools: {
+    visitorIdentification: {
+      enabled: boolean;
+      tool: VisitorIdTool;
+      monthlyCost: number;
+    };
+    socialEngagement: {
+      enabled: boolean;
+      tool: SocialTrackingTool;
+      monthlyCost: number;
+    };
+    contentEngagement: {
+      enabled: boolean;
+      smartLinks: boolean;  // Sales Nav Smart Links feature
+    };
+  };
+  signalTypes: {
+    websiteVisits: boolean;
+    contentDownloads: boolean;
+    linkedinPostEngagement: boolean;
+    linkedinAdEngagement: boolean;
+    emailOpens: boolean;
+    emailClicks: boolean;
+  };
+}
+
+// LinkedIn Ads Calculator
+export interface LinkedInAdsInputs {
+  monthlyBudget: number;         // £5,000 - £50,000
+  cpm: number;                   // Default: £25 (LinkedIn avg)
+  targetAccounts: number;        // 500-1,000 recommended
+  adTypes: {
+    thoughtLeader: boolean;      // Personal-style ads from founder
+    documentAds: boolean;        // Carousel value delivery
+    smartLinks: boolean;         // GTM Quest unique feature
+  };
+  frequency: number;             // Target impressions per account per month
+}
+
+export interface LinkedInAdsOutputs {
+  impressionsPerMonth: number;
+  reachPercentage: number;       // % of target accounts reached
+  costPerAccountReached: number;
+  attributedPipelineLift: number; // Based on ColdIQ: 1.25x baseline
+}
+
+// Timeline Projection (Month-by-Month)
+export interface MonthlyProjection {
+  month: number;
+  touches: number;
+  responses: number;
+  meetings: number;
+  pipelineValue: number;
+  closedDeals: number;
+  revenue: number;
+  cumulativeROI: number;
+  phase: 'awareness' | 'building' | 'pipeline' | 'velocity';
+}
+
+export interface ABMProjection {
+  timeline: MonthlyProjection[];  // 12-month projection
+  breakEvenMonth: number;         // When ROI > 0
+  paybackPeriod: number;          // Months to recover investment
+  firstMeetingMonth: number;      // Expected: Month 2
+  firstDealMonth: number;         // Expected: Month 3-4
+  totalPipeline: number;
+  totalRevenue: number;
+  totalROI: number;
+}
+
+// ColdIQ Benchmarks (from their $7.83M case study)
+export const COLDIQ_BENCHMARKS = {
+  // Conversion rates
+  targetAccountToOpportunity: 0.164,  // 164/1000 accounts = deal created
+  opportunityToClose: 0.183,          // 30/164 deals = closed won
+
+  // Deal values
+  avgPipelineDeal: 47744,             // $7.83M / 164 deals
+  avgClosedDeal: 50667,               // $1.52M / 30 deals
+
+  // Timeline expectations
+  timeToFirstMeeting: 2,              // Months
+  timeToFirstDeal: 3.5,               // Months (between 3-4)
+  fullVelocityMonth: 4,               // When system hits full speed
+
+  // Budget ranges (USD)
+  linkedInAdsMonthlyMin: 10000,
+  linkedInAdsMonthlyMax: 50000,
+  toolsMonthlyMin: 2000,
+  toolsMonthlyMax: 5000,
+};
+
+// Smart Links Campaign Type
+export type SmartLinkCampaignType = 'one_to_one' | 'one_to_many';
+
+export interface SmartLinksConfig {
+  enabled: boolean;
+  campaignType: SmartLinkCampaignType;
 }
