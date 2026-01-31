@@ -16,7 +16,7 @@ import { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'GTM Agency | Go-To-Market Strategy & Execution | GTM Quest',
-  description: 'GTM Quest is a UK GTM agency that builds revenue engines. We run the Quest System: 4-channel ABM that compounds. Signal-triggered outreach, UK/GDPR compliant, built for results.',
+  description: 'GTM Quest: UK GTM agency building revenue engines. 4-channel ABM, signal-triggered outreach, UK/GDPR compliant. Book a strategy call.',
   alternates: {
     canonical: 'https://gtm.quest',
     languages: {
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: 'GTM Agency | Go-To-Market Strategy & Execution | GTM Quest',
-    description: 'GTM Quest is a UK GTM agency that builds revenue engines. 4-channel ABM, signal-triggered outreach, UK/GDPR compliant.',
+    description: 'GTM Quest: UK GTM agency building revenue engines. 4-channel ABM, signal-triggered outreach, UK/GDPR compliant.',
     type: 'website',
     url: 'https://gtm.quest',
     siteName: 'GTM Quest',

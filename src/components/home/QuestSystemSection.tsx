@@ -3,36 +3,91 @@
 import { motion, useInView } from 'framer-motion';
 import { useRef } from 'react';
 
-// The Quest System 4 Channels
+// Enhanced 4-Channel ABM data structure
 const channels = [
   {
     name: 'LinkedIn Ads',
-    purpose: 'Awareness',
-    description: 'Build recognition before outreach',
-    icon: '📢',
-    color: 'from-green-500/20 to-green-600/10 border-green-500/30',
+    color: 'bg-green-100 border-green-300',
+    headerBg: 'bg-green-200',
+    textColor: 'text-green-800',
+    purpose: {
+      title: 'Purpose',
+      items: ['Build recognition', 'Seed ideas early', 'Warm the audience'],
+    },
+    action: {
+      title: 'Run',
+      items: ['Document ads', 'Thought leader ads'],
+    },
+    tools: [
+      { name: 'LinkedIn', icon: 'in' },
+      { name: 'Clay', icon: 'clay' },
+    ],
   },
   {
     name: 'Content',
-    purpose: 'Trust',
-    description: 'Thought leadership that softens outreach',
-    icon: '📝',
-    color: 'from-blue-500/20 to-blue-600/10 border-blue-500/30',
+    color: 'bg-blue-100 border-blue-300',
+    headerBg: 'bg-blue-200',
+    textColor: 'text-blue-800',
+    purpose: {
+      title: 'Purpose',
+      items: ['Build authority', 'Stay top-of-mind', 'Soften outreach'],
+    },
+    action: {
+      title: 'Publish',
+      items: ['Founder-led content', 'Frameworks', 'Insights'],
+    },
+    tools: [
+      { name: 'Canva', icon: 'canva' },
+      { name: 'Taplio', icon: 'taplio' },
+      { name: 'Claude', icon: 'claude' },
+    ],
   },
   {
-    name: 'Intent Tracking',
-    purpose: 'Timing',
-    description: 'Know when prospects are ready',
-    icon: '🎯',
-    color: 'from-purple-500/20 to-purple-600/10 border-purple-500/30',
+    name: 'Tracking',
+    color: 'bg-cyan-100 border-cyan-300',
+    headerBg: 'bg-cyan-200',
+    textColor: 'text-cyan-800',
+    purpose: {
+      title: 'Purpose',
+      items: ['Identify leads', 'Outbound timing', 'Aligned message'],
+    },
+    action: {
+      title: 'Track',
+      items: ['Post engagement', 'Website visits', 'Tool clicks'],
+    },
+    tools: [
+      { name: 'Teamfluence', icon: 'teamfluence' },
+      { name: 'Clay', icon: 'clay' },
+      { name: 'Instantly', icon: 'instantly' },
+    ],
   },
   {
     name: 'Outbound',
-    purpose: 'Conversion',
-    description: 'Contextual, relevant outreach',
-    icon: '🚀',
-    color: 'from-amber-500/20 to-amber-600/10 border-amber-500/30',
+    color: 'bg-purple-100 border-purple-300',
+    headerBg: 'bg-purple-200',
+    textColor: 'text-purple-800',
+    purpose: {
+      title: 'Purpose',
+      items: ['Contextual outreach', 'Increase responses', 'Shorten sales cycle'],
+    },
+    action: {
+      title: 'Reference',
+      items: ['Ads they viewed', 'Engaged content', 'Page visits'],
+    },
+    tools: [
+      { name: 'Instantly', icon: 'instantly' },
+      { name: 'Clay', icon: 'clay' },
+      { name: 'Lemlist', icon: 'lemlist' },
+    ],
   },
+];
+
+// Synergy flow steps
+const synergySteps = [
+  { text: 'Your LinkedIn ad mentions a specific framework', color: 'bg-green-50 border-green-200 text-green-700' },
+  { text: 'Your content breaks down that framework', color: 'bg-blue-50 border-blue-200 text-blue-700' },
+  { text: 'Your website offers a deeper dive', color: 'bg-cyan-50 border-cyan-200 text-cyan-700' },
+  { text: 'Your email ties it all together', color: 'bg-purple-50 border-purple-200 text-purple-700' },
 ];
 
 // Timeline milestones
@@ -42,17 +97,117 @@ const timeline = [
   { month: 'Month 3+', label: 'Full velocity', progress: 100, color: 'bg-green-500' },
 ];
 
-// Tool stack for carousel
-const tools = [
-  { name: 'Clay', icon: '🏺', description: 'Enrichment & Orchestration' },
-  { name: 'La Growth Machine', icon: '⚙️', description: 'LinkedIn Automation' },
-  { name: 'Trigify', icon: '🎯', description: 'Intent Signals' },
-  { name: 'Instantly', icon: '📧', description: 'Email Infrastructure' },
-  { name: 'Sales Navigator', icon: '🔗', description: 'LinkedIn Premium' },
-  { name: 'Leadfeeder', icon: '🏢', description: 'Visitor Identification' },
-  { name: 'Smartlead', icon: '📬', description: 'Email Outreach' },
-  { name: 'Apollo', icon: '🚀', description: 'Sales Intelligence' },
-];
+// Tool icon component
+function ToolIcon({ name, icon }: { name: string; icon: string }) {
+  const iconMap: Record<string, { bg: string; text: string; label: string }> = {
+    in: { bg: 'bg-blue-600', text: 'text-white', label: 'in' },
+    clay: { bg: 'bg-zinc-800', text: 'text-white', label: 'Clay' },
+    canva: { bg: 'bg-cyan-500', text: 'text-white', label: 'C' },
+    taplio: { bg: 'bg-orange-500', text: 'text-white', label: 'T' },
+    claude: { bg: 'bg-orange-300', text: 'text-orange-900', label: '*' },
+    teamfluence: { bg: 'bg-yellow-400', text: 'text-yellow-900', label: 'TF' },
+    instantly: { bg: 'bg-blue-500', text: 'text-white', label: 'I' },
+    lemlist: { bg: 'bg-violet-600', text: 'text-white', label: 'L' },
+  };
+
+  const iconData = iconMap[icon] || { bg: 'bg-gray-500', text: 'text-white', label: '?' };
+
+  return (
+    <div className="flex flex-col items-center gap-1">
+      <div className={`w-8 h-8 ${iconData.bg} ${iconData.text} rounded-lg flex items-center justify-center text-xs font-bold`}>
+        {iconData.label}
+      </div>
+      <span className="text-[10px] text-zinc-600">{name}</span>
+    </div>
+  );
+}
+
+// Channel Card Component
+function ChannelCard({ channel, index }: { channel: typeof channels[0]; index: number }) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ delay: index * 0.15, duration: 0.5 }}
+      className="flex flex-col"
+    >
+      {/* Channel Header */}
+      <motion.div
+        whileHover={{ scale: 1.02, y: -2 }}
+        className={`${channel.headerBg} ${channel.textColor} rounded-2xl px-6 py-3 text-center font-bold shadow-sm`}
+      >
+        {channel.name}
+      </motion.div>
+
+      {/* Arrow down */}
+      <div className="flex justify-center my-2">
+        <svg width="20" height="20" viewBox="0 0 20 20" className="text-zinc-400">
+          <path d="M10 4 L10 16 M6 12 L10 16 L14 12" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+      </div>
+
+      {/* Purpose Section */}
+      <div className={`${channel.color} border rounded-xl p-4 mb-2`}>
+        <div className="bg-zinc-900 text-white text-sm font-bold py-2 px-4 rounded-lg mb-3 text-center">
+          {channel.purpose.title}
+        </div>
+        <ul className="space-y-1">
+          {channel.purpose.items.map((item, i) => (
+            <li key={i} className="text-zinc-700 text-sm flex items-start gap-2">
+              <span className="text-zinc-400">→</span>
+              {item}
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      {/* Action Section */}
+      <div className={`${channel.color} border rounded-xl p-4 mb-2 border-dashed`}>
+        <div className="bg-zinc-900 text-white text-sm font-bold py-2 px-4 rounded-lg mb-3 text-center">
+          {channel.action.title}
+        </div>
+        <ul className="space-y-1">
+          {channel.action.items.map((item, i) => (
+            <li key={i} className="text-zinc-700 text-sm flex items-start gap-2">
+              <span className="text-zinc-400">→</span>
+              {item}
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      {/* Tools Section */}
+      <div className={`${channel.color} border rounded-xl p-4`}>
+        <div className="bg-zinc-900 text-white text-sm font-bold py-2 px-4 rounded-lg mb-3 text-center">
+          Tools
+        </div>
+        <div className="flex justify-center gap-3">
+          {channel.tools.map((tool, i) => (
+            <ToolIcon key={i} name={tool.name} icon={tool.icon} />
+          ))}
+        </div>
+      </div>
+    </motion.div>
+  );
+}
+
+// Flow Arrow Component (horizontal)
+function FlowArrow({ delay }: { delay: number }) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, scale: 0 }}
+      whileInView={{ opacity: 1, scale: 1 }}
+      viewport={{ once: true }}
+      transition={{ delay, duration: 0.3 }}
+      className="hidden lg:flex items-start pt-6"
+    >
+      <svg width="40" height="24" viewBox="0 0 40 24" className="text-zinc-300">
+        <path d="M0 12 L30 12 M24 6 L30 12 L24 18" stroke="currentColor" strokeWidth="2" fill="none" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+    </motion.div>
+  );
+}
 
 // Progress Bar Component
 function AnimatedProgressBar({ milestone, index }: { milestone: typeof timeline[0]; index: number }) {
@@ -79,184 +234,132 @@ function AnimatedProgressBar({ milestone, index }: { milestone: typeof timeline[
   );
 }
 
-// Tool Card for Carousel
-function ToolCard({ tool }: { tool: typeof tools[0] }) {
-  return (
-    <div className="flex-shrink-0 w-36 bg-zinc-900 border border-white/10 rounded-xl p-4 text-center hover:border-blue-500/30 transition mx-2">
-      <div className="text-2xl mb-2">{tool.icon}</div>
-      <div className="text-white text-sm font-semibold">{tool.name}</div>
-      <div className="text-white/40 text-[10px] mt-1">{tool.description}</div>
-    </div>
-  );
-}
-
 export function QuestSystemSection() {
   return (
-    <section id="quest-system" className="py-20 bg-gradient-to-b from-black to-zinc-950 overflow-hidden scroll-mt-20">
-      <div className="max-w-6xl mx-auto px-4">
+    <section id="quest-system" className="py-20 bg-gradient-to-b from-zinc-100 to-white overflow-hidden scroll-mt-20">
+      <div className="max-w-7xl mx-auto px-4">
         {/* Header */}
-        <div className="text-center mb-16">
-          <motion.span
+        <div className="text-center mb-12">
+          <motion.div
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-green-400 text-sm font-bold uppercase tracking-wider"
+            className="inline-block bg-zinc-200 text-zinc-700 text-sm font-medium px-4 py-2 rounded-full mb-6"
           >
-            How We Work
-          </motion.span>
+            Here&apos;s the exact system we built
+          </motion.div>
           <motion.h2
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.1 }}
-            className="text-3xl md:text-4xl font-bold mt-4 mb-4 text-white"
+            className="text-3xl md:text-4xl lg:text-5xl font-bold text-zinc-900"
           >
-            The Quest System
+            The 4-channel ABM system{' '}
+            <span className="bg-gradient-to-r from-green-500 to-emerald-600 bg-clip-text text-transparent">
+              that converts
+            </span>
           </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
-            className="text-white/70 max-w-2xl mx-auto"
-          >
-            When you work with us, this is what we implement. Signal-triggered multi-channel
-            outreach that compounds over time. UK/GDPR compliant from day one.
-          </motion.p>
         </div>
 
-        {/* 4-Channel Flow */}
+        {/* 4-Channel Flow Diagram */}
+        <div className="flex flex-col lg:flex-row items-start justify-center gap-4 lg:gap-2 mb-16">
+          {channels.map((channel, index) => (
+            <div key={channel.name} className="flex items-start">
+              <ChannelCard channel={channel} index={index} />
+              {index < channels.length - 1 && <FlowArrow delay={index * 0.15 + 0.3} />}
+            </div>
+          ))}
+        </div>
+
+        {/* Synergy Section */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mb-16"
+          className="max-w-5xl mx-auto"
         >
-          <div className="flex flex-wrap items-center justify-center gap-3 md:gap-4">
-            {channels.map((channel, i) => (
-              <motion.div
-                key={channel.name}
-                initial={{ opacity: 0, scale: 0.9 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-                className="flex items-center"
-              >
-                <motion.div
-                  whileHover={{ scale: 1.05, y: -5 }}
-                  className={`bg-gradient-to-b ${channel.color} border rounded-xl p-4 text-center min-w-[130px] cursor-default`}
-                >
-                  <div className="text-3xl mb-2">{channel.icon}</div>
-                  <div className="text-white font-semibold text-sm">{channel.name}</div>
-                  <div className="text-white/50 text-[10px] uppercase tracking-wider mt-1">{channel.purpose}</div>
-                </motion.div>
-                {i < channels.length - 1 && (
-                  <motion.div
-                    initial={{ opacity: 0, x: -10 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: i * 0.1 + 0.2 }}
-                    className="text-white/30 mx-2 text-xl"
-                  >
-                    →
-                  </motion.div>
-                )}
-              </motion.div>
-            ))}
+          {/* Magic Quote */}
+          <div className="text-center mb-8">
+            <div className="inline-block bg-white border border-zinc-200 rounded-full px-6 py-3 shadow-sm">
+              <span className="text-zinc-700 font-medium">
+                The magic happens when channels reinforce each other.
+              </span>
+            </div>
           </div>
 
-          {/* Synergy Quote */}
+          {/* Synergy Flow */}
+          <div className="relative">
+            {/* Connection lines (desktop) */}
+            <div className="hidden md:block absolute top-1/2 left-0 right-0 h-0.5 bg-zinc-200 -translate-y-1/2 z-0" />
+
+            <div className="flex flex-col md:flex-row items-center justify-center gap-4 relative z-10">
+              {synergySteps.map((step, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 20 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1 }}
+                  className="flex items-center"
+                >
+                  <div className={`${step.color} border rounded-xl px-4 py-3 text-center text-sm max-w-[180px]`}>
+                    {step.text}
+                  </div>
+                  {index < synergySteps.length - 1 && (
+                    <div className="hidden md:block text-zinc-300 mx-2">→</div>
+                  )}
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </motion.div>
+
+        {/* Divider */}
+        <div className="my-16 border-t border-zinc-200" />
+
+        {/* Dark section for Timeline & GDPR */}
+        <div className="bg-zinc-900 rounded-3xl p-8 md:p-12">
+          {/* UK/GDPR Callout */}
           <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: 0.5 }}
-            className="mt-8 text-center max-w-2xl mx-auto"
+            className="mb-12 bg-gradient-to-r from-amber-500/10 via-transparent to-amber-500/10 border border-amber-500/20 rounded-xl p-6"
           >
-            <p className="text-white/60 text-sm italic">
-              &ldquo;Your LinkedIn ad mentions a framework → Your content breaks it down →
-              Your website offers a deeper dive → Your outreach ties it all together.&rdquo;
-            </p>
-            <p className="text-green-400 text-xs font-semibold mt-2">
-              The magic happens when channels reinforce each other.
+            <div className="flex flex-col md:flex-row items-center gap-4 md:gap-6">
+              <div className="text-4xl">🇬🇧</div>
+              <div className="flex-1 text-center md:text-left">
+                <h3 className="text-white font-bold mb-1">UK/EU GDPR-First Approach</h3>
+                <p className="text-white/60 text-sm">
+                  Company-level tracking via Leadfeeder. Smart Links bridge the individual tracking gap.
+                  Built for UK compliance from day one, not retrofitted from US playbooks.
+                </p>
+              </div>
+              <div className="flex gap-2">
+                <span className="text-xs bg-amber-500/20 text-amber-400 px-3 py-1 rounded-full">GDPR Compliant</span>
+                <span className="text-xs bg-green-500/20 text-green-400 px-3 py-1 rounded-full">Smart Links</span>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Timeline Progress */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+          >
+            <h3 className="text-white font-bold text-lg mb-6 text-center">What to Expect</h3>
+            <div className="max-w-xl mx-auto space-y-4">
+              {timeline.map((milestone, index) => (
+                <AnimatedProgressBar key={milestone.month} milestone={milestone} index={index} />
+              ))}
+            </div>
+            <p className="text-white/40 text-xs text-center mt-4">
+              Timeline is indicative. Results compound as signals inform optimization.
             </p>
           </motion.div>
-        </motion.div>
-
-        {/* UK/GDPR Callout */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="mb-16 bg-gradient-to-r from-amber-500/10 via-transparent to-amber-500/10 border border-amber-500/20 rounded-xl p-6"
-        >
-          <div className="flex flex-col md:flex-row items-center gap-4 md:gap-6">
-            <div className="text-4xl">🇬🇧</div>
-            <div className="flex-1 text-center md:text-left">
-              <h3 className="text-white font-bold mb-1">UK/EU GDPR-First Approach</h3>
-              <p className="text-white/60 text-sm">
-                Company-level tracking via Leadfeeder. Smart Links bridge the individual tracking gap.
-                Built for UK compliance from day one, not retrofitted from US playbooks.
-              </p>
-            </div>
-            <div className="flex gap-2">
-              <span className="text-xs bg-amber-500/20 text-amber-400 px-3 py-1 rounded-full">GDPR Compliant</span>
-              <span className="text-xs bg-green-500/20 text-green-400 px-3 py-1 rounded-full">Smart Links</span>
-            </div>
-          </div>
-        </motion.div>
-
-        {/* Timeline Progress */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="mb-16"
-        >
-          <h3 className="text-white font-bold text-lg mb-6 text-center">What to Expect</h3>
-          <div className="max-w-xl mx-auto space-y-4">
-            {timeline.map((milestone, index) => (
-              <AnimatedProgressBar key={milestone.month} milestone={milestone} index={index} />
-            ))}
-          </div>
-          <p className="text-white/40 text-xs text-center mt-4">
-            Timeline is indicative. Results compound as signals inform optimization.
-          </p>
-        </motion.div>
-
-        {/* Tool Stack Carousel */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-        >
-          <h3 className="text-white font-bold text-lg mb-6 text-center">Our GTM Stack</h3>
-
-          {/* Marquee Container */}
-          <div className="relative">
-            {/* Gradient Fades */}
-            <div className="absolute left-0 top-0 bottom-0 w-20 bg-gradient-to-r from-zinc-950 to-transparent z-10 pointer-events-none" />
-            <div className="absolute right-0 top-0 bottom-0 w-20 bg-gradient-to-l from-zinc-950 to-transparent z-10 pointer-events-none" />
-
-            {/* Marquee */}
-            <div className="overflow-hidden">
-              <motion.div
-                className="flex"
-                animate={{ x: [0, -1200] }}
-                transition={{
-                  duration: 30,
-                  repeat: Infinity,
-                  ease: 'linear',
-                }}
-              >
-                {/* Double the tools for seamless loop */}
-                {[...tools, ...tools].map((tool, i) => (
-                  <ToolCard key={`${tool.name}-${i}`} tool={tool} />
-                ))}
-              </motion.div>
-            </div>
-          </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

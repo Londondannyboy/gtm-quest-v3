@@ -64,10 +64,10 @@ export function HeroSection() {
           <span className="text-sm text-green-400">UK GTM Agency</span>
         </div>
 
-        {/* Agency-First H1 */}
+        {/* Agency-First H1 (36 chars for SEO) */}
         <h1 className="text-5xl md:text-6xl lg:text-7xl font-black mb-6 leading-tight">
-          <span className="block text-white">The GTM Agency</span>
-          <span className="block bg-gradient-to-r from-green-400 to-emerald-500 bg-clip-text text-transparent">That Builds Revenue Engines</span>
+          <span className="block text-white">GTM Agency</span>
+          <span className="block bg-gradient-to-r from-green-400 to-emerald-500 bg-clip-text text-transparent">Building Revenue Engines</span>
         </h1>
 
         {/* Quest System Subheadline */}
