@@ -1,6 +1,5 @@
 'use client';
 
-import Link from 'next/link';
 import dynamic from 'next/dynamic';
 
 // Dynamic import for SSR compatibility
@@ -47,50 +46,52 @@ export function HeroSection() {
           href={BOOKING_LINK}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-3 bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white px-6 py-3 rounded-full font-bold text-sm mb-8 animate-pulse-glow transition-all hover:scale-105"
+          className="inline-flex items-center gap-3 bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white px-6 py-3 rounded-full font-bold text-sm mb-8 animate-pulse-glow transition-all hover:scale-105"
         >
           <span className="relative flex h-3 w-3">
             <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
             <span className="relative inline-flex rounded-full h-3 w-3 bg-white"></span>
           </span>
-          Book a Free Strategy Call
+          Book a Strategy Call
           <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
           </svg>
         </a>
 
         {/* Badge */}
-        <div className="inline-flex items-center gap-2 bg-blue-500/10 border border-blue-500/20 rounded-full px-4 py-2 mb-6">
-          <span className="w-2 h-2 bg-blue-500 rounded-full animate-pulse" />
-          <span className="text-sm text-blue-400">AI-Powered GTM Strategy</span>
+        <div className="inline-flex items-center gap-2 bg-green-500/10 border border-green-500/20 rounded-full px-4 py-2 mb-6">
+          <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
+          <span className="text-sm text-green-400">UK GTM Agency</span>
         </div>
 
-        {/* New Prominent H1 */}
+        {/* Agency-First H1 */}
         <h1 className="text-5xl md:text-6xl lg:text-7xl font-black mb-6 leading-tight">
-          <span className="block text-white">Your #1</span>
-          <span className="block bg-gradient-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent">GTM Agency Platform</span>
+          <span className="block text-white">The GTM Agency</span>
+          <span className="block bg-gradient-to-r from-green-400 to-emerald-500 bg-clip-text text-transparent">That Builds Revenue Engines</span>
         </h1>
 
-        {/* Confident Subheadline - WHITE text */}
+        {/* Quest System Subheadline */}
         <p className="text-xl md:text-2xl text-white max-w-3xl mx-auto mb-10">
-          Build your go-to-market strategy with AI, find your perfect agency,
-          or work directly with our GTM experts.
+          We run the Quest System: 4-channel ABM that compounds.
+          Signal-triggered outreach, UK/GDPR compliant, built for results.
         </p>
 
         {/* CTA Buttons */}
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-          <Link
-            href="/dashboard"
-            className="bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white px-8 py-4 rounded-xl font-bold text-lg transition shadow-lg shadow-blue-500/25"
+          <a
+            href={BOOKING_LINK}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white px-8 py-4 rounded-xl font-bold text-lg transition shadow-lg shadow-green-500/25"
           >
-            Build Your GTM Plan
-          </Link>
-          <Link
-            href="/agencies"
-            className="text-white hover:text-blue-400 px-8 py-4 rounded-xl font-medium transition border border-white/20 hover:border-blue-500/50"
+            Book a Strategy Call
+          </a>
+          <a
+            href="#quest-system"
+            className="text-white hover:text-green-400 px-8 py-4 rounded-xl font-medium transition border border-white/20 hover:border-green-500/50"
           >
-            Browse 200+ Agencies
-          </Link>
+            See How It Works
+          </a>
         </div>
 
         {/* Stats */}

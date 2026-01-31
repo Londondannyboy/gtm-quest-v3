@@ -63,6 +63,14 @@ cd agent && source .venv/bin/activate && python server.py  # → localhost:8000
 | `components/charts/*.tsx` | TAM, Growth, Budget, Benchmark charts |
 | `components/home/CountrySections.tsx` | Geo-targeted agency sections by country |
 | `components/home/HomeSchema.tsx` | Schema.org structured data |
+| `components/home/HeroSection.tsx` | Agency-first hero with green theme |
+| `components/home/CTAPathwayCards.tsx` | 2-card CTA (Work With Us / Build Your Own) |
+| `components/home/QuestSystemSection.tsx` | 4-channel ABM animated methodology |
+| `components/home/ProcessJourney.tsx` | "Working With Us" 4-step process |
+| `components/home/BuildYourOwnSection.tsx` | DIY tool showcase section |
+| `components/home/DirectoryTeaser.tsx` | Agency directory bridge section |
+| `components/home/SocialProof.tsx` | Stats and trust badges |
+| `components/home/TopAgencies2026.tsx` | Top 10 agencies ranking |
 | `components/pitch/` | Reusable pitch template components |
 | `components/pitch/PitchTemplate.tsx` | Main wrapper with password + CTA |
 | `components/pitch/PasswordGate.tsx` | Session-based password protection |
@@ -368,3 +376,63 @@ POST /api/copilotkit           → CopilotKit runtime
   - Inbound: 25% email / 40% LinkedIn
 - Build: 282 pages generated successfully
 - Push to GitHub (commit 7ebcbae)
+
+### 2026-01-31 (Session 11) - Homepage Narrative Arc & Climatise v1.1
+- **Climatise v1.1 Pitch Update**:
+  - Added changelog header (v1.0 → v1.1)
+  - Added "Quest System" branding for 4-channel ABM methodology
+  - Added UK/GDPR tracking explanation (company-level via Leadfeeder, Smart Links)
+  - Added ABM Light vs Full ABM positioning
+  - Added decision maker cluster strategy (CFO/Sustainability/CEO messaging)
+  - Conservative messaging (no specific stats or guarantees)
+- **Homepage Narrative Arc Reorganization**:
+  - **Three Pillars:** Agency (primary), DIY Tool (secondary), Directory (tertiary)
+  - **Goal:** Rank for "GTM agency" + drive call bookings
+- **Hero Section Updated** (`HeroSection.tsx`):
+  - Badge: "UK GTM Agency" (green theme)
+  - H1: "The GTM Agency That Builds Revenue Engines"
+  - Subheadline: Quest System positioning
+  - Primary CTA: "Book a Strategy Call" (Calendly)
+  - Secondary CTA: "See How It Works" (scroll to #quest-system)
+- **CTAPathwayCards Simplified** to 2 cards:
+  - "Work With Us" (Recommended) → Calendly
+  - "Build Your Own" (Free) → /dashboard
+- **QuestSystemSection Enhanced**:
+  - Added id="quest-system" for scroll linking
+  - "How We Work" / "The Quest System" headers
+  - "When you work with us, this is what we implement" framing
+  - 4-channel animated flow (LinkedIn Ads → Content → Intent → Outbound)
+  - Animated progress bars with useInView
+  - UK/GDPR callout prominent
+  - Tool stack marquee carousel
+- **ProcessJourney Updated** to "Working With Us":
+  - Step 1: Discovery Call (30 min)
+  - Step 2: System Design (Week 1)
+  - Step 3: Build & Launch (Weeks 2-4)
+  - Step 4: Optimize & Scale (Ongoing)
+- **New Components Created**:
+  - `BuildYourOwnSection.tsx` - DIY tool showcase (blue/purple gradient)
+  - `DirectoryTeaser.tsx` - Agency directory bridge (200+ agencies)
+- **Page.tsx Section Order** (11 sections):
+  1. HomeSchema (structured data)
+  2. HomeClient (Hero)
+  3. CTAPathwayCards (2 cards)
+  4. QuestSystemSection (4-channel ABM)
+  5. SocialProof (stats)
+  6. ProcessJourney (4 steps)
+  7. BuildYourOwnSection (DIY)
+  8. DirectoryTeaser (directory bridge)
+  9. TopAgencies2026 (rankings)
+  10. CountrySections (geo-SEO)
+  11. SEOContent + FAQSection
+- **Removed Sections**:
+  - TLDRSection (absorbed into hero)
+  - TableOfContents (cleaner flow)
+  - ExplainerSection (redundant)
+  - TechStack (merged into QuestSystem carousel)
+  - DashboardShowcase (merged into BuildYourOwn)
+- **SEO Updates**:
+  - Meta title: "GTM Agency | Go-To-Market Strategy & Execution | GTM Quest"
+  - "GTM agency" keyword in H1, meta, key sections
+  - hreflang tags for geo-targeting maintained
+- Build: 282 pages generated successfully

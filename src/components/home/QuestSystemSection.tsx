@@ -92,7 +92,7 @@ function ToolCard({ tool }: { tool: typeof tools[0] }) {
 
 export function QuestSystemSection() {
   return (
-    <section className="py-20 bg-gradient-to-b from-black to-zinc-950 overflow-hidden">
+    <section id="quest-system" className="py-20 bg-gradient-to-b from-black to-zinc-950 overflow-hidden scroll-mt-20">
       <div className="max-w-6xl mx-auto px-4">
         {/* Header */}
         <div className="text-center mb-16">
@@ -102,7 +102,7 @@ export function QuestSystemSection() {
             viewport={{ once: true }}
             className="text-green-400 text-sm font-bold uppercase tracking-wider"
           >
-            Our Methodology
+            How We Work
           </motion.span>
           <motion.h2
             initial={{ opacity: 0, y: 10 }}
@@ -111,7 +111,7 @@ export function QuestSystemSection() {
             transition={{ delay: 0.1 }}
             className="text-3xl md:text-4xl font-bold mt-4 mb-4 text-white"
           >
-            The Quest System: 4-Channel ABM
+            The Quest System
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 10 }}
@@ -120,8 +120,8 @@ export function QuestSystemSection() {
             transition={{ delay: 0.2 }}
             className="text-white/70 max-w-2xl mx-auto"
           >
-            Signal-triggered multi-channel outreach that compounds over time.
-            Built for UK/EU compliance, not retrofitted.
+            When you work with us, this is what we implement. Signal-triggered multi-channel
+            outreach that compounds over time. UK/GDPR compliant from day one.
           </motion.p>
         </div>
 

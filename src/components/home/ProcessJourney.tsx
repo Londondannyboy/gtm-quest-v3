@@ -5,34 +5,34 @@ import { motion } from 'framer-motion';
 const steps = [
   {
     step: 1,
-    title: 'Tell Us About Your Business',
+    title: 'Discovery Call',
     description:
-      'Share your company details, target market, and growth goals through our AI-guided questionnaire.',
-    duration: '5 min',
+      'We understand your ICP, market positioning, and growth goals. No sales pitch - just learning.',
+    duration: '30 min',
     icon: '💬',
   },
   {
     step: 2,
-    title: 'Get Matched with Agencies',
+    title: 'System Design',
     description:
-      'Our AI analyzes 200+ agencies and recommends the perfect fit based on your specific needs.',
-    duration: 'Instant',
+      'We map your Quest System configuration - channels, tools, messaging, and targeting strategy.',
+    duration: 'Week 1',
     icon: '🎯',
   },
   {
     step: 3,
-    title: 'Review & Compare',
+    title: 'Build & Launch',
     description:
-      'Compare agency profiles, specializations, case studies, and client reviews side-by-side.',
-    duration: '10 min',
-    icon: '📊',
+      'We build your campaigns, set up infrastructure, and launch your first sequences.',
+    duration: 'Weeks 2-4',
+    icon: '🛠️',
   },
   {
     step: 4,
-    title: 'Connect & Grow',
+    title: 'Optimize & Scale',
     description:
-      'Get introduced directly to your matched agencies and start building your GTM motion.',
-    duration: 'Free',
+      'Monthly iteration based on data. Full handover when you are ready - no dependency.',
+    duration: 'Ongoing',
     icon: '🚀',
   },
 ];
@@ -46,9 +46,9 @@ export function ProcessJourney() {
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-blue-400 text-sm font-bold uppercase tracking-wider"
+            className="text-green-400 text-sm font-bold uppercase tracking-wider"
           >
-            How It Works
+            Working With Us
           </motion.span>
           <motion.h2
             initial={{ opacity: 0, y: 10 }}
@@ -57,7 +57,7 @@ export function ProcessJourney() {
             transition={{ delay: 0.1 }}
             className="text-3xl md:text-4xl font-bold mt-4 mb-4 text-white"
           >
-            From Discovery to Connection
+            From Discovery to Revenue
           </motion.h2>
           <motion.p
             initial={{ opacity: 0, y: 10 }}
@@ -66,7 +66,7 @@ export function ProcessJourney() {
             transition={{ delay: 0.2 }}
             className="text-white/70 max-w-2xl mx-auto"
           >
-            Four simple steps to find your perfect GTM partner. No sales calls, no commitment required.
+            Four steps to get your Quest System running. No long contracts, full handover included.
           </motion.p>
         </div>
 

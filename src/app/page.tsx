@@ -2,24 +2,21 @@ import { getArticles } from '@/lib/content';
 import { getAllAgencies, getFeaturedAgenciesByRegion } from '@/lib/agencies';
 import { HomeClient } from '@/components/home/HomeClient';
 import { SEOContent } from '@/components/home/SEOContent';
-import { ExplainerSection } from '@/components/home/ExplainerSection';
 import { FAQSection } from '@/components/home/FAQSection';
 import { HomeSchema } from '@/components/home/HomeSchema';
-import { TLDRSection } from '@/components/home/TLDRSection';
-import { TableOfContents } from '@/components/home/TableOfContents';
 import { TopAgencies2026 } from '@/components/home/TopAgencies2026';
 import { CountrySections } from '@/components/home/CountrySections';
 import { CTAPathwayCards } from '@/components/home/CTAPathwayCards';
 import { SocialProof } from '@/components/home/SocialProof';
 import { ProcessJourney } from '@/components/home/ProcessJourney';
-import { TechStack } from '@/components/home/TechStack';
-import { DashboardShowcase } from '@/components/home/DashboardShowcase';
 import { QuestSystemSection } from '@/components/home/QuestSystemSection';
+import { BuildYourOwnSection } from '@/components/home/BuildYourOwnSection';
+import { DirectoryTeaser } from '@/components/home/DirectoryTeaser';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'Your #1 GTM Agency Platform | AI-Powered Go-To-Market Matching',
-  description: 'GTM agency matching powered by AI. Build your go-to-market strategy and connect with 200+ vetted B2B growth agencies for demand generation, ABM, and revenue growth. Free matching service.',
+  title: 'GTM Agency | Go-To-Market Strategy & Execution | GTM Quest',
+  description: 'GTM Quest is a UK GTM agency that builds revenue engines. We run the Quest System: 4-channel ABM that compounds. Signal-triggered outreach, UK/GDPR compliant, built for results.',
   alternates: {
     canonical: 'https://gtm.quest',
     languages: {
@@ -33,19 +30,20 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: 'Your #1 GTM Agency Platform | AI-Powered Go-To-Market Matching',
-    description: 'GTM agency matching powered by AI. Connect with 200+ vetted B2B growth agencies for demand generation, ABM, and revenue growth.',
+    title: 'GTM Agency | Go-To-Market Strategy & Execution | GTM Quest',
+    description: 'GTM Quest is a UK GTM agency that builds revenue engines. 4-channel ABM, signal-triggered outreach, UK/GDPR compliant.',
     type: 'website',
     url: 'https://gtm.quest',
-    siteName: 'GTM Agency Quest',
+    siteName: 'GTM Quest',
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Your #1 GTM Agency Platform | AI-Powered Go-To-Market Matching',
-    description: 'GTM agency matching powered by AI. Connect with 200+ vetted B2B growth agencies.',
+    title: 'GTM Agency | Go-To-Market Strategy & Execution | GTM Quest',
+    description: 'UK GTM agency that builds revenue engines. 4-channel ABM, signal-triggered outreach.',
   },
   keywords: [
     'GTM agency',
+    'GTM agency UK',
     'go-to-market agency',
     'B2B marketing agency',
     'demand generation agency',
@@ -54,7 +52,6 @@ export const metadata: Metadata = {
     'best GTM agency',
     'GTM agency USA',
     'GTM agency United States',
-    'GTM agency UK',
     'GTM agency United Kingdom',
     'GTM agency Australia',
     'GTM agency Canada',
@@ -63,7 +60,8 @@ export const metadata: Metadata = {
     'B2B growth agency',
     'SaaS marketing agency',
     'Clay specialist',
-    'GTM platform',
+    'revenue engine',
+    '4-channel ABM',
   ],
 };
 
@@ -89,54 +87,39 @@ export default async function Home() {
       {/* Schema.org structured data */}
       <HomeSchema />
 
-      {/* Hero with Video Background */}
+      {/* 1. Hero - Agency-First Positioning */}
       <HomeClient />
 
-      {/* CTA Pathway Cards - 4 options for users */}
+      {/* 2. CTA Pathway Cards - 2 options: Work With Us / Build Your Own */}
       <CTAPathwayCards />
 
-      {/* Social Proof - Stats & Trust Badges */}
-      <SocialProof />
-
-      {/* TL;DR Quick Summary */}
-      <div id="tldr">
-        <TLDRSection />
-      </div>
-
-      {/* Table of Contents for navigation */}
-      <div className="max-w-4xl mx-auto px-4">
-        <TableOfContents />
-      </div>
-
-      {/* How It Works - Process Journey */}
-      <ProcessJourney />
-
-      {/* Quest System - 4-Channel ABM Methodology */}
+      {/* 3. Quest System - How We Work (4-Channel ABM) */}
       <QuestSystemSection />
 
-      {/* Tech Stack - Clay Specialist & Tools */}
-      <TechStack />
+      {/* 4. Social Proof - Stats & Trust Badges */}
+      <SocialProof />
 
-      {/* Dashboard Showcase - Visualizations Preview */}
-      <DashboardShowcase />
+      {/* 5. Process Journey - Working With Us (4 Steps) */}
+      <ProcessJourney />
 
-      {/* What is GTM Agency Matching - Explainer section */}
-      <div id="what-is-gtm">
-        <ExplainerSection />
-      </div>
+      {/* 6. Build Your Own - DIY Tool Showcase */}
+      <BuildYourOwnSection />
 
-      {/* Top 10 GTM Agencies 2026 */}
+      {/* 7. Directory Teaser - Agency Directory Bridge */}
+      <DirectoryTeaser />
+
+      {/* 8. Top 10 GTM Agencies 2026 */}
       <TopAgencies2026 agencies={topAgencies} />
 
-      {/* GTM Agencies by Country - geo-targeted sections */}
+      {/* 9. GTM Agencies by Country - geo-targeted sections (SEO) */}
       <CountrySections agenciesByCountry={agenciesByCountry} />
 
-      {/* Server-rendered SEO content (Resources, Industry Insights) */}
+      {/* 10. Server-rendered SEO content (Resources, Industry Insights) */}
       <div id="resources">
         <SEOContent featuredArticles={articles} topAgencies={topAgencies} />
       </div>
 
-      {/* FAQ Section with schema */}
+      {/* 11. FAQ Section with schema */}
       <div id="faq">
         <FAQSection />
       </div>
