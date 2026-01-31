@@ -37,34 +37,20 @@ const itemVariants = {
   },
 };
 
-const scaleVariants = {
-  hidden: { opacity: 0, scale: 0.8 },
-  visible: {
-    opacity: 1,
-    scale: 1,
-    transition: {
-      type: 'spring' as const,
-      stiffness: 100,
-      damping: 15,
-    },
-  },
-};
 
 export function HeroSection() {
   return (
     <section className="relative min-h-[90vh] overflow-hidden flex items-center">
-      {/* MUX Video Background - Optimized for performance */}
+      {/* MUX Video Background */}
       <div className="absolute inset-0 z-0">
         <MuxPlayer
           playbackId="qIS6PGKxIZyzjrDBzxQuqPRBOhHofDnXq1chdsqAY9Y"
           autoPlay="muted"
           loop
           muted
-          preload="metadata"
+          preload="auto"
           streamType="on-demand"
-          maxResolution="720p"
-          minResolution="480p"
-          poster={`https://image.mux.com/qIS6PGKxIZyzjrDBzxQuqPRBOhHofDnXq1chdsqAY9Y/thumbnail.webp?time=0&width=1280`}
+          poster={`https://image.mux.com/qIS6PGKxIZyzjrDBzxQuqPRBOhHofDnXq1chdsqAY9Y/thumbnail.webp?time=0`}
           className="absolute inset-0 w-full h-full object-cover"
           style={{
             '--controls': 'none',
@@ -72,11 +58,9 @@ export function HeroSection() {
             '--media-object-position': 'center',
           }}
         />
-        {/* More translucent overlay - increased opacity */}
-        <div className="absolute inset-0 bg-black/70" />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/40 to-black/90" />
-        {/* Subtle grain texture */}
-        <div className="absolute inset-0 opacity-20 bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIzMDAiIGhlaWdodD0iMzAwIj48ZmlsdGVyIGlkPSJhIiB4PSIwIiB5PSIwIj48ZmVUdXJidWxlbmNlIGJhc2VGcmVxdWVuY3k9Ii43NSIgc3RpdGNoVGlsZXM9InN0aXRjaCIgdHlwZT0iZnJhY3RhbE5vaXNlIi8+PGZlQ29sb3JNYXRyaXggdHlwZT0ic2F0dXJhdGUiIHZhbHVlcz0iMCIvPjwvZmlsdGVyPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbHRlcj0idXJsKCNhKSIgb3BhY2l0eT0iMC4wNSIvPjwvc3ZnPg==')]" />
+        {/* Dark overlay */}
+        <div className="absolute inset-0 bg-black/60" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/80" />
       </div>
 
       {/* Content with staggered animations */}
@@ -88,26 +72,6 @@ export function HeroSection() {
       >
         {/* Hidden SEO H2 */}
         <h2 className="sr-only">GTM Agency Matching</h2>
-
-        {/* Top CTA - Book a Call (animated) */}
-        <motion.a
-          variants={scaleVariants}
-          href={BOOKING_LINK}
-          target="_blank"
-          rel="noopener noreferrer"
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.98 }}
-          className="inline-flex items-center gap-3 bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700 text-white px-6 py-3 rounded-full font-bold text-sm mb-8 transition-all shadow-lg shadow-green-500/30"
-        >
-          <span className="relative flex h-3 w-3">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
-            <span className="relative inline-flex rounded-full h-3 w-3 bg-white"></span>
-          </span>
-          Book a Strategy Call
-          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-          </svg>
-        </motion.a>
 
         {/* Badge */}
         <motion.div

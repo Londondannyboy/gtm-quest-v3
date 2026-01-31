@@ -11,19 +11,19 @@ const categories = [
 
 export function DirectoryTeaser() {
   return (
-    <section className="py-16 bg-black">
+    <section className="py-16 bg-zinc-950">
       <div className="max-w-4xl mx-auto px-4">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="bg-zinc-900 border border-white/10 rounded-2xl p-8 text-center"
+          className="bg-zinc-900/50 backdrop-blur border border-zinc-800 rounded-2xl p-8 text-center"
         >
           <motion.span
             initial={{ opacity: 0, y: 10 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="text-zinc-400 text-sm font-bold uppercase tracking-wider"
+            className="text-zinc-500 text-sm font-bold uppercase tracking-wider"
           >
             Agency Directory
           </motion.span>
@@ -41,7 +41,7 @@ export function DirectoryTeaser() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.2 }}
-            className="text-white/60 mb-6"
+            className="text-zinc-400 mb-6"
           >
             Browse 200+ vetted GTM agencies by:
           </motion.p>
@@ -55,10 +55,10 @@ export function DirectoryTeaser() {
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.3 + index * 0.1 }}
-                className="bg-zinc-800 px-4 py-2 rounded-lg"
+                className="bg-zinc-800/50 border border-zinc-700 px-4 py-2 rounded-lg"
               >
                 <span className="text-white font-medium text-sm">{category.name}</span>
-                <span className="text-white/40 text-xs ml-2">{category.examples}</span>
+                <span className="text-zinc-500 text-xs ml-2">{category.examples}</span>
               </motion.div>
             ))}
           </div>
@@ -72,7 +72,7 @@ export function DirectoryTeaser() {
           >
             <Link
               href="/agencies"
-              className="inline-flex items-center gap-2 text-white hover:text-blue-400 px-6 py-3 rounded-xl font-medium transition border border-white/20 hover:border-blue-500/50"
+              className="inline-flex items-center gap-2 text-white hover:text-orange-400 px-6 py-3 rounded-xl font-medium transition border border-zinc-700 hover:border-orange-500/50"
             >
               Browse Directory
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
