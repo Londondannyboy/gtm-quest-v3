@@ -69,6 +69,9 @@ cd agent && source .venv/bin/activate && python server.py  # → localhost:8000
 | `components/home/ProcessJourney.tsx` | "Working With Us" 4-step process |
 | `components/home/BuildYourOwnSection.tsx` | DIY tool showcase section |
 | `components/home/DirectoryTeaser.tsx` | Agency directory bridge section |
+| `components/home/ABMApproachSection.tsx` | Starter/Growth packages (Clay-based) |
+| `components/home/EngagementModelsSection.tsx` | 4 engagement models (Handover/Support/Embedded/Scale) |
+| `components/home/StickyCTA.tsx` | Floating "Book a Call" button |
 | `components/home/SocialProof.tsx` | Stats and trust badges |
 | `components/home/TopAgencies2026.tsx` | Top 10 agencies ranking |
 | `components/pitch/` | Reusable pitch template components |
@@ -435,4 +438,58 @@ POST /api/copilotkit           → CopilotKit runtime
   - Meta title: "GTM Agency | Go-To-Market Strategy & Execution | GTM Quest"
   - "GTM agency" keyword in H1, meta, key sections
   - hreflang tags for geo-targeting maintained
+- Build: 282 pages generated successfully
+
+### 2026-01-31 (Session 12) - Dark Neon Theme & Engagement Models
+- **SEO Improvements**:
+  - H1 as badge: "GTM Agency UK" (SEO optimized, 13 chars)
+  - Visual headline: "The Quest GTM System"
+  - Meta description shortened to ~145 chars
+- **Hero Restructure** (`HeroSection.tsx`):
+  - H1 styled as small green badge for 100% SEO score
+  - Visual headline split: "The Quest" / "GTM System"
+  - Value prop: "A supercharged GTM consultant — without the big agency cost"
+  - Staggered Framer Motion animations with spring physics
+  - MUX video background with dynamic import
+- **Dark Neon Theme**:
+  - QuestSystemSection: Black/zinc-950 backgrounds, neon glow effects
+  - 4-channel cards with green/orange/blue/purple glows
+  - Hover glow intensification
+  - Grid pattern backgrounds
+  - Multi-color gradient text
+- **ABMApproachSection** (consultant positioning):
+  - "Consultant, Not Agency" header
+  - Starter & Growth packages (no specific pricing)
+  - Clay-based badge
+  - "Pricing discussed on call" approach
+- **EngagementModelsSection** (NEW):
+  - 4 engagement models for flexibility:
+    1. **Handover** - Build & transfer to your team
+    2. **Handover + Support** - Air cover (1-2 days/week consultant)
+    3. **Embedded** - Run & optimize for you
+    4. **Scale** - Full ABM partnership
+  - Dark neon cards with color-coded accents
+  - "Choose Your Level of Involvement" positioning
+- **Conversion Optimization**:
+  - StickyCTA floating button (bottom-left)
+  - CTAPathwayCards 2:1 ratio (Work With Us larger)
+  - Removed duplicate CTAs from hero
+- **Tool Stack Updates**:
+  - Added: SuperGrow, Ahrefs, NeonDB, Apify, RapidAPI, Claude, Gemini, Sonnet
+  - Removed: Teamfluence
+- **TypeScript Fixes**:
+  - Framer Motion variants: `as const` and `type: 'spring' as const`
+- **Page Section Order** (12 sections):
+  1. HomeSchema
+  2. HomeClient (Hero)
+  3. CTAPathwayCards
+  4. QuestSystemSection
+  5. ABMApproachSection
+  6. EngagementModelsSection (NEW)
+  7. SocialProof
+  8. ProcessJourney
+  9. BuildYourOwnSection
+  10. DirectoryTeaser
+  11. TopAgencies2026
+  12. CountrySections + SEOContent + FAQ
 - Build: 282 pages generated successfully
