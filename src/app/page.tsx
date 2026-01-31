@@ -13,6 +13,7 @@ import { QuestSystemSection } from '@/components/home/QuestSystemSection';
 import { BuildYourOwnSection } from '@/components/home/BuildYourOwnSection';
 import { DirectoryTeaser } from '@/components/home/DirectoryTeaser';
 import { StickyCTA } from '@/components/home/StickyCTA';
+import { ABMApproachSection } from '@/components/home/ABMApproachSection';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -97,7 +98,10 @@ export default async function Home() {
       {/* 3. Quest System - How We Work (4-Channel ABM) */}
       <QuestSystemSection />
 
-      {/* 4. Social Proof - Stats & Trust Badges */}
+      {/* 4. ABM Approach - Value for Money (ABM Light vs Full) */}
+      <ABMApproachSection />
+
+      {/* 5. Social Proof - Stats & Trust Badges */}
       <SocialProof />
 
       {/* 5. Process Journey - Working With Us (4 Steps) */}

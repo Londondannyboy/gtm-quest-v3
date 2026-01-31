@@ -82,27 +82,15 @@ export function HeroSection() {
           <span className="text-sm text-green-400 font-medium">UK GTM Agency</span>
         </motion.div>
 
-        {/* Agency-First H1 (36 chars for SEO) - Animated text */}
+        {/* H1 with "GTM Agency" keyword at position 1 */}
         <motion.h1
           variants={itemVariants}
           className="text-5xl md:text-6xl lg:text-7xl font-black mb-6 leading-tight"
         >
-          <motion.span
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.3, type: 'spring', stiffness: 100 }}
-            className="block text-white"
-          >
-            GTM Agency
-          </motion.span>
-          <motion.span
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.5, type: 'spring', stiffness: 100 }}
-            className="block bg-gradient-to-r from-green-400 to-emerald-500 bg-clip-text text-transparent"
-          >
-            Building Revenue Engines
-          </motion.span>
+          GTM Agency{' '}
+          <span className="bg-gradient-to-r from-green-400 to-emerald-500 bg-clip-text text-transparent">
+            Revenue Engines
+          </span>
         </motion.h1>
 
         {/* Quest System Subheadline */}
