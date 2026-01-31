@@ -5,6 +5,7 @@
 ## PRD Documents
 Detailed specs in `.claude/prd/`:
 - `agency-data-enrichment.md` - Agency database enrichment (Neon project: morning-rain-33890830)
+- `pitch-template-system.md` - Reusable pitch template with calculators
 
 ## Quick Start
 
@@ -62,6 +63,13 @@ cd agent && source .venv/bin/activate && python server.py  # → localhost:8000
 | `components/charts/*.tsx` | TAM, Growth, Budget, Benchmark charts |
 | `components/home/CountrySections.tsx` | Geo-targeted agency sections by country |
 | `components/home/HomeSchema.tsx` | Schema.org structured data |
+| `components/pitch/` | Reusable pitch template components |
+| `components/pitch/PitchTemplate.tsx` | Main wrapper with password + CTA |
+| `components/pitch/PasswordGate.tsx` | Session-based password protection |
+| `components/pitch/calculators/BudgetCalculator.tsx` | Multi-currency budget calculator |
+| `components/pitch/calculators/ROICalculator.tsx` | Signal warmth + ICP benchmarks |
+| `components/pitch/dashboard/*.tsx` | Pipeline, Channel, ROI charts |
+| `types/pitch.ts` | All pitch-related TypeScript interfaces |
 | `lib/agencies.ts` | Agency queries + COUNTRY_CONFIG |
 | `lib/agencies-db.ts` | Neon query functions |
 | `lib/db.ts` | Neon connection |
@@ -331,3 +339,28 @@ POST /api/copilotkit           → CopilotKit runtime
 - Agency distribution by target country:
   - US: 25 | UK: 10 | AU: 10 | CA: 9 | NZ: 5 | IE: 5
 - Build: 279 pages generated successfully
+
+### 2026-01-31 (Session 10) - Pitch Template System
+- **Pitch Template System Created**:
+  - PRD document at `.claude/prd/pitch-template-system.md`
+  - Types file at `src/types/pitch.ts` with all interfaces
+  - Reusable section components: HeroSection, Timeline, InvestmentOptions, SocialProof, WhyUs, StickyCTA
+  - PasswordGate for session-based password protection
+  - **BudgetCalculator**: Multi-currency (GBP/EUR/USD/AUD), live exchange rates, adjustable day counts
+  - **ROICalculator**: Signal warmth tiers (Cold 1% → Intent-based 14%), ICP benchmarks by title/industry/size, channel multipliers, conservative reduction slider, funnel projections
+  - Dashboard components: PipelineChart, ChannelBreakdown, ROITimeline (recharts)
+  - PitchTemplate wrapper component
+- **Climatise Page Enhanced**:
+  - Added interactive Budget Calculator with 4 tiers
+  - Added ROI Calculator with Climatise-specific defaults (£15K ACV, £45K LTV)
+  - Calculators placed after static Investment Options section
+- Key files added:
+  - `src/types/pitch.ts` - CurrencyConfig, BudgetTier, SignalWarmthTier, ICP_BENCHMARKS, ROIInputs, FunnelProjection
+  - `src/components/pitch/` - Full component library
+  - `src/components/pitch/index.ts` - Unified exports
+- Signal Warmth Tiers (from practitioner data):
+  - Cold: 1% email / 5% LinkedIn
+  - Targeted: 5% email / 12% LinkedIn
+  - Intent-based: 14% email / 25% LinkedIn (Triggify method - 14x improvement)
+  - Inbound: 25% email / 40% LinkedIn
+- Build: 281 pages generated successfully
