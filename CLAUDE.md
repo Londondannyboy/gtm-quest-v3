@@ -348,14 +348,17 @@ POST /api/copilotkit           → CopilotKit runtime
   - PasswordGate for session-based password protection
   - **BudgetCalculator**: Multi-currency (GBP/EUR/USD/AUD), live exchange rates, adjustable day counts
   - **ROICalculator**: Signal warmth tiers (Cold 1% → Intent-based 14%), ICP benchmarks by title/industry/size, channel multipliers, conservative reduction slider, funnel projections
+  - **Infrastructure Calculator**: Category breakdown (Platform/Email/LinkedIn/Tools), adjustable quantities
   - Dashboard components: PipelineChart, ChannelBreakdown, ROITimeline (recharts)
   - PitchTemplate wrapper component
-- **Climatise Page Enhanced**:
-  - Added interactive Budget Calculator with 4 tiers
-  - Added ROI Calculator with Climatise-specific defaults (£15K ACV, £45K LTV)
-  - Calculators placed after static Investment Options section
+- **Separate /template Route Created**:
+  - Password protected with "gtmquest"
+  - BudgetCalculator + Infrastructure breakdown + ROI Calculator
+  - Combined investment (Consulting + Software) passed to ROI projections
+  - Climatise reverted to original (was a live pitch shown to prospect)
 - Key files added:
   - `src/types/pitch.ts` - CurrencyConfig, BudgetTier, SignalWarmthTier, ICP_BENCHMARKS, ROIInputs, FunnelProjection
+  - `src/app/template/page.tsx` - Testing route with all calculators
   - `src/components/pitch/` - Full component library
   - `src/components/pitch/index.ts` - Unified exports
 - Signal Warmth Tiers (from practitioner data):
@@ -363,4 +366,5 @@ POST /api/copilotkit           → CopilotKit runtime
   - Targeted: 5% email / 12% LinkedIn
   - Intent-based: 14% email / 25% LinkedIn (Triggify method - 14x improvement)
   - Inbound: 25% email / 40% LinkedIn
-- Build: 281 pages generated successfully
+- Build: 282 pages generated successfully
+- Push to GitHub (commit 7ebcbae)

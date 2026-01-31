@@ -2,27 +2,30 @@
 
 > **Owner:** Dan Keegan
 > **Created:** 2026-01-31
-> **Status:** Phase 1 Complete - Core Components Built
+> **Status:** Phase 1 Complete - Deployed to Production
 
 ## Implementation Status
 
 ### Completed
 - [x] Types file (`src/types/pitch.ts`)
-- [x] PasswordGate component
+- [x] PasswordGate component with session-based auth
 - [x] Section components (HeroSection, Timeline, InvestmentOptions, SocialProof, WhyUs, StickyCTA)
-- [x] BudgetCalculator with multi-currency support
-- [x] ROICalculator with signal warmth + ICP benchmarks
+- [x] BudgetCalculator with multi-currency support (GBP/EUR/USD/AUD)
+- [x] ROICalculator with signal warmth tiers + ICP benchmarks
 - [x] Dashboard components (PipelineChart, ChannelBreakdown, ROITimeline)
 - [x] PitchTemplate wrapper
-- [x] Climatise page integration
+- [x] Infrastructure Calculator with category breakdown (Platform/Email/LinkedIn/Tools)
+- [x] /template route with password protection (`gtmquest`)
+- [x] Adjustable quantities for mailboxes, LinkedIn seats, proxies
+- [x] Combined investment (Consulting + Software) passed to ROI
 
 ### Remaining
 - [ ] CopilotKit integration for AI-powered dashboard insights
-- [ ] Infrastructure Calculator (mailboxes, tools, costs)
 - [ ] Current State baseline capture
 - [ ] Service variants (Web Design, Gen SEO, Content Marketing)
 - [ ] Analytics tracking (time-on-section)
 - [ ] PDF export with calculator state
+- [ ] ROI Calculator reactivity when deal size/LTV changes
 
 ## Overview
 
