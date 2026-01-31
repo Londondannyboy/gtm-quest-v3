@@ -21,6 +21,7 @@ const channels = [
     tools: [
       { name: 'LinkedIn', icon: 'in' },
       { name: 'Clay', icon: 'clay' },
+      { name: 'Ahrefs', icon: 'ahrefs' },
     ],
   },
   {
@@ -37,9 +38,9 @@ const channels = [
       items: ['Founder-led content', 'Frameworks', 'Insights'],
     },
     tools: [
-      { name: 'Canva', icon: 'canva' },
-      { name: 'Taplio', icon: 'taplio' },
+      { name: 'SuperGrow', icon: 'supergrow' },
       { name: 'Claude', icon: 'claude' },
+      { name: 'Canva', icon: 'canva' },
     ],
   },
   {
@@ -56,9 +57,9 @@ const channels = [
       items: ['Post engagement', 'Website visits', 'Tool clicks'],
     },
     tools: [
-      { name: 'Teamfluence', icon: 'teamfluence' },
-      { name: 'Clay', icon: 'clay' },
-      { name: 'Instantly', icon: 'instantly' },
+      { name: 'Apify', icon: 'apify' },
+      { name: 'NeonDB', icon: 'neondb' },
+      { name: 'RapidAPI', icon: 'rapidapi' },
     ],
   },
   {
@@ -76,8 +77,8 @@ const channels = [
     },
     tools: [
       { name: 'Instantly', icon: 'instantly' },
-      { name: 'Clay', icon: 'clay' },
-      { name: 'Lemlist', icon: 'lemlist' },
+      { name: 'Gemini', icon: 'gemini' },
+      { name: 'Sonnet', icon: 'sonnet' },
     ],
   },
 ];
@@ -100,14 +101,22 @@ const timeline = [
 // Tool icon component
 function ToolIcon({ name, icon }: { name: string; icon: string }) {
   const iconMap: Record<string, { bg: string; text: string; label: string }> = {
+    // LinkedIn Ads channel
     in: { bg: 'bg-blue-600', text: 'text-white', label: 'in' },
     clay: { bg: 'bg-zinc-800', text: 'text-white', label: 'Clay' },
-    canva: { bg: 'bg-cyan-500', text: 'text-white', label: 'C' },
-    taplio: { bg: 'bg-orange-500', text: 'text-white', label: 'T' },
-    claude: { bg: 'bg-orange-300', text: 'text-orange-900', label: '*' },
-    teamfluence: { bg: 'bg-yellow-400', text: 'text-yellow-900', label: 'TF' },
-    instantly: { bg: 'bg-blue-500', text: 'text-white', label: 'I' },
-    lemlist: { bg: 'bg-violet-600', text: 'text-white', label: 'L' },
+    ahrefs: { bg: 'bg-orange-500', text: 'text-white', label: 'Ah' },
+    // Content channel
+    supergrow: { bg: 'bg-gradient-to-br from-purple-500 to-pink-500', text: 'text-white', label: 'SG' },
+    claude: { bg: 'bg-orange-300', text: 'text-orange-900', label: 'Cl' },
+    canva: { bg: 'bg-cyan-500', text: 'text-white', label: 'Ca' },
+    // Tracking channel
+    apify: { bg: 'bg-green-500', text: 'text-white', label: 'Ap' },
+    neondb: { bg: 'bg-emerald-400', text: 'text-emerald-900', label: 'Ne' },
+    rapidapi: { bg: 'bg-blue-700', text: 'text-white', label: 'RA' },
+    // Outbound channel
+    instantly: { bg: 'bg-blue-500', text: 'text-white', label: 'In' },
+    gemini: { bg: 'bg-gradient-to-br from-blue-400 to-purple-500', text: 'text-white', label: 'Ge' },
+    sonnet: { bg: 'bg-orange-400', text: 'text-white', label: 'So' },
   };
 
   const iconData = iconMap[icon] || { bg: 'bg-gray-500', text: 'text-white', label: '?' };
