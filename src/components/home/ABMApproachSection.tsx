@@ -5,52 +5,48 @@ import { useRef } from 'react';
 
 const BOOKING_LINK = 'https://calendly.com/my-first-quest';
 
-const approaches = [
+const packages = [
   {
-    name: 'ABM Light',
-    tagline: 'Best value for growing teams',
-    price: 'From £2,500/mo',
-    description: 'Perfect for companies starting their ABM journey. Get the full Quest System at a fraction of traditional agency costs.',
+    name: 'Starter',
+    tagline: 'Get your system running',
+    description: 'Perfect for teams new to outbound. We build your Clay-based system, launch your first campaigns, and hand it over.',
     features: [
-      '4 LinkedIn identities',
-      '2 email domains',
-      'Signal-triggered outreach',
-      'Monthly optimization calls',
+      'Clay-powered enrichment & sequencing',
+      'LinkedIn + email outreach setup',
+      'Signal-triggered targeting',
+      'Monthly optimization call',
       'Full system handover',
     ],
     accentColor: 'green',
     borderColor: 'border-green-500/30',
     glowColor: 'from-green-500/10 to-emerald-500/10',
     textColor: 'text-green-400',
-    recommended: true,
   },
   {
-    name: 'Full ABM',
-    tagline: 'Maximum pipeline velocity',
-    price: 'From £5,000/mo',
-    description: 'For teams ready to scale aggressively. More touchpoints, faster iteration, dedicated support.',
+    name: 'Growth',
+    tagline: 'Scale with support',
+    description: 'For teams ready to move faster. More capacity, tighter iteration cycles, and dedicated support as you scale.',
     features: [
-      '8+ LinkedIn identities',
-      '4+ email domains',
+      'Everything in Starter',
+      'Expanded outreach capacity',
       'Priority signal processing',
       'Weekly strategy calls',
-      'Dedicated account manager',
+      'Dedicated account support',
     ],
     accentColor: 'orange',
     borderColor: 'border-orange-500/30',
     glowColor: 'from-orange-500/10 to-amber-500/10',
     textColor: 'text-orange-400',
-    recommended: false,
   },
 ];
 
-const savings = [
-  { label: 'Traditional Agency', cost: '£15-25k/mo', note: 'Long contracts, slow iteration' },
-  { label: 'In-House Team', cost: '£8-12k/mo', note: '3-6 month ramp-up time' },
-  { label: 'Quest System', cost: '£2.5-5k/mo', note: 'Live in 4 weeks, full handover', highlight: true },
+const comparisons = [
+  { label: 'Traditional Agency', note: 'Long contracts, slow iteration, big overhead' },
+  { label: 'Building In-House', note: 'Months of ramp-up, hiring headaches' },
+  { label: 'Quest System', note: 'Live in weeks, you own everything, full handover', highlight: true },
 ];
 
-function ApproachCard({ approach, index }: { approach: typeof approaches[0]; index: number }) {
+function PackageCard({ pkg, index }: { pkg: typeof packages[0]; index: number }) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-50px' });
 
@@ -63,33 +59,26 @@ function ApproachCard({ approach, index }: { approach: typeof approaches[0]; ind
       className="relative group"
     >
       {/* Glow effect */}
-      <div className={`absolute -inset-1 bg-gradient-to-r ${approach.glowColor} rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
+      <div className={`absolute -inset-1 bg-gradient-to-r ${pkg.glowColor} rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
 
-      <div className={`relative bg-zinc-900/80 backdrop-blur rounded-2xl border ${approach.borderColor} overflow-hidden h-full`}>
-        {/* Recommended badge */}
-        {approach.recommended && (
-          <div className="absolute top-4 right-4">
-            <span className="bg-green-500 text-white text-xs font-bold px-3 py-1 rounded-full">
-              BEST VALUE
+      <div className={`relative bg-zinc-900/80 backdrop-blur rounded-2xl border ${pkg.borderColor} overflow-hidden h-full`}>
+        {/* Header */}
+        <div className={`p-6 border-b ${pkg.borderColor}`}>
+          <div className="flex items-center gap-2 mb-2">
+            <h3 className={`text-2xl font-bold ${pkg.textColor}`}>{pkg.name}</h3>
+            <span className="text-xs bg-zinc-800 text-zinc-400 px-2 py-1 rounded-full">
+              Clay-based
             </span>
           </div>
-        )}
-
-        {/* Header */}
-        <div className={`p-6 border-b ${approach.borderColor}`}>
-          <h3 className={`text-2xl font-bold ${approach.textColor}`}>{approach.name}</h3>
-          <p className="text-zinc-400 text-sm mt-1">{approach.tagline}</p>
-          <div className="mt-4">
-            <span className="text-3xl font-black text-white">{approach.price}</span>
-          </div>
+          <p className="text-zinc-400 text-sm">{pkg.tagline}</p>
         </div>
 
         {/* Content */}
         <div className="p-6">
-          <p className="text-zinc-400 text-sm mb-6">{approach.description}</p>
+          <p className="text-zinc-400 text-sm mb-6">{pkg.description}</p>
 
           <ul className="space-y-3">
-            {approach.features.map((feature, i) => (
+            {pkg.features.map((feature, i) => (
               <motion.li
                 key={i}
                 initial={{ opacity: 0, x: -10 }}
@@ -97,7 +86,7 @@ function ApproachCard({ approach, index }: { approach: typeof approaches[0]; ind
                 transition={{ delay: index * 0.2 + i * 0.1 + 0.3 }}
                 className="flex items-center gap-3 text-zinc-300 text-sm"
               >
-                <svg className={`w-5 h-5 ${approach.textColor} flex-shrink-0`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <svg className={`w-5 h-5 ${pkg.textColor} flex-shrink-0`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                 </svg>
                 {feature}
@@ -110,12 +99,12 @@ function ApproachCard({ approach, index }: { approach: typeof approaches[0]; ind
             target="_blank"
             rel="noopener noreferrer"
             className={`mt-6 block w-full text-center py-3 rounded-xl font-bold transition ${
-              approach.recommended
+              index === 0
                 ? 'bg-green-500 hover:bg-green-600 text-white'
                 : 'bg-zinc-800 hover:bg-zinc-700 text-white border border-zinc-700'
             }`}
           >
-            Get Started
+            Talk to Us
           </a>
         </div>
       </div>
@@ -132,7 +121,7 @@ export function ABMApproachSection() {
       {/* Background */}
       <div className="absolute inset-0 bg-gradient-to-b from-zinc-950 via-black to-zinc-950" />
 
-      <div className="max-w-6xl mx-auto px-4 relative z-10">
+      <div className="max-w-5xl mx-auto px-4 relative z-10">
         {/* Header */}
         <div ref={headerRef} className="text-center mb-16">
           <motion.div
@@ -140,7 +129,7 @@ export function ABMApproachSection() {
             animate={isHeaderInView ? { opacity: 1, y: 0 } : {}}
             className="inline-block bg-orange-500/10 border border-orange-500/20 text-orange-400 text-sm font-bold uppercase tracking-wider px-4 py-2 rounded-full mb-6"
           >
-            Skip the Agency Overhead
+            Consultant, Not Agency
           </motion.div>
 
           <motion.h2
@@ -149,9 +138,9 @@ export function ABMApproachSection() {
             transition={{ delay: 0.1 }}
             className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4"
           >
-            Build Your GTM System,{' '}
+            Supercharged GTM —{' '}
             <span className="bg-gradient-to-r from-green-400 to-orange-400 bg-clip-text text-transparent">
-              Not Agency Bills
+              Without the Overhead
             </span>
           </motion.h2>
 
@@ -161,74 +150,73 @@ export function ABMApproachSection() {
             transition={{ delay: 0.2 }}
             className="text-zinc-400 max-w-2xl mx-auto text-lg"
           >
-            Traditional agencies charge £15-25k/month and lock you into long contracts.
-            We build your system, train your team, and hand it over. You own everything.
+            We build your Clay-based outbound system, train your team, and hand it over.
+            You own the infrastructure. No long contracts. No bloated retainers.
           </motion.p>
         </div>
 
-        {/* Cost Comparison */}
+        {/* Comparison */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           className="mb-16"
         >
-          <div className="bg-zinc-900/50 border border-zinc-800 rounded-2xl p-6 max-w-3xl mx-auto">
-            <h3 className="text-white font-bold text-lg mb-4 text-center">Cost Comparison</h3>
+          <div className="bg-zinc-900/50 border border-zinc-800 rounded-2xl p-6 max-w-2xl mx-auto">
+            <h3 className="text-white font-bold text-lg mb-4 text-center">Why Teams Choose Us</h3>
             <div className="space-y-3">
-              {savings.map((item, i) => (
+              {comparisons.map((item, i) => (
                 <motion.div
                   key={item.label}
                   initial={{ opacity: 0, x: -20 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.1 }}
-                  className={`flex items-center justify-between p-3 rounded-xl ${
+                  className={`flex items-center gap-4 p-3 rounded-xl ${
                     item.highlight
                       ? 'bg-green-500/10 border border-green-500/30'
-                      : 'bg-zinc-800/50'
+                      : 'bg-zinc-800/30'
                   }`}
                 >
+                  <div className={`w-2 h-2 rounded-full flex-shrink-0 ${
+                    item.highlight ? 'bg-green-500' : 'bg-zinc-600'
+                  }`} />
                   <div>
-                    <span className={`font-medium ${item.highlight ? 'text-green-400' : 'text-white'}`}>
+                    <span className={`font-medium ${item.highlight ? 'text-green-400' : 'text-zinc-400'}`}>
                       {item.label}
                     </span>
-                    <span className="text-zinc-500 text-sm ml-2">— {item.note}</span>
+                    <span className="text-zinc-500 text-sm block">{item.note}</span>
                   </div>
-                  <span className={`font-bold ${item.highlight ? 'text-green-400' : 'text-zinc-400'}`}>
-                    {item.cost}
-                  </span>
                 </motion.div>
               ))}
             </div>
           </div>
         </motion.div>
 
-        {/* Approach Cards */}
+        {/* Package Cards */}
         <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-          {approaches.map((approach, index) => (
-            <ApproachCard key={approach.name} approach={approach} index={index} />
+          {packages.map((pkg, index) => (
+            <PackageCard key={pkg.name} pkg={pkg} index={index} />
           ))}
         </div>
 
-        {/* Bottom CTA */}
+        {/* Bottom Note */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mt-16"
+          className="text-center mt-12"
         >
-          <p className="text-zinc-500 text-sm">
-            Not sure which is right for you?{' '}
+          <p className="text-zinc-600 text-sm">
+            Pricing discussed on call based on your needs.{' '}
             <a
               href={BOOKING_LINK}
               target="_blank"
               rel="noopener noreferrer"
               className="text-green-400 hover:text-green-300 underline"
             >
-              Book a free strategy call
-            </a>{' '}
-            and we&apos;ll help you decide.
+              Book a free strategy session
+            </a>
           </p>
         </motion.div>
       </div>

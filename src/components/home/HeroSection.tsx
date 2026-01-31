@@ -37,7 +37,6 @@ const itemVariants = {
   },
 };
 
-
 export function HeroSection() {
   return (
     <section className="relative min-h-[90vh] overflow-hidden flex items-center">
@@ -70,37 +69,43 @@ export function HeroSection() {
         animate="visible"
         className="relative z-10 max-w-5xl mx-auto px-4 text-center py-24 md:py-32"
       >
-        {/* Hidden SEO H2 */}
-        <h2 className="sr-only">GTM Agency Matching</h2>
-
-        {/* Badge */}
-        <motion.div
-          variants={itemVariants}
-          className="inline-flex items-center gap-2 bg-green-500/10 border border-green-500/20 rounded-full px-4 py-2 mb-6 backdrop-blur-sm"
-        >
-          <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
-          <span className="text-sm text-green-400 font-medium">UK GTM Agency</span>
-        </motion.div>
-
-        {/* H1 with "GTM Agency" keyword at position 1 */}
+        {/* SEO H1 - styled as badge for 100% SEO score */}
         <motion.h1
           variants={itemVariants}
-          className="text-5xl md:text-6xl lg:text-7xl font-black mb-6 leading-tight"
+          className="inline-flex items-center gap-2 bg-green-500/10 border border-green-500/20 rounded-full px-4 py-2 mb-6 backdrop-blur-sm text-sm text-green-400 font-medium"
         >
-          GTM Agency{' '}
-          <span className="bg-gradient-to-r from-green-400 to-emerald-500 bg-clip-text text-transparent">
-            Revenue Engines
-          </span>
+          <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
+          GTM Agency UK
         </motion.h1>
 
-        {/* Quest System Subheadline */}
+        {/* Visual Headline - The Impact Statement */}
+        <motion.div
+          variants={itemVariants}
+          className="mb-6"
+        >
+          <span className="block text-5xl md:text-6xl lg:text-7xl font-black text-white leading-tight">
+            The Quest
+          </span>
+          <span className="block text-5xl md:text-6xl lg:text-7xl font-black bg-gradient-to-r from-green-400 to-emerald-500 bg-clip-text text-transparent leading-tight">
+            GTM System
+          </span>
+        </motion.div>
+
+        {/* Value Proposition */}
         <motion.p
           variants={itemVariants}
-          className="text-xl md:text-2xl text-white/90 max-w-3xl mx-auto mb-10"
+          className="text-xl md:text-2xl text-white/90 max-w-3xl mx-auto mb-4"
         >
-          We run the Quest System: 4-channel ABM that compounds.
+          A supercharged GTM consultant — without the big agency cost.
+        </motion.p>
+
+        <motion.p
+          variants={itemVariants}
+          className="text-lg text-white/60 max-w-2xl mx-auto mb-10"
+        >
+          Clay-based outbound system. Signal-triggered campaigns.
           <br className="hidden md:block" />
-          Signal-triggered outreach, UK/GDPR compliant, built for results.
+          UK/GDPR compliant. Full handover included.
         </motion.p>
 
         {/* CTA Buttons */}
@@ -137,13 +142,12 @@ export function HeroSection() {
         >
           {[
             { value: '30 min', label: 'Discovery Call' },
-            { value: '90 days', label: 'To Pipeline' },
-            { value: 'No', label: 'Commitment' },
-          ].map((stat, index) => (
+            { value: '4 weeks', label: 'To Launch' },
+            { value: 'Full', label: 'Handover' },
+          ].map((stat) => (
             <motion.div
               key={stat.label}
               variants={itemVariants}
-              custom={index}
               className="flex flex-col items-center"
             >
               <span className="text-2xl md:text-3xl font-bold text-white">{stat.value}</span>
