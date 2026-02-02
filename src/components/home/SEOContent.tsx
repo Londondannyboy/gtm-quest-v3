@@ -197,7 +197,7 @@ export function SEOContent({ featuredArticles, topAgencies }: SEOContentProps) {
             From understanding evaluation criteria to crafting compliant responses, government procurement has its own playbook.
           </p>
           <p className="text-white/60">
-            Our partners at <a href="https://rfp.quest" target="_blank" rel="noopener noreferrer" className="text-emerald-400 hover:text-emerald-300 underline">RFP Quest</a> provide AI-powered tender analysis for government contracts — helping B2B companies understand requirements, identify gaps, and craft winning bids.
+            Our <a href="https://rfp.quest" target="_blank" rel="noopener noreferrer" className="text-emerald-400 hover:text-emerald-300 underline">RFP platform</a> provides AI-powered tender analysis for government contracts — helping B2B companies understand requirements, identify gaps, and craft winning bids.
           </p>
         </div>
 
