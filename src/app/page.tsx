@@ -12,7 +12,6 @@ import { ProcessJourney } from '@/components/home/ProcessJourney';
 import { QuestSystemSection } from '@/components/home/QuestSystemSection';
 import { BuildYourOwnSection } from '@/components/home/BuildYourOwnSection';
 import { DirectoryTeaser } from '@/components/home/DirectoryTeaser';
-import { StickyCTA } from '@/components/home/StickyCTA';
 import { ABMApproachSection } from '@/components/home/ABMApproachSection';
 import { EngagementModelsSection } from '@/components/home/EngagementModelsSection';
 import { Metadata } from 'next';
@@ -133,8 +132,6 @@ export default async function Home() {
         <FAQSection />
       </div>
 
-      {/* Sticky CTA - appears after scrolling past hero */}
-      <StickyCTA />
     </>
   );
 }
