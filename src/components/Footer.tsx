@@ -91,7 +91,7 @@ export function Footer() {
         {/* Bottom bar */}
         <div className="border-t border-white/10 mt-8 pt-8 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-white/40 text-sm">
-            &copy; {new Date().getFullYear()} GTM Quest. All rights reserved.
+            &copy; {new Date().getFullYear()} GTM Agency Quest. All rights reserved.
           </p>
           <div className="flex items-center gap-6">
             <Link href="/privacy" className="text-white/40 hover:text-white text-sm transition">

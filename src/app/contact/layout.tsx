@@ -15,7 +15,7 @@ export const metadata: Metadata = {
         url: 'https://gtm.quest/gtm-agency-quest-logo.png',
         width: 512,
         height: 512,
-        alt: 'Contact GTM Quest',
+        alt: 'Contact GTM Agency Quest',
       },
     ],
   },

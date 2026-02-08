@@ -140,8 +140,8 @@ export function HomeSchema() {
   const professionalServiceSchema = {
     '@context': 'https://schema.org',
     '@type': 'ProfessionalService',
-    name: 'GTM Quest',
-    alternateName: 'GTM Agency Quest',
+    name: 'GTM Agency Quest',
+    alternateName: 'GTM Quest',
     description:
       'UK-based Go-To-Market (GTM) agency specializing in Clay-powered Account-Based Marketing (ABM) for B2B SaaS companies. We build systematic revenue engines using AI-enhanced prospecting and 4-channel outbound.',
     url: 'https://gtm.quest',
