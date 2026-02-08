@@ -51,7 +51,7 @@ export function DashboardLayout({
             <div className="flex items-center gap-2">
               <Image
                 src="/gtm-agency-quest-logo.png"
-                alt="GTM Quest"
+                alt="GTM Agency Quest"
                 width={80}
                 height={24}
                 className="h-5 w-auto opacity-60"

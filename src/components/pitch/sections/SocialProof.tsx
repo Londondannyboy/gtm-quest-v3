@@ -18,7 +18,7 @@ interface SocialProofProps {
  */
 export function SocialProof({
   logo = '/gtm-agency-quest-logo.png',
-  logoAlt = 'GTM Quest',
+  logoAlt = 'GTM Agency Quest',
   tagline = 'Powered by GTM Quest',
   description = "We're building the #1 GTM agency matching platform with AI-powered strategy generation.",
   badge = 'Beta',

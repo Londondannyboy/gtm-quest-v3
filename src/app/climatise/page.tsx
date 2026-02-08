@@ -611,7 +611,7 @@ export default function ClimatisePage() {
             className="text-center mb-10"
           >
             <div className="flex items-center justify-center gap-4 mb-4">
-              <Image src="/gtm-agency-quest-logo.png" alt="GTM Quest" width={80} height={28} className="h-6 w-auto" />
+              <Image src="/gtm-agency-quest-logo.png" alt="GTM Agency Quest" width={80} height={28} className="h-6 w-auto" />
               <span className="text-white/30">×</span>
               <Image src="/climatise-logo.png" alt="Climatise" width={90} height={28} className="h-6 w-auto bg-white/10 rounded px-2 py-1" />
             </div>
@@ -883,7 +883,7 @@ export default function ClimatisePage() {
               <span>GTM proposal by</span>
               <Image
                 src="/gtm-agency-quest-logo.png"
-                alt="GTM Quest"
+                alt="GTM Agency Quest"
                 width={60}
                 height={20}
                 className="h-4 w-auto opacity-60"
@@ -2740,7 +2740,7 @@ export default function ClimatisePage() {
             <div className="flex items-center justify-center gap-3 mb-4">
               <Image
                 src="/gtm-agency-quest-logo.png"
-                alt="GTM Quest"
+                alt="GTM Agency Quest"
                 width={100}
                 height={35}
                 className="h-6 md:h-8 w-auto"

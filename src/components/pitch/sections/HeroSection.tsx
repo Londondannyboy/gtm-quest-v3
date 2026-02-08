@@ -70,7 +70,7 @@ export function HeroSection({
           <div className="flex items-center justify-center gap-4 mb-4">
             <Image
               src={gtmLogo}
-              alt="GTM Quest"
+              alt="GTM Agency Quest"
               width={80}
               height={28}
               className="h-6 w-auto"
