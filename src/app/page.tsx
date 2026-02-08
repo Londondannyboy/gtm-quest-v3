@@ -18,7 +18,7 @@ import { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'GTM Agency Quest | Go-To-Market Strategy & Execution',
-  description: 'GTM Agency Quest: go to market strategy and execution. UK GTM agency building revenue engines with 4-channel ABM.',
+  description: 'GTM Agency Quest: go-to-market strategy and execution. UK GTM agency building revenue engines with 4-channel ABM and Clay-based outbound systems.',
   alternates: {
     canonical: 'https://gtm.quest',
     languages: {

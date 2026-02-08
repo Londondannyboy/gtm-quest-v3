@@ -1,6 +1,7 @@
 'use client';
 
 import dynamic from 'next/dynamic';
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 
 // Dynamic import for SSR compatibility
@@ -70,6 +71,18 @@ export function HeroSection() {
         animate="visible"
         className="relative z-10 max-w-5xl mx-auto px-4 text-center py-24 md:py-32"
       >
+        {/* Logo image for SEO - contains "GTM agency" in alt text */}
+        <motion.div variants={itemVariants} className="mb-4">
+          <Image
+            src="/gtm-agency-quest-logo.png"
+            alt="GTM Agency UK - Go-To-Market Strategy & Execution Consultants"
+            width={80}
+            height={80}
+            className="mx-auto rounded-xl"
+            priority
+          />
+        </motion.div>
+
         {/* SEO H1 - styled as badge for 100% SEO score */}
         <motion.h1
           variants={itemVariants}
