@@ -5,89 +5,7 @@ interface TopAgencies2026Props {
   agencies: Agency[];
 }
 
-// Enhanced listicle data for top agencies
-const listicleData: Record<string, {
-  badge: string;
-  fee: string;
-  engagement: string;
-  icon: string;
-  highlight?: boolean;
-  bestFor: string;
-}> = {
-  gtmquest: {
-    badge: 'Best Value',
-    fee: '£5k-15k/mo',
-    engagement: '3-6 months',
-    icon: '🏆',
-    highlight: true,
-    bestFor: 'SaaS & Scale-ups'
-  },
-  salescaptain: {
-    badge: 'Best for Enterprise',
-    fee: '$10k-30k/mo',
-    engagement: '6-12 months',
-    icon: '🌐',
-    bestFor: 'Enterprise SaaS'
-  },
-  kalungi: {
-    badge: 'Best for B2B SaaS',
-    fee: '$15k-40k/mo',
-    engagement: '12+ months',
-    icon: '📈',
-    bestFor: 'Funded SaaS'
-  },
-  refinelabs: {
-    badge: 'Best for Demand Gen',
-    fee: '$8k-20k/mo',
-    engagement: '6-12 months',
-    icon: '🎯',
-    bestFor: 'Demand Generation'
-  },
-  ziggy: {
-    badge: 'Best UK Agency',
-    fee: '£8k-20k/mo',
-    engagement: '6-12 months',
-    icon: '🇬🇧',
-    bestFor: 'UK B2B Tech'
-  },
-  deviatelabs: {
-    badge: 'Best for LinkedIn',
-    fee: '$5k-15k/mo',
-    engagement: '3-6 months',
-    icon: '💼',
-    bestFor: 'LinkedIn Outbound'
-  },
-  ironpaper: {
-    badge: 'Best for Content',
-    fee: '$10k-25k/mo',
-    engagement: '6-12 months',
-    icon: '✍️',
-    bestFor: 'Content Marketing'
-  },
-  sixandflow: {
-    badge: 'Best HubSpot Partner',
-    fee: '£6k-15k/mo',
-    engagement: '6-12 months',
-    icon: '🔧',
-    bestFor: 'HubSpot Users'
-  },
-  singlegrain: {
-    badge: 'Best for SEO',
-    fee: '$8k-25k/mo',
-    engagement: '6-12 months',
-    icon: '🔍',
-    bestFor: 'Organic Growth'
-  },
-  inbeat: {
-    badge: 'Best for Influencer',
-    fee: '$5k-20k/mo',
-    engagement: '3-6 months',
-    icon: '📱',
-    bestFor: 'B2B Influencer'
-  }
-};
-
-// Default data for agencies not in our listicle data
+// Default data for agencies without listicle fields populated
 const defaultListicleData = {
   badge: 'GTM Agency',
   fee: 'Contact',
@@ -154,8 +72,15 @@ export function TopAgencies2026({ agencies }: TopAgencies2026Props) {
         {/* Ranked Listicle */}
         <div className="space-y-6">
           {top10.map((agency, index) => {
-            const data = listicleData[agency.slug] || defaultListicleData;
-            const isHighlighted = data.highlight;
+            // Use database listicle fields, fall back to defaults
+            const data = {
+              badge: agency.listicle_badge || defaultListicleData.badge,
+              fee: agency.listicle_fee || defaultListicleData.fee,
+              engagement: agency.listicle_engagement || defaultListicleData.engagement,
+              icon: agency.listicle_icon || defaultListicleData.icon,
+              bestFor: agency.listicle_best_for || defaultListicleData.bestFor,
+            };
+            const isHighlighted = agency.listicle_highlight || false;
 
             return (
               <Link

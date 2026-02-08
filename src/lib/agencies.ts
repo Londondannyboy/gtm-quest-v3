@@ -27,6 +27,13 @@ export interface Agency {
   case_study_url: string | null;
   tags: string[] | null;
   primary_color: string | null;
+  // Listicle fields for Top Agencies section
+  listicle_badge: string | null;
+  listicle_fee: string | null;
+  listicle_engagement: string | null;
+  listicle_icon: string | null;
+  listicle_highlight: boolean | null;
+  listicle_best_for: string | null;
 }
 
 export interface AgencyMatch extends Agency {
@@ -237,7 +244,9 @@ export async function getAllAgencies(): Promise<Agency[]> {
       id, name, slug, description, headquarters,
       specializations, category_tags, service_areas,
       min_budget, avg_rating, review_count, global_rank,
-      website, logo_url
+      website, logo_url, b2b_description,
+      listicle_badge, listicle_fee, listicle_engagement,
+      listicle_icon, listicle_highlight, listicle_best_for
     FROM companies
     WHERE app = 'gtm' AND status = 'published'
     ORDER BY global_rank NULLS LAST, name

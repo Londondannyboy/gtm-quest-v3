@@ -41,7 +41,7 @@ export function HeroSection() {
   return (
     <section className="relative min-h-[90vh] overflow-hidden flex items-center">
       {/* MUX Video Background */}
-      <div className="absolute inset-0 z-0">
+      <div className="absolute inset-0 z-0" role="presentation" aria-hidden="true">
         <MuxPlayer
           playbackId="qIS6PGKxIZyzjrDBzxQuqPRBOhHofDnXq1chdsqAY9Y"
           autoPlay="muted"
@@ -51,6 +51,7 @@ export function HeroSection() {
           streamType="on-demand"
           poster={`https://image.mux.com/qIS6PGKxIZyzjrDBzxQuqPRBOhHofDnXq1chdsqAY9Y/thumbnail.webp?time=0`}
           className="absolute inset-0 w-full h-full object-cover"
+          title="GTM Agency UK background video"
           style={{
             '--controls': 'none',
             '--media-object-fit': 'cover',

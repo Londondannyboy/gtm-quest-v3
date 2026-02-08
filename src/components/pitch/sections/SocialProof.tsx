@@ -17,7 +17,7 @@ interface SocialProofProps {
  * Social proof section showing GTM Quest branding and credibility.
  */
 export function SocialProof({
-  logo = '/GTM Logo New.png',
+  logo = '/gtm-agency-uk-logo.png',
   logoAlt = 'GTM Quest',
   tagline = 'Powered by GTM Quest',
   description = "We're building the #1 GTM agency matching platform with AI-powered strategy generation.",

@@ -37,11 +37,20 @@ export const metadata: Metadata = {
     type: 'website',
     url: 'https://gtm.quest',
     siteName: 'GTM Agency Quest',
+    images: [
+      {
+        url: 'https://gtm.quest/gtm-agency-uk-logo.png',
+        width: 512,
+        height: 512,
+        alt: 'GTM Agency UK - Go-To-Market Strategy & Execution',
+      },
+    ],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'GTM Agency Quest | Go-To-Market Strategy & Execution',
     description: 'GTM Agency Quest: go to market strategy and execution. UK GTM agency building revenue engines.',
+    images: ['https://gtm.quest/gtm-agency-uk-logo.png'],
   },
   keywords: [
     'GTM agency',
