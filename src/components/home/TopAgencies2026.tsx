@@ -5,133 +5,342 @@ interface TopAgencies2026Props {
   agencies: Agency[];
 }
 
-// Unsplash images for agency cards (business/marketing themed)
-const agencyImages: Record<string, string> = {
-  gtmquest: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=400&h=300&fit=crop',
-  salescaptain: 'https://images.unsplash.com/photo-1556761175-5973dc0f32e7?w=400&h=300&fit=crop',
-  inbeat: 'https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=400&h=300&fit=crop',
-  ironpaper: 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=300&fit=crop',
-  ziggy: 'https://images.unsplash.com/photo-1553028826-f4804a6dba3b?w=400&h=300&fit=crop',
-  deviatelabs: 'https://images.unsplash.com/photo-1559136555-9303baea8ebd?w=400&h=300&fit=crop',
-  refinelabs: 'https://images.unsplash.com/photo-1557804506-669a67965ba0?w=400&h=300&fit=crop',
-  sixandflow: 'https://images.unsplash.com/photo-1542744173-8e7e53415bb0?w=400&h=300&fit=crop',
-  singlegrain: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=400&h=300&fit=crop',
-  kalungi: 'https://images.unsplash.com/photo-1600880292203-757bb62b4baf?w=400&h=300&fit=crop',
+// Enhanced listicle data for top agencies
+const listicleData: Record<string, {
+  badge: string;
+  fee: string;
+  engagement: string;
+  icon: string;
+  highlight?: boolean;
+  bestFor: string;
+}> = {
+  gtmquest: {
+    badge: 'Best Value',
+    fee: '£5k-15k/mo',
+    engagement: '3-6 months',
+    icon: '🏆',
+    highlight: true,
+    bestFor: 'SaaS & Scale-ups'
+  },
+  salescaptain: {
+    badge: 'Best for Enterprise',
+    fee: '$10k-30k/mo',
+    engagement: '6-12 months',
+    icon: '🌐',
+    bestFor: 'Enterprise SaaS'
+  },
+  kalungi: {
+    badge: 'Best for B2B SaaS',
+    fee: '$15k-40k/mo',
+    engagement: '12+ months',
+    icon: '📈',
+    bestFor: 'Funded SaaS'
+  },
+  refinelabs: {
+    badge: 'Best for Demand Gen',
+    fee: '$8k-20k/mo',
+    engagement: '6-12 months',
+    icon: '🎯',
+    bestFor: 'Demand Generation'
+  },
+  ziggy: {
+    badge: 'Best UK Agency',
+    fee: '£8k-20k/mo',
+    engagement: '6-12 months',
+    icon: '🇬🇧',
+    bestFor: 'UK B2B Tech'
+  },
+  deviatelabs: {
+    badge: 'Best for LinkedIn',
+    fee: '$5k-15k/mo',
+    engagement: '3-6 months',
+    icon: '💼',
+    bestFor: 'LinkedIn Outbound'
+  },
+  ironpaper: {
+    badge: 'Best for Content',
+    fee: '$10k-25k/mo',
+    engagement: '6-12 months',
+    icon: '✍️',
+    bestFor: 'Content Marketing'
+  },
+  sixandflow: {
+    badge: 'Best HubSpot Partner',
+    fee: '£6k-15k/mo',
+    engagement: '6-12 months',
+    icon: '🔧',
+    bestFor: 'HubSpot Users'
+  },
+  singlegrain: {
+    badge: 'Best for SEO',
+    fee: '$8k-25k/mo',
+    engagement: '6-12 months',
+    icon: '🔍',
+    bestFor: 'Organic Growth'
+  },
+  inbeat: {
+    badge: 'Best for Influencer',
+    fee: '$5k-20k/mo',
+    engagement: '3-6 months',
+    icon: '📱',
+    bestFor: 'B2B Influencer'
+  }
 };
 
-const defaultImage = 'https://images.unsplash.com/photo-1551434678-e076c223a692?w=400&h=300&fit=crop';
+// Default data for agencies not in our listicle data
+const defaultListicleData = {
+  badge: 'GTM Agency',
+  fee: 'Contact',
+  engagement: '6+ months',
+  icon: '🎯',
+  bestFor: 'B2B Marketing'
+};
 
 export function TopAgencies2026({ agencies }: TopAgencies2026Props) {
   const top10 = agencies.slice(0, 10);
 
   return (
     <section id="top-agencies-2026" className="py-16 bg-zinc-950">
-      <div className="max-w-7xl mx-auto px-4">
+      <div className="max-w-5xl mx-auto px-4">
         {/* Section Header */}
         <div className="text-center mb-12">
           <span className="inline-block bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full mb-4">
-            Updated January 2026
+            2026 Rankings
           </span>
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Top 10 GTM Agencies in 2026
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
+            10 Best GTM Agencies UK
           </h2>
-          <p className="text-white/60 max-w-2xl mx-auto">
-            The best go-to-market agencies for B2B SaaS, demand generation, ABM, and revenue growth.
-            Hand-picked based on expertise, client results, and industry reputation.
+          <p className="text-white/60 max-w-2xl mx-auto text-lg">
+            Ranked comparison of the <strong className="text-white">best GTM agencies</strong> for B2B SaaS,
+            demand generation, and go-to-market execution in 2026.
           </p>
         </div>
 
-        {/* Agency Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-          {top10.map((agency, index) => (
-            <Link
-              key={agency.id}
-              href={`/agencies/${agency.slug}`}
-              className="group bg-zinc-900 rounded-2xl overflow-hidden border border-white/10 hover:border-emerald-500/30 transition-all hover:shadow-lg hover:shadow-emerald-500/5"
-            >
-              {/* Image */}
-              <div className="relative h-40 overflow-hidden">
-                <img
-                  src={agencyImages[agency.slug] || defaultImage}
-                  alt={`${agency.name} - GTM Agency`}
-                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                  loading="lazy"
-                />
-                <div className="absolute top-3 left-3">
-                  <span className="bg-emerald-500 text-white text-xs font-bold px-2 py-1 rounded">
-                    #{index + 1}
+        {/* What is a GTM Agency - Educational Content */}
+        <div className="bg-zinc-900/50 border border-white/10 rounded-2xl p-6 md:p-8 mb-12">
+          <h3 className="text-xl md:text-2xl font-bold text-white mb-4">
+            What is a GTM Agency?
+          </h3>
+          <div className="space-y-4 text-white/70">
+            <p>
+              A <strong className="text-white">GTM agency</strong> (Go-To-Market agency) specialises in helping
+              B2B companies launch products, enter new markets, and build predictable revenue engines. Unlike
+              traditional marketing agencies, GTM agencies focus on the entire revenue motion—from positioning
+              and messaging to demand generation and sales enablement.
+            </p>
+            <p>
+              The best <strong className="text-white">GTM agencies</strong> combine strategic consulting with
+              hands-on execution across multiple channels: content marketing, ABM campaigns, LinkedIn outbound,
+              paid media, and sales development. They understand that marketing and sales must work together
+              to drive pipeline and revenue.
+            </p>
+          </div>
+          <div className="mt-6 flex flex-wrap gap-3">
+            <span className="px-3 py-1 bg-emerald-500/10 border border-emerald-500/20 text-emerald-400 text-sm rounded-full">
+              Demand Generation
+            </span>
+            <span className="px-3 py-1 bg-blue-500/10 border border-blue-500/20 text-blue-400 text-sm rounded-full">
+              Account-Based Marketing
+            </span>
+            <span className="px-3 py-1 bg-purple-500/10 border border-purple-500/20 text-purple-400 text-sm rounded-full">
+              Sales Enablement
+            </span>
+            <span className="px-3 py-1 bg-orange-500/10 border border-orange-500/20 text-orange-400 text-sm rounded-full">
+              Revenue Operations
+            </span>
+          </div>
+        </div>
+
+        {/* Ranked Listicle */}
+        <div className="space-y-6">
+          {top10.map((agency, index) => {
+            const data = listicleData[agency.slug] || defaultListicleData;
+            const isHighlighted = data.highlight;
+
+            return (
+              <Link
+                key={agency.id}
+                href={`/agencies/${agency.slug}`}
+                className={`relative block border-2 rounded-2xl p-6 md:p-8 transition-all group ${
+                  isHighlighted
+                    ? 'border-emerald-500 bg-emerald-500/5 hover:bg-emerald-500/10'
+                    : 'border-white/10 bg-zinc-900/50 hover:border-emerald-500/30 hover:bg-zinc-900'
+                }`}
+              >
+                {/* Rank Badge */}
+                <div className={`absolute -top-4 -left-2 w-12 h-12 rounded-full flex items-center justify-center font-black text-lg shadow-lg ${
+                  isHighlighted ? 'bg-emerald-500 text-white' : 'bg-zinc-800 text-white border border-white/20'
+                }`}>
+                  #{index + 1}
+                </div>
+
+                {/* Award Badge */}
+                <div className="absolute top-4 right-4">
+                  <span className={`px-3 py-1 text-xs font-bold rounded-full ${
+                    isHighlighted
+                      ? 'bg-emerald-500 text-white'
+                      : 'bg-white/10 text-white/80'
+                  }`}>
+                    {data.badge}
                   </span>
                 </div>
-              </div>
 
-              {/* Content */}
-              <div className="p-5">
-                <h3 className="font-bold text-lg text-white group-hover:text-emerald-400 transition mb-1">
-                  {agency.name}
-                </h3>
-                <p className="text-white/50 text-sm mb-3">
-                  {agency.headquarters || 'Global'}
-                </p>
-                <p className="text-white/60 text-sm line-clamp-2 mb-4">
-                  {agency.description?.slice(0, 120)}...
-                </p>
-                <div className="flex flex-wrap gap-2">
-                  {agency.specializations?.slice(0, 2).map((spec) => (
-                    <span
-                      key={spec}
-                      className="text-xs bg-white/5 text-white/50 px-2 py-1 rounded"
-                    >
-                      {spec}
-                    </span>
-                  ))}
+                <div className="ml-8 mt-2">
+                  {/* Agency Name & Icon */}
+                  <div className="flex items-center gap-3 mb-3">
+                    <span className="text-3xl">{data.icon}</span>
+                    <h3 className="text-xl md:text-2xl font-bold text-white group-hover:text-emerald-400 transition">
+                      {agency.name}
+                    </h3>
+                  </div>
+
+                  {/* Description */}
+                  <p className="text-white/60 mb-4 line-clamp-2">
+                    {agency.b2b_description || agency.description}
+                  </p>
+
+                  {/* Stats Chips */}
+                  <div className="flex flex-wrap gap-3 text-sm">
+                    <div className={`px-4 py-2 rounded-lg ${
+                      isHighlighted ? 'bg-emerald-500/20 text-emerald-300' : 'bg-white/5 text-white/70'
+                    }`}>
+                      <span className="font-bold">Fee:</span> {data.fee}
+                    </div>
+                    <div className="bg-white/5 text-white/70 px-4 py-2 rounded-lg">
+                      <span className="font-bold">Engagement:</span> {data.engagement}
+                    </div>
+                    <div className="bg-blue-500/10 text-blue-300 px-4 py-2 rounded-lg">
+                      Best for: {data.bestFor}
+                    </div>
+                    {agency.headquarters && (
+                      <div className="bg-white/5 text-white/50 px-4 py-2 rounded-lg">
+                        📍 {agency.headquarters}
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Specializations */}
+                  {agency.specializations && agency.specializations.length > 0 && (
+                    <div className="flex flex-wrap gap-2 mt-4">
+                      {agency.specializations.slice(0, 4).map((spec) => (
+                        <span
+                          key={spec}
+                          className="text-xs bg-white/5 text-white/50 px-2 py-1 rounded"
+                        >
+                          {spec}
+                        </span>
+                      ))}
+                    </div>
+                  )}
                 </div>
-              </div>
-            </Link>
-          ))}
+
+                {/* Hover Arrow */}
+                <div className="absolute bottom-6 right-6 opacity-0 group-hover:opacity-100 transition-opacity">
+                  <span className="text-emerald-400 font-bold">View Profile →</span>
+                </div>
+              </Link>
+            );
+          })}
         </div>
 
         {/* CTA */}
-        <div className="text-center">
+        <div className="text-center mt-12">
           <Link
             href="/agencies"
-            className="inline-flex items-center gap-2 bg-emerald-500 hover:bg-emerald-600 text-white px-6 py-3 rounded-xl font-semibold transition"
+            className="inline-flex items-center gap-2 bg-emerald-500 hover:bg-emerald-600 text-white px-8 py-4 rounded-xl font-semibold transition text-lg"
           >
             View All 200+ GTM Agencies
-            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
             </svg>
           </Link>
         </div>
 
-        {/* Key Services Highlight */}
+        {/* Key Services Grid */}
         <div className="mt-16 grid md:grid-cols-4 gap-6">
-          <div className="bg-zinc-900/50 rounded-xl p-6 border border-white/5">
+          <div className="bg-zinc-900/50 rounded-xl p-6 border border-white/5 hover:border-emerald-500/30 transition">
+            <div className="text-2xl mb-3">📈</div>
             <h4 className="font-semibold text-white mb-2">Demand Generation</h4>
             <p className="text-white/50 text-sm">Creating awareness and pipeline through content, paid media, and inbound marketing.</p>
             <Link href="/agencies?specialization=demand-generation" className="text-emerald-400 text-sm mt-3 inline-block hover:text-emerald-300">
-              Find agencies &rarr;
+              Find agencies →
             </Link>
           </div>
-          <div className="bg-zinc-900/50 rounded-xl p-6 border border-white/5">
+          <div className="bg-zinc-900/50 rounded-xl p-6 border border-white/5 hover:border-emerald-500/30 transition">
+            <div className="text-2xl mb-3">🎯</div>
             <h4 className="font-semibold text-white mb-2">Account-Based Marketing</h4>
             <p className="text-white/50 text-sm">Targeted campaigns for high-value enterprise accounts with personalized outreach.</p>
             <Link href="/agencies?specialization=abm" className="text-emerald-400 text-sm mt-3 inline-block hover:text-emerald-300">
-              Find agencies &rarr;
+              Find agencies →
             </Link>
           </div>
-          <div className="bg-zinc-900/50 rounded-xl p-6 border border-white/5">
+          <div className="bg-zinc-900/50 rounded-xl p-6 border border-white/5 hover:border-emerald-500/30 transition">
+            <div className="text-2xl mb-3">🤝</div>
             <h4 className="font-semibold text-white mb-2">Sales Enablement</h4>
             <p className="text-white/50 text-sm">Tools, content, and processes to improve sales effectiveness and close rates.</p>
             <Link href="/agencies?specialization=sales-enablement" className="text-emerald-400 text-sm mt-3 inline-block hover:text-emerald-300">
-              Find agencies &rarr;
+              Find agencies →
             </Link>
           </div>
-          <div className="bg-zinc-900/50 rounded-xl p-6 border border-white/5">
+          <div className="bg-zinc-900/50 rounded-xl p-6 border border-white/5 hover:border-emerald-500/30 transition">
+            <div className="text-2xl mb-3">⚙️</div>
             <h4 className="font-semibold text-white mb-2">Revenue Operations</h4>
             <p className="text-white/50 text-sm">Systems and processes aligning marketing, sales, and customer success.</p>
             <Link href="/agencies?specialization=revops" className="text-emerald-400 text-sm mt-3 inline-block hover:text-emerald-300">
-              Find agencies &rarr;
+              Find agencies →
             </Link>
+          </div>
+        </div>
+
+        {/* FAQ Section */}
+        <div className="mt-16">
+          <h3 className="text-2xl font-bold text-white mb-8 text-center">GTM Agency FAQ</h3>
+          <div className="space-y-4 max-w-3xl mx-auto">
+            <details className="bg-zinc-900/50 border border-white/10 rounded-xl p-6 group">
+              <summary className="font-semibold text-white cursor-pointer list-none flex justify-between items-center">
+                How much does a GTM agency cost?
+                <span className="text-emerald-400 group-open:rotate-180 transition-transform">▼</span>
+              </summary>
+              <p className="mt-4 text-white/60">
+                GTM agency fees typically range from £5,000-£40,000 per month depending on scope and agency tier.
+                Boutique agencies charge £5k-15k/mo, mid-market agencies £10k-25k/mo, and enterprise agencies £20k-40k+/mo.
+                Most require 6-12 month minimum engagements.
+              </p>
+            </details>
+            <details className="bg-zinc-900/50 border border-white/10 rounded-xl p-6 group">
+              <summary className="font-semibold text-white cursor-pointer list-none flex justify-between items-center">
+                What's the difference between a GTM agency and a marketing agency?
+                <span className="text-emerald-400 group-open:rotate-180 transition-transform">▼</span>
+              </summary>
+              <p className="mt-4 text-white/60">
+                A GTM agency focuses on revenue outcomes and works across the entire funnel—from awareness to closed deals.
+                Traditional marketing agencies often focus on top-of-funnel activities like brand and content.
+                GTM agencies typically integrate with sales teams and measure success by pipeline generated, not just MQLs.
+              </p>
+            </details>
+            <details className="bg-zinc-900/50 border border-white/10 rounded-xl p-6 group">
+              <summary className="font-semibold text-white cursor-pointer list-none flex justify-between items-center">
+                When should I hire a GTM agency?
+                <span className="text-emerald-400 group-open:rotate-180 transition-transform">▼</span>
+              </summary>
+              <p className="mt-4 text-white/60">
+                Consider a GTM agency when: (1) You're launching a new product or entering new markets,
+                (2) Your current marketing isn't generating qualified pipeline, (3) You need to scale faster than
+                you can hire, or (4) You want proven playbooks rather than learning through trial and error.
+              </p>
+            </details>
+            <details className="bg-zinc-900/50 border border-white/10 rounded-xl p-6 group">
+              <summary className="font-semibold text-white cursor-pointer list-none flex justify-between items-center">
+                What results should I expect from a GTM agency?
+                <span className="text-emerald-400 group-open:rotate-180 transition-transform">▼</span>
+              </summary>
+              <p className="mt-4 text-white/60">
+                Good GTM agencies measure by revenue metrics: pipeline generated, opportunities created,
+                and deals closed. Expect 3-6 months before seeing significant results.
+                Typical outcomes include 2-3x improvement in qualified leads, 30-50% reduction in CAC,
+                and measurable increase in sales velocity.
+              </p>
+            </details>
           </div>
         </div>
       </div>
