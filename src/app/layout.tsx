@@ -18,8 +18,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "GTM Agency Matching | AI-Powered Go-To-Market Strategy",
-  description: "GTM agency matching powered by AI. Build your go-to-market strategy and connect with 200+ vetted B2B growth agencies for demand generation and ABM.",
+  title: "GTM Agency Quest | Go-To-Market Strategy & Execution",
+  description: "GTM Agency Quest: go to market strategy and execution. UK GTM agency building revenue engines with 4-channel ABM.",
 };
 
 export default function RootLayout({
