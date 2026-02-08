@@ -142,12 +142,6 @@ const nextConfig: NextConfig = {
         destination: '/articles/best-gtm-agency-us',
         permanent: true,
       },
-      // Renamed article: old slug -> new slug
-      {
-        source: '/articles/gtm-strategy-framework',
-        destination: '/articles/go-to-market-strategy-guide',
-        permanent: true,
-      },
     ];
   },
 };
