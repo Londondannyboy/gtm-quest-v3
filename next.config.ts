@@ -38,6 +38,28 @@ const nextConfig: NextConfig = {
   // Redirects to preserve indexed URLs from old site structure
   async redirects() {
     return [
+      // Stack Auth routes -> Neon Auth routes (leftover from development)
+      {
+        source: '/handler/sign-in',
+        destination: '/auth/sign-in',
+        permanent: true,
+      },
+      {
+        source: '/handler/sign-up',
+        destination: '/auth/sign-up',
+        permanent: true,
+      },
+      {
+        source: '/handler/:path*',
+        destination: '/auth/sign-in',
+        permanent: true,
+      },
+      // Old /directory -> New /agencies (agency directory)
+      {
+        source: '/directory',
+        destination: '/agencies',
+        permanent: true,
+      },
       // Old /agency/:slug -> New /agencies/:slug
       {
         source: '/agency/:slug',

@@ -226,7 +226,7 @@ export default function TemplatePage() {
   return (
     <PasswordGate
       clientSlug="template"
-      clientLogo="/gtm-agency-uk-logo.png"
+      clientLogo="/gtm-agency-quest-logo.png"
       clientName="GTM Quest"
       tagline="Pitch Template System"
       password="gtmquest"

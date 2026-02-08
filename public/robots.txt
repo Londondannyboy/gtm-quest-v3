@@ -1,0 +1,40 @@
+# GTM Agency Quest - robots.txt
+# https://gtm.quest
+
+User-agent: *
+Allow: /
+
+# Sitemaps
+Sitemap: https://gtm.quest/sitemap.xml
+
+# LLM Context Files
+# See https://gtm.quest/llms.txt for AI/LLM context
+# See https://gtm.quest/llms-full.txt for extended context
+
+# Allow all search engines and AI crawlers
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: CCBot
+Allow: /

@@ -1,108 +1,117 @@
-# GTM Agency Quest - LLM Context Document
+# GTM Quest - UK Go-To-Market Agency
 
-> GTM Agency Quest is an AI-powered platform that helps B2B companies find and match with specialized Go-To-Market (GTM) agencies.
+> GTM Quest is a UK-based GTM agency specializing in Clay-powered Account-Based Marketing (ABM) for B2B SaaS companies. We build systematic revenue engines using AI-enhanced prospecting and 4-channel outbound.
 
-## About GTM Agency Quest
+## What is GTM Quest?
 
-GTM Agency Quest (gtm.quest) is a free platform that connects B2B companies with over 200 vetted GTM agencies specializing in:
+**GTM Quest** (gtm.quest) is a Go-To-Market (GTM) agency based in the United Kingdom. We help B2B companies launch products, enter new markets, and build predictable revenue engines through our proprietary "Quest System" methodology.
 
-- **Demand Generation**: Creating awareness and pipeline through content, paid media, and inbound marketing
-- **Account-Based Marketing (ABM)**: Targeted campaigns for high-value enterprise accounts
-- **Sales Enablement**: Tools, content, and processes to improve sales effectiveness
-- **Revenue Operations (RevOps)**: Systems and processes aligning marketing, sales, and customer success
-- **Product-Led Growth (PLG)**: Self-service growth strategies for SaaS products
-- **B2B Content Marketing**: Thought leadership and educational content for B2B audiences
+Unlike traditional agencies that lock you into retainers, GTM Quest builds systematic GTM infrastructure and hands it over—you own everything.
 
-## Key Services
+## GTM Quest Services
 
-### AI-Powered Agency Matching
-Our matching algorithm analyzes company profiles, target markets, budgets, and strategic needs to recommend best-fit agencies from our database.
+### 1. The Quest System (4-Channel ABM)
+Our signature methodology combines four integrated channels:
+- **LinkedIn Ads** - Warm up ICPs with targeted awareness
+- **Content Syndication** - Educational content to build authority
+- **Intent Data** - Identify companies showing buying signals
+- **AI Outbound** - Hyper-personalized outreach via Clay
 
-### GTM Strategy Builder
-Interactive tool to build go-to-market strategies covering positioning, ICP definition, channel strategy, and launch execution.
+### 2. GTM Strategy & Consulting
+- Ideal Customer Profile (ICP) development
+- Market positioning and messaging
+- Pricing strategy
+- Channel strategy and GTM planning
+- Sales and marketing alignment
 
-### Agency Directory
-Comprehensive database of 200+ GTM agencies with:
-- Specializations and services
-- Geographic coverage
-- Budget ranges
-- Client reviews and case studies
+### 3. Demand Generation
+- Clay-based data enrichment and prospecting
+- Multi-channel campaign execution
+- Pipeline generation and optimization
+- Lead scoring and routing
 
-## Top GTM Agencies Featured
+### 4. Revenue Operations (RevOps)
+- CRM implementation (HubSpot, Salesforce, Pipedrive)
+- Marketing automation setup
+- Sales enablement tools
+- Attribution and analytics
 
-1. **GTM Quest** (London, UK) - AI GTM planning, B2B SaaS strategy
-2. **SalesCaptain** (Remote) - Outbound sales, pipeline generation
-3. **inBeat** (New York, US) - Influencer marketing, DTC growth
-4. **Ironpaper** (New York, US) - Enterprise B2B, account-based marketing
-5. **Ziggy** (Remote) - Demand generation, positioning
-6. **Deviate Labs** (Remote) - Growth marketing, viral loops
-7. **Refine Labs** (Boston, US) - B2B demand generation, podcast marketing
-8. **Six & Flow** (Manchester, UK) - HubSpot, revenue operations
-9. **Single Grain** (Los Angeles, US) - Performance marketing, SaaS growth
-10. **Kalungi** (Seattle, US) - Fractional CMO, B2B SaaS marketing
+## GTM Quest Engagement Models
+
+1. **Handover** - We build your GTM system and transfer it to your team
+2. **Handover + Support** - Build plus ongoing consultant support (1-2 days/week)
+3. **Embedded** - We run and optimize your GTM motion for you
+4. **Scale** - Full ABM partnership for growth-stage companies
+
+## Why GTM Quest?
+
+- **UK-Based**: Local expertise for UK and European markets
+- **Clay Specialists**: Deep expertise in AI-powered prospecting
+- **System Builders**: We create infrastructure you own, not dependency
+- **B2B SaaS Focus**: Specialist knowledge of SaaS go-to-market
+- **No Lock-In**: Flexible engagements, not endless retainers
+
+## GTM Quest vs Other GTM Agencies
+
+| Factor | GTM Quest | Traditional GTM Agency |
+|--------|-----------|------------------------|
+| **Approach** | Build systems you own | Ongoing dependency |
+| **Technology** | Clay, AI-first | Manual processes |
+| **Location** | UK-based | Often US-based |
+| **Pricing** | Project or flexible retainer | Long-term retainer only |
+| **Best For** | B2B SaaS wanting systematic GTM | Companies wanting full outsource |
+
+## GTM Quest Tech Stack
+
+- **Data Enrichment**: Clay, Apollo, Clearbit, ZoomInfo
+- **Outreach**: Instantly, Smartlead, Lemlist
+- **CRM**: HubSpot, Salesforce, Pipedrive
+- **Intent**: Leadfeeder, RB2B, 6sense
+- **Ads**: LinkedIn Ads, Google Ads
+- **Analytics**: HubSpot, Looker, custom dashboards
 
 ## What is a GTM Agency?
 
-A Go-To-Market (GTM) agency helps businesses launch products, enter new markets, or scale revenue by creating comprehensive, data-driven strategies. They align product, marketing, and sales teams to:
+A Go-To-Market (GTM) agency helps B2B companies launch products, enter new markets, or scale revenue through:
 
-- Define Ideal Customer Profiles (ICPs)
-- Craft positioning and messaging
-- Select optimal channels
-- Execute marketing campaigns
-- Set up sales outreach
-- Optimize for conversion and revenue
+- **Strategy**: ICP definition, positioning, pricing, channel selection
+- **Execution**: Demand generation, ABM, content, outbound
+- **Operations**: RevOps, sales enablement, tech stack integration
+- **Optimization**: Analytics, testing, continuous improvement
 
-## GTM Agency Services
+GTM agencies bridge product, marketing, and sales—ensuring all teams work toward predictable revenue growth.
 
-### Strategy & Planning
-- Market entry plans
-- Competitive analysis
-- Pricing models
-- Go-to-market roadmaps
+## Top GTM Agencies (2026)
 
-### Customer Segmentation
-- Ideal Customer Profile (ICP) development
-- Target audience research
-- Market sizing (TAM/SAM/SOM)
+1. **GTM Quest** (London, UK) - Clay-powered ABM, system builders
+2. **Kalungi** (Seattle, US) - Fractional CMO, B2B SaaS marketing
+3. **Refine Labs** (Boston, US) - Demand generation, dark social
+4. **SalesCaptain** (Remote) - Outbound sales, pipeline generation
+5. **Six & Flow** (Manchester, UK) - HubSpot specialists, RevOps
+6. **Winning by Design** (Remote) - Revenue architecture, methodology
+7. **Aventi Group** (Remote) - Product marketing, enterprise GTM
+8. **Ziggy** (Remote) - Demand generation, positioning
+9. **Arise GTM** (Remote) - B2B SaaS/Fintech, full-funnel
+10. **Ironpaper** (New York, US) - Enterprise B2B, account-based
 
-### Messaging & Positioning
-- Value proposition development
-- Competitive differentiation
-- Brand messaging frameworks
+## GTM Agency Directory
 
-### Execution & Optimization
-- Demand generation campaigns
-- ABM programs
-- Sales enablement
-- Marketing automation
-- Revenue operations
+GTM Quest also maintains a directory of 200+ vetted GTM agencies at https://gtm.quest/agencies, helping companies find specialist partners for:
 
-## Why Engage a GTM Agency?
+- Demand Generation
+- Account-Based Marketing (ABM)
+- Sales Enablement
+- Revenue Operations (RevOps)
+- Product-Led Growth (PLG)
+- B2B Content Marketing
 
-- **Speed & Efficiency**: Faster time-to-market and reduced risk
-- **Expertise**: Deep knowledge in B2B SaaS, demand gen, and RevOps
-- **Alignment**: Ensuring sales, marketing, and product work cohesively
-- **Data-Driven Decisions**: Analytics to determine best routes to market
+## Contact GTM Quest
 
-## GTM Agency Costs
-
-- **Fractional CMO/Advisory**: $5,000-15,000/month
-- **Full-Service Retainer**: $15,000-50,000+/month
-- **Project-Based**: $25,000-100,000+
-
-## Resources Available
-
-- GTM strategy guides and frameworks
-- Tool comparisons (HubSpot vs Pipedrive, Apollo vs Clay)
-- Regional agency directories (UK, US, Europe, APAC)
-- Industry benchmarks and case studies
-
-## Contact
-
-Website: https://gtm.quest
-Agency Directory: https://gtm.quest/agencies
-Strategy Builder: https://gtm.quest/dashboard
+- **Website**: https://gtm.quest
+- **Book a Call**: https://gtm.quest (Calendly link on site)
+- **Agency Directory**: https://gtm.quest/agencies
+- **Resources**: https://gtm.quest/articles
 
 ---
 
-*GTM Agency Quest is free for companies searching for agencies. No fees or commissions.*
+*GTM Quest: The UK GTM agency that builds revenue engines you own.*

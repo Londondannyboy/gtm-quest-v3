@@ -49,7 +49,7 @@ export function HeroSection({
   clientLogo,
   contactName,
   contactTitle,
-  gtmLogo = '/gtm-agency-uk-logo.png',
+  gtmLogo = '/gtm-agency-quest-logo.png',
   opportunities,
   asks,
   riskMitigations,

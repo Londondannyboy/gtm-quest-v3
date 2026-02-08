@@ -1,5 +1,27 @@
 import { getArticles } from '@/lib/content';
 import Link from 'next/link';
+import { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'GTM Articles | Go-To-Market Strategy Guides | GTM Quest',
+  description: 'GTM strategy guides, frameworks, and articles for B2B growth. Learn demand gen, ABM, and sales enablement.',
+  alternates: {
+    canonical: 'https://gtm.quest/articles',
+  },
+  openGraph: {
+    title: 'GTM Articles | Go-To-Market Strategy Guides',
+    description: 'GTM strategy guides and articles for B2B growth. Learn demand gen, ABM, and sales enablement.',
+    url: 'https://gtm.quest/articles',
+    images: [
+      {
+        url: 'https://gtm.quest/gtm-agency-quest-logo.png',
+        width: 512,
+        height: 512,
+        alt: 'GTM Quest Articles',
+      },
+    ],
+  },
+};
 
 export default function ArticlesPage() {
   const articles = getArticles();

@@ -3,8 +3,24 @@ import Link from 'next/link';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'GTM Agencies Directory | GTM Quest',
-  description: 'Browse 200+ go-to-market agencies specializing in demand generation, ABM, sales enablement, and B2B growth. Find the perfect partner for your GTM strategy.',
+  title: 'GTM Agencies Directory | Find Go-To-Market Agencies | GTM Quest',
+  description: 'Browse 200+ GTM agencies for demand generation, ABM, sales enablement, and B2B growth. Find your GTM partner.',
+  alternates: {
+    canonical: 'https://gtm.quest/agencies',
+  },
+  openGraph: {
+    title: 'GTM Agencies Directory | Find Go-To-Market Agencies',
+    description: 'Browse 200+ GTM agencies for demand generation, ABM, and B2B growth. Find your perfect GTM partner.',
+    url: 'https://gtm.quest/agencies',
+    images: [
+      {
+        url: 'https://gtm.quest/gtm-agency-quest-logo.png',
+        width: 512,
+        height: 512,
+        alt: 'GTM Agency Directory',
+      },
+    ],
+  },
 };
 
 // Revalidate every hour

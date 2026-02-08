@@ -136,6 +136,100 @@ export function HomeSchema() {
     },
   };
 
+  // ProfessionalService schema - positions GTM Quest as a GTM agency
+  const professionalServiceSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'ProfessionalService',
+    name: 'GTM Quest',
+    alternateName: 'GTM Agency Quest',
+    description:
+      'UK-based Go-To-Market (GTM) agency specializing in Clay-powered Account-Based Marketing (ABM) for B2B SaaS companies. We build systematic revenue engines using AI-enhanced prospecting and 4-channel outbound.',
+    url: 'https://gtm.quest',
+    logo: 'https://gtm.quest/gtm-agency-quest-logo.png',
+    image: 'https://gtm.quest/gtm-agency-quest-logo.png',
+    priceRange: '$$',
+    address: {
+      '@type': 'PostalAddress',
+      addressCountry: 'GB',
+      addressRegion: 'London',
+    },
+    geo: {
+      '@type': 'GeoCoordinates',
+      latitude: 51.5074,
+      longitude: -0.1278,
+    },
+    areaServed: [
+      { '@type': 'Country', name: 'United Kingdom' },
+      { '@type': 'Country', name: 'United States' },
+      { '@type': 'Country', name: 'Australia' },
+      { '@type': 'Country', name: 'Canada' },
+      { '@type': 'Country', name: 'Ireland' },
+      { '@type': 'Country', name: 'New Zealand' },
+      { '@type': 'Place', name: 'Europe' },
+    ],
+    serviceType: [
+      'Go-To-Market Strategy',
+      'GTM Agency Services',
+      'Account-Based Marketing',
+      'Demand Generation',
+      'Revenue Operations',
+      'B2B Lead Generation',
+      'Sales Enablement',
+      'Clay Consulting',
+    ],
+    hasOfferCatalog: {
+      '@type': 'OfferCatalog',
+      name: 'GTM Quest Services',
+      itemListElement: [
+        {
+          '@type': 'Offer',
+          itemOffered: {
+            '@type': 'Service',
+            name: 'Quest System (4-Channel ABM)',
+            description: 'LinkedIn Ads, Content Syndication, Intent Data, and AI Outbound combined into one systematic GTM motion.',
+          },
+        },
+        {
+          '@type': 'Offer',
+          itemOffered: {
+            '@type': 'Service',
+            name: 'GTM Strategy Consulting',
+            description: 'ICP development, market positioning, pricing strategy, and GTM planning.',
+          },
+        },
+        {
+          '@type': 'Offer',
+          itemOffered: {
+            '@type': 'Service',
+            name: 'Clay-Powered Prospecting',
+            description: 'AI-enhanced data enrichment and hyper-personalized outbound using Clay workflows.',
+          },
+        },
+        {
+          '@type': 'Offer',
+          itemOffered: {
+            '@type': 'Service',
+            name: 'Revenue Operations',
+            description: 'CRM implementation, marketing automation, and sales enablement.',
+          },
+        },
+      ],
+    },
+    knowsAbout: [
+      'Go-to-market strategy',
+      'GTM agencies',
+      'Account-based marketing',
+      'B2B SaaS marketing',
+      'Demand generation',
+      'Clay data enrichment',
+      'Revenue operations',
+      'Sales enablement',
+      'LinkedIn advertising',
+      'Cold email outreach',
+    ],
+    slogan: 'The UK GTM agency that builds revenue engines you own.',
+  };
+
   // ItemList schema for geo-targeted agency sections
   const agencyListSchema = {
     '@context': 'https://schema.org',
@@ -208,6 +302,10 @@ export function HomeSchema() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(agencyListSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(professionalServiceSchema) }}
       />
     </>
   );
