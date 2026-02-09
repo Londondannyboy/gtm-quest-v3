@@ -5,7 +5,7 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { FloatingBookingWidget } from "@/components/ui/FloatingBookingWidget";
 import "./globals.css";
-import "@copilotkit/react-ui/styles.css";
+// CopilotKit CSS moved to dashboard/layout.tsx to reduce homepage bundle
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
