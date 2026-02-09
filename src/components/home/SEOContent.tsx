@@ -352,7 +352,7 @@ export function SEOContent({ featuredArticles, topAgencies }: SEOContentProps) {
           </p>
           <Link
             href="/#chat"
-            className="inline-block bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-4 rounded-xl font-bold transition"
+            className="inline-block bg-emerald-700 hover:bg-emerald-800 text-white px-8 py-4 rounded-xl font-bold transition"
           >
             Get Started Free
           </Link>

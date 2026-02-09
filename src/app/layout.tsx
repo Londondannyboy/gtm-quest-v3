@@ -10,11 +10,13 @@ import "@copilotkit/react-ui/styles.css";
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
+  display: "swap",
 });
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -52,9 +54,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        {/* Preconnect to MUX for faster video loading */}
-        <link rel="preconnect" href="https://image.mux.com" />
-        <link rel="preconnect" href="https://stream.mux.com" />
+        {/* Preload hero image for faster LCP */}
+        <link rel="preload" href="/hero-bg.jpg" as="image" type="image/jpeg" />
         {/* Favicon - GTM branding via RealFaviconGenerator */}
         <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />

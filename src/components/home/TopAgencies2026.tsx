@@ -94,7 +94,7 @@ export function TopAgencies2026({ agencies }: TopAgencies2026Props) {
               >
                 {/* Rank Badge */}
                 <div className={`absolute -top-4 -left-2 w-12 h-12 rounded-full flex items-center justify-center font-black text-lg shadow-lg ${
-                  isHighlighted ? 'bg-emerald-600 text-white' : 'bg-zinc-800 text-white border border-white/20'
+                  isHighlighted ? 'bg-emerald-700 text-white' : 'bg-zinc-800 text-white border border-white/20'
                 }`}>
                   #{index + 1}
                 </div>
@@ -103,7 +103,7 @@ export function TopAgencies2026({ agencies }: TopAgencies2026Props) {
                 <div className="absolute top-4 right-4">
                   <span className={`px-3 py-1 text-xs font-bold rounded-full ${
                     isHighlighted
-                      ? 'bg-emerald-600 text-white'
+                      ? 'bg-emerald-700 text-white'
                       : 'bg-white/10 text-white/80'
                   }`}>
                     {data.badge}
@@ -172,7 +172,7 @@ export function TopAgencies2026({ agencies }: TopAgencies2026Props) {
         <div className="text-center mt-12">
           <Link
             href="/agencies"
-            className="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white px-8 py-4 rounded-xl font-semibold transition text-lg"
+            className="inline-flex items-center gap-2 bg-emerald-700 hover:bg-emerald-800 text-white px-8 py-4 rounded-xl font-semibold transition text-lg"
           >
             View All 200+ GTM Agencies
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
