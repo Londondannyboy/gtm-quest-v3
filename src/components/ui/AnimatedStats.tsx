@@ -1,7 +1,6 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import CountUp from 'react-countup';
 
 interface AnimatedStatProps {
   value: number;
@@ -21,6 +20,11 @@ const colorClasses = {
   yellow: 'text-yellow-400',
   white: 'text-white',
 };
+
+// Simple number formatter
+function formatNumber(value: number): string {
+  return value % 1 !== 0 ? value.toFixed(1) : value.toLocaleString();
+}
 
 export function AnimatedStat({
   value,
@@ -51,14 +55,7 @@ export function AnimatedStat({
           <div className={`text-3xl font-bold ${colorClasses[color]}`}>
             {isVisible ? (
               <>
-                {prefix}
-                <CountUp
-                  end={value}
-                  duration={2}
-                  separator=","
-                  decimals={value % 1 !== 0 ? 1 : 0}
-                />
-                {suffix}
+                {prefix}{formatNumber(value)}{suffix}
               </>
             ) : (
               <span className="opacity-0">{prefix}{value}{suffix}</span>
@@ -177,7 +174,7 @@ export function AnimatedProgressRing({
             isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-50'
           }`}
         >
-          <CountUp end={progress} duration={1.5} suffix="%" />
+          {Math.round(progress)}%
         </span>
       </div>
     </div>

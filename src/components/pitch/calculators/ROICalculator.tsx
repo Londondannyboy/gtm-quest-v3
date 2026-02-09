@@ -1,7 +1,7 @@
 'use client';
 
 import { useState, useCallback, useEffect } from 'react';
-import CountUp from 'react-countup';
+// Removed react-countup for bundle size
 import {
   SignalWarmthId,
   SIGNAL_WARMTH_TIERS,
@@ -527,16 +527,12 @@ export function ROICalculator({
               <div
                 className={`text-2xl md:text-3xl font-black text-${stat.color}-400`}
               >
-                {stat.format === 'currency' ? (
-                  formatCurrency(stat.value)
-                ) : (
-                  <CountUp
-                    end={stat.value}
-                    duration={1}
-                    decimals={stat.decimals || 0}
-                    separator=","
-                  />
-                )}
+                {stat.format === 'currency'
+                  ? formatCurrency(stat.value)
+                  : stat.decimals
+                    ? stat.value.toFixed(stat.decimals)
+                    : stat.value.toLocaleString()
+                }
               </div>
               <div className="text-xs text-white/40">{stat.label}</div>
             </div>
@@ -556,7 +552,7 @@ export function ROICalculator({
               <div>
                 <div className="text-white/50 text-sm mb-1">ROI</div>
                 <div className="text-2xl font-black text-green-400">
-                  <CountUp end={roi} duration={1} decimals={0} />x
+                  {Math.round(roi)}x
                 </div>
               </div>
               <div>
