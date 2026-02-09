@@ -4,6 +4,18 @@ import createMDX from "@next/mdx";
 const nextConfig: NextConfig = {
   pageExtensions: ["js", "jsx", "md", "mdx", "ts", "tsx"],
 
+  // Optimize package imports for better tree-shaking
+  experimental: {
+    optimizePackageImports: [
+      'framer-motion',
+      '@copilotkit/react-core',
+      '@copilotkit/react-ui',
+      'recharts',
+      'react-countup',
+      '@neondatabase/neon-js',
+    ],
+  },
+
   // Security headers including HSTS for HTTPS enforcement
   async headers() {
     return [
