@@ -12,22 +12,22 @@ function AgencyMiniCard({ agency }: { agency: Agency }) {
       className="block bg-zinc-900/50 rounded-lg p-4 border border-white/5 hover:border-emerald-500/30 transition group"
     >
       <div className="flex items-start justify-between mb-2">
-        <h4 className="font-semibold text-white group-hover:text-emerald-400 transition text-sm">
+        <span className="font-semibold text-white group-hover:text-emerald-400 transition text-sm block">
           {agency.name}
-        </h4>
+        </span>
         {agency.global_rank && agency.global_rank <= 50 && (
           <span className="bg-emerald-500/20 text-emerald-400 text-xs px-1.5 py-0.5 rounded">
             #{agency.global_rank}
           </span>
         )}
       </div>
-      <p className="text-white/50 text-xs line-clamp-2 mb-2">
+      <p className="text-white/60 text-xs line-clamp-2 mb-2">
         {agency.description?.slice(0, 100) || 'B2B GTM agency'}...
       </p>
       {agency.key_services && agency.key_services.length > 0 && (
         <div className="flex flex-wrap gap-1">
           {agency.key_services.slice(0, 2).map((service) => (
-            <span key={service} className="bg-white/5 text-white/40 text-xs px-1.5 py-0.5 rounded">
+            <span key={service} className="bg-white/5 text-white/60 text-xs px-1.5 py-0.5 rounded">
               {service}
             </span>
           ))}

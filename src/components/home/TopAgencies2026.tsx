@@ -138,7 +138,7 @@ export function TopAgencies2026({ agencies }: TopAgencies2026Props) {
                       Best for: {data.bestFor}
                     </div>
                     {agency.headquarters && (
-                      <div className="bg-white/5 text-white/50 px-4 py-2 rounded-lg">
+                      <div className="bg-white/5 text-white/60 px-4 py-2 rounded-lg">
                         📍 {agency.headquarters}
                       </div>
                     )}
@@ -150,7 +150,7 @@ export function TopAgencies2026({ agencies }: TopAgencies2026Props) {
                       {agency.specializations.slice(0, 4).map((spec) => (
                         <span
                           key={spec}
-                          className="text-xs bg-white/5 text-white/50 px-2 py-1 rounded"
+                          className="text-xs bg-white/5 text-white/60 px-2 py-1 rounded"
                         >
                           {spec}
                         </span>
@@ -185,32 +185,32 @@ export function TopAgencies2026({ agencies }: TopAgencies2026Props) {
         <div className="mt-16 grid md:grid-cols-4 gap-6">
           <div className="bg-zinc-900/50 rounded-xl p-6 border border-white/5 hover:border-emerald-500/30 transition">
             <div className="text-2xl mb-3">📈</div>
-            <h4 className="font-semibold text-white mb-2">Demand Generation Agencies</h4>
-            <p className="text-white/50 text-sm">Creating awareness and pipeline through content, paid media, and inbound marketing.</p>
+            <p className="font-semibold text-white mb-2">Demand Generation Agencies</p>
+            <p className="text-white/60 text-sm">Creating awareness and pipeline through content, paid media, and inbound marketing.</p>
             <Link href="/agencies/specialization/demand-generation" className="text-emerald-400 text-sm mt-3 inline-block hover:text-emerald-300">
               Browse demand gen agencies →
             </Link>
           </div>
           <div className="bg-zinc-900/50 rounded-xl p-6 border border-white/5 hover:border-emerald-500/30 transition">
             <div className="text-2xl mb-3">🎯</div>
-            <h4 className="font-semibold text-white mb-2">ABM &amp; Account-Based Agencies</h4>
-            <p className="text-white/50 text-sm">Targeted campaigns for high-value enterprise accounts with personalized outreach.</p>
+            <p className="font-semibold text-white mb-2">ABM &amp; Account-Based Agencies</p>
+            <p className="text-white/60 text-sm">Targeted campaigns for high-value enterprise accounts with personalized outreach.</p>
             <Link href="/agencies/specialization/abm" className="text-emerald-400 text-sm mt-3 inline-block hover:text-emerald-300">
               Browse ABM agencies →
             </Link>
           </div>
           <div className="bg-zinc-900/50 rounded-xl p-6 border border-white/5 hover:border-emerald-500/30 transition">
             <div className="text-2xl mb-3">🤝</div>
-            <h4 className="font-semibold text-white mb-2">Sales Enablement Partners</h4>
-            <p className="text-white/50 text-sm">Tools, content, and processes to improve sales effectiveness and close rates.</p>
+            <p className="font-semibold text-white mb-2">Sales Enablement Partners</p>
+            <p className="text-white/60 text-sm">Tools, content, and processes to improve sales effectiveness and close rates.</p>
             <Link href="/agencies/specialization/sales-enablement" className="text-emerald-400 text-sm mt-3 inline-block hover:text-emerald-300">
               Browse sales enablement →
             </Link>
           </div>
           <div className="bg-zinc-900/50 rounded-xl p-6 border border-white/5 hover:border-emerald-500/30 transition">
             <div className="text-2xl mb-3">⚙️</div>
-            <h4 className="font-semibold text-white mb-2">RevOps Specialists</h4>
-            <p className="text-white/50 text-sm">Systems and processes aligning marketing, sales, and customer success.</p>
+            <p className="font-semibold text-white mb-2">RevOps Specialists</p>
+            <p className="text-white/60 text-sm">Systems and processes aligning marketing, sales, and customer success.</p>
             <Link href="/agencies/specialization/growth-marketing" className="text-emerald-400 text-sm mt-3 inline-block hover:text-emerald-300">
               Browse RevOps agencies →
             </Link>

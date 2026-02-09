@@ -45,11 +45,15 @@ export function HeroSection() {
   const [showVideo, setShowVideo] = useState(false);
 
   useEffect(() => {
-    // Delay video load until after initial paint
-    const timer = setTimeout(() => {
-      setShowVideo(true);
-    }, 100);
-    return () => clearTimeout(timer);
+    // Delay video load until after initial paint and LCP measurement
+    // Using requestIdleCallback for better performance, with setTimeout fallback
+    if ('requestIdleCallback' in window) {
+      const id = requestIdleCallback(() => setShowVideo(true), { timeout: 2000 });
+      return () => cancelIdleCallback(id);
+    } else {
+      const timer = setTimeout(() => setShowVideo(true), 1000);
+      return () => clearTimeout(timer);
+    }
   }, []);
 
   return (
