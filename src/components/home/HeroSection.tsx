@@ -9,29 +9,31 @@ const BOOKING_LINK = 'https://calendly.com/my-first-quest';
 // Static hero background (WebP for optimal performance)
 const HERO_BG_IMAGE = '/hero-bg.webp';
 
-// Tiny base64 blur placeholder (dark gradient that matches the overlay)
-const BLUR_DATA_URL = 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxOTIwIiBoZWlnaHQ9IjEwODAiPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9IiMwYTBhMGEiLz48L3N2Zz4=';
-
 export function HeroSection() {
   return (
     <section className="relative min-h-[90vh] overflow-hidden flex items-center bg-black">
-      {/* Static background image - optimized for mobile with smaller sizes */}
+      {/* Background: CSS gradient for mobile (fast), image for desktop */}
       <div className="absolute inset-0 z-0" role="presentation" aria-hidden="true">
-        <Image
-          src={HERO_BG_IMAGE}
-          alt=""
-          fill
-          priority
-          fetchPriority="high"
-          className="object-cover"
-          sizes="(max-width: 768px) 50vw, 100vw"
-          quality={50}
-          placeholder="blur"
-          blurDataURL={BLUR_DATA_URL}
-        />
-        {/* Dark overlay */}
-        <div className="absolute inset-0 bg-black/60" />
-        <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/80" />
+        {/* Mobile: Pure CSS gradient background (no image download) */}
+        <div className="md:hidden absolute inset-0 bg-gradient-to-br from-zinc-900 via-black to-zinc-900" />
+
+        {/* Desktop only: Load actual image */}
+        <div className="hidden md:block absolute inset-0">
+          <Image
+            src={HERO_BG_IMAGE}
+            alt=""
+            fill
+            priority
+            fetchPriority="high"
+            className="object-cover"
+            sizes="100vw"
+            quality={70}
+          />
+        </div>
+
+        {/* Dark overlay for both */}
+        <div className="absolute inset-0 bg-black/50" />
+        <div className="absolute inset-0 bg-gradient-to-b from-black/30 via-transparent to-black/70" />
       </div>
 
       {/* Content */}
