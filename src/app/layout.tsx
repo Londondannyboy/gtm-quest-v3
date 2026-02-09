@@ -55,7 +55,7 @@ export default function RootLayout({
     <html lang="en">
       <head>
         {/* Preload hero image for faster LCP */}
-        <link rel="preload" href="/hero-bg.jpg" as="image" type="image/jpeg" />
+        <link rel="preload" href="/hero-bg.webp" as="image" type="image/webp" />
         {/* Favicon - GTM branding via RealFaviconGenerator */}
         <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
