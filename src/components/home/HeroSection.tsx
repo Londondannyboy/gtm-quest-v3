@@ -2,13 +2,14 @@
 
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { SocialShare } from '@/components/ui/SocialShare';
 
-// Dynamic import for SSR compatibility
+// Dynamic import for SSR compatibility - only load when needed
 const MuxPlayer = dynamic(
   () => import('@mux/mux-player-react').then((mod) => mod.default),
-  { ssr: false }
+  { ssr: false, loading: () => null }
 );
 
 // Calendly booking link
@@ -40,27 +41,39 @@ const itemVariants = {
 };
 
 export function HeroSection() {
+  // Lazy load video after initial paint for better LCP
+  const [showVideo, setShowVideo] = useState(false);
+
+  useEffect(() => {
+    // Delay video load until after initial paint
+    const timer = setTimeout(() => {
+      setShowVideo(true);
+    }, 100);
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
-    <section className="relative min-h-[90vh] overflow-hidden flex items-center">
-      {/* MUX Video Background */}
+    <section className="relative min-h-[90vh] overflow-hidden flex items-center bg-black">
+      {/* Video Background - lazy loaded after initial paint */}
       <div className="absolute inset-0 z-0" role="presentation" aria-hidden="true">
-        <MuxPlayer
-          playbackId="qIS6PGKxIZyzjrDBzxQuqPRBOhHofDnXq1chdsqAY9Y"
-          autoPlay="muted"
-          loop
-          muted
-          preload="auto"
-          streamType="on-demand"
-          poster={`https://image.mux.com/qIS6PGKxIZyzjrDBzxQuqPRBOhHofDnXq1chdsqAY9Y/thumbnail.webp?time=0`}
-          className="absolute inset-0 w-full h-full object-cover"
-          title="GTM Agency UK background video"
-          style={{
-            '--controls': 'none',
-            '--media-object-fit': 'cover',
-            '--media-object-position': 'center',
-          }}
-        />
-        {/* Dark overlay */}
+        {showVideo && (
+          <MuxPlayer
+            playbackId="qIS6PGKxIZyzjrDBzxQuqPRBOhHofDnXq1chdsqAY9Y"
+            autoPlay="muted"
+            loop
+            muted
+            preload="metadata"
+            streamType="on-demand"
+            className="absolute inset-0 w-full h-full object-cover"
+            title="GTM Agency UK background video"
+            style={{
+              '--controls': 'none',
+              '--media-object-fit': 'cover',
+              '--media-object-position': 'center',
+            }}
+          />
+        )}
+        {/* Dark overlay - visible immediately */}
         <div className="absolute inset-0 bg-black/60" />
         <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/80" />
       </div>

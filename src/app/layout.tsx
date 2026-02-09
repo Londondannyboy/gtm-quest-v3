@@ -52,6 +52,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        {/* Preconnect to MUX for faster video loading */}
+        <link rel="preconnect" href="https://image.mux.com" />
+        <link rel="preconnect" href="https://stream.mux.com" />
         {/* Favicon - GTM branding via RealFaviconGenerator */}
         <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
