@@ -7,13 +7,18 @@ const nextConfig: NextConfig = {
   // Optimize package imports for better tree-shaking
   experimental: {
     optimizePackageImports: [
-      'framer-motion',
       '@copilotkit/react-core',
       '@copilotkit/react-ui',
       'recharts',
-      'react-countup',
       '@neondatabase/neon-js',
     ],
+  },
+
+  // Image optimization for better mobile LCP
+  images: {
+    formats: ['image/avif', 'image/webp'],
+    deviceSizes: [640, 750, 828, 1080, 1200, 1920],
+    imageSizes: [16, 32, 48, 64, 96, 128, 256],
   },
 
   // Security headers including HSTS for HTTPS enforcement

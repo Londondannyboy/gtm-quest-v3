@@ -9,10 +9,13 @@ const BOOKING_LINK = 'https://calendly.com/my-first-quest';
 // Static hero background (WebP for optimal performance)
 const HERO_BG_IMAGE = '/hero-bg.webp';
 
+// Tiny base64 blur placeholder (dark gradient that matches the overlay)
+const BLUR_DATA_URL = 'data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIxOTIwIiBoZWlnaHQ9IjEwODAiPjxyZWN0IHdpZHRoPSIxMDAlIiBoZWlnaHQ9IjEwMCUiIGZpbGw9IiMwYTBhMGEiLz48L3N2Zz4=';
+
 export function HeroSection() {
   return (
     <section className="relative min-h-[90vh] overflow-hidden flex items-center bg-black">
-      {/* Static background image */}
+      {/* Static background image - optimized for mobile with smaller sizes */}
       <div className="absolute inset-0 z-0" role="presentation" aria-hidden="true">
         <Image
           src={HERO_BG_IMAGE}
@@ -21,7 +24,10 @@ export function HeroSection() {
           priority
           fetchPriority="high"
           className="object-cover"
-          sizes="100vw"
+          sizes="(max-width: 640px) 640px, (max-width: 1024px) 1024px, 1920px"
+          quality={65}
+          placeholder="blur"
+          blurDataURL={BLUR_DATA_URL}
         />
         {/* Dark overlay */}
         <div className="absolute inset-0 bg-black/60" />
