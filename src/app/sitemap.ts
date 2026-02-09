@@ -33,14 +33,38 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
   ];
 
-  // Country-specific GTM agency sections (fragment URLs for geo-targeting)
-  const countryPages: MetadataRoute.Sitemap = [
-    { url: `${baseUrl}/#gtm-agencies-us`, lastModified: new Date(), changeFrequency: 'weekly' as const, priority: 0.95 },
-    { url: `${baseUrl}/#gtm-agencies-uk`, lastModified: new Date(), changeFrequency: 'weekly' as const, priority: 0.95 },
-    { url: `${baseUrl}/#gtm-agencies-au`, lastModified: new Date(), changeFrequency: 'weekly' as const, priority: 0.9 },
-    { url: `${baseUrl}/#gtm-agencies-ca`, lastModified: new Date(), changeFrequency: 'weekly' as const, priority: 0.9 },
-    { url: `${baseUrl}/#gtm-agencies-nz`, lastModified: new Date(), changeFrequency: 'weekly' as const, priority: 0.85 },
-    { url: `${baseUrl}/#gtm-agencies-ie`, lastModified: new Date(), changeFrequency: 'weekly' as const, priority: 0.85 },
+  // Country-specific GTM agency sections (fragment URLs for geo-targeting on homepage)
+  const countryFragments: MetadataRoute.Sitemap = [
+    { url: `${baseUrl}/#gtm-agencies-us`, lastModified: new Date(), changeFrequency: 'weekly' as const, priority: 0.85 },
+    { url: `${baseUrl}/#gtm-agencies-uk`, lastModified: new Date(), changeFrequency: 'weekly' as const, priority: 0.85 },
+    { url: `${baseUrl}/#gtm-agencies-au`, lastModified: new Date(), changeFrequency: 'weekly' as const, priority: 0.8 },
+    { url: `${baseUrl}/#gtm-agencies-ca`, lastModified: new Date(), changeFrequency: 'weekly' as const, priority: 0.8 },
+    { url: `${baseUrl}/#gtm-agencies-nz`, lastModified: new Date(), changeFrequency: 'weekly' as const, priority: 0.75 },
+    { url: `${baseUrl}/#gtm-agencies-ie`, lastModified: new Date(), changeFrequency: 'weekly' as const, priority: 0.75 },
+  ];
+
+  // Country filter pages (dedicated pages for SEO)
+  const countryFilterPages: MetadataRoute.Sitemap = [
+    { url: `${baseUrl}/agencies/country/us`, lastModified: new Date(), changeFrequency: 'weekly' as const, priority: 0.9 },
+    { url: `${baseUrl}/agencies/country/uk`, lastModified: new Date(), changeFrequency: 'weekly' as const, priority: 0.9 },
+    { url: `${baseUrl}/agencies/country/au`, lastModified: new Date(), changeFrequency: 'weekly' as const, priority: 0.85 },
+    { url: `${baseUrl}/agencies/country/ca`, lastModified: new Date(), changeFrequency: 'weekly' as const, priority: 0.85 },
+    { url: `${baseUrl}/agencies/country/nz`, lastModified: new Date(), changeFrequency: 'weekly' as const, priority: 0.8 },
+    { url: `${baseUrl}/agencies/country/ie`, lastModified: new Date(), changeFrequency: 'weekly' as const, priority: 0.8 },
+  ];
+
+  // Specialization filter pages (top specializations for SEO)
+  const specializationPages: MetadataRoute.Sitemap = [
+    { url: `${baseUrl}/agencies/specialization/demand-generation`, lastModified: new Date(), changeFrequency: 'weekly' as const, priority: 0.85 },
+    { url: `${baseUrl}/agencies/specialization/abm`, lastModified: new Date(), changeFrequency: 'weekly' as const, priority: 0.85 },
+    { url: `${baseUrl}/agencies/specialization/content-marketing`, lastModified: new Date(), changeFrequency: 'weekly' as const, priority: 0.85 },
+    { url: `${baseUrl}/agencies/specialization/seo`, lastModified: new Date(), changeFrequency: 'weekly' as const, priority: 0.85 },
+    { url: `${baseUrl}/agencies/specialization/paid-media`, lastModified: new Date(), changeFrequency: 'weekly' as const, priority: 0.85 },
+    { url: `${baseUrl}/agencies/specialization/sales-enablement`, lastModified: new Date(), changeFrequency: 'weekly' as const, priority: 0.85 },
+    { url: `${baseUrl}/agencies/specialization/marketing-automation`, lastModified: new Date(), changeFrequency: 'weekly' as const, priority: 0.8 },
+    { url: `${baseUrl}/agencies/specialization/growth-marketing`, lastModified: new Date(), changeFrequency: 'weekly' as const, priority: 0.8 },
+    { url: `${baseUrl}/agencies/specialization/b2b-marketing`, lastModified: new Date(), changeFrequency: 'weekly' as const, priority: 0.8 },
+    { url: `${baseUrl}/agencies/specialization/linkedin-marketing`, lastModified: new Date(), changeFrequency: 'weekly' as const, priority: 0.8 },
   ];
 
   // Article pages
@@ -59,5 +83,12 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: 0.7,
   }));
 
-  return [...staticPages, ...countryPages, ...articlePages, ...agencyPages];
+  return [
+    ...staticPages,
+    ...countryFilterPages,
+    ...specializationPages,
+    ...countryFragments,
+    ...articlePages,
+    ...agencyPages,
+  ];
 }

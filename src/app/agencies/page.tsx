@@ -86,25 +86,11 @@ function AgencyCard({ agency }: { agency: Agency }) {
   );
 }
 
-export default async function AgenciesPage({
-  searchParams,
-}: {
-  searchParams: Promise<{ specialization?: string }>;
-}) {
-  const params = await searchParams;
+export default async function AgenciesPage() {
   const [agencies, specializations] = await Promise.all([
     getAllAgencies(),
     getSpecializations(),
   ]);
-
-  // Filter by specialization if provided
-  const filteredAgencies = params.specialization
-    ? agencies.filter((a) =>
-        a.specializations?.some((s) =>
-          s.toLowerCase().includes(params.specialization!.toLowerCase())
-        )
-      )
-    : agencies;
 
   return (
     <div className="min-h-screen bg-black text-white">
@@ -121,25 +107,14 @@ export default async function AgenciesPage({
         {/* Filters */}
         <div className="mb-8">
           <div className="flex flex-wrap gap-2">
-            <Link
-              href="/agencies"
-              className={`px-4 py-2 rounded-lg text-sm transition ${
-                !params.specialization
-                  ? 'bg-emerald-500 text-white'
-                  : 'bg-zinc-800 text-white/60 hover:bg-zinc-700'
-              }`}
-            >
+            <span className="px-4 py-2 rounded-lg text-sm bg-emerald-500 text-white">
               All
-            </Link>
+            </span>
             {['Demand Generation', 'ABM', 'Content Marketing', 'SEO', 'Paid Media', 'Sales Enablement'].map((spec) => (
               <Link
                 key={spec}
-                href={`/agencies?specialization=${encodeURIComponent(spec.toLowerCase())}`}
-                className={`px-4 py-2 rounded-lg text-sm transition ${
-                  params.specialization?.toLowerCase() === spec.toLowerCase()
-                    ? 'bg-emerald-500 text-white'
-                    : 'bg-zinc-800 text-white/60 hover:bg-zinc-700'
-                }`}
+                href={`/agencies/specialization/${spec.toLowerCase().replace(/\s+/g, '-')}`}
+                className="px-4 py-2 rounded-lg text-sm transition bg-zinc-800 text-white/60 hover:bg-zinc-700"
               >
                 {spec}
               </Link>
@@ -149,25 +124,15 @@ export default async function AgenciesPage({
 
         {/* Results count */}
         <p className="text-white/40 text-sm mb-6">
-          Showing {filteredAgencies.length} {filteredAgencies.length === 1 ? 'agency' : 'agencies'}
-          {params.specialization && ` for "${params.specialization}"`}
+          Showing {agencies.length} {agencies.length === 1 ? 'agency' : 'agencies'}
         </p>
 
         {/* Agency grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filteredAgencies.map((agency) => (
+          {agencies.map((agency) => (
             <AgencyCard key={agency.id} agency={agency} />
           ))}
         </div>
-
-        {filteredAgencies.length === 0 && (
-          <div className="bg-zinc-900 rounded-xl p-12 text-center">
-            <p className="text-white/60 mb-4">No agencies found matching your criteria.</p>
-            <Link href="/agencies" className="text-emerald-400 hover:text-emerald-300">
-              View all agencies
-            </Link>
-          </div>
-        )}
 
         {/* SEO Content */}
         <section className="mt-16 border-t border-white/10 pt-12">
@@ -183,7 +148,7 @@ export default async function AgenciesPage({
               {specializations.slice(0, 20).map((spec) => (
                 <Link
                   key={spec}
-                  href={`/agencies?specialization=${encodeURIComponent(spec.toLowerCase())}`}
+                  href={`/agencies/specialization/${spec.toLowerCase().replace(/\s+/g, '-')}`}
                   className="bg-zinc-800 text-white/60 hover:text-white text-sm px-3 py-1.5 rounded transition"
                 >
                   {spec}

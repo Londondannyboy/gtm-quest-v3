@@ -332,6 +332,49 @@ export async function getFeaturedAgenciesByRegion(): Promise<Record<CountryCode,
   return results as Record<CountryCode, Agency[]>;
 }
 
+// Get ALL agencies by country (for country filter pages)
+export async function getAllAgenciesByCountry(countryCode: CountryCode): Promise<Agency[]> {
+  const config = COUNTRY_CONFIG[countryCode];
+  const results = await sql`
+    SELECT
+      id, name, slug, description, headquarters,
+      specializations, category_tags, service_areas,
+      min_budget, avg_rating, review_count, global_rank,
+      website, logo_url, key_services, b2b_description
+    FROM companies
+    WHERE app = 'gtm'
+      AND status = 'published'
+      AND primary_country = ANY(${config.dbValues}::text[])
+    ORDER BY global_rank NULLS LAST, name
+  `;
+
+  return results as Agency[];
+}
+
+// Get ALL agencies by specialization (for specialization filter pages)
+export async function getAllAgenciesBySpecialization(spec: string): Promise<Agency[]> {
+  // Normalize the specialization for case-insensitive match
+  const searchTerm = `%${spec.replace(/-/g, ' ')}%`;
+
+  const results = await sql`
+    SELECT
+      id, name, slug, description, headquarters,
+      specializations, category_tags, service_areas,
+      min_budget, avg_rating, review_count, global_rank,
+      website, logo_url, key_services, b2b_description
+    FROM companies
+    WHERE app = 'gtm'
+      AND status = 'published'
+      AND EXISTS (
+        SELECT 1 FROM unnest(specializations) AS s
+        WHERE LOWER(s) LIKE LOWER(${searchTerm})
+      )
+    ORDER BY global_rank NULLS LAST, name
+  `;
+
+  return results as Agency[];
+}
+
 // Get related agencies (same specializations)
 export async function getRelatedAgencies(slug: string, limit = 4): Promise<Agency[]> {
   const results = await sql`

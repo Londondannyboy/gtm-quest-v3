@@ -59,10 +59,10 @@ function CountrySection({
           <span>GTM Agencies in {config.name}</span>
         </h3>
         <Link
-          href={`/agencies?country=${countryCode.toLowerCase()}`}
+          href={`/agencies/country/${countryCode.toLowerCase()}`}
           className="text-emerald-400 hover:text-emerald-300 text-sm font-medium"
         >
-          View all {config.name} agencies →
+          Browse all {config.name} GTM agencies →
         </Link>
       </div>
 

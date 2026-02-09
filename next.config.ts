@@ -142,6 +142,19 @@ const nextConfig: NextConfig = {
         destination: '/articles/best-gtm-agency-us',
         permanent: true,
       },
+      // Old query param URLs -> New path-based URLs (SEO fix)
+      {
+        source: '/agencies',
+        has: [{ type: 'query', key: 'country', value: '(?<country>.*)' }],
+        destination: '/agencies/country/:country',
+        permanent: true,
+      },
+      {
+        source: '/agencies',
+        has: [{ type: 'query', key: 'specialization', value: '(?<spec>.*)' }],
+        destination: '/agencies/specialization/:spec',
+        permanent: true,
+      },
     ];
   },
 };
