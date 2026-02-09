@@ -160,18 +160,18 @@ export function SEOContent({ featuredArticles, topAgencies }: SEOContentProps) {
           </p>
           <div className="grid md:grid-cols-3 gap-4">
             <div>
-              <h4 className="font-semibold text-white mb-2">Americas</h4>
+              <h4 className="font-semibold text-white mb-2">GTM Agencies in the Americas</h4>
               <ul className="space-y-1 text-sm">
-                <li><a href="/#gtm-agencies-us" className="text-white/60 hover:text-emerald-400 flex items-center gap-1"><span>🇺🇸</span> United States (25 agencies)</a></li>
-                <li><a href="/#gtm-agencies-ca" className="text-white/60 hover:text-emerald-400 flex items-center gap-1"><span>🇨🇦</span> Canada (9 agencies)</a></li>
-                <li><Link href="/agencies?region=remote" className="text-white/60 hover:text-emerald-400">Remote / Global</Link></li>
+                <li><Link href="/agencies/country/us" className="text-white/60 hover:text-emerald-400 flex items-center gap-1"><span>🇺🇸</span> United States (25 agencies)</Link></li>
+                <li><Link href="/agencies/country/ca" className="text-white/60 hover:text-emerald-400 flex items-center gap-1"><span>🇨🇦</span> Canada (9 agencies)</Link></li>
+                <li><Link href="/agencies" className="text-white/60 hover:text-emerald-400">Remote / Global</Link></li>
               </ul>
             </div>
             <div>
-              <h4 className="font-semibold text-white mb-2">Europe</h4>
+              <h4 className="font-semibold text-white mb-2">GTM Agencies in Europe</h4>
               <ul className="space-y-1 text-sm">
-                <li><a href="/#gtm-agencies-uk" className="text-white/60 hover:text-emerald-400 flex items-center gap-1"><span>🇬🇧</span> United Kingdom (10 agencies)</a></li>
-                <li><a href="/#gtm-agencies-ie" className="text-white/60 hover:text-emerald-400 flex items-center gap-1"><span>🇮🇪</span> Ireland (5 agencies)</a></li>
+                <li><Link href="/agencies/country/uk" className="text-white/60 hover:text-emerald-400 flex items-center gap-1"><span>🇬🇧</span> United Kingdom (10 agencies)</Link></li>
+                <li><Link href="/agencies/country/ie" className="text-white/60 hover:text-emerald-400 flex items-center gap-1"><span>🇮🇪</span> Ireland (5 agencies)</Link></li>
                 <li><Link href="/articles/b2b-marketing-agency-barcelona" className="text-white/60 hover:text-emerald-400">Spain (Barcelona)</Link></li>
                 <li><Link href="/articles/b2b-marketing-agency-rome" className="text-white/60 hover:text-emerald-400">Italy (Rome)</Link></li>
                 <li><Link href="/articles/best-b2b-marketing-agency-belgium" className="text-white/60 hover:text-emerald-400">Belgium</Link></li>
@@ -179,11 +179,11 @@ export function SEOContent({ featuredArticles, topAgencies }: SEOContentProps) {
               </ul>
             </div>
             <div>
-              <h4 className="font-semibold text-white mb-2">APAC</h4>
+              <h4 className="font-semibold text-white mb-2">GTM Agencies in APAC</h4>
               <ul className="space-y-1 text-sm">
-                <li><a href="/#gtm-agencies-au" className="text-white/60 hover:text-emerald-400 flex items-center gap-1"><span>🇦🇺</span> Australia (10 agencies)</a></li>
-                <li><a href="/#gtm-agencies-nz" className="text-white/60 hover:text-emerald-400 flex items-center gap-1"><span>🇳🇿</span> New Zealand (5 agencies)</a></li>
-                <li><Link href="/agencies?region=apac" className="text-white/60 hover:text-emerald-400">Singapore</Link></li>
+                <li><Link href="/agencies/country/au" className="text-white/60 hover:text-emerald-400 flex items-center gap-1"><span>🇦🇺</span> Australia (10 agencies)</Link></li>
+                <li><Link href="/agencies/country/nz" className="text-white/60 hover:text-emerald-400 flex items-center gap-1"><span>🇳🇿</span> New Zealand (5 agencies)</Link></li>
+                <li><Link href="/agencies" className="text-white/60 hover:text-emerald-400">Singapore &amp; Global</Link></li>
               </ul>
             </div>
           </div>

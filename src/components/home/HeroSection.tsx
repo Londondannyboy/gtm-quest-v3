@@ -3,6 +3,7 @@
 import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import { motion } from 'framer-motion';
+import { SocialShare } from '@/components/ui/SocialShare';
 
 // Dynamic import for SSR compatibility
 const MuxPlayer = dynamic(
@@ -89,7 +90,7 @@ export function HeroSection() {
           className="inline-flex items-center gap-2 bg-green-500/10 border border-green-500/20 rounded-full px-4 py-2 mb-6 backdrop-blur-sm text-sm text-green-400 font-medium"
         >
           <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
-          GTM Agency UK
+          Best GTM Agency UK
         </motion.h1>
 
         {/* Visual Headline - The Impact Statement */}
@@ -168,6 +169,18 @@ export function HeroSection() {
               <span className="text-sm text-white/60">{stat.label}</span>
             </motion.div>
           ))}
+        </motion.div>
+
+        {/* Social Sharing */}
+        <motion.div
+          variants={itemVariants}
+          className="mt-8 flex justify-center"
+        >
+          <SocialShare
+            url="https://gtm.quest"
+            title="GTM Agency Quest | Best GTM Agency UK"
+            description="UK GTM agency building revenue engines with 4-channel ABM and Clay-based outbound systems."
+          />
         </motion.div>
       </motion.div>
     </section>
