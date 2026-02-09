@@ -6,8 +6,8 @@ import { SocialShare } from '@/components/ui/SocialShare';
 // Calendly booking link
 const BOOKING_LINK = 'https://calendly.com/my-first-quest';
 
-// Static hero background (MUX video thumbnail)
-const HERO_BG_IMAGE = 'https://image.mux.com/qIS6PGKxIZyzjrDBzxQuqPRBOhHofDnXq1chdsqAY9Y/thumbnail.webp?time=0&width=1920';
+// Static hero background (local image for faster loading)
+const HERO_BG_IMAGE = '/hero-bg.jpg';
 
 export function HeroSection() {
   return (

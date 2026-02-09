@@ -4,16 +4,6 @@ import createMDX from "@next/mdx";
 const nextConfig: NextConfig = {
   pageExtensions: ["js", "jsx", "md", "mdx", "ts", "tsx"],
 
-  // Allow external images from MUX
-  images: {
-    remotePatterns: [
-      {
-        protocol: 'https',
-        hostname: 'image.mux.com',
-      },
-    ],
-  },
-
   // Security headers including HSTS for HTTPS enforcement
   async headers() {
     return [
