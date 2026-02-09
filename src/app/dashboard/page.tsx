@@ -1,4 +1,5 @@
 import { DashboardClient } from './DashboardClient';
+import { DashboardProvider } from './DashboardProvider';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -23,5 +24,9 @@ export const metadata: Metadata = {
 };
 
 export default function DashboardPage() {
-  return <DashboardClient />;
+  return (
+    <DashboardProvider>
+      <DashboardClient />
+    </DashboardProvider>
+  );
 }
