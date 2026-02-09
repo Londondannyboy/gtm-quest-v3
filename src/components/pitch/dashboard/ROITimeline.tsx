@@ -1,6 +1,5 @@
 'use client';
 
-import { motion } from 'framer-motion';
 import {
   ComposedChart,
   Area,
@@ -84,10 +83,8 @@ export function ROITimeline({
   );
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      className="bg-zinc-900 border border-white/10 rounded-2xl p-6"
+    <div
+      className="bg-zinc-900 border border-white/10 rounded-2xl p-6 transition-all duration-300"
     >
       <div className="flex items-center justify-between mb-6">
         <h3 className="text-lg font-bold text-white">{title}</h3>
@@ -167,6 +164,6 @@ export function ROITimeline({
           <span className="text-sm text-white/70">Total Investment</span>
         </div>
       </div>
-    </motion.div>
+    </div>
   );
 }

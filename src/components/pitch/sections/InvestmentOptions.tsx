@@ -1,7 +1,5 @@
 'use client';
 
-import { motion } from 'framer-motion';
-
 interface RetainerOption {
   title: string;
   rate: string;
@@ -48,11 +46,8 @@ export function InvestmentOptions({
   return (
     <section className="py-20 bg-black">
       <div className="max-w-4xl mx-auto px-4">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center mb-12"
+        <div
+          className="text-center mb-12 animate-fadeIn"
         >
           <span className="text-green-400 text-sm font-bold uppercase tracking-wider">
             Investment
@@ -63,14 +58,12 @@ export function InvestmentOptions({
           <p className="text-white/70">
             Choose the model that works best for your needs.
           </p>
-        </motion.div>
+        </div>
 
         {/* Retainer Option - Highlighted */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="mb-8"
+        <div
+          className="mb-8 animate-fadeIn"
+          style={{ animationDelay: '100ms' }}
         >
           <div className="bg-gradient-to-r from-blue-500/20 via-green-500/10 to-blue-500/20 border-2 border-green-500/40 rounded-2xl p-8 relative overflow-hidden">
             <div className="absolute top-4 right-4">
@@ -113,27 +106,22 @@ export function InvestmentOptions({
               </div>
             </div>
           </div>
-        </motion.div>
+        </div>
 
         {/* One-Off Options */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="mb-8"
+        <div
+          className="mb-8 animate-fadeIn"
+          style={{ animationDelay: '200ms' }}
         >
           <h4 className="text-sm font-bold text-white/50 uppercase tracking-wider mb-4">
             One-Off Engagements
           </h4>
           <div className="grid md:grid-cols-3 gap-4">
             {oneOffOptions.map((option, index) => (
-              <motion.div
+              <div
                 key={option.type}
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                className="bg-zinc-900 border border-white/10 rounded-xl p-5 hover:border-blue-500/30 transition"
+                className="bg-zinc-900 border border-white/10 rounded-xl p-5 hover:border-blue-500/30 hover:scale-105 transition-all duration-200 animate-fadeIn"
+                style={{ animationDelay: `${300 + index * 100}ms` }}
               >
                 <h5 className="font-bold text-white mb-2">{option.type}</h5>
                 <p className="text-white/50 text-sm mb-4">
@@ -142,18 +130,16 @@ export function InvestmentOptions({
                 <div className="text-xl font-black text-blue-400">
                   {option.rate}
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
-        </motion.div>
+        </div>
 
         {/* Training Callout */}
         {trainingCallout && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            className="bg-zinc-900/50 border border-white/10 rounded-xl p-6 mb-6"
+          <div
+            className="bg-zinc-900/50 border border-white/10 rounded-xl p-6 mb-6 animate-fadeIn"
+            style={{ animationDelay: '400ms' }}
           >
             <div className="flex items-center gap-3 mb-3">
               <span className="text-2xl">{trainingCallout.icon || '🎓'}</span>
@@ -162,16 +148,14 @@ export function InvestmentOptions({
             <p className="text-white/60 text-sm">
               {trainingCallout.description}
             </p>
-          </motion.div>
+          </div>
         )}
 
         {/* Optional Fast Track */}
         {fastTrack && (
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="bg-gradient-to-r from-purple-500/10 via-transparent to-purple-500/10 border border-purple-500/20 rounded-xl p-6"
+          <div
+            className="bg-gradient-to-r from-purple-500/10 via-transparent to-purple-500/10 border border-purple-500/20 rounded-xl p-6 animate-fadeIn"
+            style={{ animationDelay: '500ms' }}
           >
             <div className="flex items-start gap-4">
               <div className="text-2xl">🚀</div>
@@ -212,18 +196,16 @@ export function InvestmentOptions({
                 )}
               </div>
             </div>
-          </motion.div>
+          </div>
         )}
 
         {footer && (
-          <motion.p
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            className="text-center text-white/50 mt-6 text-sm"
+          <p
+            className="text-center text-white/50 mt-6 text-sm animate-fadeIn"
+            style={{ animationDelay: '600ms' }}
           >
             {footer}
-          </motion.p>
+          </p>
         )}
       </div>
     </section>

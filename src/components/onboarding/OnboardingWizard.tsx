@@ -1,7 +1,6 @@
 'use client';
 
 import { useState, useEffect, useCallback } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
 
 interface OnboardingWizardProps {
   onUpdate: (field: string, value: string | string[] | number) => void;
@@ -224,26 +223,21 @@ export function OnboardingWizard({ onUpdate, requirements, userId, onProfileLoad
         <div className="flex items-center gap-3">
           {/* Save Status Indicator */}
           {saveStatus && (
-            <motion.span
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0 }}
-              className={`text-xs px-2 py-1 rounded ${
+            <span
+              className={`text-xs px-2 py-1 rounded transition-all duration-300 animate-fadeIn ${
                 saveStatus === 'saved' ? 'bg-emerald-500/20 text-emerald-400' :
                 saveStatus === 'saving' ? 'bg-blue-500/20 text-blue-400' :
                 'bg-red-500/20 text-red-400'
               }`}
             >
               {saveStatus === 'saved' ? 'Saved' : saveStatus === 'saving' ? 'Saving...' : 'Error'}
-            </motion.span>
+            </span>
           )}
           <span className="text-emerald-400 font-bold">{progress}%</span>
           <div className="w-24 h-2 bg-white/10 rounded-full overflow-hidden">
-            <motion.div
-              className="h-full bg-emerald-500"
-              initial={{ width: 0 }}
-              animate={{ width: `${progress}%` }}
-              transition={{ duration: 0.5 }}
+            <div
+              className="h-full bg-emerald-500 transition-all duration-500 ease-out"
+              style={{ width: `${progress}%` }}
             />
           </div>
         </div>
@@ -277,209 +271,201 @@ export function OnboardingWizard({ onUpdate, requirements, userId, onProfileLoad
       </div>
 
       {/* Step Content */}
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={currentStep}
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          exit={{ opacity: 0, y: -20 }}
-          transition={{ duration: 0.3 }}
-        >
-          {/* Company Name */}
-          {currentStep === 'company' && (
-            <div className="space-y-4">
-              <label className="block text-white/70 text-sm mb-2">What&apos;s your company or product name?</label>
-              <div className="flex gap-3">
-                <input
-                  type="text"
-                  value={companyName}
-                  onChange={(e) => setCompanyName(e.target.value)}
-                  placeholder="e.g., Acme Corp, ProductX"
-                  className="flex-1 bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-white/30 focus:outline-none focus:border-emerald-500/50"
-                  onKeyDown={(e) => e.key === 'Enter' && handleCompanySubmit()}
-                />
+      <div className="animate-fadeIn transition-all duration-300">
+        {/* Company Name */}
+        {currentStep === 'company' && (
+          <div className="space-y-4">
+            <label className="block text-white/70 text-sm mb-2">What&apos;s your company or product name?</label>
+            <div className="flex gap-3">
+              <input
+                type="text"
+                value={companyName}
+                onChange={(e) => setCompanyName(e.target.value)}
+                placeholder="e.g., Acme Corp, ProductX"
+                className="flex-1 bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white placeholder-white/30 focus:outline-none focus:border-emerald-500/50"
+                onKeyDown={(e) => e.key === 'Enter' && handleCompanySubmit()}
+              />
+              <button
+                onClick={handleCompanySubmit}
+                disabled={!companyName.trim() || isSaving}
+                className="bg-emerald-500 hover:bg-emerald-600 disabled:bg-white/10 disabled:text-white/30 text-white px-6 py-3 rounded-xl font-medium transition"
+              >
+                {isSaving ? 'Saving...' : 'Next'}
+              </button>
+            </div>
+          </div>
+        )}
+
+        {/* Industry Selection */}
+        {currentStep === 'industry' && (
+          <div className="space-y-4">
+            <label className="block text-white/70 text-sm mb-2">What industry are you in?</label>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+              {INDUSTRIES.map((ind) => (
                 <button
-                  onClick={handleCompanySubmit}
-                  disabled={!companyName.trim() || isSaving}
-                  className="bg-emerald-500 hover:bg-emerald-600 disabled:bg-white/10 disabled:text-white/30 text-white px-6 py-3 rounded-xl font-medium transition"
+                  key={ind.id}
+                  onClick={() => handleSelect('industry', ind.id)}
+                  className={`p-4 rounded-xl border text-left transition-all duration-300 hover:scale-105 active:scale-95 ${
+                    requirements.industry === ind.id
+                      ? 'bg-emerald-500/20 border-emerald-500'
+                      : 'bg-white/5 border-white/10 hover:border-white/20'
+                  }`}
                 >
-                  {isSaving ? 'Saving...' : 'Next'}
+                  <div className="text-2xl mb-2">{ind.icon}</div>
+                  <div className="font-medium text-white">{ind.label}</div>
+                  <div className="text-white/40 text-xs">{ind.description}</div>
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Category Selection */}
+        {currentStep === 'category' && (
+          <div className="space-y-4">
+            <label className="block text-white/70 text-sm mb-2">Who&apos;s your target customer?</label>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+              {CATEGORIES.map((cat) => (
+                <button
+                  key={cat.id}
+                  onClick={() => handleSelect('category', cat.id)}
+                  className={`p-4 rounded-xl border text-left transition-all duration-300 hover:scale-105 active:scale-95 ${
+                    requirements.category === cat.id
+                      ? 'bg-emerald-500/20 border-emerald-500'
+                      : 'bg-white/5 border-white/10 hover:border-white/20'
+                  }`}
+                >
+                  <div className="text-2xl mb-2">{cat.icon}</div>
+                  <div className="font-medium text-white">{cat.label}</div>
+                  <div className="text-white/40 text-xs">{cat.description}</div>
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Strategy Selection */}
+        {currentStep === 'strategy' && (
+          <div className="space-y-4">
+            <label className="block text-white/70 text-sm mb-2">What&apos;s your GTM approach?</label>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+              {STRATEGIES.map((strat) => (
+                <button
+                  key={strat.id}
+                  onClick={() => handleSelect('strategy_type', strat.id)}
+                  className={`p-6 rounded-xl border text-left transition-all duration-300 hover:scale-105 active:scale-95 ${
+                    requirements.strategy_type === strat.id
+                      ? 'bg-emerald-500/20 border-emerald-500'
+                      : 'bg-white/5 border-white/10 hover:border-white/20'
+                  }`}
+                >
+                  <div className="text-3xl mb-3">{strat.icon}</div>
+                  <div className="font-bold text-white text-lg">{strat.label}</div>
+                  <div className="text-white/50 text-sm">{strat.description}</div>
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Budget Selection */}
+        {currentStep === 'budget' && (
+          <div className="space-y-4">
+            <label className="block text-white/70 text-sm mb-2">What&apos;s your monthly marketing budget? (USD)</label>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+              {BUDGETS.map((bud) => (
+                <button
+                  key={bud.id}
+                  onClick={() => handleSelect('budget', bud.id)}
+                  className={`p-4 rounded-xl border text-center transition-all duration-300 hover:scale-105 active:scale-95 ${
+                    requirements.budget === bud.id
+                      ? 'bg-emerald-500/20 border-emerald-500'
+                      : 'bg-white/5 border-white/10 hover:border-white/20'
+                  }`}
+                >
+                  <div className="font-bold text-white text-lg">{bud.label}</div>
+                  <div className="text-white/40 text-xs">{bud.description}</div>
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Specializations Selection */}
+        {currentStep === 'specializations' && (
+          <div className="space-y-4">
+            <label className="block text-white/70 text-sm mb-2">What help do you need? (Select all that apply)</label>
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
+              {SPECIALIZATIONS.map((spec) => (
+                <button
+                  key={spec.id}
+                  onClick={() => toggleSpec(spec.id)}
+                  className={`p-4 rounded-xl border flex items-center gap-3 transition-all duration-300 hover:scale-105 active:scale-95 ${
+                    selectedSpecs.includes(spec.id)
+                      ? 'bg-emerald-500/20 border-emerald-500'
+                      : 'bg-white/5 border-white/10 hover:border-white/20'
+                  }`}
+                >
+                  <span className="text-2xl">{spec.icon}</span>
+                  <span className="font-medium text-white">{spec.label}</span>
+                  {selectedSpecs.includes(spec.id) && (
+                    <span className="ml-auto text-emerald-400">✓</span>
+                  )}
+                </button>
+              ))}
+            </div>
+            {selectedSpecs.length > 0 && (
+              <div className="pt-4 flex items-center justify-between">
+                <p className="text-emerald-400 text-sm">
+                  Selected: {selectedSpecs.length} specialization{selectedSpecs.length > 1 ? 's' : ''}
+                </p>
+                <button
+                  onClick={handleNext}
+                  className="bg-emerald-500 hover:bg-emerald-600 text-white px-6 py-2 rounded-xl font-medium transition"
+                >
+                  Continue to Tools
                 </button>
               </div>
-            </div>
-          )}
+            )}
+          </div>
+        )}
 
-          {/* Industry Selection */}
-          {currentStep === 'industry' && (
-            <div className="space-y-4">
-              <label className="block text-white/70 text-sm mb-2">What industry are you in?</label>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-                {INDUSTRIES.map((ind) => (
-                  <button
-                    key={ind.id}
-                    onClick={() => handleSelect('industry', ind.id)}
-                    className={`p-4 rounded-xl border text-left transition-all hover:scale-[1.02] ${
-                      requirements.industry === ind.id
-                        ? 'bg-emerald-500/20 border-emerald-500'
-                        : 'bg-white/5 border-white/10 hover:border-white/20'
-                    }`}
-                  >
-                    <div className="text-2xl mb-2">{ind.icon}</div>
-                    <div className="font-medium text-white">{ind.label}</div>
-                    <div className="text-white/40 text-xs">{ind.description}</div>
-                  </button>
-                ))}
-              </div>
-            </div>
-          )}
-
-          {/* Category Selection */}
-          {currentStep === 'category' && (
-            <div className="space-y-4">
-              <label className="block text-white/70 text-sm mb-2">Who&apos;s your target customer?</label>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-                {CATEGORIES.map((cat) => (
-                  <button
-                    key={cat.id}
-                    onClick={() => handleSelect('category', cat.id)}
-                    className={`p-4 rounded-xl border text-left transition-all hover:scale-[1.02] ${
-                      requirements.category === cat.id
-                        ? 'bg-emerald-500/20 border-emerald-500'
-                        : 'bg-white/5 border-white/10 hover:border-white/20'
-                    }`}
-                  >
-                    <div className="text-2xl mb-2">{cat.icon}</div>
-                    <div className="font-medium text-white">{cat.label}</div>
-                    <div className="text-white/40 text-xs">{cat.description}</div>
-                  </button>
-                ))}
-              </div>
-            </div>
-          )}
-
-          {/* Strategy Selection */}
-          {currentStep === 'strategy' && (
-            <div className="space-y-4">
-              <label className="block text-white/70 text-sm mb-2">What&apos;s your GTM approach?</label>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                {STRATEGIES.map((strat) => (
-                  <button
-                    key={strat.id}
-                    onClick={() => handleSelect('strategy_type', strat.id)}
-                    className={`p-6 rounded-xl border text-left transition-all hover:scale-[1.02] ${
-                      requirements.strategy_type === strat.id
-                        ? 'bg-emerald-500/20 border-emerald-500'
-                        : 'bg-white/5 border-white/10 hover:border-white/20'
-                    }`}
-                  >
-                    <div className="text-3xl mb-3">{strat.icon}</div>
-                    <div className="font-bold text-white text-lg">{strat.label}</div>
-                    <div className="text-white/50 text-sm">{strat.description}</div>
-                  </button>
-                ))}
-              </div>
-            </div>
-          )}
-
-          {/* Budget Selection */}
-          {currentStep === 'budget' && (
-            <div className="space-y-4">
-              <label className="block text-white/70 text-sm mb-2">What&apos;s your monthly marketing budget? (USD)</label>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-                {BUDGETS.map((bud) => (
-                  <button
-                    key={bud.id}
-                    onClick={() => handleSelect('budget', bud.id)}
-                    className={`p-4 rounded-xl border text-center transition-all hover:scale-[1.02] ${
-                      requirements.budget === bud.id
-                        ? 'bg-emerald-500/20 border-emerald-500'
-                        : 'bg-white/5 border-white/10 hover:border-white/20'
-                    }`}
-                  >
-                    <div className="font-bold text-white text-lg">{bud.label}</div>
-                    <div className="text-white/40 text-xs">{bud.description}</div>
-                  </button>
-                ))}
-              </div>
-            </div>
-          )}
-
-          {/* Specializations Selection */}
-          {currentStep === 'specializations' && (
-            <div className="space-y-4">
-              <label className="block text-white/70 text-sm mb-2">What help do you need? (Select all that apply)</label>
-              <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
-                {SPECIALIZATIONS.map((spec) => (
-                  <button
-                    key={spec.id}
-                    onClick={() => toggleSpec(spec.id)}
-                    className={`p-4 rounded-xl border flex items-center gap-3 transition-all hover:scale-[1.02] ${
-                      selectedSpecs.includes(spec.id)
-                        ? 'bg-emerald-500/20 border-emerald-500'
-                        : 'bg-white/5 border-white/10 hover:border-white/20'
-                    }`}
-                  >
-                    <span className="text-2xl">{spec.icon}</span>
-                    <span className="font-medium text-white">{spec.label}</span>
-                    {selectedSpecs.includes(spec.id) && (
-                      <span className="ml-auto text-emerald-400">✓</span>
+        {/* Tools Selection */}
+        {currentStep === 'tools' && (
+          <div className="space-y-4">
+            <label className="block text-white/70 text-sm mb-2">What tools are you using? (Select all that apply)</label>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+              {TOOLS.map((tool) => (
+                <button
+                  key={tool.id}
+                  onClick={() => toggleTool(tool.id)}
+                  className={`p-4 rounded-xl border text-left transition-all duration-300 hover:scale-105 active:scale-95 ${
+                    selectedTools.includes(tool.id)
+                      ? 'bg-blue-500/20 border-blue-500'
+                      : 'bg-white/5 border-white/10 hover:border-white/20'
+                  }`}
+                >
+                  <div className="flex items-center gap-2 mb-1">
+                    <span className="text-xl">{tool.icon}</span>
+                    <span className="font-medium text-white">{tool.label}</span>
+                    {selectedTools.includes(tool.id) && (
+                      <span className="ml-auto text-blue-400">✓</span>
                     )}
-                  </button>
-                ))}
-              </div>
-              {selectedSpecs.length > 0 && (
-                <div className="pt-4 flex items-center justify-between">
-                  <p className="text-emerald-400 text-sm">
-                    Selected: {selectedSpecs.length} specialization{selectedSpecs.length > 1 ? 's' : ''}
-                  </p>
-                  <button
-                    onClick={handleNext}
-                    className="bg-emerald-500 hover:bg-emerald-600 text-white px-6 py-2 rounded-xl font-medium transition"
-                  >
-                    Continue to Tools
-                  </button>
-                </div>
-              )}
+                  </div>
+                  <div className="text-white/40 text-xs">{tool.category}</div>
+                </button>
+              ))}
             </div>
-          )}
-
-          {/* Tools Selection */}
-          {currentStep === 'tools' && (
-            <div className="space-y-4">
-              <label className="block text-white/70 text-sm mb-2">What tools are you using? (Select all that apply)</label>
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-                {TOOLS.map((tool) => (
-                  <button
-                    key={tool.id}
-                    onClick={() => toggleTool(tool.id)}
-                    className={`p-4 rounded-xl border text-left transition-all hover:scale-[1.02] ${
-                      selectedTools.includes(tool.id)
-                        ? 'bg-blue-500/20 border-blue-500'
-                        : 'bg-white/5 border-white/10 hover:border-white/20'
-                    }`}
-                  >
-                    <div className="flex items-center gap-2 mb-1">
-                      <span className="text-xl">{tool.icon}</span>
-                      <span className="font-medium text-white">{tool.label}</span>
-                      {selectedTools.includes(tool.id) && (
-                        <span className="ml-auto text-blue-400">✓</span>
-                      )}
-                    </div>
-                    <div className="text-white/40 text-xs">{tool.category}</div>
-                  </button>
-                ))}
+            {selectedTools.length > 0 && (
+              <div className="pt-4">
+                <p className="text-blue-400 text-sm">
+                  Your Stack: {selectedTools.map(t => TOOLS.find(tool => tool.id === t)?.label).join(', ')}
+                </p>
               </div>
-              {selectedTools.length > 0 && (
-                <div className="pt-4">
-                  <p className="text-blue-400 text-sm">
-                    Your Stack: {selectedTools.map(t => TOOLS.find(tool => tool.id === t)?.label).join(', ')}
-                  </p>
-                </div>
-              )}
-            </div>
-          )}
-        </motion.div>
-      </AnimatePresence>
+            )}
+          </div>
+        )}
+      </div>
     </div>
   );
 }

@@ -2,7 +2,6 @@
 
 import { useEffect, useRef, useState } from 'react';
 import dynamic from 'next/dynamic';
-import { motion } from 'framer-motion';
 
 // Dynamically import react-globe.gl to avoid SSR issues
 const Globe = dynamic(() => import('react-globe.gl'), {
@@ -49,6 +48,7 @@ export function Globe3D({ regions = [], size = 300, autoRotate = true }: Globe3D
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const globeRef = useRef<any>(null);
   const [mounted, setMounted] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
 
   // Convert region names to coordinates
   const points = regions
@@ -76,6 +76,9 @@ export function Globe3D({ regions = [], size = 300, autoRotate = true }: Globe3D
 
   useEffect(() => {
     setMounted(true);
+    // Delay visibility for animation
+    const timer = setTimeout(() => setIsVisible(true), 100);
+    return () => clearTimeout(timer);
   }, []);
 
   useEffect(() => {
@@ -104,11 +107,10 @@ export function Globe3D({ regions = [], size = 300, autoRotate = true }: Globe3D
   }
 
   return (
-    <motion.div
-      initial={{ opacity: 0, scale: 0.8 }}
-      animate={{ opacity: 1, scale: 1 }}
-      transition={{ duration: 0.8, ease: 'easeOut' }}
-      className="relative"
+    <div
+      className={`relative transition-all duration-700 ease-out ${
+        isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-80'
+      }`}
       style={{ width: size, height: size }}
     >
       <Globe
@@ -146,7 +148,7 @@ export function Globe3D({ regions = [], size = 300, autoRotate = true }: Globe3D
           {displayPoints.length} Target {displayPoints.length === 1 ? 'Region' : 'Regions'}
         </div>
       </div>
-    </motion.div>
+    </div>
   );
 }
 

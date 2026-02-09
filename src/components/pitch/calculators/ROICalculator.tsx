@@ -1,7 +1,6 @@
 'use client';
 
 import { useState, useCallback, useEffect } from 'react';
-import { motion } from 'framer-motion';
 import CountUp from 'react-countup';
 import {
   SignalWarmthId,
@@ -503,9 +502,7 @@ export function ROICalculator({
       </div>
 
       {/* Projected Outcomes */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
+      <div
         className="border-t border-white/10 pt-8"
       >
         <h4 className="text-sm font-bold text-white/50 uppercase tracking-wider mb-6 text-center">
@@ -583,7 +580,7 @@ export function ROICalculator({
             </a>
           </div>
         )}
-      </motion.div>
+      </div>
     </div>
   );
 }

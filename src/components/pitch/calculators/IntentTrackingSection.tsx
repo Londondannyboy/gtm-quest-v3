@@ -1,7 +1,6 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
 import type {
   RegionId,
   VisitorIdTool,
@@ -121,10 +120,8 @@ export function IntentTrackingSection({
 
       {/* GDPR Warning for UK/EU */}
       {region === 'uk_eu' && (
-        <motion.div
-          initial={{ opacity: 0, height: 0 }}
-          animate={{ opacity: 1, height: 'auto' }}
-          className="bg-amber-500/10 rounded-lg p-4 mb-6 border border-amber-500/20"
+        <div
+          className="bg-amber-500/10 rounded-lg p-4 mb-6 border border-amber-500/20 transition-all duration-300"
         >
           <p className="text-sm text-amber-300 font-medium mb-1">
             ⚠️ UK/EU GDPR Considerations
@@ -134,7 +131,7 @@ export function IntentTrackingSection({
             Individual person tracking requires explicit consent.
             LinkedIn and email engagement tracking remains fully functional.
           </p>
-        </motion.div>
+        </div>
       )}
 
       {/* Visitor Identification */}
@@ -177,10 +174,8 @@ export function IntentTrackingSection({
         </div>
 
         {tracking.tools.visitorIdentification.enabled && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            className="mt-3"
+          <div
+            className="mt-3 transition-all duration-300"
           >
             <label className="text-xs text-zinc-500 block mb-2">Tool</label>
             <select
@@ -195,7 +190,7 @@ export function IntentTrackingSection({
             <p className="text-xs text-zinc-500 mt-2">
               {VISITOR_ID_TOOLS[tracking.tools.visitorIdentification.tool]?.description}
             </p>
-          </motion.div>
+          </div>
         )}
       </div>
 
@@ -237,10 +232,8 @@ export function IntentTrackingSection({
         </div>
 
         {tracking.tools.socialEngagement.enabled && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            className="mt-3"
+          <div
+            className="mt-3 transition-all duration-300"
           >
             <label className="text-xs text-zinc-500 block mb-2">Tool</label>
             <select
@@ -263,7 +256,7 @@ export function IntentTrackingSection({
                 (Intent-based vs cold outreach)
               </p>
             </div>
-          </motion.div>
+          </div>
         )}
       </div>
 
@@ -304,10 +297,8 @@ export function IntentTrackingSection({
         </div>
 
         {tracking.tools.contentEngagement.smartLinks && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            className="mt-3 p-3 bg-amber-500/10 rounded-lg border border-amber-500/20"
+          <div
+            className="mt-3 p-3 bg-amber-500/10 rounded-lg border border-amber-500/20 transition-all duration-300"
           >
             <p className="text-xs text-amber-200 mb-2">
               <strong>Smart Links</strong> let you share content and see exactly who opens it:
@@ -320,7 +311,7 @@ export function IntentTrackingSection({
             <p className="text-xs text-zinc-500 mt-2 italic">
               Included in Sales Navigator cost (already in your infrastructure)
             </p>
-          </motion.div>
+          </div>
         )}
       </div>
 

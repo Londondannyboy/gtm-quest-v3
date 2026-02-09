@@ -1,7 +1,6 @@
 'use client';
 
 import { useMemo } from 'react';
-import { motion } from 'framer-motion';
 import { AreaChart, Area, XAxis, YAxis, Tooltip, ResponsiveContainer, ReferenceLine } from 'recharts';
 import type { CurrencyConfig, MonthlyProjection, ABMProjection } from '@/types/pitch';
 import { COLDIQ_BENCHMARKS } from '@/types/pitch';
@@ -245,12 +244,9 @@ export function TimelineProjection({
           </thead>
           <tbody>
             {projection.timeline.slice(0, 6).map((m) => (
-              <motion.tr
+              <tr
                 key={m.month}
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: m.month * 0.05 }}
-                className="border-t border-zinc-800"
+                className="border-t border-zinc-800 transition-opacity duration-300"
               >
                 <td className="py-2 px-2 text-white font-medium">{m.month}</td>
                 <td className="py-2 px-2 text-right text-zinc-400">{m.touches.toLocaleString()}</td>
@@ -277,18 +273,15 @@ export function TimelineProjection({
                     {m.phase}
                   </span>
                 </td>
-              </motion.tr>
+              </tr>
             ))}
             <tr className="border-t border-zinc-700">
               <td colSpan={7} className="py-2 px-2 text-center text-xs text-zinc-500">
                 ... Months 7-12 continue at full velocity
               </td>
             </tr>
-            <motion.tr
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.6 }}
-              className="border-t border-zinc-600 bg-zinc-800/30"
+            <tr
+              className="border-t border-zinc-600 bg-zinc-800/30 transition-opacity duration-300"
             >
               <td className="py-2 px-2 text-white font-bold">12</td>
               <td className="py-2 px-2 text-right text-zinc-300 font-medium">
@@ -311,7 +304,7 @@ export function TimelineProjection({
                   velocity
                 </span>
               </td>
-            </motion.tr>
+            </tr>
           </tbody>
         </table>
       </div>

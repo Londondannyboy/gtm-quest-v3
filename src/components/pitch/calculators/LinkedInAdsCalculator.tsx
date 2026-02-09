@@ -1,7 +1,6 @@
 'use client';
 
 import { useState, useEffect, useCallback } from 'react';
-import { motion } from 'framer-motion';
 import type { CurrencyConfig, LinkedInAdsInputs, LinkedInAdsOutputs, SmartLinkCampaignType } from '@/types/pitch';
 
 interface LinkedInAdsCalculatorProps {
@@ -196,10 +195,8 @@ export function LinkedInAdsCalculator({
 
       {/* Smart Links Configuration */}
       {inputs.adTypes.smartLinks && (
-        <motion.div
-          initial={{ opacity: 0, height: 0 }}
-          animate={{ opacity: 1, height: 'auto' }}
-          className="mb-6 p-4 bg-amber-500/10 rounded-xl border border-amber-500/20"
+        <div
+          className="mb-6 p-4 bg-amber-500/10 rounded-xl border border-amber-500/20 transition-all duration-300"
         >
           <h4 className="text-sm font-semibold text-amber-300 mb-3 flex items-center gap-2">
             ⭐ Smart Links (Sales Navigator)
@@ -245,7 +242,7 @@ export function LinkedInAdsCalculator({
               <li>• Measure content effectiveness per account</li>
             </ul>
           </div>
-        </motion.div>
+        </div>
       )}
 
       {/* Results */}

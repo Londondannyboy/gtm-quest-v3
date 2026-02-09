@@ -1,6 +1,5 @@
 'use client';
 
-import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { useState, useEffect } from 'react';
 import CountUp from 'react-countup';
@@ -480,21 +479,12 @@ function ScrollPrompt({ text, color = 'blue' }: { text: string; color?: string }
   };
 
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      whileInView={{ opacity: 1 }}
-      viewport={{ once: true }}
-      className="py-8 md:py-12 flex flex-col items-center justify-center"
-    >
+    <div className="py-8 md:py-12 flex flex-col items-center justify-center animate-fadeIn">
       <p className={`text-sm md:text-base italic ${colorClasses[color]} mb-4 text-center px-4`}>
         {text}
       </p>
-      <motion.div
-        animate={{ y: [0, 8, 0] }}
-        transition={{ repeat: Infinity, duration: 1.5 }}
-        className={`w-6 h-6 border-b-2 border-r-2 ${colorClasses[color]} transform rotate-45`}
-      />
-    </motion.div>
+      <div className={`w-6 h-6 border-b-2 border-r-2 ${colorClasses[color]} transform rotate-45 animate-bounce`} />
+    </div>
   );
 }
 
@@ -528,17 +518,13 @@ export default function ClimatisePage() {
   if (!isAuthenticated) {
     return (
       <main className="min-h-screen bg-black flex items-center justify-center px-4">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="max-w-md w-full"
+        <div
+          className="animate-fadeIn max-w-md w-full"
         >
           <div className="text-center mb-8">
             {/* Climatise logo - hero */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 mb-6 inline-block"
+            <div
+              className="animate-fadeIn bg-white/10 backdrop-blur-sm rounded-2xl p-6 mb-6 inline-block"
             >
               <Image
                 src="/climatise-logo.png"
@@ -547,7 +533,7 @@ export default function ClimatisePage() {
                 height={60}
                 className="h-12 w-auto"
               />
-            </motion.div>
+            </div>
 
             {/* Statement of intent */}
             <h1 className="text-2xl font-bold text-white mb-3">
@@ -593,7 +579,7 @@ export default function ClimatisePage() {
               GTM Quest
             </a>
           </p>
-        </motion.div>
+        </div>
       </main>
     );
   }
@@ -604,11 +590,8 @@ export default function ClimatisePage() {
       <section className="py-12 md:py-16 bg-gradient-to-b from-zinc-950 to-black border-b border-white/10">
         <div className="max-w-4xl mx-auto px-4">
           {/* Header */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.1 }}
-            className="text-center mb-10"
+          <div
+            className="animate-fadeIn text-center mb-10"
           >
             <div className="flex items-center justify-center gap-4 mb-4">
               <Image src="/gtm-agency-quest-logo.png" alt="GTM Agency Quest" width={80} height={28} className="h-6 w-auto" />
@@ -617,14 +600,11 @@ export default function ClimatisePage() {
             </div>
             <h1 className="text-2xl md:text-3xl font-black text-white mb-1">GTM Proposal</h1>
             <p className="text-white/50 text-sm">Prepared for {lennonProfile.name}, {lennonProfile.title}</p>
-          </motion.div>
+          </div>
 
           {/* Version History */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.15 }}
-            className="text-center mb-6"
+          <div
+            className="animate-fadeIn text-center mb-6"
           >
             <div className="inline-flex flex-col items-start bg-zinc-900/50 border border-white/5 rounded-lg px-4 py-2">
               <p className="text-[10px] text-zinc-500 uppercase tracking-wider mb-1">Version History</p>
@@ -634,14 +614,11 @@ export default function ClimatisePage() {
                 </p>
               ))}
             </div>
-          </motion.div>
+          </div>
 
           {/* Two Column: Opportunity + Ask */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.2 }}
-            className="grid md:grid-cols-2 gap-6 mb-8"
+          <div
+            className="animate-fadeIn animation-delay-100 grid md:grid-cols-2 gap-6 mb-8"
           >
             {/* The Opportunity */}
             <div className="bg-zinc-900 border border-white/10 rounded-xl p-6">
@@ -688,14 +665,11 @@ export default function ClimatisePage() {
                 </li>
               </ul>
             </div>
-          </motion.div>
+          </div>
 
           {/* Risks & Mitigations */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3 }}
-            className="bg-zinc-900/50 border border-white/5 rounded-xl p-6 mb-8"
+          <div
+            className="animate-fadeIn animation-delay-200 bg-zinc-900/50 border border-white/5 rounded-xl p-6 mb-8"
           >
             <h2 className="text-white/50 text-xs uppercase tracking-wider mb-4">Risks & Mitigations</h2>
             <div className="grid md:grid-cols-3 gap-4 text-sm">
@@ -712,14 +686,11 @@ export default function ClimatisePage() {
                 <span className="text-white/70"><span className="text-white">Transparent:</span> Day rate pricing</span>
               </div>
             </div>
-          </motion.div>
+          </div>
 
           {/* CTA */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4 }}
-            className="text-center"
+          <div
+            className="animate-fadeIn animation-delay-300 text-center"
           >
             <a
               href="https://calendly.com/my-first-quest"
@@ -735,17 +706,15 @@ export default function ClimatisePage() {
             <p className="text-white/40 text-sm mt-4">
               Scroll down for the full proposal ↓
             </p>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Personalized Intro - "This is for you, Lennon" */}
           <section className="py-8 md:py-12 bg-gradient-to-b from-zinc-950 to-black border-b border-white/5">
         <div className="max-w-4xl mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="flex flex-col md:flex-row items-center gap-6 md:gap-8"
+          <div
+            className="animate-fadeIn flex flex-col md:flex-row items-center gap-6 md:gap-8"
           >
             {/* Lennon's Photo */}
             <div className="relative flex-shrink-0">
@@ -801,14 +770,11 @@ export default function ClimatisePage() {
                 />
               </div>
             </div>
-          </motion.div>
+          </div>
 
           {/* Enrichment Preview - shows we've done our homework */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.3 }}
-            className="mt-6 bg-zinc-900/50 border border-white/5 rounded-xl p-4 md:p-5"
+          <div
+            className="animate-fadeIn animation-delay-200 mt-6 bg-zinc-900/50 border border-white/5 rounded-xl p-4 md:p-5"
           >
             <div className="flex items-center gap-2 mb-3">
               <span className="text-lg">🔍</span>
@@ -836,7 +802,7 @@ export default function ClimatisePage() {
             <p className="text-white/40 text-xs mt-3 italic">
               This is what our enrichment does — for every prospect in your pipeline.
             </p>
-          </motion.div>
+          </div>
         </div>
       </section>
 
@@ -850,23 +816,12 @@ export default function ClimatisePage() {
 
         <div className="relative max-w-4xl mx-auto px-4 text-center">
           {/* Climatise Logo - THE HERO */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.2, duration: 0.6, ease: "easeOut" }}
-            className="flex flex-col items-center justify-center mb-10"
+          <div
+            className="animate-fadeIn flex flex-col items-center justify-center mb-10"
           >
             {/* Big animated Climatise logo */}
-            <motion.div
-              animate={{
-                boxShadow: [
-                  "0 0 20px rgba(74, 222, 128, 0.1)",
-                  "0 0 40px rgba(74, 222, 128, 0.2)",
-                  "0 0 20px rgba(74, 222, 128, 0.1)"
-                ]
-              }}
-              transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-              className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 md:p-8 border border-white/20"
+            <div
+              className="animate-pulse-glow bg-white/10 backdrop-blur-sm rounded-2xl p-6 md:p-8 border border-white/20"
             >
               <Image
                 src="/climatise-logo.png"
@@ -876,7 +831,7 @@ export default function ClimatisePage() {
                 className="h-16 md:h-20 lg:h-24 w-auto"
                 priority
               />
-            </motion.div>
+            </div>
 
             {/* Subtle GTM Quest credit */}
             <div className="flex items-center gap-2 mt-4 text-white/40 text-xs">
@@ -889,62 +844,39 @@ export default function ClimatisePage() {
                 className="h-4 w-auto opacity-60"
               />
             </div>
-          </motion.div>
+          </div>
 
           {/* The Challenge Statement */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.5 }}
-            className="mb-8"
+          <div
+            className="animate-fadeIn animation-delay-300 mb-8"
           >
             <div className="text-white/40 text-xs uppercase tracking-wider mb-4">
               The Opportunity
             </div>
 
             <h1 className="text-3xl md:text-5xl lg:text-6xl font-black text-white mb-6 leading-tight">
-              <motion.span
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.6 }}
-              >
+              <span className="animate-fadeIn animation-delay-300">
                 UK obliged companies
-              </motion.span>
+              </span>
               <br />
-              <motion.span
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.8 }}
-                className="text-amber-400"
-              >
+              <span className="animate-fadeIn animation-delay-400 text-amber-400">
                 need carbon accounting now.
-              </motion.span>
+              </span>
               <br />
-              <motion.span
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 1.0 }}
-                className="text-white/50 text-2xl md:text-4xl"
-              >
+              <span className="animate-fadeIn animation-delay-500 text-white/50 text-2xl md:text-4xl">
                 Most don&apos;t know yet.
-              </motion.span>
+              </span>
             </h1>
 
-            <motion.p
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 1.2 }}
-              className="text-white/70 text-base md:text-lg max-w-2xl mx-auto mb-4"
+            <p
+              className="animate-fadeIn animation-delay-500 text-white/70 text-base md:text-lg max-w-2xl mx-auto mb-4"
             >
               UK sustainability standards publish <span className="text-amber-400 font-semibold">February 2026</span>.
               <span className="text-green-400 font-semibold"> 5 ICP clusters</span> with hard compliance deadlines.
-            </motion.p>
+            </p>
 
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 1.3 }}
-              className="mb-6 flex flex-wrap justify-center items-center gap-x-1 gap-y-2"
+            <div
+              className="animate-fadeIn animation-delay-500 mb-6 flex flex-wrap justify-center items-center gap-x-1 gap-y-2"
             >
               <a
                 href="https://www.grantthornton.co.uk/news-centre/less-than-half-of-uk-businesses-have-sustainability-targets-in-place/"
@@ -971,15 +903,12 @@ export default function ClimatisePage() {
                 </svg>
                 <span className="text-white/30">— Octopus</span>
               </a>
-            </motion.div>
-          </motion.div>
+            </div>
+          </div>
 
           {/* Pain Point Badges */}
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.4 }}
-            className="flex flex-wrap justify-center gap-3 mb-10"
+          <div
+            className="animate-fadeIn animation-delay-500 flex flex-wrap justify-center gap-3 mb-10"
           >
             <span className="bg-red-500/10 text-red-400 px-4 py-2 rounded-full border border-red-500/20 text-sm">
               Compliance deadlines looming
@@ -990,14 +919,11 @@ export default function ClimatisePage() {
             <span className="bg-blue-500/10 text-blue-400 px-4 py-2 rounded-full border border-blue-500/20 text-sm">
               Competitors are moving fast
             </span>
-          </motion.div>
+          </div>
 
           {/* Primary CTAs */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.6 }}
-            className="flex flex-col sm:flex-row items-center justify-center gap-4"
+          <div
+            className="animate-fadeIn animation-delay-500 flex flex-col sm:flex-row items-center justify-center gap-4"
           >
             <a
               href="https://calendly.com/my-first-quest"
@@ -1011,29 +937,23 @@ export default function ClimatisePage() {
               </span>
               Discuss Proposal
             </a>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Current Approach - What's Working */}
       <section className="py-10 md:py-12 bg-zinc-950/50">
         <div className="max-w-4xl mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-8"
+          <div
+            className="animate-fadeIn text-center mb-8"
           >
             <span className="text-white/40 text-xs uppercase tracking-wider">Your Current Approach</span>
-          </motion.div>
+          </div>
 
           <div className="grid md:grid-cols-2 gap-4 mb-8">
             {/* Webinars - Working */}
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              className="bg-green-500/5 border border-green-500/20 rounded-xl p-5"
+            <div
+              className="animate-fadeIn bg-green-500/5 border border-green-500/20 rounded-xl p-5"
             >
               <div className="flex items-center gap-3 mb-3">
                 <span className="text-green-400 text-xl">✓</span>
@@ -1043,14 +963,11 @@ export default function ClimatisePage() {
               <p className="text-white/60 text-sm">
                 Great for education and lead generation. Keep this — it builds authority and trust.
               </p>
-            </motion.div>
+            </div>
 
             {/* Manual LinkedIn - Bottleneck */}
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              className="bg-amber-500/5 border border-amber-500/20 rounded-xl p-5"
+            <div
+              className="animate-fadeIn bg-amber-500/5 border border-amber-500/20 rounded-xl p-5"
             >
               <div className="flex items-center gap-3 mb-3">
                 <span className="text-amber-400 text-xl">⚠</span>
@@ -1060,44 +977,35 @@ export default function ClimatisePage() {
               <p className="text-white/60 text-sm">
                 One person messaging manually. Can&apos;t scale. Limited to ~50 connections/week safely.
               </p>
-            </motion.div>
+            </div>
           </div>
 
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            className="text-center"
+          <div
+            className="animate-fadeIn text-center"
           >
             <p className="text-white/70 text-sm md:text-base">
               <span className="text-white font-semibold">The goal:</span> Industrialize, scale, and optimize your GTM machine.
               <br />
               <span className="text-green-400">Keep what works.</span> <span className="text-blue-400">Automate what doesn&apos;t.</span>
             </p>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* ICP Challenges - Barriers to Sign-up */}
       <section className="py-10 md:py-12 bg-black">
         <div className="max-w-5xl mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-8"
+          <div
+            className="animate-fadeIn text-center mb-8"
           >
             <span className="text-white/40 text-xs uppercase tracking-wider mb-2 block">By ICP Cluster</span>
             <h3 className="text-xl md:text-2xl font-bold text-white">Challenges We Need to Overcome</h3>
-          </motion.div>
+          </div>
 
           <div className="grid md:grid-cols-3 gap-4">
             {/* Regulatory-Driven */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="bg-zinc-900 border border-blue-500/20 rounded-xl p-5"
+            <div
+              className="animate-fadeIn bg-zinc-900 border border-blue-500/20 rounded-xl p-5"
             >
               <div className="text-blue-400 font-bold text-sm mb-2">Regulatory-Driven</div>
               <div className="text-white/50 text-xs mb-3">SECR, NHS, PPN 006</div>
@@ -1115,15 +1023,11 @@ export default function ClimatisePage() {
                   Don&apos;t know deadline is approaching
                 </li>
               </ul>
-            </motion.div>
+            </div>
 
             {/* Supply Chain */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.1 }}
-              className="bg-zinc-900 border border-green-500/20 rounded-xl p-5"
+            <div
+              className="animate-fadeIn animation-delay-100 bg-zinc-900 border border-green-500/20 rounded-xl p-5"
             >
               <div className="text-green-400 font-bold text-sm mb-2">Supply Chain Pressure</div>
               <div className="text-white/50 text-xs mb-3">Tesco, Sainsbury&apos;s suppliers</div>
@@ -1141,15 +1045,11 @@ export default function ClimatisePage() {
                   Budget constraints
                 </li>
               </ul>
-            </motion.div>
+            </div>
 
             {/* Voluntary/Values */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.2 }}
-              className="bg-zinc-900 border border-purple-500/20 rounded-xl p-5"
+            <div
+              className="animate-fadeIn animation-delay-200 bg-zinc-900 border border-purple-500/20 rounded-xl p-5"
             >
               <div className="text-purple-400 font-bold text-sm mb-2">Values-Driven</div>
               <div className="text-white/50 text-xs mb-3">B Corp, SBTi targets</div>
@@ -1167,39 +1067,30 @@ export default function ClimatisePage() {
                   Consultant relationship
                 </li>
               </ul>
-            </motion.div>
+            </div>
           </div>
 
-          <motion.p
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            className="text-center text-white/50 text-xs mt-6"
+          <p
+            className="animate-fadeIn text-center text-white/50 text-xs mt-6"
           >
             Signal-triggered outreach overcomes these objections by reaching them <span className="text-green-400">at the moment of need</span>.
-          </motion.p>
+          </p>
         </div>
       </section>
 
       {/* UK Domestic Preference - Climatise's Natural Advantage */}
       <section className="py-12 md:py-16 bg-gradient-to-b from-zinc-950 to-black">
         <div className="max-w-5xl mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-10"
+          <div
+            className="animate-fadeIn text-center mb-10"
           >
             <span className="text-green-400 text-xs uppercase tracking-wider">Climatise Advantage</span>
             <h3 className="text-xl md:text-2xl font-bold text-white mt-2">{ukAdvantage.headline}</h3>
-          </motion.div>
+          </div>
 
           {/* Hero Stat */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            className="bg-gradient-to-br from-green-500/10 to-blue-500/10 border border-green-500/30 rounded-2xl p-8 md:p-10 text-center mb-8"
+          <div
+            className="animate-fadeIn bg-gradient-to-br from-green-500/10 to-blue-500/10 border border-green-500/30 rounded-2xl p-8 md:p-10 text-center mb-8"
           >
             <div className="text-5xl md:text-7xl font-black text-green-400 mb-3">{ukAdvantage.stat}</div>
             <p className="text-white/80 text-lg md:text-xl max-w-2xl mx-auto mb-4">{ukAdvantage.description}</p>
@@ -1214,59 +1105,46 @@ export default function ClimatisePage() {
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
               </svg>
             </a>
-          </motion.div>
+          </div>
 
           {/* Supporting Stats */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
             {ukAdvantage.supportingStats.map((stat, i) => (
-              <motion.div
+              <div
                 key={i}
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1 }}
-                className="bg-zinc-900/50 border border-white/5 rounded-xl p-4 text-center"
+                className="animate-fadeIn bg-zinc-900/50 border border-white/5 rounded-xl p-4 text-center"
               >
                 <div className="text-2xl font-bold text-white mb-1">{stat.value}</div>
                 <div className="text-white/50 text-xs">{stat.label}</div>
-              </motion.div>
+              </div>
             ))}
           </div>
 
           {/* Knowledge Gap = Opportunity */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            className="bg-amber-500/10 border border-amber-500/20 rounded-xl p-5 text-center"
+          <div
+            className="animate-fadeIn bg-amber-500/10 border border-amber-500/20 rounded-xl p-5 text-center"
           >
             <div className="text-amber-400 font-bold mb-2">Knowledge Gap = Opportunity</div>
             <p className="text-white/70 text-sm mb-1">
               <span className="text-amber-400 font-semibold">{ukAdvantage.knowledgeGap.stat}</span> {ukAdvantage.knowledgeGap.description}
             </p>
             <p className="text-white/50 text-xs">{ukAdvantage.knowledgeGap.opportunity}</p>
-          </motion.div>
+          </div>
 
           {/* Implication */}
-          <motion.p
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            className="text-center text-green-400/80 text-sm mt-6 font-medium"
+          <p
+            className="animate-fadeIn text-center text-green-400/80 text-sm mt-6 font-medium"
           >
             {ukAdvantage.implication}
-          </motion.p>
+          </p>
         </div>
       </section>
 
       {/* TAM/SAM/SOM - Market Sizing */}
       <section className="py-12 md:py-16 bg-black">
         <div className="max-w-5xl mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-10"
+          <div
+            className="animate-fadeIn text-center mb-10"
           >
             <div className="flex items-center justify-center gap-2 mb-2">
               <span className="text-blue-400 text-xs uppercase tracking-wider">Market Opportunity</span>
@@ -1276,54 +1154,40 @@ export default function ClimatisePage() {
             </div>
             <h3 className="text-xl md:text-2xl font-bold text-white mt-2">The Size of the Prize</h3>
             <p className="text-white/50 text-xs mt-1">First-pass estimates — to be validated in discovery</p>
-          </motion.div>
+          </div>
 
           <div className="grid md:grid-cols-3 gap-4 md:gap-6 mb-8">
             {/* TAM */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="bg-zinc-900 border border-white/10 rounded-xl p-5 md:p-6 text-center"
+            <div
+              className="animate-fadeIn bg-zinc-900 border border-white/10 rounded-xl p-5 md:p-6 text-center"
             >
               <div className="text-3xl md:text-4xl font-black text-blue-400 mb-2">{marketSizing.tam.value}</div>
               <div className="font-semibold text-white text-sm mb-1">{marketSizing.tam.label}</div>
               <div className="text-white/50 text-xs">{marketSizing.tam.description}</div>
-            </motion.div>
+            </div>
 
             {/* SAM */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.1 }}
-              className="bg-zinc-900 border border-green-500/20 rounded-xl p-5 md:p-6 text-center"
+            <div
+              className="animate-fadeIn animation-delay-100 bg-zinc-900 border border-green-500/20 rounded-xl p-5 md:p-6 text-center"
             >
               <div className="text-3xl md:text-4xl font-black text-green-400 mb-2">{marketSizing.sam.value}</div>
               <div className="font-semibold text-white text-sm mb-1">{marketSizing.sam.label}</div>
               <div className="text-white/50 text-xs">{marketSizing.sam.description}</div>
-            </motion.div>
+            </div>
 
             {/* SOM */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.2 }}
-              className="bg-gradient-to-br from-amber-500/10 to-green-500/10 border-2 border-amber-500/30 rounded-xl p-5 md:p-6 text-center"
+            <div
+              className="animate-fadeIn animation-delay-200 bg-gradient-to-br from-amber-500/10 to-green-500/10 border-2 border-amber-500/30 rounded-xl p-5 md:p-6 text-center"
             >
               <div className="text-3xl md:text-4xl font-black text-amber-400 mb-2">{marketSizing.som.value}</div>
               <div className="font-semibold text-white text-sm mb-1">{marketSizing.som.label}</div>
               <div className="text-white/50 text-xs">{marketSizing.som.description}</div>
-            </motion.div>
+            </div>
           </div>
 
           {/* SOM Calculation */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            className="bg-zinc-900/50 border border-white/5 rounded-xl p-4 md:p-5"
+          <div
+            className="animate-fadeIn bg-zinc-900/50 border border-white/5 rounded-xl p-4 md:p-5"
           >
             <div className="text-white/50 text-xs uppercase tracking-wider mb-3">Year 1 Pipeline Calculation</div>
             <div className="flex flex-wrap items-center justify-center gap-2 md:gap-3 text-sm">
@@ -1356,7 +1220,7 @@ export default function ClimatisePage() {
                 ))}
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
@@ -1366,11 +1230,8 @@ export default function ClimatisePage() {
       {/* Personal ICP Experience - MOVED UP for trust building */}
       <section className="py-12 md:py-16 bg-gradient-to-b from-black to-zinc-950">
         <div className="max-w-5xl mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="bg-gradient-to-r from-amber-500/10 via-orange-500/5 to-amber-500/10 border-2 border-amber-500/30 rounded-2xl p-6 md:p-8 relative overflow-hidden"
+          <div
+            className="animate-fadeIn bg-gradient-to-r from-amber-500/10 via-orange-500/5 to-amber-500/10 border-2 border-amber-500/30 rounded-2xl p-6 md:p-8 relative overflow-hidden"
           >
             <div className="absolute top-4 right-4">
               <span className="text-xs bg-amber-500/20 text-amber-400 px-3 py-1 rounded-full font-bold border border-amber-500/30">
@@ -1423,7 +1284,7 @@ export default function ClimatisePage() {
                 </div>
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
@@ -1433,57 +1294,39 @@ export default function ClimatisePage() {
       {/* Executive Summary */}
       <section className="py-16 bg-zinc-950 border-y border-white/5">
         <div className="max-w-5xl mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            className="text-center mb-10"
+          <div
+            className="animate-fadeIn text-center mb-10"
           >
             <span className="text-white/40 text-sm font-bold uppercase tracking-wider">Executive Summary</span>
-          </motion.div>
+          </div>
 
           <div className="grid md:grid-cols-3 gap-8 mb-12">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.1 }}
-              className="text-center"
+            <div
+              className="animate-fadeIn animation-delay-100 text-center"
             >
               <div className="text-4xl font-black text-blue-400 mb-2">
                 <CountUp end={totalIcpClusters} duration={1.5} enableScrollSpy scrollSpyOnce /> Clusters
               </div>
               <p className="text-white/60 text-sm">{provisionalSubSegments} sub-segments across regulatory, supply chain & sector-specific</p>
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.2 }}
-              className="text-center"
+            </div>
+            <div
+              className="animate-fadeIn animation-delay-200 text-center"
             >
               <div className="text-4xl font-black text-green-400 mb-2">
                 ~<CountUp end={15200} duration={2.5} separator="," enableScrollSpy scrollSpyOnce />
               </div>
               <p className="text-white/60 text-sm">Tier 1 targets (est.) with hard compliance deadlines</p>
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.3 }}
-              className="text-center"
+            </div>
+            <div
+              className="animate-fadeIn animation-delay-200 text-center"
             >
               <div className="text-4xl font-black text-amber-400 mb-2">Feb 2026</div>
               <p className="text-white/60 text-sm">UK sustainability standards finalise - next month</p>
-            </motion.div>
+            </div>
           </div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="bg-zinc-900/50 border border-white/10 rounded-2xl p-8"
+          <div
+            className="animate-fadeIn bg-zinc-900/50 border border-white/10 rounded-2xl p-8"
           >
             <h3 className="font-bold text-white text-lg mb-4">The Proposition</h3>
             <div className="grid md:grid-cols-2 gap-6 text-sm">
@@ -1516,18 +1359,15 @@ export default function ClimatisePage() {
                 </div>
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* The Challenge - ICP Categories */}
       <section className="py-20 bg-black">
         <div className="max-w-6xl mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-12"
+          <div
+            className="animate-fadeIn text-center mb-12"
           >
             <span className="text-green-400 text-sm font-bold uppercase tracking-wider">
               The Challenge
@@ -1538,37 +1378,28 @@ export default function ClimatisePage() {
             <p className="text-white/70 max-w-2xl mx-auto">
               ~{provisionalSubSegments.replace('~', '')} sub-segments to validate. Without automation, you&apos;re leaving pipeline on the table.
             </p>
-          </motion.div>
+          </div>
 
           <div className="grid md:grid-cols-5 gap-4 mb-12">
             {icpCategories.map((cat, index) => (
-              <motion.div
+              <div
                 key={cat.name}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                className="bg-zinc-900 border border-white/10 rounded-xl p-5 text-center hover:border-green-500/30 transition group"
+                className="animate-fadeIn bg-zinc-900 border border-white/10 rounded-xl p-5 text-center hover:border-green-500/30 hover:scale-105 transition-all group"
               >
-                <motion.div
-                  initial={{ scale: 1 }}
-                  whileHover={{ scale: 1.1 }}
-                  className="text-4xl font-black text-green-400 mb-2"
+                <div
+                  className="hover:scale-110 transition-transform text-4xl font-black text-green-400 mb-2"
                 >
                   {cat.count}
-                </motion.div>
+                </div>
                 <div className="text-white font-semibold text-sm mb-2">{cat.name}</div>
                 <div className="text-white/50 text-xs">{cat.examples}</div>
-              </motion.div>
+              </div>
             ))}
           </div>
 
           {/* Tier 1 Target Definition */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            className="bg-gradient-to-r from-green-500/10 to-blue-500/10 border border-green-500/30 rounded-2xl p-8 text-center"
+          <div
+            className="animate-fadeIn bg-gradient-to-r from-green-500/10 to-blue-500/10 border border-green-500/30 rounded-2xl p-8 text-center"
           >
             <div className="text-3xl md:text-4xl font-black text-white mb-2">UK Obliged Companies</div>
             <div className="text-white/70 mb-3">High-intent companies with hard compliance deadlines</div>
@@ -1577,18 +1408,15 @@ export default function ClimatisePage() {
               <a href="https://www.england.nhs.uk/greenernhs/get-involved/suppliers/" target="_blank" rel="noopener noreferrer" className="bg-white/5 text-white/60 px-3 py-1 rounded hover:text-blue-400 transition">NHS Suppliers →</a>
               <a href="https://www.gov.uk/government/publications/ppn-0621-taking-account-of-carbon-reduction-plans-in-the-procurement-of-major-government-contracts" target="_blank" rel="noopener noreferrer" className="bg-white/5 text-white/60 px-3 py-1 rounded hover:text-blue-400 transition">PPN 06/21 →</a>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Regulatory Momentum - Why Now */}
       <section className="py-16 bg-gradient-to-b from-black to-zinc-950">
         <div className="max-w-4xl mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="bg-gradient-to-r from-amber-500/10 via-transparent to-amber-500/10 border border-amber-500/20 rounded-2xl p-8"
+          <div
+            className="animate-fadeIn bg-gradient-to-r from-amber-500/10 via-transparent to-amber-500/10 border border-amber-500/20 rounded-2xl p-8"
           >
             <div className="flex items-start gap-4">
               <div className="text-3xl">⚡</div>
@@ -1621,7 +1449,7 @@ export default function ClimatisePage() {
                 </div>
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
@@ -1631,11 +1459,8 @@ export default function ClimatisePage() {
       {/* Tier 1 Priority ICPs */}
       <section className="py-20 bg-zinc-950">
         <div className="max-w-6xl mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-12"
+          <div
+            className="animate-fadeIn text-center mb-12"
           >
             <span className="text-blue-400 text-sm font-bold uppercase tracking-wider">
               Priority Targets
@@ -1646,17 +1471,13 @@ export default function ClimatisePage() {
             <p className="text-white/70 max-w-2xl mx-auto">
               UK obliged companies with hard compliance deadlines driving purchase urgency.
             </p>
-          </motion.div>
+          </div>
 
           <div className="space-y-4">
             {tier1Icps.map((icp, index) => (
-              <motion.div
+              <div
                 key={icp.name}
-                initial={{ opacity: 0, x: -30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                className="bg-zinc-900 border border-white/10 rounded-xl p-6 hover:border-blue-500/30 transition"
+                className="animate-fadeIn bg-zinc-900 border border-white/10 rounded-xl p-6 hover:border-blue-500/30 hover:scale-[1.02] transition-all"
               >
                 <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
                   <div className="flex-1">
@@ -1690,16 +1511,13 @@ export default function ClimatisePage() {
                     </span>
                   </div>
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
 
           {/* SECR Threshold Info */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="mt-8 bg-gradient-to-r from-blue-500/10 to-transparent border border-blue-500/20 rounded-xl p-6"
+          <div
+            className="animate-fadeIn mt-8 bg-gradient-to-r from-blue-500/10 to-transparent border border-blue-500/20 rounded-xl p-6"
           >
             <div className="flex items-start gap-4">
               <div className="text-2xl">📊</div>
@@ -1724,14 +1542,11 @@ export default function ClimatisePage() {
                 </p>
               </div>
             </div>
-          </motion.div>
+          </div>
 
           {/* Citations & Provisional Note */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            className="mt-6 bg-zinc-900/30 border border-white/5 rounded-lg p-4"
+          <div
+            className="animate-fadeIn mt-6 bg-zinc-900/30 border border-white/5 rounded-lg p-4"
           >
             <p className="text-amber-400/80 text-xs mb-2">
               <span className="font-bold">⚠️ Provisional Estimates:</span> All figures are initial estimates to be validated during discovery phase.
@@ -1755,18 +1570,15 @@ export default function ClimatisePage() {
               </a>
               .
             </p>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* GTM Stack - Clay-Centric */}
       <section className="py-20 bg-black">
         <div className="max-w-6xl mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-12"
+          <div
+            className="animate-fadeIn text-center mb-12"
           >
             <span className="text-blue-400 text-sm font-bold uppercase tracking-wider">
               The Stack
@@ -1777,28 +1589,17 @@ export default function ClimatisePage() {
             <p className="text-white/70 max-w-2xl mx-auto">
               Everything runs through Clay - your single source of truth for enrichment, qualification, and orchestration.
             </p>
-          </motion.div>
+          </div>
 
           {/* Clay Hero Card - BIG LOGO */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="mb-8"
+          <div
+            className="animate-fadeIn mb-8"
           >
             <div className="bg-gradient-to-r from-blue-500/20 via-blue-500/10 to-green-500/20 border-2 border-blue-500/40 rounded-2xl p-8 relative overflow-hidden">
               {/* Clay Logo - Big & Centered */}
               <div className="flex justify-center mb-6">
-                <motion.div
-                  animate={{
-                    boxShadow: [
-                      "0 0 20px rgba(59, 130, 246, 0.2)",
-                      "0 0 40px rgba(59, 130, 246, 0.3)",
-                      "0 0 20px rgba(59, 130, 246, 0.2)"
-                    ]
-                  }}
-                  transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-                  className="bg-white rounded-2xl p-4"
+                <div
+                  className="animate-pulse-glow bg-white rounded-2xl p-4"
                 >
                   <Image
                     src="/clay-agencies-claygencies.png"
@@ -1807,7 +1608,7 @@ export default function ClimatisePage() {
                     height={60}
                     className="h-14 w-auto"
                   />
-                </motion.div>
+                </div>
               </div>
 
               <div className="text-center mb-6">
@@ -1824,16 +1625,12 @@ export default function ClimatisePage() {
                 ))}
               </div>
             </div>
-          </motion.div>
+          </div>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
             {/* Enrichment Layer */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.1 }}
-              className="bg-zinc-900 border border-blue-500/30 rounded-2xl p-6"
+            <div
+              className="animate-fadeIn animation-delay-100 bg-zinc-900 border border-blue-500/30 rounded-2xl p-6"
             >
               <div className="w-12 h-12 bg-blue-500/20 rounded-xl flex items-center justify-center text-2xl mb-4">
                 🔍
@@ -1847,15 +1644,11 @@ export default function ClimatisePage() {
                   </div>
                 ))}
               </div>
-            </motion.div>
+            </div>
 
             {/* Execution Layer */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.15 }}
-              className="bg-zinc-900 border border-green-500/30 rounded-2xl p-6"
+            <div
+              className="animate-fadeIn animation-delay-100 bg-zinc-900 border border-green-500/30 rounded-2xl p-6"
             >
               <div className="w-12 h-12 bg-green-500/20 rounded-xl flex items-center justify-center text-2xl mb-4">
                 🚀
@@ -1871,15 +1664,11 @@ export default function ClimatisePage() {
                   </div>
                 ))}
               </div>
-            </motion.div>
+            </div>
 
             {/* Content Authority */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.2 }}
-              className="bg-zinc-900 border border-purple-500/30 rounded-2xl p-6"
+            <div
+              className="animate-fadeIn animation-delay-200 bg-zinc-900 border border-purple-500/30 rounded-2xl p-6"
             >
               <div className="w-12 h-12 bg-purple-500/20 rounded-xl flex items-center justify-center text-2xl mb-4">
                 📝
@@ -1893,15 +1682,11 @@ export default function ClimatisePage() {
                   </div>
                 ))}
               </div>
-            </motion.div>
+            </div>
 
             {/* Optional Infrastructure */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.25 }}
-              className="bg-zinc-900/50 border border-white/10 rounded-2xl p-6"
+            <div
+              className="animate-fadeIn animation-delay-200 bg-zinc-900/50 border border-white/10 rounded-2xl p-6"
             >
               <div className="w-12 h-12 bg-white/5 rounded-xl flex items-center justify-center text-2xl mb-4">
                 ⚡
@@ -1916,18 +1701,15 @@ export default function ClimatisePage() {
                   </div>
                 ))}
               </div>
-            </motion.div>
+            </div>
           </div>
 
           {/* Provisional Note */}
-          <motion.p
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            className="text-center text-white/40 text-xs mt-6"
+          <p
+            className="animate-fadeIn text-center text-white/40 text-xs mt-6"
           >
             * Stack is provisional and will be refined based on your specific requirements and existing tools.
-          </motion.p>
+          </p>
 
           {/* Narrative Prompt - Delivered in a structured build */}
           <div className="mt-12">
@@ -1935,11 +1717,8 @@ export default function ClimatisePage() {
           </div>
 
           {/* Simplified Architecture Flow */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="mt-12 bg-zinc-900/50 border border-white/10 rounded-2xl p-8"
+          <div
+            className="animate-fadeIn mt-12 bg-zinc-900/50 border border-white/10 rounded-2xl p-8"
           >
             <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-center">
               <div className="bg-blue-500/20 rounded-xl p-4 flex-1">
@@ -1959,18 +1738,15 @@ export default function ClimatisePage() {
                 <div className="text-white/50 text-sm mt-1">LGM, Instantly, HubSpot</div>
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Signal-Triggered Outbound */}
       <section className="py-20 bg-zinc-950">
         <div className="max-w-6xl mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-12"
+          <div
+            className="animate-fadeIn text-center mb-12"
           >
             <span className="text-green-400 text-sm font-bold uppercase tracking-wider">
               Signal-Triggered Outbound
@@ -1978,17 +1754,13 @@ export default function ClimatisePage() {
             <h2 className="text-3xl md:text-4xl font-bold text-white mt-2 mb-4">
               Right Message, Right Time
             </h2>
-          </motion.div>
+          </div>
 
           <div className="grid md:grid-cols-3 gap-4 md:gap-6">
             {signalTypes.map((signal, index) => (
-              <motion.div
+              <div
                 key={signal.name}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                className="bg-zinc-900 border border-white/10 rounded-2xl p-5 md:p-6 hover:border-green-500/30 transition"
+                className="animate-fadeIn bg-zinc-900 border border-white/10 rounded-2xl p-5 md:p-6 hover:border-green-500/30 hover:scale-105 transition-all"
               >
                 <div className="text-3xl md:text-4xl mb-3 md:mb-4">{signal.icon}</div>
                 <h3 className="text-base md:text-lg font-bold text-white mb-3 md:mb-4">{signal.name}</h3>
@@ -2003,7 +1775,7 @@ export default function ClimatisePage() {
                 <div className="bg-green-500/10 border border-green-500/20 rounded-lg p-3">
                   <div className="text-green-400 text-xs md:text-sm italic">{signal.message}</div>
                 </div>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>
@@ -2012,11 +1784,8 @@ export default function ClimatisePage() {
       {/* Bid Manager / Tender Intelligence - Visual Flow */}
       <section className="py-16 md:py-20 bg-black">
         <div className="max-w-6xl mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-10 md:mb-12"
+          <div
+            className="animate-fadeIn text-center mb-10 md:mb-12"
           >
             <span className="text-cyan-400 text-sm font-bold uppercase tracking-wider">
               Tender Intelligence
@@ -2027,42 +1796,32 @@ export default function ClimatisePage() {
             <p className="text-white/70 max-w-2xl mx-auto text-sm md:text-base">
               {tenderIntelligence.description}
             </p>
-          </motion.div>
+          </div>
 
           {/* Visual Data Sources Grid */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="mb-8"
+          <div
+            className="animate-fadeIn mb-8"
           >
             <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 mb-6">
               {tenderIntelligence.sources.map((source, index) => (
-                <motion.a
+                <a
                   key={source.name}
                   href={source.url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  whileInView={{ opacity: 1, scale: 1 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.1 }}
-                  className="bg-zinc-900 border border-cyan-500/20 rounded-xl p-4 text-center hover:border-cyan-500/50 transition group"
+                  className="animate-fadeIn bg-zinc-900 border border-cyan-500/20 rounded-xl p-4 text-center hover:border-cyan-500/50 hover:scale-105 transition-all group"
                 >
                   <div className="text-2xl md:text-3xl mb-2">{source.icon}</div>
                   <div className="font-bold text-white text-sm md:text-base group-hover:text-cyan-400 transition">{source.name}</div>
                   <div className="text-white/50 text-xs mt-1 hidden md:block">{source.description}</div>
-                </motion.a>
+                </a>
               ))}
             </div>
-          </motion.div>
+          </div>
 
           {/* Workflow Visualization - Horizontal Flow on Desktop, Vertical on Mobile */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="bg-gradient-to-r from-cyan-500/10 via-blue-500/5 to-green-500/10 border border-cyan-500/30 rounded-2xl p-6 md:p-8"
+          <div
+            className="animate-fadeIn bg-gradient-to-r from-cyan-500/10 via-blue-500/5 to-green-500/10 border border-cyan-500/30 rounded-2xl p-6 md:p-8"
           >
             <h4 className="text-white font-bold text-center mb-6">Daily Scraping Workflow</h4>
             {/* Mobile: Vertical stack */}
@@ -2101,18 +1860,15 @@ export default function ClimatisePage() {
                 </div>
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* LinkedIn Signal Intelligence */}
       <section className="py-16 md:py-20 bg-zinc-950">
         <div className="max-w-6xl mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-10 md:mb-12"
+          <div
+            className="animate-fadeIn text-center mb-10 md:mb-12"
           >
             <span className="text-purple-400 text-sm font-bold uppercase tracking-wider">
               LinkedIn Intelligence
@@ -2123,15 +1879,12 @@ export default function ClimatisePage() {
             <p className="text-white/70 max-w-2xl mx-auto text-sm md:text-base">
               Know who your competitors are engaging with, and what your ICPs are talking about.
             </p>
-          </motion.div>
+          </div>
 
           <div className="grid md:grid-cols-3 gap-4 md:gap-6">
             {/* Competitor Signals */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              className="bg-zinc-900 border border-purple-500/30 rounded-2xl p-5 md:p-6"
+            <div
+              className="animate-fadeIn bg-zinc-900 border border-purple-500/30 rounded-2xl p-5 md:p-6"
             >
               <div className="flex items-center gap-3 mb-4">
                 <div className="w-10 h-10 md:w-12 md:h-12 bg-purple-500/20 rounded-xl flex items-center justify-center text-xl md:text-2xl">
@@ -2150,15 +1903,11 @@ export default function ClimatisePage() {
                   </li>
                 ))}
               </ul>
-            </motion.div>
+            </div>
 
             {/* Influencer Tracking */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.1 }}
-              className="bg-zinc-900 border border-blue-500/30 rounded-2xl p-5 md:p-6"
+            <div
+              className="animate-fadeIn animation-delay-100 bg-zinc-900 border border-blue-500/30 rounded-2xl p-5 md:p-6"
             >
               <div className="flex items-center gap-3 mb-4">
                 <div className="w-10 h-10 md:w-12 md:h-12 bg-blue-500/20 rounded-xl flex items-center justify-center text-xl md:text-2xl">
@@ -2175,15 +1924,11 @@ export default function ClimatisePage() {
                   </li>
                 ))}
               </ul>
-            </motion.div>
+            </div>
 
             {/* ICP Activity Signals */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.2 }}
-              className="bg-zinc-900 border border-green-500/30 rounded-2xl p-5 md:p-6"
+            <div
+              className="animate-fadeIn animation-delay-200 bg-zinc-900 border border-green-500/30 rounded-2xl p-5 md:p-6"
             >
               <div className="flex items-center gap-3 mb-4">
                 <div className="w-10 h-10 md:w-12 md:h-12 bg-green-500/20 rounded-xl flex items-center justify-center text-xl md:text-2xl">
@@ -2200,7 +1945,7 @@ export default function ClimatisePage() {
                   </li>
                 ))}
               </ul>
-            </motion.div>
+            </div>
           </div>
         </div>
       </section>
@@ -2208,11 +1953,8 @@ export default function ClimatisePage() {
       {/* Personalisation at Scale */}
       <section className="py-20 bg-black">
         <div className="max-w-6xl mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-12"
+          <div
+            className="animate-fadeIn text-center mb-12"
           >
             <span className="text-blue-400 text-sm font-bold uppercase tracking-wider">
               The Human Touch
@@ -2223,14 +1965,11 @@ export default function ClimatisePage() {
             <p className="text-white/70 max-w-2xl mx-auto">
               No automation at the point of execution for high-value prospects.
             </p>
-          </motion.div>
+          </div>
 
           <div className="grid md:grid-cols-2 gap-8">
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              className="bg-zinc-900 border border-blue-500/30 rounded-2xl p-8"
+            <div
+              className="animate-fadeIn bg-zinc-900 border border-blue-500/30 rounded-2xl p-8"
             >
               <h3 className="text-xl font-bold text-blue-400 mb-6">Tier 1 Prospects</h3>
               <ul className="space-y-4">
@@ -2251,13 +1990,10 @@ export default function ClimatisePage() {
                 <span className="text-blue-400 font-bold">100% Human-Checked</span>
                 <span className="text-white/60"> before first real message</span>
               </div>
-            </motion.div>
+            </div>
 
-            <motion.div
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              className="bg-zinc-900 border border-white/10 rounded-2xl p-8"
+            <div
+              className="animate-fadeIn bg-zinc-900 border border-white/10 rounded-2xl p-8"
             >
               <h3 className="text-xl font-bold text-white/60 mb-6">Tertiary Markets</h3>
               <div className="flex items-center justify-center h-48">
@@ -2267,7 +2003,7 @@ export default function ClimatisePage() {
                   <div className="text-white/40 text-sm mt-2">Lower-value, higher-volume approach</div>
                 </div>
               </div>
-            </motion.div>
+            </div>
           </div>
         </div>
       </section>
@@ -2275,11 +2011,8 @@ export default function ClimatisePage() {
       {/* Campaign Timeline */}
       <section className="py-20 bg-zinc-950">
         <div className="max-w-6xl mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-16"
+          <div
+            className="animate-fadeIn text-center mb-16"
           >
             <span className="text-blue-400 text-sm font-bold uppercase tracking-wider">
               The Build
@@ -2290,37 +2023,31 @@ export default function ClimatisePage() {
             <p className="text-white/70 max-w-2xl mx-auto">
               RevOps-first architecture - built for handover, not dependency
             </p>
-          </motion.div>
+          </div>
 
           <div className="relative">
             {/* Timeline line */}
             <div className="absolute left-8 md:left-1/2 md:-translate-x-px top-0 bottom-0 w-1 bg-gradient-to-b from-blue-500 via-green-500 to-purple-500 rounded-full" />
 
             {phases.map((phase, index) => (
-              <motion.div
+              <div
                 key={phase.phase}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.15 }}
-                className={`relative flex items-start gap-6 mb-16 ${
+                className={`animate-fadeIn relative flex items-start gap-6 mb-16 ${
                   index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
                 }`}
               >
                 {/* Phase indicator */}
                 <div className="relative z-10 flex-shrink-0">
-                  <motion.div
-                    whileHover={{ scale: 1.1 }}
-                    className="w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-500 to-green-500 flex items-center justify-center text-3xl shadow-lg shadow-blue-500/25"
+                  <div
+                    className="hover:scale-110 transition-transform w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-500 to-green-500 flex items-center justify-center text-3xl shadow-lg shadow-blue-500/25"
                   >
                     {phase.icon}
-                  </motion.div>
+                  </div>
                 </div>
 
                 {/* Content */}
-                <motion.div
-                  whileHover={{ scale: 1.02 }}
-                  className={`flex-1 bg-zinc-900/80 backdrop-blur-sm border border-white/10 rounded-2xl p-6 hover:border-blue-500/30 transition ${
+                <div
+                  className={`hover:scale-[1.02] transition-transform flex-1 bg-zinc-900/80 backdrop-blur-sm border border-white/10 rounded-2xl p-6 hover:border-blue-500/30 transition ${
                     index % 2 === 0 ? 'md:mr-auto md:max-w-lg' : 'md:ml-auto md:max-w-lg'
                   }`}
                 >
@@ -2337,30 +2064,23 @@ export default function ClimatisePage() {
                   </div>
                   <ul className="space-y-2">
                     {phase.items.map((item, i) => (
-                      <motion.li
+                      <li
                         key={i}
-                        initial={{ opacity: 0, x: -10 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: 0.3 + i * 0.1 }}
-                        className="flex items-start gap-2 text-white/70"
+                        className="animate-fadeIn flex items-start gap-2 text-white/70"
                       >
                         <span className="text-green-400 mt-1">✓</span>
                         {item}
-                      </motion.li>
+                      </li>
                     ))}
                   </ul>
-                </motion.div>
-              </motion.div>
+                </div>
+              </div>
             ))}
           </div>
 
           {/* Timeline Expectations Note */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            className="mt-12 text-center"
+          <div
+            className="animate-fadeIn mt-12 text-center"
           >
             <div className="inline-flex flex-col items-center bg-zinc-900/50 border border-white/5 rounded-lg px-6 py-4 max-w-2xl">
               <p className="text-white/50 text-xs mb-3">{timelineExpectations.note}</p>
@@ -2373,7 +2093,7 @@ export default function ClimatisePage() {
                 ))}
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
@@ -2383,11 +2103,8 @@ export default function ClimatisePage() {
       {/* Investment Options */}
       <section className="py-20 bg-black">
         <div className="max-w-4xl mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-12"
+          <div
+            className="animate-fadeIn text-center mb-12"
           >
             <span className="text-green-400 text-sm font-bold uppercase tracking-wider">
               Investment
@@ -2398,14 +2115,11 @@ export default function ClimatisePage() {
             <p className="text-white/70">
               Choose the model that works best for your needs.
             </p>
-          </motion.div>
+          </div>
 
           {/* Retainer Option - Highlighted */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="mb-8"
+          <div
+            className="animate-fadeIn mb-8"
           >
             <div className="bg-gradient-to-r from-blue-500/20 via-green-500/10 to-blue-500/20 border-2 border-green-500/40 rounded-2xl p-8 relative overflow-hidden">
               <div className="absolute top-4 right-4">
@@ -2435,42 +2149,32 @@ export default function ClimatisePage() {
                 </div>
               </div>
             </div>
-          </motion.div>
+          </div>
 
           {/* One-Off Options */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="mb-8"
+          <div
+            className="animate-fadeIn mb-8"
           >
             <h4 className="text-sm font-bold text-white/50 uppercase tracking-wider mb-4">
               One-Off Engagements
             </h4>
             <div className="grid md:grid-cols-3 gap-4">
               {oneOffOptions.map((option, index) => (
-                <motion.div
+                <div
                   key={option.type}
-                  initial={{ opacity: 0, y: 10 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.1 }}
-                  className="bg-zinc-900 border border-white/10 rounded-xl p-5 hover:border-blue-500/30 transition"
+                  className="animate-fadeIn bg-zinc-900 border border-white/10 rounded-xl p-5 hover:border-blue-500/30 hover:scale-105 transition-all"
                 >
                   <h5 className="font-bold text-white mb-2">{option.type}</h5>
                   <p className="text-white/50 text-sm mb-4">{option.description}</p>
                   <div className="text-xl font-black text-blue-400">{option.rate}</div>
-                </motion.div>
+                </div>
               ))}
             </div>
-          </motion.div>
+          </div>
 
           {/* Training Callout */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            className="bg-zinc-900/50 border border-white/10 rounded-xl p-6 mb-6"
+          <div
+            className="animate-fadeIn bg-zinc-900/50 border border-white/10 rounded-xl p-6 mb-6"
           >
             <div className="flex items-center gap-3 mb-3">
               <span className="text-2xl">🎓</span>
@@ -2480,14 +2184,11 @@ export default function ClimatisePage() {
               Want to bring Clay in-house? We offer comprehensive training so your team can build and manage
               campaigns independently. Learn waterfall enrichment, signal monitoring, and campaign orchestration.
             </p>
-          </motion.div>
+          </div>
 
           {/* Optional Fast Track */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="bg-gradient-to-r from-purple-500/10 via-transparent to-purple-500/10 border border-purple-500/20 rounded-xl p-6"
+          <div
+            className="animate-fadeIn bg-gradient-to-r from-purple-500/10 via-transparent to-purple-500/10 border border-purple-500/20 rounded-xl p-6"
           >
             <div className="flex items-start gap-4">
               <div className="text-2xl">🚀</div>
@@ -2509,23 +2210,17 @@ export default function ClimatisePage() {
                 <p className="text-white/40 text-xs italic">{optionalFastTrack.note}</p>
               </div>
             </div>
-          </motion.div>
+          </div>
 
-          <motion.p
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            className="text-center text-white/50 mt-6 text-sm"
+          <p
+            className="animate-fadeIn text-center text-white/50 mt-6 text-sm"
           >
             Optional: Business development involvement - can support with direct outreach and relationship building.
-          </motion.p>
+          </p>
 
           {/* Quest System 4-Channel Flow */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="mt-10 bg-zinc-900/50 border border-white/10 rounded-xl p-6"
+          <div
+            className="animate-fadeIn mt-10 bg-zinc-900/50 border border-white/10 rounded-xl p-6"
           >
             <h4 className="text-lg font-bold text-white mb-2">{questSystem.title}</h4>
             <p className="text-white/60 text-sm mb-4">{questSystem.subtitle}</p>
@@ -2551,14 +2246,11 @@ export default function ClimatisePage() {
               <p className="text-white/70 text-sm italic mb-2">&ldquo;{questSystem.synergy}&rdquo;</p>
               <p className="text-green-400 text-xs font-semibold">{questSystem.magic}</p>
             </div>
-          </motion.div>
+          </div>
 
           {/* UK/GDPR Tracking */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="mt-6 bg-zinc-900/50 border border-amber-500/20 rounded-xl p-6"
+          <div
+            className="animate-fadeIn mt-6 bg-zinc-900/50 border border-amber-500/20 rounded-xl p-6"
           >
             <div className="flex items-center gap-2 mb-4">
               <span className="text-amber-400">🇬🇧</span>
@@ -2574,14 +2266,11 @@ export default function ClimatisePage() {
               ))}
             </div>
             <p className="text-amber-400/80 text-xs">{ukGdprTracking.ukDifference}</p>
-          </motion.div>
+          </div>
 
           {/* ABM Scaling */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="mt-6 grid md:grid-cols-2 gap-4"
+          <div
+            className="animate-fadeIn mt-6 grid md:grid-cols-2 gap-4"
           >
             {/* ABM Light */}
             <div className="bg-zinc-900/50 border border-blue-500/20 rounded-xl p-5">
@@ -2608,14 +2297,11 @@ export default function ClimatisePage() {
                 ))}
               </ul>
             </div>
-          </motion.div>
+          </div>
 
           {/* Decision Maker Clusters */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="mt-6 bg-zinc-900/50 border border-white/10 rounded-xl p-6"
+          <div
+            className="animate-fadeIn mt-6 bg-zinc-900/50 border border-white/10 rounded-xl p-6"
           >
             <h4 className="text-lg font-bold text-white mb-2">{decisionMakerClusters.title}</h4>
             <p className="text-white/60 text-sm mb-4">{decisionMakerClusters.description}</p>
@@ -2636,7 +2322,7 @@ export default function ClimatisePage() {
                 </span>
               ))}
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
@@ -2646,11 +2332,8 @@ export default function ClimatisePage() {
       {/* Risk Mitigation / Total Flexibility */}
       <section className="py-16 md:py-20 bg-zinc-950">
         <div className="max-w-4xl mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-10"
+          <div
+            className="animate-fadeIn text-center mb-10"
           >
             <span className="text-green-400 text-sm font-bold uppercase tracking-wider">
               {flexibility.title}
@@ -2658,46 +2341,36 @@ export default function ClimatisePage() {
             <h2 className="text-2xl md:text-4xl font-bold text-white mt-2 mb-4">
               {flexibility.headline}
             </h2>
-          </motion.div>
+          </div>
 
           <div className="grid grid-cols-2 gap-4 mb-8">
             {flexibility.points.map((point, index) => (
-              <motion.div
+              <div
                 key={point.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                className="bg-zinc-900 border border-green-500/20 rounded-xl p-4 md:p-6"
+                className="animate-fadeIn bg-zinc-900 border border-green-500/20 rounded-xl p-4 md:p-6 hover:scale-105 transition-all"
               >
                 <div className="flex items-center gap-2 mb-2">
                   <span className="text-green-400 text-lg">✓</span>
                   <h3 className="font-bold text-white text-sm md:text-base">{point.title}</h3>
                 </div>
                 <p className="text-white/60 text-xs md:text-sm">{point.description}</p>
-              </motion.div>
+              </div>
             ))}
           </div>
 
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            viewport={{ once: true }}
-            className="bg-gradient-to-r from-green-500/10 to-blue-500/10 border border-green-500/30 rounded-xl p-6 text-center"
+          <div
+            className="animate-fadeIn bg-gradient-to-r from-green-500/10 to-blue-500/10 border border-green-500/30 rounded-xl p-6 text-center"
           >
             <p className="text-white/80 text-sm md:text-base italic">&quot;{flexibility.record}&quot;</p>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Web-Savvy Competitive Edge */}
       <section className="py-16 md:py-20 bg-black">
         <div className="max-w-4xl mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="bg-gradient-to-r from-blue-500/10 via-purple-500/5 to-blue-500/10 border border-blue-500/30 rounded-2xl p-6 md:p-8"
+          <div
+            className="animate-fadeIn bg-gradient-to-r from-blue-500/10 via-purple-500/5 to-blue-500/10 border border-blue-500/30 rounded-2xl p-6 md:p-8"
           >
             <div className="flex items-start gap-4 mb-6">
               <div className="text-3xl md:text-4xl">💻</div>
@@ -2724,18 +2397,15 @@ export default function ClimatisePage() {
             <p className="text-blue-400/80 text-xs md:text-sm mt-6 text-center">
               {webAdvantage.note}
             </p>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Social Proof - Powered by GTM Quest */}
       <section className="py-12 md:py-16 bg-zinc-950 border-y border-white/5">
         <div className="max-w-4xl mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center"
+          <div
+            className="animate-fadeIn text-center"
           >
             <div className="flex items-center justify-center gap-3 mb-4">
               <Image
@@ -2767,18 +2437,15 @@ export default function ClimatisePage() {
               <span className="text-white/30">|</span>
               <span className="text-white/50">AI GTM Plan Builder</span>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* Why GTM Quest */}
       <section className="py-16 md:py-20 bg-black">
         <div className="max-w-5xl mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-center mb-12"
+          <div
+            className="animate-fadeIn text-center mb-12"
           >
             <span className="text-blue-400 text-sm font-bold uppercase tracking-wider">
               Why Us
@@ -2786,7 +2453,7 @@ export default function ClimatisePage() {
             <h2 className="text-3xl md:text-4xl font-bold text-white mt-2 mb-4">
               Why GTM Quest
             </h2>
-          </motion.div>
+          </div>
 
           <div className="grid md:grid-cols-3 gap-6">
             {[
@@ -2797,17 +2464,13 @@ export default function ClimatisePage() {
               { title: 'AI-Native Content', description: 'AEO, Gen-SEO, and llms.txt implementation' },
               { title: 'Local', description: 'Based in Borough - happy to meet in person' },
             ].map((reason, index) => (
-              <motion.div
+              <div
                 key={reason.title}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                className="bg-zinc-900 border border-white/10 rounded-xl p-6 hover:border-blue-500/30 transition text-center"
+                className="animate-fadeIn bg-zinc-900 border border-white/10 rounded-xl p-6 hover:border-blue-500/30 hover:scale-105 transition-all text-center"
               >
                 <h3 className="font-bold text-white mb-2">{reason.title}</h3>
                 <p className="text-white/60 text-sm">{reason.description}</p>
-              </motion.div>
+              </div>
             ))}
           </div>
         </div>

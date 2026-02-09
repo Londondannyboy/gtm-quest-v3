@@ -1,6 +1,5 @@
 'use client';
 
-import { motion } from 'framer-motion';
 import Image from 'next/image';
 
 interface SocialProofProps {
@@ -31,11 +30,8 @@ export function SocialProof({
   return (
     <section className="py-12 md:py-16 bg-zinc-950 border-y border-white/5">
       <div className="max-w-4xl mx-auto px-4">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center"
+        <div
+          className="text-center animate-fadeIn"
         >
           <div className="flex items-center justify-center gap-3 mb-4">
             <Image
@@ -64,7 +60,7 @@ export function SocialProof({
               href={link}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-blue-400 hover:text-blue-300 flex items-center gap-1"
+              className="text-blue-400 hover:text-blue-300 flex items-center gap-1 transition-colors duration-200"
             >
               <span>gtm.quest</span>
               <svg
@@ -88,7 +84,7 @@ export function SocialProof({
               </span>
             ))}
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

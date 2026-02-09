@@ -1,6 +1,5 @@
 'use client';
 
-import { motion } from 'framer-motion';
 import {
   AreaChart,
   Area,
@@ -67,10 +66,8 @@ export function PipelineChart({
   };
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      className="bg-zinc-900 border border-white/10 rounded-2xl p-6"
+    <div
+      className="bg-zinc-900 border border-white/10 rounded-2xl p-6 transition-all duration-300"
     >
       <h3 className="text-lg font-bold text-white mb-6">{title}</h3>
 
@@ -136,6 +133,6 @@ export function PipelineChart({
           </AreaChart>
         </ResponsiveContainer>
       </div>
-    </motion.div>
+    </div>
   );
 }

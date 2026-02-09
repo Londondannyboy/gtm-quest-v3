@@ -1,6 +1,5 @@
 'use client';
 
-import { motion } from 'framer-motion';
 import { TimelinePhase } from '@/types/pitch';
 
 interface TimelineProps {
@@ -24,11 +23,8 @@ export function Timeline({
   return (
     <section className="py-20 bg-zinc-950">
       <div className="max-w-6xl mx-auto px-4">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center mb-16"
+        <div
+          className="text-center mb-16 animate-fadeIn"
         >
           <span className="text-blue-400 text-sm font-bold uppercase tracking-wider">
             {title}
@@ -37,7 +33,7 @@ export function Timeline({
             {subtitle || `What Gets Built: ${phases.length}-Phase Timeline`}
           </h2>
           <p className="text-white/70 max-w-2xl mx-auto">{description}</p>
-        </motion.div>
+        </div>
 
         <div className="relative">
           {/* Timeline line */}
@@ -46,30 +42,25 @@ export function Timeline({
           />
 
           {phases.map((phase, index) => (
-            <motion.div
+            <div
               key={phase.phase}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.15 }}
-              className={`relative flex items-start gap-6 mb-16 ${
+              className={`relative flex items-start gap-6 mb-16 animate-fadeIn ${
                 index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'
               }`}
+              style={{ animationDelay: `${index * 150}ms` }}
             >
               {/* Phase indicator */}
               <div className="relative z-10 flex-shrink-0">
-                <motion.div
-                  whileHover={{ scale: 1.1 }}
-                  className="w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-500 to-green-500 flex items-center justify-center text-3xl shadow-lg shadow-blue-500/25"
+                <div
+                  className="w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-500 to-green-500 flex items-center justify-center text-3xl shadow-lg shadow-blue-500/25 hover:scale-110 transition-transform duration-200"
                 >
                   {phase.icon}
-                </motion.div>
+                </div>
               </div>
 
               {/* Content */}
-              <motion.div
-                whileHover={{ scale: 1.02 }}
-                className={`flex-1 bg-zinc-900/80 backdrop-blur-sm border border-white/10 rounded-2xl p-6 hover:border-blue-500/30 transition ${
+              <div
+                className={`flex-1 bg-zinc-900/80 backdrop-blur-sm border border-white/10 rounded-2xl p-6 hover:border-blue-500/30 hover:scale-[1.02] transition-all duration-200 ${
                   index % 2 === 0
                     ? 'md:mr-auto md:max-w-lg'
                     : 'md:ml-auto md:max-w-lg'
@@ -90,21 +81,18 @@ export function Timeline({
                 </div>
                 <ul className="space-y-2">
                   {phase.items.map((item, i) => (
-                    <motion.li
+                    <li
                       key={i}
-                      initial={{ opacity: 0, x: -10 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ delay: 0.3 + i * 0.1 }}
-                      className="flex items-start gap-2 text-white/70"
+                      className="flex items-start gap-2 text-white/70 animate-fadeIn"
+                      style={{ animationDelay: `${300 + i * 100}ms` }}
                     >
                       <span className="text-green-400 mt-1">&check;</span>
                       {item}
-                    </motion.li>
+                    </li>
                   ))}
                 </ul>
-              </motion.div>
-            </motion.div>
+              </div>
+            </div>
           ))}
         </div>
       </div>

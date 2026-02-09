@@ -1,7 +1,6 @@
 'use client';
 
 import { useState, useEffect, useCallback } from 'react';
-import { motion } from 'framer-motion';
 import {
   CurrencyCode,
   CurrencyConfig,
@@ -174,11 +173,9 @@ export function BudgetCalculator({
           const tierTotal = tier.baseRate * days * currency.rate;
 
           return (
-            <motion.div
+            <div
               key={tier.id}
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              className={`bg-zinc-800/50 border rounded-xl p-4 ${
+              className={`bg-zinc-800/50 border rounded-xl p-4 transition-all duration-300 ${
                 tier.recommended
                   ? 'border-green-500/30'
                   : 'border-white/5'
@@ -254,27 +251,22 @@ export function BudgetCalculator({
                 <span>{tier.minDays} days min</span>
                 <span>{tier.maxDays} days max</span>
               </div>
-            </motion.div>
+            </div>
           );
         })}
       </div>
 
       {/* Total */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
+      <div
         className="border-t border-white/10 pt-6"
       >
         <div className="flex items-center justify-between mb-4">
           <span className="text-lg text-white/70">Total Investment</span>
-          <motion.span
-            key={total}
-            initial={{ scale: 1.1, color: '#22c55e' }}
-            animate={{ scale: 1, color: '#ffffff' }}
-            className="text-3xl font-black text-white"
+          <span
+            className="text-3xl font-black text-white transition-all duration-300"
           >
             {formatCurrency(total)}
-          </motion.span>
+          </span>
         </div>
 
         {/* Exchange Rate Note */}
@@ -296,7 +288,7 @@ export function BudgetCalculator({
             Full handover included
           </p>
         </div>
-      </motion.div>
+      </div>
     </div>
   );
 }

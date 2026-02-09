@@ -1,6 +1,6 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { useState, useEffect } from 'react';
 import type { ABMChannels, RegionId } from '@/types/pitch';
 import { CHANNEL_MULTIPLIERS } from '@/types/pitch';
 
@@ -55,13 +55,9 @@ function ChannelBox({
 
   return (
     <div className="flex items-center">
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        className={`relative p-4 rounded-xl bg-gradient-to-b ${colorClass} border cursor-pointer transition-all duration-300 ${isActive ? 'shadow-lg' : 'opacity-60'}`}
+      <div
+        className={`relative p-4 rounded-xl bg-gradient-to-b ${colorClass} border cursor-pointer transition-all duration-300 hover:scale-[1.02] active:scale-[0.98] ${isActive ? 'shadow-lg' : 'opacity-60'}`}
         onClick={onToggle}
-        whileHover={{ scale: 1.02 }}
-        whileTap={{ scale: 0.98 }}
       >
         {/* Toggle indicator */}
         <div className={`absolute -top-2 -right-2 w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold ${isActive ? 'bg-green-500 text-white' : 'bg-zinc-700 text-zinc-400'}`}>
@@ -100,18 +96,17 @@ function ChannelBox({
             ))}
           </ul>
         </div>
-      </motion.div>
+      </div>
 
       {/* Arrow connector */}
       {!isLast && (
         <div className="px-2">
-          <motion.svg
+          <svg
             width="24"
             height="24"
             viewBox="0 0 24 24"
             fill="none"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: isActive ? 1 : 0.3 }}
+            className={`transition-opacity duration-300 ${isActive ? 'opacity-100' : 'opacity-30'}`}
           >
             <path
               d="M5 12H19M19 12L12 5M19 12L12 19"
@@ -120,7 +115,7 @@ function ChannelBox({
               strokeLinecap="round"
               strokeLinejoin="round"
             />
-          </motion.svg>
+          </svg>
         </div>
       )}
     </div>
@@ -128,15 +123,22 @@ function ChannelBox({
 }
 
 function TimelineBar({ month, label, fill, annotation }: { month: number; label: string; fill: number; annotation?: string }) {
+  const [width, setWidth] = useState(0);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setWidth(fill);
+    }, month * 100);
+    return () => clearTimeout(timer);
+  }, [fill, month]);
+
   return (
     <div className="flex items-center gap-3">
       <span className="text-xs text-zinc-500 w-16">Month {month}</span>
       <div className="flex-1 h-4 bg-zinc-800 rounded-full overflow-hidden">
-        <motion.div
-          className="h-full bg-gradient-to-r from-green-500 to-emerald-400 rounded-full"
-          initial={{ width: 0 }}
-          animate={{ width: `${fill}%` }}
-          transition={{ duration: 0.8, delay: month * 0.1 }}
+        <div
+          className="h-full bg-gradient-to-r from-green-500 to-emerald-400 rounded-full transition-all duration-700 ease-out"
+          style={{ width: `${width}%` }}
         />
       </div>
       <span className="text-xs text-zinc-400 w-32">{label}</span>

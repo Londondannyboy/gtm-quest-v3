@@ -1,6 +1,5 @@
 'use client';
 
-import { motion } from 'framer-motion';
 import Image from 'next/image';
 import { useState, useEffect } from 'react';
 
@@ -74,18 +73,10 @@ export function PasswordGate({
   if (!isAuthenticated) {
     return (
       <main className="min-h-screen bg-black flex items-center justify-center px-4">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="max-w-md w-full"
-        >
+        <div className="max-w-md w-full animate-fadeIn">
           <div className="text-center mb-8">
             {/* Client logo */}
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={{ opacity: 1, scale: 1 }}
-              className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 mb-6 inline-block"
-            >
+            <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-6 mb-6 inline-block">
               <Image
                 src={clientLogo}
                 alt={clientName}
@@ -93,7 +84,7 @@ export function PasswordGate({
                 height={60}
                 className="h-12 w-auto"
               />
-            </motion.div>
+            </div>
 
             {/* Statement of intent */}
             <h1 className="text-2xl font-bold text-white mb-3">{tagline}</h1>
@@ -143,7 +134,7 @@ export function PasswordGate({
               GTM Quest
             </a>
           </p>
-        </motion.div>
+        </div>
       </main>
     );
   }

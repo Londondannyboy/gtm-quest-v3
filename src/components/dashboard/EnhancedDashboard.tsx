@@ -1,6 +1,5 @@
 'use client';
 
-import { motion } from 'framer-motion';
 import { AnimatedStat, AnimatedProgressRing } from '@/components/ui/AnimatedStats';
 import { Globe3DCompact } from '@/components/visualizations/Globe3D';
 import { TAMChart } from '@/components/charts/TAMChart';
@@ -25,29 +24,6 @@ interface EnhancedDashboardProps {
   progress: number;
   agencyCount: number;
 }
-
-// Animation variants for staggered children
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.1,
-    },
-  },
-};
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 20 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      duration: 0.5,
-      ease: 'easeOut' as const,
-    },
-  },
-};
 
 export function EnhancedDashboard({
   requirements,
@@ -74,16 +50,11 @@ export function EnhancedDashboard({
   const estimatedROI = requirements.strategy_type === 'plg' ? 340 : 280;
 
   return (
-    <motion.div
-      variants={containerVariants}
-      initial="hidden"
-      animate="visible"
-      className="space-y-6"
-    >
+    <div className="space-y-6 animate-fadeIn">
       {/* Header with Progress */}
-      <motion.div
-        variants={itemVariants}
-        className="flex items-center justify-between bg-gradient-to-r from-zinc-900 to-zinc-800 rounded-2xl p-6 border border-white/10"
+      <div
+        className="flex items-center justify-between bg-gradient-to-r from-zinc-900 to-zinc-800 rounded-2xl p-6 border border-white/10 animate-fadeIn"
+        style={{ animationDelay: '100ms' }}
       >
         <div>
           <h2 className="text-2xl font-bold text-white mb-1">
@@ -96,10 +67,10 @@ export function EnhancedDashboard({
           </p>
         </div>
         <AnimatedProgressRing progress={progress} size={100} />
-      </motion.div>
+      </div>
 
       {/* Key Metrics Row */}
-      <motion.div variants={itemVariants} className="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <div className="grid grid-cols-2 md:grid-cols-4 gap-4 animate-fadeIn" style={{ animationDelay: '200ms' }}>
         <AnimatedStat
           value={agencyCount}
           label="Matched Agencies"
@@ -134,63 +105,63 @@ export function EnhancedDashboard({
           color="yellow"
           delay={450}
         />
-      </motion.div>
+      </div>
 
       {/* Main Charts Grid */}
-      <motion.div variants={itemVariants} className="grid lg:grid-cols-2 gap-4">
+      <div className="grid lg:grid-cols-2 gap-4 animate-fadeIn" style={{ animationDelay: '300ms' }}>
         {/* TAM/SAM/SOM */}
         {(requirements.industry || requirements.category) && (
-          <motion.div variants={itemVariants}>
+          <div className="transition-all duration-300">
             <TAMChart industry={requirements.industry || requirements.category} />
-          </motion.div>
+          </div>
         )}
 
         {/* 3D Globe - Target Regions */}
         {requirements.target_regions && requirements.target_regions.length > 0 ? (
-          <motion.div variants={itemVariants}>
+          <div className="transition-all duration-300">
             <Globe3DCompact regions={requirements.target_regions} />
-          </motion.div>
+          </div>
         ) : (
-          <motion.div variants={itemVariants}>
+          <div className="transition-all duration-300">
             <Globe3DCompact regions={['North America', 'Europe', 'APAC']} />
-          </motion.div>
+          </div>
         )}
 
         {/* Growth Projection */}
         {requirements.strategy_type && (
-          <motion.div variants={itemVariants}>
+          <div className="transition-all duration-300">
             <GrowthChart
               strategy={requirements.strategy_type}
               budget={requirements.budget}
             />
-          </motion.div>
+          </div>
         )}
 
         {/* Budget Allocation */}
         {requirements.budget && (
-          <motion.div variants={itemVariants}>
+          <div className="transition-all duration-300">
             <BudgetChart
               budget={requirements.budget}
               strategy={requirements.strategy_type}
             />
-          </motion.div>
+          </div>
         )}
-      </motion.div>
+      </div>
 
       {/* Benchmark Chart - Full Width */}
       {(requirements.industry || requirements.maturity) && (
-        <motion.div variants={itemVariants}>
+        <div className="animate-fadeIn" style={{ animationDelay: '400ms' }}>
           <BenchmarkChart
             industry={requirements.industry}
             maturity={requirements.maturity}
           />
-        </motion.div>
+        </div>
       )}
 
       {/* Quick Insights */}
-      <motion.div
-        variants={itemVariants}
-        className="bg-gradient-to-br from-emerald-500/10 to-blue-500/10 rounded-2xl p-6 border border-emerald-500/20"
+      <div
+        className="bg-gradient-to-br from-emerald-500/10 to-blue-500/10 rounded-2xl p-6 border border-emerald-500/20 animate-fadeIn"
+        style={{ animationDelay: '500ms' }}
       >
         <h3 className="font-bold text-white mb-4 flex items-center gap-2">
           <span className="text-xl">💡</span>
@@ -213,8 +184,8 @@ export function EnhancedDashboard({
             type="action"
           />
         </div>
-      </motion.div>
-    </motion.div>
+      </div>
+    </div>
   );
 }
 

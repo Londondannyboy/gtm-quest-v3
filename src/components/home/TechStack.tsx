@@ -1,7 +1,5 @@
 'use client';
 
-import { motion } from 'framer-motion';
-
 const tools = [
   {
     name: 'Clay',
@@ -46,42 +44,31 @@ export function TechStack() {
     <section className="py-20 bg-zinc-950">
       <div className="max-w-6xl mx-auto px-4">
         <div className="text-center mb-12">
-          <motion.span
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-blue-400 text-sm font-bold uppercase tracking-wider"
+          <span
+            className="text-blue-400 text-sm font-bold uppercase tracking-wider animate-fadeIn"
           >
             Tech Expertise
-          </motion.span>
-          <motion.h2
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
-            className="text-3xl md:text-4xl font-bold mt-4 mb-4 text-white"
+          </span>
+          <h2
+            className="text-3xl md:text-4xl font-bold mt-4 mb-4 text-white animate-fadeIn"
+            style={{ animationDelay: '100ms' }}
           >
             GTM Tools We Know Inside Out
-          </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
-            className="text-white/70 max-w-2xl mx-auto"
+          </h2>
+          <p
+            className="text-white/70 max-w-2xl mx-auto animate-fadeIn"
+            style={{ animationDelay: '200ms' }}
           >
             Our agencies are experts in the leading go-to-market tools and platforms
-          </motion.p>
+          </p>
         </div>
 
         {/* Featured Tool - Clay */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="mb-8"
+        <div
+          className="mb-8 animate-fadeIn"
+          style={{ animationDelay: '300ms' }}
         >
-          <div className="bg-gradient-to-r from-blue-500/10 via-blue-500/5 to-transparent border border-blue-500/30 rounded-2xl p-6 md:p-8">
+          <div className="bg-gradient-to-r from-blue-500/10 via-blue-500/5 to-transparent border border-blue-500/30 rounded-2xl p-6 md:p-8 hover:scale-[1.02] transition-all duration-300">
             <div className="flex flex-col md:flex-row items-start md:items-center gap-6">
               <div className="w-16 h-16 bg-blue-500/20 rounded-xl flex items-center justify-center text-3xl">
                 🏺
@@ -104,7 +91,7 @@ export function TechStack() {
                   href="https://clay.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-blue-400 hover:text-blue-300 text-sm font-medium flex items-center gap-1"
+                  className="text-blue-400 hover:text-blue-300 text-sm font-medium flex items-center gap-1 transition-colors duration-300"
                 >
                   Learn about Clay
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -119,24 +106,21 @@ export function TechStack() {
               </div>
             </div>
           </div>
-        </motion.div>
+        </div>
 
         {/* Other Tools Grid */}
         <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
           {tools
             .filter((tool) => !tool.featured)
             .map((tool, index) => (
-              <motion.div
+              <div
                 key={tool.name}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: index * 0.05 }}
-                className="bg-zinc-900 border border-white/10 rounded-xl p-4 hover:border-blue-500/30 transition text-center"
+                className="bg-zinc-900 border border-white/10 rounded-xl p-4 hover:border-blue-500/30 hover:scale-105 transition-all duration-300 text-center animate-fadeIn"
+                style={{ animationDelay: `${400 + index * 50}ms` }}
               >
                 <h4 className="font-semibold text-white mb-1">{tool.name}</h4>
                 <p className="text-white/50 text-xs">{tool.description}</p>
-              </motion.div>
+              </div>
             ))}
         </div>
       </div>

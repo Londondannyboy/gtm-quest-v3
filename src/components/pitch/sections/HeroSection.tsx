@@ -1,6 +1,5 @@
 'use client';
 
-import { motion } from 'framer-motion';
 import Image from 'next/image';
 
 interface OpportunityItem {
@@ -61,11 +60,8 @@ export function HeroSection({
     <section className="py-12 md:py-16 bg-gradient-to-b from-zinc-950 to-black border-b border-white/10">
       <div className="max-w-4xl mx-auto px-4">
         {/* Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.1 }}
-          className="text-center mb-10"
+        <div
+          className="text-center mb-10 animate-fadeIn"
         >
           <div className="flex items-center justify-center gap-4 mb-4">
             <Image
@@ -90,14 +86,12 @@ export function HeroSection({
           <p className="text-white/50 text-sm">
             Prepared for {contactName}, {contactTitle}
           </p>
-        </motion.div>
+        </div>
 
         {/* Two Column: Opportunity + Ask */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2 }}
-          className="grid md:grid-cols-2 gap-6 mb-8"
+        <div
+          className="grid md:grid-cols-2 gap-6 mb-8 animate-fadeIn"
+          style={{ animationDelay: '100ms' }}
         >
           {/* The Opportunity */}
           <div className="bg-zinc-900 border border-white/10 rounded-xl p-6">
@@ -144,15 +138,13 @@ export function HeroSection({
               ))}
             </ul>
           </div>
-        </motion.div>
+        </div>
 
         {/* Risks & Mitigations */}
         {riskMitigations && riskMitigations.length > 0 && (
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3 }}
-            className="bg-zinc-900/50 border border-white/5 rounded-xl p-6 mb-8"
+          <div
+            className="bg-zinc-900/50 border border-white/5 rounded-xl p-6 mb-8 animate-fadeIn"
+            style={{ animationDelay: '200ms' }}
           >
             <h2 className="text-white/50 text-xs uppercase tracking-wider mb-4">
               Risks & Mitigations
@@ -168,21 +160,19 @@ export function HeroSection({
                 </div>
               ))}
             </div>
-          </motion.div>
+          </div>
         )}
 
         {/* CTA */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.4 }}
-          className="text-center"
+        <div
+          className="text-center animate-fadeIn"
+          style={{ animationDelay: '300ms' }}
         >
           <a
             href={ctaLink}
             target="_blank"
             rel="noopener noreferrer"
-            className={`inline-flex items-center gap-2 bg-gradient-to-r from-${gradientColors.from} to-${gradientColors.to} hover:opacity-90 text-white px-8 py-4 rounded-xl font-bold text-lg transition`}
+            className={`inline-flex items-center gap-2 bg-gradient-to-r from-${gradientColors.from} to-${gradientColors.to} hover:opacity-90 hover:scale-105 text-white px-8 py-4 rounded-xl font-bold text-lg transition-all duration-200`}
           >
             {ctaText}
             <svg
@@ -202,7 +192,7 @@ export function HeroSection({
           <p className="text-white/40 text-sm mt-4">
             Scroll down for the full proposal &darr;
           </p>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

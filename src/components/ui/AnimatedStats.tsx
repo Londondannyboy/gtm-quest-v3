@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from 'react';
 import CountUp from 'react-countup';
-import { motion } from 'framer-motion';
 
 interface AnimatedStatProps {
   value: number;
@@ -41,11 +40,10 @@ export function AnimatedStat({
   }, [delay]);
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20, scale: 0.9 }}
-      animate={isVisible ? { opacity: 1, y: 0, scale: 1 } : {}}
-      transition={{ duration: 0.5, ease: 'easeOut' }}
-      className="bg-zinc-900/80 backdrop-blur-sm rounded-xl p-5 border border-white/10 hover:border-emerald-500/30 transition-all duration-300 group"
+    <div
+      className={`bg-zinc-900/80 backdrop-blur-sm rounded-xl p-5 border border-white/10 hover:border-emerald-500/30 transition-all duration-500 group ${
+        isVisible ? 'opacity-100 translate-y-0 scale-100' : 'opacity-0 translate-y-5 scale-95'
+      }`}
     >
       <div className="flex items-start justify-between">
         <div>
@@ -71,17 +69,17 @@ export function AnimatedStat({
           )}
         </div>
         {icon && (
-          <motion.div
-            initial={{ scale: 0 }}
-            animate={isVisible ? { scale: 1, rotate: [0, 10, -10, 0] } : {}}
-            transition={{ duration: 0.5, delay: delay + 0.3 }}
-            className="text-2xl"
+          <div
+            className={`text-2xl transition-all duration-500 ${
+              isVisible ? 'scale-100 opacity-100' : 'scale-0 opacity-0'
+            }`}
+            style={{ transitionDelay: `${delay + 300}ms` }}
           >
             {icon}
-          </motion.div>
+          </div>
         )}
       </div>
-    </motion.div>
+    </div>
   );
 }
 
@@ -123,9 +121,26 @@ export function AnimatedProgressRing({
   strokeWidth?: number;
   color?: string;
 }) {
+  const [animatedProgress, setAnimatedProgress] = useState(0);
+  const [isVisible, setIsVisible] = useState(false);
   const radius = (size - strokeWidth) / 2;
   const circumference = radius * 2 * Math.PI;
-  const offset = circumference - (progress / 100) * circumference;
+  const offset = circumference - (animatedProgress / 100) * circumference;
+
+  useEffect(() => {
+    // Delay visibility for initial animation
+    const visibilityTimer = setTimeout(() => setIsVisible(true), 500);
+
+    // Animate the progress value
+    const progressTimer = setTimeout(() => {
+      setAnimatedProgress(progress);
+    }, 100);
+
+    return () => {
+      clearTimeout(visibilityTimer);
+      clearTimeout(progressTimer);
+    };
+  }, [progress]);
 
   return (
     <div className="relative" style={{ width: size, height: size }}>
@@ -141,7 +156,7 @@ export function AnimatedProgressRing({
           className="text-white/10"
         />
         {/* Progress circle */}
-        <motion.circle
+        <circle
           cx={size / 2}
           cy={size / 2}
           r={radius}
@@ -149,23 +164,21 @@ export function AnimatedProgressRing({
           stroke={color}
           strokeWidth={strokeWidth}
           strokeLinecap="round"
-          initial={{ strokeDashoffset: circumference }}
-          animate={{ strokeDashoffset: offset }}
-          transition={{ duration: 1.5, ease: 'easeOut' }}
+          className="transition-all duration-1000 ease-out"
           style={{
             strokeDasharray: circumference,
+            strokeDashoffset: offset,
           }}
         />
       </svg>
       <div className="absolute inset-0 flex items-center justify-center">
-        <motion.span
-          initial={{ opacity: 0, scale: 0.5 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ delay: 0.5, duration: 0.5 }}
-          className="text-2xl font-bold text-white"
+        <span
+          className={`text-2xl font-bold text-white transition-all duration-500 ${
+            isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-50'
+          }`}
         >
           <CountUp end={progress} duration={1.5} suffix="%" />
-        </motion.span>
+        </span>
       </div>
     </div>
   );

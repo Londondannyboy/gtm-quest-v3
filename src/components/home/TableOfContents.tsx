@@ -1,7 +1,6 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { motion } from 'framer-motion';
 
 interface TOCItem {
   id: string;
@@ -75,7 +74,7 @@ export function TableOfContents() {
             <button
               key={item.id}
               onClick={() => scrollToSection(item.id)}
-              className={`flex items-center gap-2 px-3 py-2 rounded-lg text-sm whitespace-nowrap transition ${
+              className={`flex items-center gap-2 px-3 py-2 rounded-lg text-sm whitespace-nowrap transition-all duration-300 ${
                 activeSection === item.id
                   ? 'bg-blue-500/20 text-blue-400 border border-blue-500/30'
                   : 'bg-white/5 text-white/80 hover:text-white hover:bg-white/10'
@@ -89,10 +88,10 @@ export function TableOfContents() {
       </nav>
 
       {/* Desktop: Floating sidebar */}
-      <motion.nav
-        initial={{ opacity: 0, x: -20 }}
-        animate={{ opacity: isSticky ? 1 : 0, x: isSticky ? 0 : -20 }}
-        className="hidden lg:block fixed left-4 xl:left-8 top-1/2 -translate-y-1/2 z-30 pointer-events-none"
+      <nav
+        className={`hidden lg:block fixed left-4 xl:left-8 top-1/2 -translate-y-1/2 z-30 transition-all duration-300 ${
+          isSticky ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-5 pointer-events-none'
+        }`}
         style={{ pointerEvents: isSticky ? 'auto' : 'none' }}
         aria-label="Table of contents"
       >
@@ -109,7 +108,7 @@ export function TableOfContents() {
                 <li key={item.id}>
                   <button
                     onClick={() => scrollToSection(item.id)}
-                    className={`flex items-center gap-3 w-full text-left px-3 py-2 rounded-lg transition group ${
+                    className={`flex items-center gap-3 w-full text-left px-3 py-2 rounded-lg transition-all duration-300 group ${
                       isActive
                         ? 'bg-blue-500/20 text-blue-400'
                         : isPast
@@ -118,7 +117,7 @@ export function TableOfContents() {
                     }`}
                   >
                     <span
-                      className={`w-8 h-8 rounded-lg flex items-center justify-center text-sm
+                      className={`w-8 h-8 rounded-lg flex items-center justify-center text-sm transition-all duration-300
                         ${isActive ? 'bg-blue-500/30' : 'bg-white/5 group-hover:bg-white/10'}`}
                     >
                       {isPast ? '✓' : item.icon}
@@ -134,11 +133,9 @@ export function TableOfContents() {
           <div className="mt-4 pt-4 border-t border-white/10">
             <div className="flex items-center gap-2 text-xs text-white/50">
               <div className="w-full h-1 bg-white/10 rounded-full overflow-hidden">
-                <motion.div
-                  className="h-full bg-gradient-to-r from-blue-500 to-blue-400"
-                  initial={{ width: 0 }}
-                  animate={{ width: `${progress}%` }}
-                  transition={{ duration: 0.3 }}
+                <div
+                  className="h-full bg-gradient-to-r from-blue-500 to-blue-400 transition-all duration-300"
+                  style={{ width: `${progress}%` }}
                 />
               </div>
               <span className="text-white/70">
@@ -147,7 +144,7 @@ export function TableOfContents() {
             </div>
           </div>
         </div>
-      </motion.nav>
+      </nav>
 
       {/* Inline TOC for desktop - cleaner design */}
       <div className="hidden lg:block bg-zinc-900/80 backdrop-blur-sm border border-white/10 rounded-2xl p-6 mb-8">
@@ -159,9 +156,9 @@ export function TableOfContents() {
             <li key={item.id}>
               <button
                 onClick={() => scrollToSection(item.id)}
-                className="flex items-center gap-3 text-white/80 hover:text-blue-400 transition py-2 group w-full text-left"
+                className="flex items-center gap-3 text-white/80 hover:text-blue-400 transition-all duration-300 py-2 group w-full text-left"
               >
-                <span className="w-8 h-8 rounded-lg bg-white/5 group-hover:bg-blue-500/20 flex items-center justify-center text-sm transition">
+                <span className="w-8 h-8 rounded-lg bg-white/5 group-hover:bg-blue-500/20 flex items-center justify-center text-sm transition-all duration-300">
                   {item.icon}
                 </span>
                 <span className="text-sm font-medium">{item.label}</span>

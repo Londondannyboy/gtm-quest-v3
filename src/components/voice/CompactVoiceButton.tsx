@@ -2,7 +2,6 @@
 
 import { useState, useEffect, useCallback } from 'react';
 import { VoiceProvider, useVoice } from '@humeai/voice-react';
-import { motion, AnimatePresence } from 'framer-motion';
 
 const CONFIG_ID = process.env.NEXT_PUBLIC_HUME_CONFIG_ID || '';
 
@@ -31,24 +30,18 @@ function VoiceButton({ accessToken }: { accessToken: string }) {
   const isConnected = status.value === 'connected';
 
   return (
-    <motion.button
+    <button
       onClick={handleToggle}
       disabled={isPending}
-      className={`relative group flex items-center gap-3 px-5 py-3 rounded-full backdrop-blur-md transition-all shadow-lg ${
+      className={`relative group flex items-center gap-3 px-5 py-3 rounded-full backdrop-blur-md transition-all duration-300 shadow-lg hover:scale-102 active:scale-98 ${
         isConnected
           ? 'bg-emerald-500/90 hover:bg-emerald-600/90'
           : 'bg-white/10 hover:bg-white/20 border border-white/20'
       }`}
-      whileHover={{ scale: 1.02 }}
-      whileTap={{ scale: 0.98 }}
     >
       {/* Pulse ring when connected */}
       {isConnected && (
-        <motion.span
-          className="absolute inset-0 rounded-full bg-emerald-500/50"
-          animate={{ scale: [1, 1.2], opacity: [0.5, 0] }}
-          transition={{ duration: 1.5, repeat: Infinity }}
-        />
+        <span className="absolute inset-0 rounded-full bg-emerald-500/50 animate-ping" />
       )}
 
       {/* Mic icon */}
@@ -78,30 +71,21 @@ function VoiceButton({ accessToken }: { accessToken: string }) {
       </span>
 
       {/* Sound wave animation when connected */}
-      <AnimatePresence>
-        {isConnected && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="flex items-center gap-0.5 ml-1"
-          >
-            {[...Array(3)].map((_, i) => (
-              <motion.span
-                key={i}
-                className="w-1 bg-white rounded-full"
-                animate={{ height: ['8px', '16px', '8px'] }}
-                transition={{
-                  duration: 0.6,
-                  repeat: Infinity,
-                  delay: i * 0.15,
-                }}
-              />
-            ))}
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </motion.button>
+      {isConnected && (
+        <div className="flex items-center gap-0.5 ml-1 animate-fadeIn">
+          {[...Array(3)].map((_, i) => (
+            <span
+              key={i}
+              className="w-1 bg-white rounded-full animate-soundwave"
+              style={{
+                animationDelay: `${i * 150}ms`,
+                height: '8px',
+              }}
+            />
+          ))}
+        </div>
+      )}
+    </button>
   );
 }
 

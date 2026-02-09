@@ -1,7 +1,6 @@
 'use client';
 
 import { useState } from 'react';
-import { motion } from 'framer-motion';
 import {
   PasswordGate,
   BudgetCalculator,
@@ -251,11 +250,7 @@ export default function TemplatePage() {
         {/* 4-Channel ABM System */}
         <section className="py-16 bg-black">
           <div className="max-w-6xl mx-auto px-4">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="text-center mb-8"
-            >
+            <div className="text-center mb-8 animate-fadeIn">
               <span className="text-green-400 text-sm font-bold uppercase tracking-wider">
                 The System
               </span>
@@ -265,7 +260,7 @@ export default function TemplatePage() {
               <p className="text-white/70 max-w-xl mx-auto">
                 Based on ColdIQ&apos;s $7.83M pipeline methodology. Click channels to see impact.
               </p>
-            </motion.div>
+            </div>
 
             <ChannelFlowDiagram
               activeChannels={abmChannels}
@@ -284,11 +279,7 @@ export default function TemplatePage() {
         {/* Intent Tracking */}
         <section className="py-16 bg-zinc-950">
           <div className="max-w-4xl mx-auto px-4">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="text-center mb-8"
-            >
+            <div className="text-center mb-8 animate-fadeIn">
               <span className="text-purple-400 text-sm font-bold uppercase tracking-wider">
                 Channel 3
               </span>
@@ -298,7 +289,7 @@ export default function TemplatePage() {
               <p className="text-white/70 max-w-xl mx-auto">
                 Configure your tracking tools to identify buying signals.
               </p>
-            </motion.div>
+            </div>
 
             <IntentTrackingSection
               region={region}
@@ -311,11 +302,7 @@ export default function TemplatePage() {
         {/* LinkedIn Ads Calculator */}
         <section className="py-16 bg-black">
           <div className="max-w-4xl mx-auto px-4">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="text-center mb-8"
-            >
+            <div className="text-center mb-8 animate-fadeIn">
               <span className="text-green-400 text-sm font-bold uppercase tracking-wider">
                 Channel 1
               </span>
@@ -325,7 +312,7 @@ export default function TemplatePage() {
               <p className="text-white/70 max-w-xl mx-auto">
                 Build awareness with Thought Leader ads, Document ads, and Smart Links.
               </p>
-            </motion.div>
+            </div>
 
             <LinkedInAdsCalculator currency={currency} />
           </div>
@@ -334,11 +321,7 @@ export default function TemplatePage() {
       {/* Budget Calculator */}
       <section className="py-16 bg-zinc-950">
         <div className="max-w-4xl mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="text-center mb-8"
-          >
+          <div className="text-center mb-8 animate-fadeIn">
             <span className="text-blue-400 text-sm font-bold uppercase tracking-wider">
               Step 1
             </span>
@@ -348,7 +331,7 @@ export default function TemplatePage() {
             <p className="text-white/70 max-w-xl mx-auto">
               Adjust the sliders to customize your engagement. Multi-currency support included.
             </p>
-          </motion.div>
+          </div>
 
           <BudgetCalculator
             tiers={budgetTiers}
@@ -368,11 +351,7 @@ export default function TemplatePage() {
       {/* Infrastructure Costs Breakdown */}
       <section className="py-16 bg-black">
         <div className="max-w-4xl mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="text-center mb-8"
-          >
+          <div className="text-center mb-8 animate-fadeIn">
             <span className="text-purple-400 text-sm font-bold uppercase tracking-wider">
               Step 2
             </span>
@@ -382,21 +361,20 @@ export default function TemplatePage() {
             <p className="text-white/70 max-w-xl mx-auto">
               The tools and infrastructure needed to run your campaigns at scale.
             </p>
-          </motion.div>
+          </div>
 
           {/* Category Breakdown */}
           <div className="space-y-6">
-            {(['platform', 'email', 'linkedin', 'tools'] as const).map((category) => {
+            {(['platform', 'email', 'linkedin', 'tools'] as const).map((category, index) => {
               const categoryInfo = categoryLabels[category];
               const categoryItems = infraCosts.filter((item) => item.category === category);
               const categoryTotal = getCategoryTotal(category);
 
               return (
-                <motion.div
+                <div
                   key={category}
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  className="bg-zinc-900 border border-white/10 rounded-xl overflow-hidden"
+                  className={`bg-zinc-900 border border-white/10 rounded-xl overflow-hidden animate-fadeIn`}
+                  style={{ animationDelay: `${index * 100}ms` }}
                 >
                   {/* Category Header */}
                   <div className={`px-6 py-4 bg-${categoryInfo.color}-500/10 border-b border-white/5 flex items-center justify-between`}>
@@ -424,7 +402,7 @@ export default function TemplatePage() {
                             <button
                               onClick={() => updateInfraQuantity(item.id, item.quantity - 1)}
                               disabled={item.quantity <= item.minQuantity}
-                              className="w-7 h-7 rounded bg-white/5 text-white/60 hover:bg-white/10 disabled:opacity-30 disabled:cursor-not-allowed text-sm"
+                              className="w-7 h-7 rounded bg-white/5 text-white/60 hover:bg-white/10 disabled:opacity-30 disabled:cursor-not-allowed text-sm transition-all duration-200"
                             >
                               -
                             </button>
@@ -434,7 +412,7 @@ export default function TemplatePage() {
                             <button
                               onClick={() => updateInfraQuantity(item.id, item.quantity + 1)}
                               disabled={item.quantity >= item.maxQuantity}
-                              className="w-7 h-7 rounded bg-white/5 text-white/60 hover:bg-white/10 disabled:opacity-30 disabled:cursor-not-allowed text-sm"
+                              className="w-7 h-7 rounded bg-white/5 text-white/60 hover:bg-white/10 disabled:opacity-30 disabled:cursor-not-allowed text-sm transition-all duration-200"
                             >
                               +
                             </button>
@@ -453,18 +431,13 @@ export default function TemplatePage() {
                       </div>
                     ))}
                   </div>
-                </motion.div>
+                </div>
               );
             })}
           </div>
 
           {/* Monthly Total */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.3 }}
-            className="mt-6 bg-zinc-900/50 border border-white/10 rounded-xl p-6"
-          >
+          <div className="mt-6 bg-zinc-900/50 border border-white/10 rounded-xl p-6 animate-fadeIn animation-delay-300">
             <div className="flex items-center justify-between">
               <div>
                 <div className="text-white/70">Monthly Software Cost</div>
@@ -476,15 +449,10 @@ export default function TemplatePage() {
                 {currency.symbol}{(monthlyInfraCost * currency.rate).toLocaleString()}/mo
               </div>
             </div>
-          </motion.div>
+          </div>
 
           {/* Total Investment Summary */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.4 }}
-            className="mt-6 bg-gradient-to-r from-green-500/10 to-blue-500/10 border border-green-500/30 rounded-xl p-6"
-          >
+          <div className="mt-6 bg-gradient-to-r from-green-500/10 to-blue-500/10 border border-green-500/30 rounded-xl p-6 animate-fadeIn animation-delay-400">
             <h4 className="text-sm font-bold text-white/50 uppercase tracking-wider mb-4">
               Total Investment ({engagementMonths} months)
             </h4>
@@ -511,18 +479,14 @@ export default function TemplatePage() {
             <p className="text-xs text-white/40 text-center">
               This total is used in the ROI calculator below
             </p>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* ROI Calculator */}
       <section className="py-16 bg-zinc-950">
         <div className="max-w-5xl mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="text-center mb-8"
-          >
+          <div className="text-center mb-8 animate-fadeIn">
             <span className="text-green-400 text-sm font-bold uppercase tracking-wider">
               Step 3
             </span>
@@ -532,7 +496,7 @@ export default function TemplatePage() {
             <p className="text-white/70 max-w-xl mx-auto">
               Model your expected outcomes based on industry benchmarks and your deal economics.
             </p>
-          </motion.div>
+          </div>
 
           <ROICalculator
             defaultInputs={{
@@ -567,11 +531,7 @@ export default function TemplatePage() {
       {/* Timeline Projection */}
       <section className="py-16 bg-black">
         <div className="max-w-5xl mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="text-center mb-8"
-          >
+          <div className="text-center mb-8 animate-fadeIn">
             <span className="text-amber-400 text-sm font-bold uppercase tracking-wider">
               12-Month Forecast
             </span>
@@ -581,7 +541,7 @@ export default function TemplatePage() {
             <p className="text-white/70 max-w-xl mx-auto">
               Based on ColdIQ benchmarks: Month 2 meetings, Month 3-4 first deals.
             </p>
-          </motion.div>
+          </div>
 
           <TimelineProjection
             currency={currency}
