@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import { useState, useEffect } from 'react';
-import CountUp from 'react-countup';
+// Removed react-countup to reduce bundle size
 
 // Bid Manager & Tender Intelligence
 const tenderIntelligence = {
@@ -1305,7 +1305,7 @@ export default function ClimatisePage() {
               className="animate-fadeIn animation-delay-100 text-center"
             >
               <div className="text-4xl font-black text-blue-400 mb-2">
-                <CountUp end={totalIcpClusters} duration={1.5} enableScrollSpy scrollSpyOnce /> Clusters
+                {totalIcpClusters} Clusters
               </div>
               <p className="text-white/60 text-sm">{provisionalSubSegments} sub-segments across regulatory, supply chain & sector-specific</p>
             </div>
@@ -1313,7 +1313,7 @@ export default function ClimatisePage() {
               className="animate-fadeIn animation-delay-200 text-center"
             >
               <div className="text-4xl font-black text-green-400 mb-2">
-                ~<CountUp end={15200} duration={2.5} separator="," enableScrollSpy scrollSpyOnce />
+                ~15,200
               </div>
               <p className="text-white/60 text-sm">Tier 1 targets (est.) with hard compliance deadlines</p>
             </div>
