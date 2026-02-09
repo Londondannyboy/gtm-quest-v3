@@ -8,7 +8,6 @@ import {
   ChannelFlowDiagram,
   IntentTrackingSection,
   LinkedInAdsCalculator,
-  TimelineProjection,
 } from '@/components/pitch';
 import type { BudgetTier, CurrencyConfig, ABMChannels, RegionId } from '@/types/pitch';
 
@@ -528,7 +527,7 @@ export default function TemplatePage() {
         </div>
       </section>
 
-      {/* Timeline Projection */}
+      {/* Timeline Projection - Simple display (no recharts) */}
       <section className="py-16 bg-black">
         <div className="max-w-5xl mx-auto px-4">
           <div className="text-center mb-8 animate-fadeIn">
@@ -543,15 +542,66 @@ export default function TemplatePage() {
             </p>
           </div>
 
-          <TimelineProjection
-            currency={currency}
-            monthlyTouches={2000}
-            responseRate={abmChannels.intentTracking ? 0.14 : 0.05}
-            meetingRate={0.25}
-            closeRate={0.183}
-            avgDealSize={25000}
-            totalInvestment={totalInvestment + (intentTrackingCost * engagementMonths * currency.rate)}
-          />
+          {/* Simple Timeline Display */}
+          <div className="bg-zinc-900 border border-white/10 rounded-2xl p-6 md:p-8">
+            {/* Timeline milestones */}
+            <div className="grid grid-cols-4 gap-4 mb-8">
+              {[
+                { month: 'Month 1', label: 'Setup & Launch', icon: '🚀', color: 'blue' },
+                { month: 'Month 2', label: 'First Meetings', icon: '📅', color: 'amber' },
+                { month: 'Month 3-4', label: 'First Deals', icon: '🤝', color: 'green' },
+                { month: 'Month 6+', label: 'Scale & Optimize', icon: '📈', color: 'purple' },
+              ].map((milestone, i) => (
+                <div key={i} className="text-center">
+                  <div className={`w-12 h-12 mx-auto mb-2 rounded-full bg-${milestone.color}-500/20 flex items-center justify-center text-xl`}>
+                    {milestone.icon}
+                  </div>
+                  <div className={`text-${milestone.color}-400 text-xs font-bold uppercase tracking-wider`}>
+                    {milestone.month}
+                  </div>
+                  <div className="text-white/70 text-sm mt-1">{milestone.label}</div>
+                </div>
+              ))}
+            </div>
+
+            {/* Projected metrics */}
+            <div className="border-t border-white/10 pt-6">
+              <h4 className="text-white/50 text-xs uppercase tracking-wider mb-4 text-center">
+                12-Month Projection ({abmChannels.intentTracking ? 'Intent-Based' : 'Standard'})
+              </h4>
+              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+                {(() => {
+                  const monthlyTouches = 2000;
+                  const responseRate = abmChannels.intentTracking ? 0.14 : 0.05;
+                  const meetingRate = 0.25;
+                  const closeRate = 0.183;
+                  const avgDealSize = 25000;
+                  const monthlyResponses = monthlyTouches * responseRate;
+                  const monthlyMeetings = monthlyResponses * meetingRate;
+                  const monthlyDeals = monthlyMeetings * closeRate;
+                  const annualDeals = Math.round(monthlyDeals * 10); // 10 productive months
+                  const annualRevenue = annualDeals * avgDealSize;
+                  const annualPipeline = Math.round(monthlyMeetings * 10) * avgDealSize;
+
+                  return [
+                    { label: 'Monthly Touches', value: monthlyTouches.toLocaleString(), color: 'white' },
+                    { label: 'Response Rate', value: `${(responseRate * 100).toFixed(0)}%`, color: abmChannels.intentTracking ? 'green' : 'amber' },
+                    { label: 'Est. Annual Pipeline', value: `${currency.symbol}${(annualPipeline * currency.rate / 1000000).toFixed(1)}M`, color: 'blue' },
+                    { label: 'Est. Annual Revenue', value: `${currency.symbol}${(annualRevenue * currency.rate / 1000).toFixed(0)}K`, color: 'green' },
+                  ].map((metric, i) => (
+                    <div key={i} className="bg-white/5 rounded-xl p-4 text-center">
+                      <div className={`text-2xl font-bold text-${metric.color}-400`}>{metric.value}</div>
+                      <div className="text-white/50 text-xs mt-1">{metric.label}</div>
+                    </div>
+                  ));
+                })()}
+              </div>
+            </div>
+
+            <p className="text-white/40 text-xs text-center mt-6">
+              * Projections based on ColdIQ 4-Channel ABM benchmarks. Actual results may vary.
+            </p>
+          </div>
         </div>
       </section>
 
