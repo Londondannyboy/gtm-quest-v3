@@ -24,8 +24,8 @@ export function HeroSection() {
           priority
           fetchPriority="high"
           className="object-cover"
-          sizes="(max-width: 640px) 640px, (max-width: 1024px) 1024px, 1920px"
-          quality={65}
+          sizes="(max-width: 768px) 50vw, 100vw"
+          quality={50}
           placeholder="blur"
           blurDataURL={BLUR_DATA_URL}
         />
