@@ -1,7 +1,6 @@
 'use client';
 
 import { AnimatedStat, AnimatedProgressRing } from '@/components/ui/AnimatedStats';
-import { Globe3DCompact } from '@/components/visualizations/Globe3D';
 import { TAMChart } from '@/components/charts/TAMChart';
 import { GrowthChart } from '@/components/charts/GrowthChart';
 import { BudgetChart } from '@/components/charts/BudgetChart';
@@ -116,16 +115,25 @@ export function EnhancedDashboard({
           </div>
         )}
 
-        {/* 3D Globe - Target Regions */}
-        {requirements.target_regions && requirements.target_regions.length > 0 ? (
-          <div className="transition-all duration-300">
-            <Globe3DCompact regions={requirements.target_regions} />
+        {/* Target Regions */}
+        <div className="bg-zinc-900 rounded-2xl p-6 border border-white/10 transition-all duration-300">
+          <h3 className="text-sm font-semibold text-white/60 uppercase tracking-wider mb-4">
+            Target Regions
+          </h3>
+          <div className="flex flex-wrap gap-2">
+            {(requirements.target_regions && requirements.target_regions.length > 0
+              ? requirements.target_regions
+              : ['North America', 'Europe', 'APAC']
+            ).map((region) => (
+              <span
+                key={region}
+                className="bg-emerald-500/20 text-emerald-400 px-3 py-1.5 rounded-full text-sm font-medium"
+              >
+                🌍 {region}
+              </span>
+            ))}
           </div>
-        ) : (
-          <div className="transition-all duration-300">
-            <Globe3DCompact regions={['North America', 'Europe', 'APAC']} />
-          </div>
-        )}
+        </div>
 
         {/* Growth Projection */}
         {requirements.strategy_type && (
