@@ -17,7 +17,7 @@ import { EngagementModelsSection } from '@/components/home/EngagementModelsSecti
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'GTM Agency Quest | Go-To-Market Strategy & Execution',
+  title: 'GTM Agency Quest 2026 🚀 Go-To-Market Strategy & Execution',
   description: 'GTM Agency Quest: go-to-market strategy and execution. UK GTM agency building revenue engines with 4-channel ABM and Clay-based outbound systems.',
   alternates: {
     canonical: 'https://gtm.quest',
@@ -32,8 +32,8 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: 'GTM Agency Quest | Go-To-Market Strategy & Execution',
-    description: 'GTM Agency Quest: go to market strategy and execution. UK GTM agency building revenue engines.',
+    title: 'GTM Agency Quest 2026 🚀 Go-To-Market Strategy & Execution',
+    description: 'GTM Agency Quest: go to market strategy and execution. GTM agency building revenue engines.',
     type: 'website',
     url: 'https://gtm.quest',
     siteName: 'GTM Agency Quest',
@@ -42,14 +42,14 @@ export const metadata: Metadata = {
         url: 'https://gtm.quest/gtm-agency-quest-logo.png',
         width: 512,
         height: 512,
-        alt: 'GTM Agency UK - Go-To-Market Strategy & Execution',
+        alt: 'GTM Agency Quest - Go-To-Market Strategy & Execution',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'GTM Agency Quest | Go-To-Market Strategy & Execution',
-    description: 'GTM Agency Quest: go to market strategy and execution. UK GTM agency building revenue engines.',
+    title: 'GTM Agency Quest 2026 🚀 Go-To-Market Strategy & Execution',
+    description: 'GTM Agency Quest: go to market strategy and execution. GTM agency building revenue engines.',
     images: ['https://gtm.quest/gtm-agency-quest-logo.png'],
   },
   keywords: [
