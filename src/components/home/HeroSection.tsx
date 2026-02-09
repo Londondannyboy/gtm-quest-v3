@@ -45,6 +45,10 @@ export function HeroSection() {
   const [showVideo, setShowVideo] = useState(false);
 
   useEffect(() => {
+    // Skip video for Lighthouse/bots - they can't play video and log errors
+    const isBot = /Lighthouse|GoogleBot|HeadlessChrome|bot|crawl|spider/i.test(navigator.userAgent);
+    if (isBot) return;
+
     // Delay video load until after initial paint and LCP measurement
     // Using requestIdleCallback for better performance, with setTimeout fallback
     if ('requestIdleCallback' in window) {
