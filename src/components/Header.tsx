@@ -3,10 +3,20 @@
 import Link from 'next/link';
 import { useState, useEffect, useRef } from 'react';
 import { usePathname } from 'next/navigation';
-import { SignedIn, SignedOut, UserButton } from '@/lib/auth';
 
 // Check if Neon Auth is configured
 const isAuthConfigured = !!process.env.NEXT_PUBLIC_NEON_AUTH_URL;
+
+// Conditionally import auth components only when configured
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+let SignedIn: any, SignedOut: any, UserButton: any;
+if (isAuthConfigured) {
+  // eslint-disable-next-line @typescript-eslint/no-require-imports
+  const auth = require('@/lib/auth');
+  SignedIn = auth.SignedIn;
+  SignedOut = auth.SignedOut;
+  UserButton = auth.UserButton;
+}
 
 // Calendly booking link
 const BOOKING_LINK = 'https://calendly.com/my-first-quest';
