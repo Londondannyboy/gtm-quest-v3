@@ -5,7 +5,7 @@ import Image from 'next/image';
 import { useState, useEffect } from 'react';
 import { SocialShare } from '@/components/ui/SocialShare';
 
-// Dynamic import for SSR compatibility - only load when needed
+// Dynamic import for SSR compatibility - only load when needed (desktop only)
 const MuxPlayer = dynamic(
   () => import('@mux/mux-player-react').then((mod) => mod.default),
   { ssr: false, loading: () => null }
@@ -14,17 +14,27 @@ const MuxPlayer = dynamic(
 // Calendly booking link
 const BOOKING_LINK = 'https://calendly.com/my-first-quest';
 
+// MUX video thumbnail for mobile static background
+const HERO_BG_IMAGE = 'https://image.mux.com/qIS6PGKxIZyzjrDBzxQuqPRBOhHofDnXq1chdsqAY9Y/thumbnail.webp?time=0&width=1920';
+
 export function HeroSection() {
-  // Lazy load video after initial paint for better LCP
+  // Only show video on desktop, static image on mobile
   const [showVideo, setShowVideo] = useState(false);
+  const [isDesktop, setIsDesktop] = useState(false);
 
   useEffect(() => {
+    // Check if desktop (768px+)
+    const checkDesktop = () => window.innerWidth >= 768;
+    setIsDesktop(checkDesktop());
+
+    // Skip video entirely on mobile - use static image instead
+    if (!checkDesktop()) return;
+
     // Skip video for Lighthouse/bots - they can't play video and log errors
     const isBot = /Lighthouse|GoogleBot|HeadlessChrome|bot|crawl|spider/i.test(navigator.userAgent);
     if (isBot) return;
 
     // Delay video load until after initial paint and LCP measurement
-    // Using requestIdleCallback for better performance, with setTimeout fallback
     if ('requestIdleCallback' in window) {
       const id = requestIdleCallback(() => setShowVideo(true), { timeout: 2000 });
       return () => cancelIdleCallback(id);
@@ -36,9 +46,20 @@ export function HeroSection() {
 
   return (
     <section className="relative min-h-[90vh] overflow-hidden flex items-center bg-black">
-      {/* Video Background - lazy loaded after initial paint */}
+      {/* Background - Static image on mobile, video on desktop */}
       <div className="absolute inset-0 z-0" role="presentation" aria-hidden="true">
-        {showVideo && (
+        {/* Static background image - always visible, provides LCP element */}
+        <Image
+          src={HERO_BG_IMAGE}
+          alt=""
+          fill
+          priority
+          className="object-cover"
+          sizes="100vw"
+        />
+
+        {/* Video overlay - desktop only, loads after static image */}
+        {isDesktop && showVideo && (
           <MuxPlayer
             playbackId="qIS6PGKxIZyzjrDBzxQuqPRBOhHofDnXq1chdsqAY9Y"
             autoPlay="muted"
@@ -55,14 +76,15 @@ export function HeroSection() {
             }}
           />
         )}
-        {/* Dark overlay - visible immediately */}
+
+        {/* Dark overlay */}
         <div className="absolute inset-0 bg-black/60" />
         <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/80" />
       </div>
 
-      {/* Content - CSS animations instead of framer-motion */}
+      {/* Content */}
       <div className="relative z-10 max-w-5xl mx-auto px-4 text-center py-24 md:py-32 animate-fadeIn">
-        {/* Logo image for SEO - contains "GTM agency" in alt text */}
+        {/* Logo image for SEO */}
         <div className="mb-4">
           <Image
             src="/gtm-agency-quest-logo.png"
@@ -74,13 +96,13 @@ export function HeroSection() {
           />
         </div>
 
-        {/* SEO H1 - styled as badge for 100% SEO score */}
+        {/* SEO H1 - styled as badge */}
         <h1 className="inline-flex items-center gap-2 bg-green-500/10 border border-green-500/20 rounded-full px-4 py-2 mb-6 backdrop-blur-sm text-sm text-green-400 font-medium">
           <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
           Best GTM Agency UK
         </h1>
 
-        {/* Visual Headline - The Impact Statement */}
+        {/* Visual Headline */}
         <div className="mb-6">
           <span className="block text-5xl md:text-6xl lg:text-7xl font-black text-white leading-tight">
             The Quest
@@ -119,7 +141,7 @@ export function HeroSection() {
           </a>
         </div>
 
-        {/* Conversion-focused Stats */}
+        {/* Stats */}
         <div className="flex flex-wrap items-center justify-center gap-6 md:gap-10 mt-12">
           {[
             { value: '30 min', label: 'Discovery Call' },
