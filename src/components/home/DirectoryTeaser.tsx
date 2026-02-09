@@ -11,7 +11,7 @@ export function DirectoryTeaser() {
     <section className="py-16 bg-zinc-950">
       <div className="max-w-4xl mx-auto px-4">
         <div className="bg-zinc-900/50 backdrop-blur border border-zinc-800 rounded-2xl p-8 text-center">
-          <span className="text-zinc-500 text-sm font-bold uppercase tracking-wider">
+          <span className="text-zinc-400 text-sm font-bold uppercase tracking-wider">
             Agency Directory
           </span>
           <h2 className="text-xl md:text-2xl font-bold mt-4 mb-4 text-white">
@@ -29,7 +29,7 @@ export function DirectoryTeaser() {
                 className="bg-zinc-800/50 border border-zinc-700 px-4 py-2 rounded-lg"
               >
                 <span className="text-white font-medium text-sm">{category.name}</span>
-                <span className="text-zinc-500 text-xs ml-2">{category.examples}</span>
+                <span className="text-zinc-400 text-xs ml-2">{category.examples}</span>
               </div>
             ))}
           </div>

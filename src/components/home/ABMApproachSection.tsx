@@ -80,7 +80,7 @@ function PackageCard({ pkg }: { pkg: typeof packages[0] }) {
             rel="noopener noreferrer"
             className={`mt-6 block w-full text-center py-3 rounded-xl font-bold transition ${
               pkg.isPrimary
-                ? 'bg-green-500 hover:bg-green-600 text-white'
+                ? 'bg-green-600 hover:bg-green-700 text-white'
                 : 'bg-zinc-800 hover:bg-zinc-700 text-white border border-zinc-700'
             }`}
           >

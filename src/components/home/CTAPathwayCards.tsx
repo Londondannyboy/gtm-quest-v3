@@ -35,7 +35,7 @@ export function CTAPathwayCards() {
                       <h3 className="font-bold text-2xl text-white">
                         Work With Us
                       </h3>
-                      <span className="bg-green-500 text-white text-xs px-3 py-1 rounded-full font-bold uppercase tracking-wide">
+                      <span className="bg-green-600 text-white text-xs px-3 py-1 rounded-full font-bold uppercase tracking-wide">
                         Recommended
                       </span>
                     </div>
@@ -63,7 +63,7 @@ export function CTAPathwayCards() {
                 </div>
 
                 <div className="mt-auto">
-                  <span className="inline-flex items-center gap-2 bg-green-500 hover:bg-green-600 text-white px-6 py-3 rounded-xl font-bold text-lg transition">
+                  <span className="inline-flex items-center gap-2 bg-green-600 hover:bg-green-700 text-white px-6 py-3 rounded-xl font-bold text-lg transition">
                     Book a Strategy Call
                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
