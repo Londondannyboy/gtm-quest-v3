@@ -1,12 +1,8 @@
-'use client';
-
-import CountUp from 'react-countup';
-
 const stats = [
-  { value: 200, suffix: '+', label: 'GTM Agencies', icon: '🏢' },
-  { value: 500, suffix: '+', label: 'Companies Matched', icon: '🤝' },
-  { value: 45, suffix: '+', label: 'Strategy Guides', icon: '📚' },
-  { value: 95, suffix: '%', label: 'Match Satisfaction', icon: '⭐' },
+  { value: '200+', label: 'GTM Agencies', icon: '🏢' },
+  { value: '500+', label: 'Companies Matched', icon: '🤝' },
+  { value: '45+', label: 'Strategy Guides', icon: '📚' },
+  { value: '95%', label: 'Match Satisfaction', icon: '⭐' },
 ];
 
 const trustBadges = [
@@ -25,13 +21,7 @@ export function SocialProof() {
           {stats.map((stat) => (
             <div key={stat.label} className="text-center">
               <div className="text-3xl md:text-4xl font-bold text-white mb-1">
-                <CountUp
-                  end={stat.value}
-                  suffix={stat.suffix}
-                  duration={2.5}
-                  enableScrollSpy
-                  scrollSpyOnce
-                />
+                {stat.value}
               </div>
               <div className="text-white/70 text-sm flex items-center justify-center gap-2">
                 <span>{stat.icon}</span>
