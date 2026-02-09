@@ -135,7 +135,7 @@ export function CountrySections({ agenciesByCountry }: CountrySectionsProps) {
           </p>
           <Link
             href="/agencies"
-            className="inline-flex items-center gap-2 bg-emerald-500 hover:bg-emerald-600 text-white font-medium px-6 py-3 rounded-lg transition"
+            className="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white font-medium px-6 py-3 rounded-lg transition"
           >
             View All GTM Agencies
             <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
