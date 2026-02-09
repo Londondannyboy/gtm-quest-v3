@@ -1,54 +1,19 @@
 'use client';
 
-import dynamic from 'next/dynamic';
 import Image from 'next/image';
-import { useState, useEffect } from 'react';
 import { SocialShare } from '@/components/ui/SocialShare';
-
-// Dynamic import for SSR compatibility - only load when needed (desktop only)
-const MuxPlayer = dynamic(
-  () => import('@mux/mux-player-react').then((mod) => mod.default),
-  { ssr: false, loading: () => null }
-);
 
 // Calendly booking link
 const BOOKING_LINK = 'https://calendly.com/my-first-quest';
 
-// MUX video thumbnail for mobile static background
+// Static hero background (MUX video thumbnail)
 const HERO_BG_IMAGE = 'https://image.mux.com/qIS6PGKxIZyzjrDBzxQuqPRBOhHofDnXq1chdsqAY9Y/thumbnail.webp?time=0&width=1920';
 
 export function HeroSection() {
-  // Only show video on desktop, static image on mobile
-  const [showVideo, setShowVideo] = useState(false);
-  const [isDesktop, setIsDesktop] = useState(false);
-
-  useEffect(() => {
-    // Check if desktop (768px+)
-    const checkDesktop = () => window.innerWidth >= 768;
-    setIsDesktop(checkDesktop());
-
-    // Skip video entirely on mobile - use static image instead
-    if (!checkDesktop()) return;
-
-    // Skip video for Lighthouse/bots - they can't play video and log errors
-    const isBot = /Lighthouse|GoogleBot|HeadlessChrome|bot|crawl|spider/i.test(navigator.userAgent);
-    if (isBot) return;
-
-    // Delay video load until after initial paint and LCP measurement
-    if ('requestIdleCallback' in window) {
-      const id = requestIdleCallback(() => setShowVideo(true), { timeout: 2000 });
-      return () => cancelIdleCallback(id);
-    } else {
-      const timer = setTimeout(() => setShowVideo(true), 1000);
-      return () => clearTimeout(timer);
-    }
-  }, []);
-
   return (
     <section className="relative min-h-[90vh] overflow-hidden flex items-center bg-black">
-      {/* Background - Static image on mobile, video on desktop */}
+      {/* Static background image */}
       <div className="absolute inset-0 z-0" role="presentation" aria-hidden="true">
-        {/* Static background image - always visible, provides LCP element */}
         <Image
           src={HERO_BG_IMAGE}
           alt=""
@@ -57,26 +22,6 @@ export function HeroSection() {
           className="object-cover"
           sizes="100vw"
         />
-
-        {/* Video overlay - desktop only, loads after static image */}
-        {isDesktop && showVideo && (
-          <MuxPlayer
-            playbackId="qIS6PGKxIZyzjrDBzxQuqPRBOhHofDnXq1chdsqAY9Y"
-            autoPlay="muted"
-            loop
-            muted
-            preload="metadata"
-            streamType="on-demand"
-            className="absolute inset-0 w-full h-full object-cover"
-            title="GTM Agency UK background video"
-            style={{
-              '--controls': 'none',
-              '--media-object-fit': 'cover',
-              '--media-object-position': 'center',
-            }}
-          />
-        )}
-
         {/* Dark overlay */}
         <div className="absolute inset-0 bg-black/60" />
         <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black/80" />
