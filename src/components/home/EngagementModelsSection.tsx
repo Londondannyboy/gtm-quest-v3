@@ -1,8 +1,3 @@
-'use client';
-
-import { motion, useInView } from 'framer-motion';
-import { useRef } from 'react';
-
 const BOOKING_LINK = 'https://calendly.com/my-first-quest';
 
 const engagementModels = [
@@ -22,7 +17,6 @@ const engagementModels = [
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8" />
       </svg>
     ),
-    accentColor: 'green',
     borderColor: 'border-green-500/30',
     glowColor: 'from-green-500/20 to-emerald-500/20',
     textColor: 'text-green-400',
@@ -44,7 +38,6 @@ const engagementModels = [
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z" />
       </svg>
     ),
-    accentColor: 'orange',
     borderColor: 'border-orange-500/30',
     glowColor: 'from-orange-500/20 to-amber-500/20',
     textColor: 'text-orange-400',
@@ -67,7 +60,6 @@ const engagementModels = [
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
       </svg>
     ),
-    accentColor: 'blue',
     borderColor: 'border-blue-500/30',
     glowColor: 'from-blue-500/20 to-cyan-500/20',
     textColor: 'text-blue-400',
@@ -89,7 +81,6 @@ const engagementModels = [
         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
       </svg>
     ),
-    accentColor: 'purple',
     borderColor: 'border-purple-500/30',
     glowColor: 'from-purple-500/20 to-pink-500/20',
     textColor: 'text-purple-400',
@@ -97,18 +88,9 @@ const engagementModels = [
   },
 ];
 
-function EngagementCard({ model, index }: { model: typeof engagementModels[0]; index: number }) {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: '-50px' });
-
+function EngagementCard({ model }: { model: typeof engagementModels[0] }) {
   return (
-    <motion.div
-      ref={ref}
-      initial={{ opacity: 0, y: 30 }}
-      animate={isInView ? { opacity: 1, y: 0 } : {}}
-      transition={{ delay: index * 0.1, duration: 0.5, type: 'spring' as const, stiffness: 100 }}
-      className="relative group"
-    >
+    <div className="relative group">
       {/* Glow effect */}
       <div className={`absolute -inset-1 bg-gradient-to-r ${model.glowColor} rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
 
@@ -137,30 +119,21 @@ function EngagementCard({ model, index }: { model: typeof engagementModels[0]; i
 
           <ul className="space-y-2 flex-1">
             {model.includes.map((item, i) => (
-              <motion.li
-                key={i}
-                initial={{ opacity: 0, x: -10 }}
-                animate={isInView ? { opacity: 1, x: 0 } : {}}
-                transition={{ delay: index * 0.1 + i * 0.05 + 0.3 }}
-                className="flex items-center gap-2 text-zinc-300 text-sm"
-              >
+              <li key={i} className="flex items-center gap-2 text-zinc-300 text-sm">
                 <svg className={`w-4 h-4 ${model.textColor} flex-shrink-0`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                 </svg>
                 {item}
-              </motion.li>
+              </li>
             ))}
           </ul>
         </div>
       </div>
-    </motion.div>
+    </div>
   );
 }
 
 export function EngagementModelsSection() {
-  const headerRef = useRef(null);
-  const isHeaderInView = useInView(headerRef, { once: true });
-
   return (
     <section className="py-20 bg-black relative overflow-hidden">
       {/* Background */}
@@ -168,51 +141,32 @@ export function EngagementModelsSection() {
 
       <div className="max-w-6xl mx-auto px-4 relative z-10">
         {/* Header */}
-        <div ref={headerRef} className="text-center mb-12">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={isHeaderInView ? { opacity: 1, y: 0 } : {}}
-            className="inline-block bg-zinc-800/50 border border-zinc-700 text-zinc-400 text-sm font-bold uppercase tracking-wider px-4 py-2 rounded-full mb-6"
-          >
+        <div className="text-center mb-12">
+          <div className="inline-block bg-zinc-800/50 border border-zinc-700 text-zinc-400 text-sm font-bold uppercase tracking-wider px-4 py-2 rounded-full mb-6">
             Engagement Models
-          </motion.div>
+          </div>
 
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            animate={isHeaderInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ delay: 0.1 }}
-            className="text-3xl md:text-4xl font-bold text-white mb-4"
-          >
+          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
             Choose Your{' '}
             <span className="bg-gradient-to-r from-green-400 via-orange-400 to-purple-400 bg-clip-text text-transparent">
               Level of Involvement
             </span>
-          </motion.h2>
+          </h2>
 
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={isHeaderInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ delay: 0.2 }}
-            className="text-zinc-400 max-w-2xl mx-auto"
-          >
+          <p className="text-zinc-400 max-w-2xl mx-auto">
             From complete handover to full partnership — we flex to fit your team&apos;s needs and capacity.
-          </motion.p>
+          </p>
         </div>
 
         {/* Engagement Cards - 2x2 Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-          {engagementModels.map((model, index) => (
-            <EngagementCard key={model.name} model={model} index={index} />
+          {engagementModels.map((model) => (
+            <EngagementCard key={model.name} model={model} />
           ))}
         </div>
 
         {/* CTA */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center"
-        >
+        <div className="text-center">
           <a
             href={BOOKING_LINK}
             target="_blank"
@@ -227,7 +181,7 @@ export function EngagementModelsSection() {
           <p className="text-zinc-600 text-sm mt-4">
             Not sure which model fits? Let&apos;s figure it out on a call.
           </p>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

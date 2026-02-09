@@ -1,68 +1,29 @@
-'use client';
-
 import Link from 'next/link';
-import { motion } from 'framer-motion';
 
 // Calendly booking link
 const BOOKING_LINK = 'https://calendly.com/my-first-quest';
-
-const containerVariants = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: {
-      staggerChildren: 0.15,
-    },
-  },
-} as const;
-
-const itemVariants = {
-  hidden: { opacity: 0, y: 30 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    transition: {
-      type: 'spring' as const,
-      stiffness: 100,
-      damping: 15,
-    },
-  },
-};
 
 export function CTAPathwayCards() {
   return (
     <section className="py-16 bg-gradient-to-b from-black to-zinc-950">
       <div className="max-w-5xl mx-auto px-4">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center mb-12"
-        >
+        <div className="text-center mb-12">
           <h2 className="text-2xl md:text-3xl font-bold mb-4 text-white">
             Two Ways to Accelerate Your GTM
           </h2>
           <p className="text-white/70 max-w-2xl mx-auto">
             Work with our team or build your strategy independently.
           </p>
-        </motion.div>
+        </div>
 
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          className="grid md:grid-cols-3 gap-6"
-        >
+        <div className="grid md:grid-cols-3 gap-6">
           {/* PRIMARY: Work With Us - Takes 2 columns */}
-          <motion.div variants={itemVariants} className="md:col-span-2">
-            <motion.a
+          <div className="md:col-span-2">
+            <a
               href={BOOKING_LINK}
               target="_blank"
               rel="noopener noreferrer"
-              whileHover={{ scale: 1.02, y: -4 }}
-              whileTap={{ scale: 0.98 }}
-              className="block h-full bg-gradient-to-br from-green-500/20 via-emerald-500/10 to-transparent rounded-2xl p-8 border border-green-500/30 hover:border-green-500/50 transition-all duration-300 hover:shadow-xl hover:shadow-green-500/10"
+              className="block h-full bg-gradient-to-br from-green-500/20 via-emerald-500/10 to-transparent rounded-2xl p-8 border border-green-500/30 hover:border-green-500/50 transition-all duration-300 hover:shadow-xl hover:shadow-green-500/10 hover:scale-[1.02] hover:-translate-y-1"
             >
               <div className="flex flex-col h-full">
                 <div className="flex items-start gap-4 mb-6">
@@ -110,11 +71,11 @@ export function CTAPathwayCards() {
                   </span>
                 </div>
               </div>
-            </motion.a>
-          </motion.div>
+            </a>
+          </div>
 
           {/* SECONDARY: Build Your Own - Single column, subtle */}
-          <motion.div variants={itemVariants}>
+          <div>
             <Link
               href="/dashboard"
               className="block h-full bg-zinc-900/50 rounded-2xl p-6 border border-white/10 hover:border-blue-500/30 transition-all duration-300 hover:bg-zinc-900"
@@ -145,8 +106,8 @@ export function CTAPathwayCards() {
                 </span>
               </div>
             </Link>
-          </motion.div>
-        </motion.div>
+          </div>
+        </div>
       </div>
     </section>
   );

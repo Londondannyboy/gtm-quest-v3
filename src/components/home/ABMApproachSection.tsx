@@ -1,8 +1,3 @@
-'use client';
-
-import { motion, useInView } from 'framer-motion';
-import { useRef } from 'react';
-
 const BOOKING_LINK = 'https://calendly.com/my-first-quest';
 
 const packages = [
@@ -17,10 +12,10 @@ const packages = [
       'Monthly optimization call',
       'Full system handover',
     ],
-    accentColor: 'green',
     borderColor: 'border-green-500/30',
     glowColor: 'from-green-500/10 to-emerald-500/10',
     textColor: 'text-green-400',
+    isPrimary: true,
   },
   {
     name: 'Growth',
@@ -33,10 +28,10 @@ const packages = [
       'Weekly strategy calls',
       'Dedicated account support',
     ],
-    accentColor: 'orange',
     borderColor: 'border-orange-500/30',
     glowColor: 'from-orange-500/10 to-amber-500/10',
     textColor: 'text-orange-400',
+    isPrimary: false,
   },
 ];
 
@@ -46,18 +41,9 @@ const comparisons = [
   { label: 'Quest System', note: 'Live in weeks, you own everything, full handover', highlight: true },
 ];
 
-function PackageCard({ pkg, index }: { pkg: typeof packages[0]; index: number }) {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: '-50px' });
-
+function PackageCard({ pkg }: { pkg: typeof packages[0] }) {
   return (
-    <motion.div
-      ref={ref}
-      initial={{ opacity: 0, y: 40 }}
-      animate={isInView ? { opacity: 1, y: 0 } : {}}
-      transition={{ delay: index * 0.2, duration: 0.5, type: 'spring' as const, stiffness: 100 }}
-      className="relative group"
-    >
+    <div className="relative group">
       {/* Glow effect */}
       <div className={`absolute -inset-1 bg-gradient-to-r ${pkg.glowColor} rounded-2xl blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-500`} />
 
@@ -79,18 +65,12 @@ function PackageCard({ pkg, index }: { pkg: typeof packages[0]; index: number })
 
           <ul className="space-y-3">
             {pkg.features.map((feature, i) => (
-              <motion.li
-                key={i}
-                initial={{ opacity: 0, x: -10 }}
-                animate={isInView ? { opacity: 1, x: 0 } : {}}
-                transition={{ delay: index * 0.2 + i * 0.1 + 0.3 }}
-                className="flex items-center gap-3 text-zinc-300 text-sm"
-              >
+              <li key={i} className="flex items-center gap-3 text-zinc-300 text-sm">
                 <svg className={`w-5 h-5 ${pkg.textColor} flex-shrink-0`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
                 </svg>
                 {feature}
-              </motion.li>
+              </li>
             ))}
           </ul>
 
@@ -99,7 +79,7 @@ function PackageCard({ pkg, index }: { pkg: typeof packages[0]; index: number })
             target="_blank"
             rel="noopener noreferrer"
             className={`mt-6 block w-full text-center py-3 rounded-xl font-bold transition ${
-              index === 0
+              pkg.isPrimary
                 ? 'bg-green-500 hover:bg-green-600 text-white'
                 : 'bg-zinc-800 hover:bg-zinc-700 text-white border border-zinc-700'
             }`}
@@ -108,14 +88,11 @@ function PackageCard({ pkg, index }: { pkg: typeof packages[0]; index: number })
           </a>
         </div>
       </div>
-    </motion.div>
+    </div>
   );
 }
 
 export function ABMApproachSection() {
-  const headerRef = useRef(null);
-  const isHeaderInView = useInView(headerRef, { once: true });
-
   return (
     <section className="py-24 bg-black relative overflow-hidden">
       {/* Background */}
@@ -123,55 +100,32 @@ export function ABMApproachSection() {
 
       <div className="max-w-5xl mx-auto px-4 relative z-10">
         {/* Header */}
-        <div ref={headerRef} className="text-center mb-16">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={isHeaderInView ? { opacity: 1, y: 0 } : {}}
-            className="inline-block bg-orange-500/10 border border-orange-500/20 text-orange-400 text-sm font-bold uppercase tracking-wider px-4 py-2 rounded-full mb-6"
-          >
+        <div className="text-center mb-16">
+          <div className="inline-block bg-orange-500/10 border border-orange-500/20 text-orange-400 text-sm font-bold uppercase tracking-wider px-4 py-2 rounded-full mb-6">
             Consultant, Not Agency
-          </motion.div>
+          </div>
 
-          <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            animate={isHeaderInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ delay: 0.1 }}
-            className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4"
-          >
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4">
             Supercharged GTM —{' '}
             <span className="bg-gradient-to-r from-green-400 to-orange-400 bg-clip-text text-transparent">
               Without the Overhead
             </span>
-          </motion.h2>
+          </h2>
 
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={isHeaderInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ delay: 0.2 }}
-            className="text-zinc-400 max-w-2xl mx-auto text-lg"
-          >
+          <p className="text-zinc-400 max-w-2xl mx-auto text-lg">
             We build your Clay-based outbound system, train your team, and hand it over.
             You own the infrastructure. No long contracts. No bloated retainers.
-          </motion.p>
+          </p>
         </div>
 
         {/* Comparison */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="mb-16"
-        >
+        <div className="mb-16">
           <div className="bg-zinc-900/50 border border-zinc-800 rounded-2xl p-6 max-w-2xl mx-auto">
             <h3 className="text-white font-bold text-lg mb-4 text-center">Why Teams Choose Us</h3>
             <div className="space-y-3">
-              {comparisons.map((item, i) => (
-                <motion.div
+              {comparisons.map((item) => (
+                <div
                   key={item.label}
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.1 }}
                   className={`flex items-center gap-4 p-3 rounded-xl ${
                     item.highlight
                       ? 'bg-green-500/10 border border-green-500/30'
@@ -187,26 +141,21 @@ export function ABMApproachSection() {
                     </span>
                     <span className="text-zinc-500 text-sm block">{item.note}</span>
                   </div>
-                </motion.div>
+                </div>
               ))}
             </div>
           </div>
-        </motion.div>
+        </div>
 
         {/* Package Cards */}
         <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-          {packages.map((pkg, index) => (
-            <PackageCard key={pkg.name} pkg={pkg} index={index} />
+          {packages.map((pkg) => (
+            <PackageCard key={pkg.name} pkg={pkg} />
           ))}
         </div>
 
         {/* Bottom Note */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center mt-12"
-        >
+        <div className="text-center mt-12">
           <p className="text-zinc-600 text-sm">
             Pricing discussed on call based on your needs.{' '}
             <a
@@ -218,7 +167,7 @@ export function ABMApproachSection() {
               Book a free strategy session
             </a>
           </p>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

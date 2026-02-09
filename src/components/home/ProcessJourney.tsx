@@ -1,7 +1,3 @@
-'use client';
-
-import { motion } from 'framer-motion';
-
 const steps = [
   {
     step: 1,
@@ -42,32 +38,15 @@ export function ProcessJourney() {
     <section className="py-20 bg-black">
       <div className="max-w-5xl mx-auto px-4">
         <div className="text-center mb-16">
-          <motion.span
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            className="text-green-400 text-sm font-bold uppercase tracking-wider"
-          >
+          <span className="text-green-400 text-sm font-bold uppercase tracking-wider">
             Working With Us
-          </motion.span>
-          <motion.h2
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.1 }}
-            className="text-3xl md:text-4xl font-bold mt-4 mb-4 text-white"
-          >
+          </span>
+          <h2 className="text-3xl md:text-4xl font-bold mt-4 mb-4 text-white">
             From Discovery to Revenue
-          </motion.h2>
-          <motion.p
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
-            className="text-white/70 max-w-2xl mx-auto"
-          >
+          </h2>
+          <p className="text-white/70 max-w-2xl mx-auto">
             Four steps to get your Quest System running. No long contracts, full handover included.
-          </motion.p>
+          </p>
         </div>
 
         <div className="relative">
@@ -75,12 +54,8 @@ export function ProcessJourney() {
           <div className="absolute left-6 md:left-1/2 md:-translate-x-px top-0 bottom-0 w-0.5 bg-gradient-to-b from-blue-500 via-cyan-500 via-purple-500 to-indigo-500" />
 
           {steps.map((step, index) => (
-            <motion.div
+            <div
               key={step.step}
-              initial={{ opacity: 0, x: index % 2 === 0 ? -30 : 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.15, duration: 0.5 }}
               className={`relative flex items-start gap-6 mb-12 last:mb-0
                 ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'}`}
             >
@@ -107,7 +82,7 @@ export function ProcessJourney() {
                 </div>
                 <p className="text-white/70 text-sm">{step.description}</p>
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
       </div>

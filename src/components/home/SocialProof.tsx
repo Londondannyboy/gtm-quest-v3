@@ -1,6 +1,5 @@
 'use client';
 
-import { motion } from 'framer-motion';
 import CountUp from 'react-countup';
 
 const stats = [
@@ -23,15 +22,8 @@ export function SocialProof() {
       <div className="max-w-7xl mx-auto px-4">
         {/* Stats row */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
-          {stats.map((stat, index) => (
-            <motion.div
-              key={stat.label}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.1, duration: 0.5 }}
-              className="text-center"
-            >
+          {stats.map((stat) => (
+            <div key={stat.label} className="text-center">
               <div className="text-3xl md:text-4xl font-bold text-white mb-1">
                 <CountUp
                   end={stat.value}
@@ -45,25 +37,19 @@ export function SocialProof() {
                 <span>{stat.icon}</span>
                 {stat.label}
               </div>
-            </motion.div>
+            </div>
           ))}
         </div>
 
         {/* Trust badges */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.4 }}
-          className="flex flex-wrap items-center justify-center gap-6 text-white/60 text-sm"
-        >
+        <div className="flex flex-wrap items-center justify-center gap-6 text-white/60 text-sm">
           {trustBadges.map((badge) => (
             <span key={badge.text} className="flex items-center gap-2">
               <span className="text-blue-400">{badge.icon}</span>
               {badge.text}
             </span>
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   );
