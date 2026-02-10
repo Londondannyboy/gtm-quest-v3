@@ -3,14 +3,16 @@ import type { MDXComponents } from 'mdx/types';
 export function useMDXComponents(components: MDXComponents): MDXComponents {
   return {
     // Custom heading styles
+    // Note: MDX h1 renders as h2 because page template already has the H1 title
+    // This prevents duplicate H1 tags for SEO
     h1: ({ children }) => (
-      <h1 className="text-3xl font-bold text-white mb-6">{children}</h1>
+      <h2 className="text-3xl font-bold text-white mt-8 mb-6">{children}</h2>
     ),
     h2: ({ children }) => (
-      <h2 className="text-2xl font-bold text-white mt-8 mb-4">{children}</h2>
+      <h3 className="text-2xl font-bold text-white mt-8 mb-4">{children}</h3>
     ),
     h3: ({ children }) => (
-      <h3 className="text-xl font-semibold text-white mt-6 mb-3">{children}</h3>
+      <h4 className="text-xl font-semibold text-white mt-6 mb-3">{children}</h4>
     ),
     // Paragraph styling
     p: ({ children }) => (

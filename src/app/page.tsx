@@ -21,15 +21,9 @@ export const metadata: Metadata = {
   description: 'Go to market agency for B2B SaaS. GTM strategy & execution with 4-channel ABM and Clay-based outbound. GDPR-compliant revenue engines.',
   alternates: {
     canonical: 'https://gtm.quest',
-    languages: {
-      'en-US': 'https://gtm.quest#gtm-agencies-us',
-      'en-GB': 'https://gtm.quest#gtm-agencies-uk',
-      'en-AU': 'https://gtm.quest#gtm-agencies-au',
-      'en-CA': 'https://gtm.quest#gtm-agencies-ca',
-      'en-NZ': 'https://gtm.quest#gtm-agencies-nz',
-      'en-IE': 'https://gtm.quest#gtm-agencies-ie',
-      'x-default': 'https://gtm.quest',
-    },
+    // Note: Removed invalid hreflang languages that were using fragment URLs.
+    // hreflang is for different language/regional versions with distinct URLs,
+    // not for anchor links to sections on the same page.
   },
   openGraph: {
     title: 'GTM Agency Quest 2026 🚀 Go-To-Market Strategy & Execution',

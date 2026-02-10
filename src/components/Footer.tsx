@@ -48,17 +48,17 @@ export function Footer() {
             <p className="text-white font-semibold mb-4">Top Agencies</p>
             <ul className="space-y-2">
               <li>
-                <Link href="/agencies?specialization=demand-generation" className="text-white/60 hover:text-white text-sm transition">
+                <Link href="/agencies/specialization/demand-generation" className="text-white/60 hover:text-white text-sm transition">
                   Demand Generation
                 </Link>
               </li>
               <li>
-                <Link href="/agencies?specialization=abm" className="text-white/60 hover:text-white text-sm transition">
+                <Link href="/agencies/specialization/abm" className="text-white/60 hover:text-white text-sm transition">
                   Account-Based Marketing
                 </Link>
               </li>
               <li>
-                <Link href="/agencies?specialization=sales-enablement" className="text-white/60 hover:text-white text-sm transition">
+                <Link href="/agencies/specialization/sales-enablement" className="text-white/60 hover:text-white text-sm transition">
                   Sales Enablement
                 </Link>
               </li>

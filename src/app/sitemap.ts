@@ -33,17 +33,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     },
   ];
 
-  // Country-specific GTM agency sections (fragment URLs for geo-targeting on homepage)
-  const countryFragments: MetadataRoute.Sitemap = [
-    { url: `${baseUrl}/#gtm-agencies-us`, lastModified: new Date(), changeFrequency: 'weekly' as const, priority: 0.85 },
-    { url: `${baseUrl}/#gtm-agencies-uk`, lastModified: new Date(), changeFrequency: 'weekly' as const, priority: 0.85 },
-    { url: `${baseUrl}/#gtm-agencies-au`, lastModified: new Date(), changeFrequency: 'weekly' as const, priority: 0.8 },
-    { url: `${baseUrl}/#gtm-agencies-ca`, lastModified: new Date(), changeFrequency: 'weekly' as const, priority: 0.8 },
-    { url: `${baseUrl}/#gtm-agencies-nz`, lastModified: new Date(), changeFrequency: 'weekly' as const, priority: 0.75 },
-    { url: `${baseUrl}/#gtm-agencies-ie`, lastModified: new Date(), changeFrequency: 'weekly' as const, priority: 0.75 },
-  ];
-
   // Country filter pages (dedicated pages for SEO)
+  // Note: Fragment URLs (/#gtm-agencies-*) removed from sitemap as they're not
+  // separate pages - they're anchors on the homepage. Search engines treat
+  // fragments as the same URL as the base page.
   const countryFilterPages: MetadataRoute.Sitemap = [
     { url: `${baseUrl}/agencies/country/us`, lastModified: new Date(), changeFrequency: 'weekly' as const, priority: 0.9 },
     { url: `${baseUrl}/agencies/country/uk`, lastModified: new Date(), changeFrequency: 'weekly' as const, priority: 0.9 },
@@ -87,7 +80,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     ...staticPages,
     ...countryFilterPages,
     ...specializationPages,
-    ...countryFragments,
     ...articlePages,
     ...agencyPages,
   ];

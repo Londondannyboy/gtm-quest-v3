@@ -57,7 +57,7 @@ export async function generateMetadata({
     `${agency.name} is a GTM agency specializing in ${specializations}. Based in ${agency.headquarters || 'globally'}.`;
 
   return {
-    title: `${agency.name} | GTM Agency Review & Services | GTM Agency Quest`,
+    title: `${agency.name} | GTM Quest`,
     description: metaDescription.slice(0, 160),
     keywords: [
       agency.name,
@@ -540,7 +540,7 @@ export default async function AgencyPage({
                     {agency.specializations.map((spec) => (
                       <Link
                         key={spec}
-                        href={`/agencies?specialization=${encodeURIComponent(spec.toLowerCase())}`}
+                        href={`/agencies/specialization/${spec.toLowerCase().replace(/\s+/g, '-').replace(/[&]/g, 'and').replace(/[^a-z0-9-]/g, '')}`}
                         className="bg-emerald-500/10 text-emerald-400 border border-emerald-500/30 px-4 py-2 rounded-lg text-sm hover:bg-emerald-500/20 transition"
                       >
                         {spec}
