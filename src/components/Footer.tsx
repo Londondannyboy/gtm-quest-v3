@@ -121,6 +121,13 @@ export function Footer() {
             </Link>
           </div>
         </div>
+
+        {/* Site signature - last crawled element */}
+        <div className="mt-8 pt-6 border-t border-white/5 text-center">
+          <h6 className="text-xs text-white/30 font-normal tracking-wide">
+            GTM Agency
+          </h6>
+        </div>
       </div>
     </footer>
   );
