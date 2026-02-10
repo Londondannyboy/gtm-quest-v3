@@ -85,6 +85,25 @@ export function Footer() {
                 </Link>
               </li>
             </ul>
+
+            <p className="text-white font-semibold mt-6 mb-4">Founder Resources</p>
+            <ul className="space-y-2">
+              <li>
+                <a href="https://miam.quest" target="_blank" rel="noopener" className="text-white/60 hover:text-emerald-400 text-sm transition">
+                  MIAM Certificate
+                </a>
+              </li>
+              <li>
+                <a href="https://membership.quest" target="_blank" rel="noopener" className="text-white/60 hover:text-emerald-400 text-sm transition">
+                  Membership Marketing Agency
+                </a>
+              </li>
+              <li>
+                <a href="https://relocation.quest" target="_blank" rel="noopener" className="text-white/60 hover:text-emerald-400 text-sm transition">
+                  Relocation Advice
+                </a>
+              </li>
+            </ul>
           </div>
         </div>
 
