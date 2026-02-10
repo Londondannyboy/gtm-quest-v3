@@ -21,8 +21,10 @@ export function AuthProvider({ children }: AuthProviderProps) {
     return <>{children}</>;
   }
 
+  // Use null fallback to prevent duplicate rendering during Suspense
+  // The children will only render once inside LazyAuthWrapper
   return (
-    <Suspense fallback={<>{children}</>}>
+    <Suspense fallback={null}>
       <LazyAuthWrapper>{children}</LazyAuthWrapper>
     </Suspense>
   );

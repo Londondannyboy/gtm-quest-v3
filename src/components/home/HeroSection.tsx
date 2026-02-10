@@ -42,7 +42,7 @@ export function HeroSection() {
         <div className="mb-4">
           <Image
             src="/gtm-agency-quest-logo.png"
-            alt="Go-To-Market Agency - GTM Strategy & Execution Consultants"
+            alt="GTM Agency - Go-To-Market Strategy & Execution"
             width={80}
             height={80}
             className="mx-auto rounded-xl"
@@ -50,10 +50,10 @@ export function HeroSection() {
           />
         </div>
 
-        {/* SEO H1 - styled as badge, includes 'go to market agency' keyword */}
+        {/* SEO H1 - styled as badge, primary keyword 'GTM Agency' */}
         <h1 className="inline-flex items-center gap-2 bg-green-500/10 border border-green-500/20 rounded-full px-4 py-2 mb-6 backdrop-blur-sm text-sm text-green-400 font-medium">
           <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
-          Best Go-To-Market Agency
+          GTM Agency
         </h1>
 
         {/* Visual Headline */}
@@ -113,7 +113,7 @@ export function HeroSection() {
         <div className="mt-8 flex justify-center">
           <SocialShare
             url="https://gtm.quest"
-            title="GTM Agency Quest | Best Go-To-Market Agency"
+            title="GTM Agency | Go-To-Market Strategy & Execution"
             description="Go to market agency building revenue engines with 4-channel ABM and Clay-based outbound systems."
           />
         </div>

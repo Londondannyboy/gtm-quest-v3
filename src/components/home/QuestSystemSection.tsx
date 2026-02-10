@@ -198,6 +198,7 @@ export function QuestSystemSection() {
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4">
             The 4-channel ABM system
           </h2>
+          <h4 className="text-lg text-green-400 font-medium mb-2">GTM Agency Methodology</h4>
 
           <div className="inline-block">
             <span className="text-4xl md:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-green-400 via-orange-400 to-purple-400 bg-clip-text text-transparent">

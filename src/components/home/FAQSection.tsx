@@ -7,6 +7,7 @@ export function FAQSection() {
       <div className="max-w-3xl mx-auto px-4">
         <div className="text-center mb-10">
           <h2 className="text-3xl font-bold mb-3">Frequently Asked Questions</h2>
+          <h4 className="text-lg text-emerald-400 font-medium mb-2">GTM Agency FAQ</h4>
           <p className="text-white/60">
             Common questions about GTM agencies and how to find the right partner
           </p>

@@ -9,7 +9,7 @@ export function HomeSchema() {
     url: 'https://gtm.quest',
     logo: 'https://gtm.quest/favicon.svg',
     description:
-      'GTM agency matching powered by AI. Build your go-to-market strategy and connect with 200+ B2B growth agencies for demand generation, ABM, and revenue growth.',
+      'GTM agency for B2B SaaS. AI-powered go-to-market strategy and execution with 4-channel ABM, Clay-based outbound, and GDPR-compliant systems.',
     sameAs: [],
     contactPoint: {
       '@type': 'ContactPoint',
@@ -33,7 +33,7 @@ export function HomeSchema() {
     alternateName: 'GTM Quest',
     url: 'https://gtm.quest',
     description:
-      'AI-powered GTM agency matching. Find the perfect go-to-market agency partner from 200+ vetted B2B growth specialists for demand generation, ABM, and B2B SaaS growth.',
+      'GTM agency for B2B SaaS startups. Go-to-market strategy and execution with 4-channel ABM, Clay-based prospecting, and full handover. Browse 200+ vetted GTM agencies.',
     potentialAction: {
       '@type': 'SearchAction',
       target: {
@@ -83,7 +83,7 @@ export function HomeSchema() {
       name: 'GTM Agency Quest',
     },
     description:
-      'Free AI-powered matching service connecting B2B companies with specialized GTM agencies for demand generation, ABM, and growth.',
+      'GTM agency services for B2B SaaS. Go-to-market strategy and execution with 4-channel ABM and Clay-based outbound. Plus directory of 200+ vetted GTM agencies.',
     areaServed: [
       { '@type': 'Country', name: 'United States' },
       { '@type': 'Country', name: 'United Kingdom' },
@@ -143,7 +143,7 @@ export function HomeSchema() {
     name: 'GTM Agency Quest',
     alternateName: 'GTM Quest',
     description:
-      'Go-to-market agency specializing in Clay-powered Account-Based Marketing (ABM) for B2B SaaS companies. We build systematic revenue engines using AI-enhanced prospecting and 4-channel outbound.',
+      'GTM agency specializing in Clay-powered Account-Based Marketing (ABM) for B2B SaaS companies. Go-to-market strategy and execution with 4-channel ABM and GDPR-compliant systems.',
     url: 'https://gtm.quest',
     logo: 'https://gtm.quest/gtm-agency-quest-logo.png',
     image: 'https://gtm.quest/gtm-agency-quest-logo.png',
@@ -227,7 +227,7 @@ export function HomeSchema() {
       'LinkedIn advertising',
       'Cold email outreach',
     ],
-    slogan: 'The go-to-market agency that builds revenue engines you own.',
+    slogan: 'GTM agency that builds revenue engines you own.',
   };
 
   // ItemList schema for geo-targeted agency sections

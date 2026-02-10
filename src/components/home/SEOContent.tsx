@@ -69,6 +69,7 @@ export function SEOContent({ featuredArticles, topAgencies }: SEOContentProps) {
         {/* Section Header */}
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold mb-4">Go-To-Market Resources</h2>
+          <h4 className="text-lg text-emerald-400 font-medium mb-2">GTM Agency Guides & Tools</h4>
           <p className="text-white/60 max-w-2xl mx-auto">
             Expert guides, tool comparisons, and agency directories to help you build
             and scale your B2B go-to-market strategy.

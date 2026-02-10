@@ -17,8 +17,8 @@ import { EngagementModelsSection } from '@/components/home/EngagementModelsSecti
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'GTM Agency Quest 2026 🚀 Go-To-Market Strategy & Execution',
-  description: 'Go to market agency for B2B SaaS. GTM strategy & execution with 4-channel ABM and Clay-based outbound. GDPR-compliant revenue engines.',
+  title: 'GTM Agency | Go-To-Market Strategy & Execution for B2B SaaS',
+  description: 'GTM agency for B2B SaaS startups. Go-to-market strategy & execution with 4-channel ABM, Clay-based outbound, and GDPR-compliant systems.',
   alternates: {
     canonical: 'https://gtm.quest',
     // Note: Removed invalid hreflang languages that were using fragment URLs.
@@ -26,8 +26,8 @@ export const metadata: Metadata = {
     // not for anchor links to sections on the same page.
   },
   openGraph: {
-    title: 'GTM Agency Quest 2026 🚀 Go-To-Market Strategy & Execution',
-    description: 'Go to market agency for B2B SaaS. GTM strategy & execution with 4-channel ABM.',
+    title: 'GTM Agency | Go-To-Market Strategy & Execution for B2B SaaS',
+    description: 'GTM agency for B2B SaaS startups. Go-to-market strategy & execution with 4-channel ABM.',
     type: 'website',
     url: 'https://gtm.quest',
     siteName: 'GTM Agency Quest',
@@ -36,14 +36,14 @@ export const metadata: Metadata = {
         url: 'https://gtm.quest/gtm-agency-quest-logo.png',
         width: 512,
         height: 512,
-        alt: 'Go-To-Market Agency - GTM Strategy & Execution',
+        alt: 'GTM Agency - Go-To-Market Strategy & Execution',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'GTM Agency Quest 2026 🚀 Go-To-Market Strategy & Execution',
-    description: 'Go to market agency for B2B SaaS. GTM strategy & execution with 4-channel ABM.',
+    title: 'GTM Agency | Go-To-Market Strategy & Execution for B2B SaaS',
+    description: 'GTM agency for B2B SaaS startups. Go-to-market strategy & execution with 4-channel ABM.',
     images: ['https://gtm.quest/gtm-agency-quest-logo.png'],
   },
   keywords: [
