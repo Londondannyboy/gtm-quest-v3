@@ -230,6 +230,87 @@ export function HomeSchema() {
     slogan: 'GTM agency that builds revenue engines you own.',
   };
 
+  // ItemList schema for Top 10 GTM Agencies ranking
+  const topAgenciesSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    name: 'Top 10 GTM Agencies 2026',
+    description: 'Ranked list of the best Go-To-Market agencies for B2B SaaS companies in 2026, based on specialization, client results, and industry expertise.',
+    numberOfItems: 10,
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'GTM Quest',
+        description: 'UK-based GTM agency specializing in Clay-powered ABM and systematic revenue engines for B2B SaaS.',
+        url: 'https://gtm.quest/agencies/gtm-quest',
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'SalesCaptain',
+        description: 'Outbound sales specialists focusing on pipeline generation for B2B and SaaS companies.',
+        url: 'https://gtm.quest/agencies/salescaptain',
+      },
+      {
+        '@type': 'ListItem',
+        position: 3,
+        name: 'inBeat',
+        description: 'Performance-driven agency combining influencer marketing with demand generation.',
+        url: 'https://gtm.quest/agencies/inbeat',
+      },
+      {
+        '@type': 'ListItem',
+        position: 4,
+        name: 'Ironpaper',
+        description: 'Enterprise B2B agency specializing in account-based marketing and complex sales cycles.',
+        url: 'https://gtm.quest/agencies/ironpaper',
+      },
+      {
+        '@type': 'ListItem',
+        position: 5,
+        name: 'Ziggy',
+        description: 'Demand generation agency focused on positioning and messaging for B2B startups.',
+        url: 'https://gtm.quest/agencies/ziggy',
+      },
+      {
+        '@type': 'ListItem',
+        position: 6,
+        name: 'Deviate Labs',
+        description: 'Growth marketing agency specializing in unconventional GTM strategies.',
+        url: 'https://gtm.quest/agencies/deviate-labs',
+      },
+      {
+        '@type': 'ListItem',
+        position: 7,
+        name: 'Refine Labs',
+        description: 'Demand generation pioneers known for dark social and category creation strategies.',
+        url: 'https://gtm.quest/agencies/refine-labs',
+      },
+      {
+        '@type': 'ListItem',
+        position: 8,
+        name: 'Six & Flow',
+        description: 'UK-based HubSpot Elite Partner specializing in RevOps and inbound marketing.',
+        url: 'https://gtm.quest/agencies/six-and-flow',
+      },
+      {
+        '@type': 'ListItem',
+        position: 9,
+        name: 'Single Grain',
+        description: 'Full-service digital marketing agency with strong B2B SaaS expertise.',
+        url: 'https://gtm.quest/agencies/single-grain',
+      },
+      {
+        '@type': 'ListItem',
+        position: 10,
+        name: 'Kalungi',
+        description: 'Fractional CMO and full-stack B2B SaaS marketing for early-stage companies.',
+        url: 'https://gtm.quest/agencies/kalungi',
+      },
+    ],
+  };
+
   // ItemList schema for geo-targeted agency sections
   const agencyListSchema = {
     '@context': 'https://schema.org',
@@ -306,6 +387,10 @@ export function HomeSchema() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(professionalServiceSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(topAgenciesSchema) }}
       />
     </>
   );
