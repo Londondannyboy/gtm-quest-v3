@@ -163,11 +163,40 @@ A Go-To-Market (GTM) agency is a specialized consultancy that helps B2B companie
 
 ### When to Hire a GTM Agency
 
-1. Product launch requiring structured go-to-market
-2. Market expansion (new geo or segment)
-3. Stalled growth despite marketing spend
-4. Sales and marketing misalignment
-5. Scaling challenges post-PMF
+1. **Launching a new product or company** - Need to define market, audience, and messaging from scratch
+2. **Entering new, unfamiliar markets** - Expanding geographically or into verticals where you lack expertise
+3. **Growth has plateaued** - Existing strategies stopped working; need fresh approaches to break through
+4. **Need to move faster than hiring allows** - Market window is narrow; can't wait months to hire and onboard
+5. **Lack specialized expertise in-house** - Need ABM, Clay automation, RevOps, or other specialist skills
+6. **Sales and marketing misalignment** - Departments not working together toward revenue goals
+7. **Scaling challenges post-PMF** - Have product-market fit but struggling to scale predictably
+
+### Benefits of Hiring a GTM Agency
+
+1. **Increased Speed**
+   - Accelerate launch timelines with proven playbooks and experienced teams
+   - Reduce market entry risks by leveraging battle-tested strategies
+   - Go live in weeks instead of months of internal development
+
+2. **Alignment**
+   - GTM agencies act as neutral experts who break down silos
+   - They bring outside perspective that helps align departments
+   - Focus on shared revenue goals rather than departmental metrics
+
+3. **Expertise**
+   - Specialized, proven knowledge from working across multiple companies
+   - Prevents costly mistakes that first-time launchers commonly make
+   - Deep experience in specific channels (ABM, outbound, paid media)
+
+4. **Scalability**
+   - Flexible capacity that scales with your needs
+   - Ramp up for launches, scale down during optimization
+   - Avoid fixed costs of full-time hires before you're ready
+
+5. **Technology & Tools**
+   - Access to expensive platforms (intent data, sales engagement, analytics)
+   - Pre-built workflows and integrations that would take months to develop
+   - Best practices from implementing across many clients
 
 ---
 

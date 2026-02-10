@@ -69,6 +69,16 @@ export const faqs: FAQ[] = [
     answer:
       'Consider a GTM agency when: you need to move fast (product launch, funding round), lack specialized expertise in-house, want to test strategies before committing to headcount, or need fractional leadership (CMO, VP Marketing). Build in-house when: you have long-term, predictable needs, can afford full-time senior hires, and have established playbooks to execute.',
   },
+  {
+    question: 'What are the benefits of hiring a GTM agency?',
+    answer:
+      'Key benefits include: (1) Increased Speed - accelerate launch timelines with proven playbooks, (2) Alignment - neutral experts who break down silos between marketing, sales, and product, (3) Expertise - specialized knowledge that prevents costly mistakes, (4) Scalability - flexible capacity that grows with your needs, and (5) Technology Access - tools and platforms that would be cost-prohibitive to license individually.',
+  },
+  {
+    question: 'When should I hire a GTM agency?',
+    answer:
+      'Hire a GTM agency when: (1) Launching a new product or company and need to define market and messaging, (2) Entering new, unfamiliar markets where you lack local expertise, (3) Growth has plateaued and existing strategies stopped working, (4) You need to move faster than internal hiring allows, or (5) You lack specialized expertise like ABM, Clay automation, or RevOps in-house.',
+  },
 ];
 
 // Additional FAQ categories for expanded content
