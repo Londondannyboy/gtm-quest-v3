@@ -18,7 +18,7 @@ import { Metadata } from 'next';
 
 export const metadata: Metadata = {
   title: 'GTM Agency | Go-To-Market Strategy & Execution for B2B SaaS',
-  description: 'GTM agency for B2B SaaS startups. Go-to-market strategy & execution with 4-channel ABM, Clay-based outbound, and GDPR-compliant systems.',
+  description: 'GTM agency for B2B SaaS startups. Go-to-market strategy & execution with 4-channel ABM, Clay-based outbound, and GDPR-compliant revenue systems.',
   alternates: {
     canonical: 'https://gtm.quest',
     // Note: Removed invalid hreflang languages that were using fragment URLs.

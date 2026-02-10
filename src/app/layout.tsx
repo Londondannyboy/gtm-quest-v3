@@ -21,7 +21,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "GTM Agency | Go-To-Market Strategy & Execution for B2B SaaS",
-  description: "GTM agency for B2B SaaS startups. Go-to-market strategy & execution with 4-channel ABM, Clay-based outbound, and GDPR-compliant systems.",
+  description: "GTM agency for B2B SaaS startups. Go-to-market strategy & execution with 4-channel ABM, Clay-based outbound, and GDPR-compliant revenue systems.",
   metadataBase: new URL('https://gtm.quest'),
   openGraph: {
     type: 'website',

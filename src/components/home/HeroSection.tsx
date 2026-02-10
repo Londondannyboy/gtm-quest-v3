@@ -21,7 +21,7 @@ export function HeroSection() {
         <div className="hidden md:block absolute inset-0">
           <Image
             src={HERO_BG_IMAGE}
-            alt=""
+            alt="GTM Agency hero - Go-to-market strategy visualization"
             fill
             priority
             fetchPriority="high"
