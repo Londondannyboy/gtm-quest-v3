@@ -49,7 +49,7 @@ export function CTAPathwayCards() {
                 <div className="grid grid-cols-2 gap-3 mb-6">
                   {[
                     '4-channel ABM setup',
-                    'UK/GDPR compliant',
+                    'GDPR-ready tracking',
                     'Signal-triggered outreach',
                     'Full handover included',
                   ].map((benefit) => (

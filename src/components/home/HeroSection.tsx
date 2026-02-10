@@ -42,7 +42,7 @@ export function HeroSection() {
         <div className="mb-4">
           <Image
             src="/gtm-agency-quest-logo.png"
-            alt="GTM Agency UK - Go-To-Market Strategy & Execution Consultants"
+            alt="Go-To-Market Agency - GTM Strategy & Execution Consultants"
             width={80}
             height={80}
             className="mx-auto rounded-xl"
@@ -50,10 +50,10 @@ export function HeroSection() {
           />
         </div>
 
-        {/* SEO H1 - styled as badge */}
+        {/* SEO H1 - styled as badge, includes 'go to market agency' keyword */}
         <h1 className="inline-flex items-center gap-2 bg-green-500/10 border border-green-500/20 rounded-full px-4 py-2 mb-6 backdrop-blur-sm text-sm text-green-400 font-medium">
           <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
-          Best GTM Agency UK
+          Best Go-To-Market Agency
         </h1>
 
         {/* Visual Headline */}
@@ -72,9 +72,9 @@ export function HeroSection() {
         </p>
 
         <p className="text-lg text-white/60 max-w-2xl mx-auto mb-10">
-          Clay-based outbound system. Signal-triggered campaigns.
+          Go to market agency for B2B SaaS. Signal-triggered campaigns.
           <br className="hidden md:block" />
-          UK/GDPR compliant. Full handover included.
+          GDPR-ready. Full handover included.
         </p>
 
         {/* CTA Buttons */}
@@ -113,8 +113,8 @@ export function HeroSection() {
         <div className="mt-8 flex justify-center">
           <SocialShare
             url="https://gtm.quest"
-            title="GTM Agency Quest | Best GTM Agency UK"
-            description="UK GTM agency building revenue engines with 4-channel ABM and Clay-based outbound systems."
+            title="GTM Agency Quest | Best Go-To-Market Agency"
+            description="Go to market agency building revenue engines with 4-channel ABM and Clay-based outbound systems."
           />
         </div>
       </div>

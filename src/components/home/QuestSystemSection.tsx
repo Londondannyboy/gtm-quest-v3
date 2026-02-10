@@ -228,24 +228,24 @@ export function QuestSystemSection() {
           </div>
         </div>
 
-        {/* UK/GDPR Section with glow */}
+        {/* GDPR Section with glow - International focus */}
         <div className="mb-16 relative group">
           {/* Glow effect */}
           <div className="absolute -inset-1 bg-gradient-to-r from-orange-500/10 via-amber-500/10 to-orange-500/10 rounded-2xl blur-xl opacity-50 group-hover:opacity-100 transition-opacity duration-500" />
 
           <div className="relative bg-zinc-900/80 backdrop-blur border border-orange-500/30 rounded-2xl p-6">
             <div className="flex flex-col md:flex-row items-center gap-4 md:gap-6">
-              <div className="text-5xl">🇬🇧</div>
+              <div className="text-5xl">🔒</div>
               <div className="flex-1 text-center md:text-left">
-                <h3 className="text-white font-bold text-xl mb-2">UK/EU GDPR-First Approach</h3>
+                <h3 className="text-white font-bold text-xl mb-2">Privacy-First Approach</h3>
                 <p className="text-zinc-400">
                   Company-level tracking via Leadfeeder. Smart Links bridge the individual tracking gap.
-                  Built for UK compliance from day one, not retrofitted from US playbooks.
+                  Built for GDPR compliance from day one, works globally.
                 </p>
               </div>
               <div className="flex gap-2">
                 <span className="text-sm bg-orange-500/20 text-orange-400 px-4 py-2 rounded-full border border-orange-500/30">
-                  GDPR Compliant
+                  GDPR Ready
                 </span>
                 <span className="text-sm bg-green-500/20 text-green-400 px-4 py-2 rounded-full border border-green-500/30">
                   Smart Links

@@ -12,7 +12,7 @@ interface SocialShareProps {
 export function SocialShare({
   url = 'https://gtm.quest',
   title = 'GTM Agency Quest | Go-To-Market Strategy & Execution',
-  description = 'UK GTM agency building revenue engines with 4-channel ABM and Clay-based outbound systems.',
+  description = 'Go to market agency building revenue engines with 4-channel ABM and Clay-based outbound systems.',
   className = '',
 }: SocialShareProps) {
   const [copied, setCopied] = useState(false);

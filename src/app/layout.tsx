@@ -21,27 +21,27 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "GTM Agency Quest 2026 🚀 Go-To-Market Strategy & Execution",
-  description: "GTM Agency Quest: go-to-market strategy and execution. UK GTM agency building revenue engines with 4-channel ABM and Clay-based outbound systems.",
+  description: "Go to market agency for B2B SaaS. GTM strategy & execution with 4-channel ABM and Clay-based outbound. GDPR-compliant revenue engines.",
   metadataBase: new URL('https://gtm.quest'),
   openGraph: {
     type: 'website',
     siteName: 'GTM Agency Quest',
     title: 'GTM Agency Quest 2026 🚀 Go-To-Market Strategy & Execution',
-    description: 'GTM agency building revenue engines with 4-channel ABM. Expert go-to-market strategy and execution.',
+    description: 'Go to market agency for B2B SaaS. GTM strategy & execution with 4-channel ABM.',
     url: 'https://gtm.quest',
     images: [
       {
         url: '/gtm-agency-quest-logo.png',
         width: 512,
         height: 512,
-        alt: 'GTM Agency Quest - Go-To-Market Agency',
+        alt: 'Go-To-Market Agency - GTM Strategy & Execution',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
     title: 'GTM Agency Quest 2026 🚀 Go-To-Market Strategy & Execution',
-    description: 'GTM agency building revenue engines with 4-channel ABM.',
+    description: 'Go to market agency for B2B SaaS. GTM strategy & execution with 4-channel ABM.',
     images: ['/gtm-agency-quest-logo.png'],
   },
 };

@@ -26,7 +26,7 @@ export function TopAgencies2026({ agencies }: TopAgencies2026Props) {
             2026 Rankings
           </span>
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
-            10 Best GTM Agencies UK
+            Top 10 Go-To-Market Agencies 2026
           </h2>
           <p className="text-white/60 max-w-2xl mx-auto text-lg">
             Ranked comparison of the <strong className="text-white">best GTM agencies</strong> for B2B SaaS,

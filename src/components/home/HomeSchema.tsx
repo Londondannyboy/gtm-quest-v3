@@ -143,7 +143,7 @@ export function HomeSchema() {
     name: 'GTM Agency Quest',
     alternateName: 'GTM Quest',
     description:
-      'UK-based Go-To-Market (GTM) agency specializing in Clay-powered Account-Based Marketing (ABM) for B2B SaaS companies. We build systematic revenue engines using AI-enhanced prospecting and 4-channel outbound.',
+      'Go-to-market agency specializing in Clay-powered Account-Based Marketing (ABM) for B2B SaaS companies. We build systematic revenue engines using AI-enhanced prospecting and 4-channel outbound.',
     url: 'https://gtm.quest',
     logo: 'https://gtm.quest/gtm-agency-quest-logo.png',
     image: 'https://gtm.quest/gtm-agency-quest-logo.png',
@@ -227,7 +227,7 @@ export function HomeSchema() {
       'LinkedIn advertising',
       'Cold email outreach',
     ],
-    slogan: 'The UK GTM agency that builds revenue engines you own.',
+    slogan: 'The go-to-market agency that builds revenue engines you own.',
   };
 
   // ItemList schema for geo-targeted agency sections
