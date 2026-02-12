@@ -124,9 +124,9 @@ export function Footer() {
 
         {/* Site signature - last crawled element */}
         <div className="mt-8 pt-6 border-t border-white/5 text-center">
-          <h6 className="text-xs text-white/30 font-normal tracking-wide">
+          <span className="text-xs text-white/60 font-normal tracking-wide block">
             GTM Agency
-          </h6>
+          </span>
         </div>
       </div>
     </footer>

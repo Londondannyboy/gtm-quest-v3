@@ -92,7 +92,7 @@ export function CountrySections({ agenciesByCountry }: CountrySectionsProps) {
           <h2 className="text-3xl font-bold text-white mb-4">
             Find a GTM Agency Near You
           </h2>
-          <h4 className="text-lg text-emerald-400 font-medium mb-2">GTM Agency Directory by Region</h4>
+          <p className="text-lg text-emerald-400 font-medium mb-2">GTM Agency Directory by Region</p>
           <p className="text-white/60 max-w-2xl mx-auto">
             Browse go-to-market agencies by region. Whether you need a local partner
             or a global team, find the right GTM agency for your B2B growth strategy.

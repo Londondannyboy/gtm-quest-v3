@@ -22,6 +22,7 @@ export function HeroSection() {
           <Image
             src={HERO_BG_IMAGE}
             alt="GTM Agency hero - Go-to-market strategy visualization"
+            title="GTM Agency - Go-to-market strategy for B2B SaaS"
             fill
             priority
             fetchPriority="high"
@@ -43,6 +44,7 @@ export function HeroSection() {
           <Image
             src="/gtm-agency-quest-logo.png"
             alt="GTM Agency - Go-To-Market Strategy & Execution"
+            title="GTM Agency Quest - B2B Go-to-Market Agency"
             width={80}
             height={80}
             className="mx-auto rounded-xl"

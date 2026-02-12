@@ -28,7 +28,7 @@ export function TopAgencies2026({ agencies }: TopAgencies2026Props) {
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
             Top 10 Go-To-Market Agencies 2026
           </h2>
-          <h4 className="text-lg text-emerald-400 font-medium mb-2">Best GTM Agency Comparison</h4>
+          <p className="text-lg text-emerald-400 font-medium mb-2">Best GTM Agency Comparison</p>
           <p className="text-white/60 max-w-2xl mx-auto text-lg">
             Ranked comparison of the <strong className="text-white">best GTM agencies</strong> for B2B SaaS,
             demand generation, and go-to-market execution in 2026.
@@ -259,7 +259,7 @@ export function TopAgencies2026({ agencies }: TopAgencies2026Props) {
 
         {/* Key Services Grid */}
         <div className="mt-16">
-          <h4 className="text-xl font-bold text-white mb-6 text-center">GTM Agency Services</h4>
+          <h3 className="text-xl font-bold text-white mb-6 text-center">GTM Agency Services</h3>
           <div className="grid md:grid-cols-4 gap-6">
           <div className="bg-zinc-900/50 rounded-xl p-6 border border-white/5 hover:border-emerald-500/30 transition">
             <div className="text-2xl mb-3">📈</div>
