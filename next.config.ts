@@ -11,7 +11,6 @@ const nextConfig: NextConfig = {
       '@copilotkit/react-ui',
       'recharts',
       '@neondatabase/neon-js',
-      'framer-motion',
       'lucide-react',
       '@radix-ui/react-icons',
     ],
