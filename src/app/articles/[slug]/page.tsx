@@ -1,6 +1,7 @@
 import { notFound } from 'next/navigation';
-import { getArticleBySlug, getArticles } from '@/lib/content';
+import { getArticleBySlug, getArticles, getRelatedArticles, ArticleMeta } from '@/lib/content';
 import { MDXRemote } from 'next-mdx-remote/rsc';
+import Link from 'next/link';
 
 interface ArticlePageProps {
   params: Promise<{ slug: string }>;
@@ -13,6 +14,21 @@ export async function generateStaticParams() {
   }));
 }
 
+function RelatedArticleCard({ article }: { article: ArticleMeta }) {
+  return (
+    <Link
+      href={`/articles/${article.slug}`}
+      className="block p-4 bg-zinc-900 border border-zinc-800 rounded-lg hover:border-emerald-500/50 transition group"
+    >
+      <span className="text-xs text-emerald-400 mb-2 block">{article.category}</span>
+      <h3 className="font-semibold text-white group-hover:text-emerald-400 transition mb-2 line-clamp-2">
+        {article.title}
+      </h3>
+      <p className="text-white/50 text-sm line-clamp-2">{article.description}</p>
+    </Link>
+  );
+}
+
 export default async function ArticlePage({ params }: ArticlePageProps) {
   const { slug } = await params;
   const article = getArticleBySlug(slug);
@@ -21,16 +37,30 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
     notFound();
   }
 
+  // Get related articles for internal linking
+  const relatedArticles = getRelatedArticles(slug, 3);
+
   return (
     <div className="min-h-screen bg-black text-white">
       <div className="max-w-3xl mx-auto px-6 py-12">
-        {/* Back link */}
-        <a
-          href="/articles"
-          className="text-emerald-400 hover:text-emerald-300 text-sm mb-8 inline-block"
-        >
-          ← Back to Articles
-        </a>
+        {/* Breadcrumb with keyword-rich anchor text */}
+        <nav className="mb-8">
+          <ol className="flex items-center gap-2 text-sm text-white/40">
+            <li>
+              <Link href="/" className="hover:text-white transition">
+                GTM Agency
+              </Link>
+            </li>
+            <li>/</li>
+            <li>
+              <Link href="/articles" className="hover:text-white transition">
+                Articles
+              </Link>
+            </li>
+            <li>/</li>
+            <li className="text-white/60 truncate max-w-[200px]">{article.meta.title}</li>
+          </ol>
+        </nav>
 
         {/* Article header */}
         <header className="mb-8">
@@ -64,6 +94,44 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
             </div>
           </div>
         )}
+
+        {/* Related Articles - Strategic internal linking */}
+        {relatedArticles.length > 0 && (
+          <section className="mt-12 pt-8 border-t border-white/10">
+            <h2 className="text-xl font-bold mb-4">Related Articles</h2>
+            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {relatedArticles.map((related) => (
+                <RelatedArticleCard key={related.slug} article={related} />
+              ))}
+            </div>
+          </section>
+        )}
+
+        {/* CTA with keyword-rich anchor text */}
+        <section className="mt-12 pt-8 border-t border-white/10">
+          <div className="bg-gradient-to-r from-emerald-500/10 to-blue-500/10 border border-emerald-500/20 rounded-xl p-6 text-center">
+            <h3 className="text-lg font-semibold mb-2">Need help with your GTM strategy?</h3>
+            <p className="text-white/60 mb-4">
+              Our <Link href="/" className="text-emerald-400 hover:underline">GTM agency</Link> builds revenue engines for B2B SaaS companies.
+            </p>
+            <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+              <Link
+                href="https://calendly.com/my-first-quest"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-emerald-500 hover:bg-emerald-600 text-white px-6 py-2 rounded-lg font-medium transition"
+              >
+                Book a Strategy Call
+              </Link>
+              <Link
+                href="/agencies"
+                className="text-emerald-400 hover:text-emerald-300 transition"
+              >
+                Or browse 200+ GTM agencies →
+              </Link>
+            </div>
+          </div>
+        </section>
       </div>
     </div>
   );

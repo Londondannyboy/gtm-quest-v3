@@ -290,7 +290,7 @@ export default async function AgencyPage({
               <ol className="flex items-center gap-2 text-sm text-white/40">
                 <li>
                   <Link href="/" className="hover:text-white transition">
-                    Home
+                    GTM Agency
                   </Link>
                 </li>
                 <li>/</li>

@@ -100,6 +100,41 @@ export function getAgencies(): AgencyMeta[] {
   });
 }
 
+/**
+ * Get related articles based on shared tags and category
+ * Uses a scoring system: +2 for each shared tag, +1 for same category
+ */
+export function getRelatedArticles(currentSlug: string, limit: number = 3): ArticleMeta[] {
+  const articles = getArticles();
+  const current = articles.find(a => a.slug === currentSlug);
+
+  if (!current) return [];
+
+  const scored = articles
+    .filter(a => a.slug !== currentSlug)
+    .map(article => {
+      let score = 0;
+
+      // +2 points for each shared tag
+      const sharedTags = article.tags.filter(tag =>
+        current.tags.includes(tag)
+      );
+      score += sharedTags.length * 2;
+
+      // +1 point for same category
+      if (article.category === current.category) {
+        score += 1;
+      }
+
+      return { article, score };
+    })
+    .filter(({ score }) => score > 0)
+    .sort((a, b) => b.score - a.score)
+    .slice(0, limit);
+
+  return scored.map(({ article }) => article);
+}
+
 export function getAgencyBySlug(slug: string): { meta: AgencyMeta; content: string } | null {
   const filePath = path.join(contentDirectory, 'agencies', `${slug}.mdx`);
 
