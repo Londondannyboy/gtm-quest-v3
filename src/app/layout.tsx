@@ -1,11 +1,12 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import { Providers } from "@/components/providers";
+import { AuthProvider } from "@/components/AuthProvider";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { FloatingBookingWidget } from "@/components/ui/FloatingBookingWidget";
 import "./globals.css";
 // CopilotKit CSS moved to dashboard/layout.tsx to reduce homepage bundle
+// NOTE: This layout is a Server Component - page content is SSR'd for SEO
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -65,16 +66,22 @@ export default function RootLayout({
         <link rel="manifest" href="/site.webmanifest" />
       </head>
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        <Providers>
-          <div className="flex flex-col min-h-screen">
+        {/*
+          SSR-OPTIMIZED LAYOUT:
+          - AuthProvider only wraps Header (which needs auth context for UserButton)
+          - {children} (page content) is NOT wrapped by any client component
+          - This ensures page content is server-rendered for SEO
+        */}
+        <div className="flex flex-col min-h-screen">
+          <AuthProvider>
             <Header />
-            <main className="pt-14 flex-1">
-              {children}
-            </main>
-            <Footer />
-            <FloatingBookingWidget />
-          </div>
-        </Providers>
+          </AuthProvider>
+          <main className="pt-14 flex-1">
+            {children}
+          </main>
+          <Footer />
+          <FloatingBookingWidget />
+        </div>
       </body>
     </html>
   );
