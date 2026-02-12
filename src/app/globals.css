@@ -1,6 +1,9 @@
 @import "tailwindcss";
 @import "@neondatabase/neon-js/ui/tailwind";
 
+/* Tailwind Typography - Prose styles */
+@plugin "@tailwindcss/typography";
+
 :root {
   --background: #0a0a0a;
   --foreground: #ededed;

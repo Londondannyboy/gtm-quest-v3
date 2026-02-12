@@ -9,7 +9,7 @@ export function Footer() {
           <div className="col-span-1">
             <Link href="/" className="font-bold text-white text-lg flex items-center gap-2 mb-4">
               <span className="text-emerald-400">GTM</span>
-              <span>Quest</span>
+              <span>Agency Quest</span>
             </Link>
             <p className="text-white/60 text-sm leading-relaxed">
               GTM agency building revenue engines for B2B SaaS. Go-to-market strategy, Clay-powered ABM, and 200+ agency directory.
