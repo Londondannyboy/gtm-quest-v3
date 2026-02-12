@@ -37,18 +37,18 @@ export function DashboardShowcase() {
       <div className="max-w-7xl mx-auto px-4">
         <div className="text-center mb-16">
           <span
-            className="text-blue-400 text-sm font-bold uppercase tracking-wider animate-fadeIn"
+            className="text-blue-400 text-sm font-bold uppercase tracking-wider "
           >
             Powerful Dashboard
           </span>
           <h2
-            className="text-3xl md:text-4xl font-bold mt-4 mb-4 text-white animate-fadeIn"
+            className="text-3xl md:text-4xl font-bold mt-4 mb-4 text-white "
             style={{ animationDelay: '100ms' }}
           >
             Everything You Need in One Place
           </h2>
           <p
-            className="text-white/80 max-w-2xl mx-auto animate-fadeIn"
+            className="text-white/80 max-w-2xl mx-auto "
             style={{ animationDelay: '200ms' }}
           >
             Our AI-powered dashboard gives you market insights, strategy recommendations,
@@ -58,7 +58,7 @@ export function DashboardShowcase() {
 
         {/* Dashboard Preview */}
         <div
-          className="relative animate-fadeIn"
+          className="relative "
           style={{ animationDelay: '300ms' }}
         >
           {/* Glow effect */}
@@ -82,7 +82,7 @@ export function DashboardShowcase() {
               {dashboardStats.map((stat, index) => (
                 <div
                   key={stat.label}
-                  className="bg-white/5 rounded-xl p-4 border border-white/5 hover:scale-105 transition-all duration-300 animate-fadeIn"
+                  className="bg-white/5 rounded-xl p-4 border border-white/5 hover:scale-105 transition-all duration-300 "
                   style={{ animationDelay: `${400 + index * 100}ms` }}
                 >
                   <div className="text-white/70 text-xs mb-1">{stat.label}</div>
@@ -99,7 +99,7 @@ export function DashboardShowcase() {
               {features.map((feature, index) => (
                 <div
                   key={feature.title}
-                  className={`bg-gradient-to-br ${feature.gradient} rounded-xl p-5 border border-white/10 hover:scale-105 transition-all duration-300 animate-fadeIn`}
+                  className={`bg-gradient-to-br ${feature.gradient} rounded-xl p-5 border border-white/10 hover:scale-105 transition-all duration-300 `}
                   style={{ animationDelay: `${600 + index * 100}ms` }}
                 >
                   <div className="aspect-video bg-black/30 rounded-lg mb-4 flex items-center justify-center overflow-hidden">
@@ -122,7 +122,7 @@ export function DashboardShowcase() {
 
         {/* CTA */}
         <div
-          className="text-center mt-12 animate-fadeIn"
+          className="text-center mt-12 "
           style={{ animationDelay: '900ms' }}
         >
           <Link

@@ -150,7 +150,7 @@ function ChannelCard({ channel }: { channel: typeof channels[0] }) {
 function FlowArrow() {
   return (
     <div className="hidden lg:flex items-center justify-center px-2">
-      <div className="text-zinc-600 text-2xl animate-pulse">→</div>
+      <div className="text-zinc-600 text-2xl">→</div>
     </div>
   );
 }
