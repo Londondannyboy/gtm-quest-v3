@@ -17,8 +17,8 @@ import { EngagementModelsSection } from '@/components/home/EngagementModelsSecti
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'GTM Agency UK | Go-To-Market Strategy & Execution for B2B SaaS',
-  description: 'UK GTM agency for B2B SaaS startups. Go-to-market strategy & execution with 4-channel ABM, Clay-based outbound, and GDPR-compliant revenue systems.',
+  title: 'GTM Agency | Go-To-Market Strategy & Execution for B2B SaaS',
+  description: 'GTM agency for B2B SaaS startups. Go-to-market strategy & execution with 4-channel ABM, Clay-based outbound, and GDPR-compliant revenue systems.',
   alternates: {
     canonical: 'https://gtm.quest',
     // Note: Removed invalid hreflang languages that were using fragment URLs.
@@ -26,8 +26,8 @@ export const metadata: Metadata = {
     // not for anchor links to sections on the same page.
   },
   openGraph: {
-    title: 'GTM Agency UK | Go-To-Market Strategy & Execution for B2B SaaS',
-    description: 'UK GTM agency for B2B SaaS startups. Go-to-market strategy & execution with 4-channel ABM.',
+    title: 'GTM Agency | Go-To-Market Strategy & Execution for B2B SaaS',
+    description: 'GTM agency for B2B SaaS startups. Go-to-market strategy & execution with 4-channel ABM.',
     type: 'website',
     url: 'https://gtm.quest',
     siteName: 'GTM Agency Quest',
@@ -42,8 +42,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'GTM Agency UK | Go-To-Market Strategy & Execution for B2B SaaS',
-    description: 'UK GTM agency for B2B SaaS startups. Go-to-market strategy & execution with 4-channel ABM.',
+    title: 'GTM Agency | Go-To-Market Strategy & Execution for B2B SaaS',
+    description: 'GTM agency for B2B SaaS startups. Go-to-market strategy & execution with 4-channel ABM.',
     images: ['https://gtm.quest/gtm-agency-quest-logo.png'],
   },
   keywords: [

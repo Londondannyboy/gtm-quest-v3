@@ -12,7 +12,7 @@ export function Footer() {
               <span>Quest</span>
             </Link>
             <p className="text-white/60 text-sm leading-relaxed">
-              UK-based GTM agency building revenue engines for B2B SaaS. Go-to-market strategy, Clay-powered ABM, and agency directory.
+              GTM agency building revenue engines for B2B SaaS. Go-to-market strategy, Clay-powered ABM, and 200+ agency directory.
             </p>
           </div>
 
