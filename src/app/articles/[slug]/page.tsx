@@ -112,7 +112,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
           <div className="bg-gradient-to-r from-emerald-500/10 to-blue-500/10 border border-emerald-500/20 rounded-xl p-6 text-center">
             <h3 className="text-lg font-semibold mb-2">Need help with your GTM strategy?</h3>
             <p className="text-white/60 mb-4">
-              Our <Link href="/" className="text-emerald-400 hover:underline">GTM agency</Link> builds revenue engines for B2B SaaS companies.
+              Our <Link href="/" className="text-emerald-400 hover:underline">go-to-market agency</Link> builds revenue engines for B2B SaaS companies.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
               <Link
