@@ -21,14 +21,14 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "GTM Agency | Go-To-Market Strategy & Execution for B2B SaaS",
-  description: "GTM agency for B2B SaaS startups. Go-to-market strategy & execution with 4-channel ABM, Clay-based outbound, and GDPR-compliant revenue systems.",
+  title: "GTM Agency UK | Go-To-Market Strategy & Execution for B2B SaaS",
+  description: "UK GTM agency for B2B SaaS startups. Go-to-market strategy & execution with 4-channel ABM, Clay-based outbound, and GDPR-compliant revenue systems.",
   metadataBase: new URL('https://gtm.quest'),
   openGraph: {
     type: 'website',
     siteName: 'GTM Agency Quest',
-    title: 'GTM Agency | Go-To-Market Strategy & Execution for B2B SaaS',
-    description: 'GTM agency for B2B SaaS startups. Go-to-market strategy & execution with 4-channel ABM.',
+    title: 'GTM Agency UK | Go-To-Market Strategy & Execution for B2B SaaS',
+    description: 'UK GTM agency for B2B SaaS startups. Go-to-market strategy & execution with 4-channel ABM.',
     url: 'https://gtm.quest',
     images: [
       {
@@ -41,8 +41,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'GTM Agency | Go-To-Market Strategy & Execution for B2B SaaS',
-    description: 'GTM agency for B2B SaaS startups. Go-to-market strategy & execution with 4-channel ABM.',
+    title: 'GTM Agency UK | Go-To-Market Strategy & Execution for B2B SaaS',
+    description: 'UK GTM agency for B2B SaaS startups. Go-to-market strategy & execution with 4-channel ABM.',
     images: ['/gtm-agency-quest-logo.png'],
   },
 };
