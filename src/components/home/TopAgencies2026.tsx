@@ -263,7 +263,7 @@ export function TopAgencies2026({ agencies }: TopAgencies2026Props) {
           <div className="grid md:grid-cols-4 gap-6">
           <div className="bg-zinc-900/50 rounded-xl p-6 border border-white/5 hover:border-emerald-500/30 transition">
             <div className="text-2xl mb-3">📈</div>
-            <h4 className="font-semibold text-white mb-2">Demand Generation Agencies</h5>
+            <h4 className="font-semibold text-white mb-2">Demand Generation Agencies</h4>
             <p className="text-white/60 text-sm">Creating awareness and pipeline through content, paid media, and inbound marketing.</p>
             <Link href="/agencies/specialization/demand-generation" className="text-emerald-400 text-sm mt-3 inline-block hover:text-emerald-300">
               Browse demand gen agencies →
@@ -271,7 +271,7 @@ export function TopAgencies2026({ agencies }: TopAgencies2026Props) {
           </div>
           <div className="bg-zinc-900/50 rounded-xl p-6 border border-white/5 hover:border-emerald-500/30 transition">
             <div className="text-2xl mb-3">🎯</div>
-            <h4 className="font-semibold text-white mb-2">ABM &amp; Account-Based Agencies</h5>
+            <h4 className="font-semibold text-white mb-2">ABM &amp; Account-Based Agencies</h4>
             <p className="text-white/60 text-sm">Targeted campaigns for high-value enterprise accounts with personalized outreach.</p>
             <Link href="/agencies/specialization/abm" className="text-emerald-400 text-sm mt-3 inline-block hover:text-emerald-300">
               Browse ABM agencies →
@@ -279,7 +279,7 @@ export function TopAgencies2026({ agencies }: TopAgencies2026Props) {
           </div>
           <div className="bg-zinc-900/50 rounded-xl p-6 border border-white/5 hover:border-emerald-500/30 transition">
             <div className="text-2xl mb-3">🤝</div>
-            <h4 className="font-semibold text-white mb-2">Sales Enablement Partners</h5>
+            <h4 className="font-semibold text-white mb-2">Sales Enablement Partners</h4>
             <p className="text-white/60 text-sm">Tools, content, and processes to improve sales effectiveness and close rates.</p>
             <Link href="/agencies/specialization/sales-enablement" className="text-emerald-400 text-sm mt-3 inline-block hover:text-emerald-300">
               Browse sales enablement →
@@ -287,7 +287,7 @@ export function TopAgencies2026({ agencies }: TopAgencies2026Props) {
           </div>
           <div className="bg-zinc-900/50 rounded-xl p-6 border border-white/5 hover:border-emerald-500/30 transition">
             <div className="text-2xl mb-3">⚙️</div>
-            <h4 className="font-semibold text-white mb-2">RevOps Specialists</h5>
+            <h4 className="font-semibold text-white mb-2">RevOps Specialists</h4>
             <p className="text-white/60 text-sm">Systems and processes aligning marketing, sales, and customer success.</p>
             <Link href="/agencies/specialization/growth-marketing" className="text-emerald-400 text-sm mt-3 inline-block hover:text-emerald-300">
               Browse RevOps agencies →
