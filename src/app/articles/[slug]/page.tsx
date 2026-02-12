@@ -107,10 +107,21 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
       />
 
       <div className="min-h-screen bg-black text-white">
-        {/* Hero Section */}
-        <div className="relative bg-gradient-to-b from-zinc-900 to-black border-b border-white/5">
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(16,185,129,0.08),transparent_50%)]" />
-          <div className="relative max-w-4xl mx-auto px-6 pt-12 pb-16">
+        {/* Hero Section with Background Image */}
+        <div className="relative border-b border-white/5 overflow-hidden">
+          {/* Background Image */}
+          <div className="absolute inset-0 z-0">
+            <Image
+              src="/hero-bg.webp"
+              alt=""
+              fill
+              className="object-cover"
+              priority
+            />
+            <div className="absolute inset-0 bg-black/70" />
+            <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-transparent to-black" />
+          </div>
+          <div className="relative z-10 max-w-4xl mx-auto px-6 pt-12 pb-16">
             {/* Breadcrumb */}
             <nav className="mb-8">
               <ol className="flex items-center gap-2 text-sm text-white/50">
@@ -176,10 +187,10 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
             <aside className="hidden lg:block">
               <div className="sticky top-24 space-y-6">
                 {/* CTA Card */}
-                <div className="bg-gradient-to-br from-emerald-500/10 to-blue-500/10 border border-emerald-500/20 rounded-xl p-5">
+                <div className="bg-gradient-to-br from-blue-500/10 to-blue-600/10 border border-blue-500/20 rounded-xl p-5">
                   <div className="flex items-center gap-2 mb-3">
                     <Image
-                      src="/gtm-agency-quest-logo.png"
+                      src="/gtm-logo-blue.png"
                       alt="GTM Agency Quest"
                       width={32}
                       height={32}
@@ -194,7 +205,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
                     href="https://calendly.com/my-first-quest"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="block w-full bg-emerald-500 hover:bg-emerald-600 text-white text-center px-4 py-2.5 rounded-lg font-medium text-sm transition"
+                    className="block w-full bg-blue-500 hover:bg-blue-600 text-white text-center px-4 py-2.5 rounded-lg font-medium text-sm transition"
                   >
                     Book a Strategy Call
                   </Link>
