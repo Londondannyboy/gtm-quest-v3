@@ -21,28 +21,28 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "GTM Agency | Go-To-Market Strategy & Execution for B2B SaaS",
-  description: "GTM agency for B2B SaaS startups. Go-to-market strategy & execution with 4-channel ABM, Clay-based outbound, and GDPR-compliant revenue systems.",
+  title: "GTM Agency 🚀 B2B SaaS Pipeline & Revenue Growth 2026",
+  description: "Not hitting targets? GTM agency that builds pipeline fast. Free strategy call → 4-channel ABM, Clay outbound, results in 4 weeks. Book your consultation now.",
   metadataBase: new URL('https://gtm.quest'),
   openGraph: {
     type: 'website',
     siteName: 'GTM Agency Quest',
-    title: 'GTM Agency | Go-To-Market Strategy & Execution for B2B SaaS',
-    description: 'GTM agency for B2B SaaS startups. Go-to-market strategy & execution with 4-channel ABM.',
+    title: 'GTM Agency 🚀 B2B SaaS Pipeline & Revenue Growth 2026',
+    description: 'Not hitting targets? Free strategy call → we build your pipeline machine in 4 weeks. Book now.',
     url: 'https://gtm.quest',
     images: [
       {
         url: '/gtm-agency-quest-logo.png',
         width: 512,
         height: 512,
-        alt: 'GTM Agency - Go-To-Market Strategy & Execution',
+        alt: 'GTM Agency - B2B SaaS Pipeline & Revenue Growth',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'GTM Agency | Go-To-Market Strategy & Execution for B2B SaaS',
-    description: 'GTM agency for B2B SaaS startups. Go-to-market strategy & execution with 4-channel ABM.',
+    title: 'GTM Agency 🚀 B2B SaaS Pipeline & Revenue Growth 2026',
+    description: 'Not hitting targets? Free strategy call → we build your pipeline machine in 4 weeks. Book now.',
     images: ['/gtm-agency-quest-logo.png'],
   },
 };
