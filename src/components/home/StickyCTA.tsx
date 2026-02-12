@@ -28,7 +28,7 @@ export function StickyCTA() {
       }`}
     >
       <span className="relative flex h-2.5 w-2.5">
-        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
+        <span className=" absolute inline-flex h-full w-full rounded-full bg-white opacity-75"></span>
         <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-white"></span>
       </span>
       <span className="hidden sm:inline">Book a Call</span>

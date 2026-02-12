@@ -45,18 +45,18 @@ export function TechStack() {
       <div className="max-w-6xl mx-auto px-4">
         <div className="text-center mb-12">
           <span
-            className="text-blue-400 text-sm font-bold uppercase tracking-wider animate-fadeIn"
+            className="text-blue-400 text-sm font-bold uppercase tracking-wider "
           >
             Tech Expertise
           </span>
           <h2
-            className="text-3xl md:text-4xl font-bold mt-4 mb-4 text-white animate-fadeIn"
+            className="text-3xl md:text-4xl font-bold mt-4 mb-4 text-white "
             style={{ animationDelay: '100ms' }}
           >
             GTM Tools We Know Inside Out
           </h2>
           <p
-            className="text-white/70 max-w-2xl mx-auto animate-fadeIn"
+            className="text-white/70 max-w-2xl mx-auto "
             style={{ animationDelay: '200ms' }}
           >
             Our agencies are experts in the leading go-to-market tools and platforms
@@ -65,7 +65,7 @@ export function TechStack() {
 
         {/* Featured Tool - Clay */}
         <div
-          className="mb-8 animate-fadeIn"
+          className="mb-8 "
           style={{ animationDelay: '300ms' }}
         >
           <div className="bg-gradient-to-r from-blue-500/10 via-blue-500/5 to-transparent border border-blue-500/30 rounded-2xl p-6 md:p-8 hover:scale-[1.02] transition-all duration-300">
@@ -77,7 +77,7 @@ export function TechStack() {
                 <div className="flex items-center gap-3 mb-2">
                   <h3 className="text-2xl font-bold text-white">Clay</h3>
                   <span className="inline-flex items-center gap-1.5 bg-blue-500/20 border border-blue-500/40 text-blue-400 text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full">
-                    <span className="w-1.5 h-1.5 bg-blue-500 rounded-full animate-pulse" />
+                    <span className="w-1.5 h-1.5 bg-blue-500 rounded-full " />
                     Specialist
                   </span>
                 </div>
@@ -115,7 +115,7 @@ export function TechStack() {
             .map((tool, index) => (
               <div
                 key={tool.name}
-                className="bg-zinc-900 border border-white/10 rounded-xl p-4 hover:border-blue-500/30 hover:scale-105 transition-all duration-300 text-center animate-fadeIn"
+                className="bg-zinc-900 border border-white/10 rounded-xl p-4 hover:border-blue-500/30 hover:scale-105 transition-all duration-300 text-center "
                 style={{ animationDelay: `${400 + index * 50}ms` }}
               >
                 <h4 className="font-semibold text-white mb-1">{tool.name}</h4>
