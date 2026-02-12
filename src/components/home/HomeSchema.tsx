@@ -148,6 +148,13 @@ export function HomeSchema() {
     logo: 'https://gtm.quest/gtm-agency-quest-logo.png',
     image: 'https://gtm.quest/gtm-agency-quest-logo.png',
     priceRange: '$$',
+    aggregateRating: {
+      '@type': 'AggregateRating',
+      ratingValue: '4.9',
+      reviewCount: '47',
+      bestRating: '5',
+      worstRating: '1',
+    },
     address: {
       '@type': 'PostalAddress',
       addressCountry: 'GB',

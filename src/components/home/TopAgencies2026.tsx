@@ -259,7 +259,7 @@ export function TopAgencies2026({ agencies }: TopAgencies2026Props) {
 
         {/* Key Services Grid */}
         <div className="mt-16">
-          <h3 className="text-xl font-bold text-white mb-6 text-center">GTM Agency Services</h3>
+          <h3 className="text-xl font-bold text-white mb-6 text-center">Go-To-Market Services</h3>
           <div className="grid md:grid-cols-4 gap-6">
           <div className="bg-zinc-900/50 rounded-xl p-6 border border-white/5 hover:border-emerald-500/30 transition">
             <div className="text-2xl mb-3">📈</div>
@@ -298,7 +298,7 @@ export function TopAgencies2026({ agencies }: TopAgencies2026Props) {
 
         {/* FAQ Section */}
         <div className="mt-16">
-          <h3 className="text-2xl font-bold text-white mb-8 text-center">GTM Agency FAQ</h3>
+          <h3 className="text-2xl font-bold text-white mb-8 text-center">Go-To-Market Agency FAQ</h3>
           <div className="space-y-4 max-w-3xl mx-auto">
             <details className="bg-zinc-900/50 border border-white/10 rounded-xl p-6 group">
               <summary className="font-semibold text-white cursor-pointer list-none flex justify-between items-center">

@@ -12,6 +12,7 @@ export function ExplainerSection() {
               <Image
                 src="/gtm-agency-matching.svg"
                 alt="GTM agency matching dashboard showing AI-powered go-to-market strategy builder with agency recommendations"
+                title="GTM Agency Dashboard - AI-powered go-to-market strategy builder"
                 width={600}
                 height={400}
                 className="w-full h-full object-contain p-8"
@@ -28,7 +29,7 @@ export function ExplainerSection() {
           {/* Content */}
           <div>
             <h2 className="text-3xl font-bold mb-6">
-              What is GTM Agency Matching?
+              What is Go-To-Market Agency Matching?
             </h2>
 
             <p className="text-white/70 mb-4 leading-relaxed">

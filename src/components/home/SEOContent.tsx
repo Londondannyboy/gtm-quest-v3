@@ -138,7 +138,7 @@ export function SEOContent({ featuredArticles, topAgencies }: SEOContentProps) {
           <div className="bg-zinc-900 rounded-2xl p-8 border border-white/10">
             <div className="flex items-center justify-between mb-6">
               <div>
-                <h3 className="text-xl font-bold">Top GTM Agencies</h3>
+                <h3 className="text-xl font-bold">Top Go-To-Market Agencies</h3>
                 <p className="text-white/60 text-sm">Hand-picked agencies for B2B growth</p>
               </div>
               <Link href="/agencies" className="text-emerald-400 hover:text-emerald-300 text-sm">

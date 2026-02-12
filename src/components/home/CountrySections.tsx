@@ -56,7 +56,7 @@ function CountrySection({
       <div className="flex items-center justify-between mb-4">
         <h3 className="text-xl font-bold text-white flex items-center gap-2">
           <span className="text-2xl">{config.flag}</span>
-          <span>GTM Agencies in {config.name}</span>
+          <span>Go-To-Market Agencies in {config.name}</span>
         </h3>
         <Link
           href={`/agencies/country/${countryCode.toLowerCase()}`}

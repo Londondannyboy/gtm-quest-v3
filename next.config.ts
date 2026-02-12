@@ -4,13 +4,16 @@ import createMDX from "@next/mdx";
 const nextConfig: NextConfig = {
   pageExtensions: ["js", "jsx", "md", "mdx", "ts", "tsx"],
 
-  // Optimize package imports for better tree-shaking
+  // Optimize package imports for better tree-shaking and smaller bundles
   experimental: {
     optimizePackageImports: [
       '@copilotkit/react-core',
       '@copilotkit/react-ui',
       'recharts',
       '@neondatabase/neon-js',
+      'framer-motion',
+      'lucide-react',
+      '@radix-ui/react-icons',
     ],
   },
 

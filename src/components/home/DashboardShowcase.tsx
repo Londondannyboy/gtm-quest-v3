@@ -106,6 +106,7 @@ export function DashboardShowcase() {
                     <Image
                       src={feature.image}
                       alt={feature.title}
+                      title={`GTM Agency - ${feature.title}`}
                       width={300}
                       height={169}
                       className="w-full h-full object-contain p-4 opacity-70"
