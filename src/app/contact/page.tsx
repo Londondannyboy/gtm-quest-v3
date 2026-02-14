@@ -47,7 +47,7 @@ export default function ContactPage() {
             <span className="bg-gradient-to-r from-blue-400 to-blue-600 bg-clip-text text-transparent">GTM Quest</span>
           </h1>
           <p className="text-xl text-white/80 max-w-2xl mx-auto">
-            Get hands-on help with your go-to-market strategy and execution from our expert team
+            Get hands-on help with your go-to-market strategy and execution from the UK's leading <Link href="/" className="text-blue-400 hover:text-blue-300 underline">GTM agency</Link>
           </p>
         </div>
 

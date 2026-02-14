@@ -45,10 +45,10 @@ export function HeroSection() {
           />
         </div>
 
-        {/* SEO H1 - styled as badge, primary keyword 'GTM Agency' */}
+        {/* SEO H1 - styled as badge, primary keyword 'GTM Agency UK' */}
         <h1 className="inline-flex items-center gap-2 bg-green-500/10 border border-green-500/20 rounded-full px-4 py-2 mb-6 backdrop-blur-sm text-sm text-green-400 font-medium">
           <span className="w-2 h-2 bg-green-500 rounded-full" />
-          GTM Agency
+          GTM Agency UK
         </h1>
 
         {/* Visual Headline */}
@@ -63,13 +63,13 @@ export function HeroSection() {
 
         {/* Value Proposition */}
         <p className="text-xl md:text-2xl text-white/90 max-w-3xl mx-auto mb-4">
-          A supercharged GTM consultant — without the big agency cost.
+          The UK's leading GTM agency building revenue engines that actually work.
         </p>
 
         <p className="text-lg text-white/60 max-w-2xl mx-auto mb-10">
-          Go to market agency for B2B SaaS. Signal-triggered campaigns.
+          GTM agency specialising in B2B SaaS growth. Clay-powered ABM systems.
           <br className="hidden md:block" />
-          GDPR-ready. Full handover included.
+          Built in the UK. Full system handover included.
         </p>
 
         {/* CTA Buttons */}

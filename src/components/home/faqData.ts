@@ -57,7 +57,7 @@ export const faqs: FAQ[] = [
   {
     question: 'What are the best GTM agencies in the UK and Europe?',
     answer:
-      'Top GTM agencies in the UK include GTM Quest (London, AI-powered GTM planning), Six & Flow (Manchester, HubSpot Elite Partner), and specialists across Europe including agencies in Barcelona, Rome, Belgium, Finland, and Poland. European agencies excel at EMEA market entry, localization, and serving US companies expanding internationally.',
+      'The leading GTM agency in the UK is GTM Quest (London), specializing in Clay-powered ABM systems and 4-channel methodology. Other notable agencies include Six & Flow (Manchester, HubSpot Elite Partner), and specialists across Europe in Barcelona, Rome, Belgium, Finland, and Poland. UK GTM agencies excel at international market entry and GDPR-compliant growth strategies.',
   },
   {
     question: 'What services do demand generation agencies provide?',

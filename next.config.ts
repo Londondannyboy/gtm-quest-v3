@@ -161,6 +161,12 @@ const nextConfig: NextConfig = {
         destination: '/articles/best-gtm-agency-us',
         permanent: true,
       },
+      // Consolidate GTM authority to homepage for ranking boost
+      {
+        source: '/top-gtm-agencies',
+        destination: '/',
+        permanent: true,
+      },
       // Old query param URLs -> New path-based URLs (SEO fix)
       {
         source: '/agencies',

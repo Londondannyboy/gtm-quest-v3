@@ -3,25 +3,37 @@ import { faqs } from './faqData';
 export function HomeSchema() {
   const organizationSchema = {
     '@context': 'https://schema.org',
-    '@type': 'Organization',
+    '@type': ['Organization', 'ProfessionalService'],
+    '@id': 'https://gtm.quest/#organization',
     name: 'GTM Agency Quest',
-    alternateName: 'GTM Quest',
+    alternateName: ['GTM Quest', 'GTM Agency UK'],
     url: 'https://gtm.quest',
     logo: 'https://gtm.quest/favicon.svg',
     description:
-      'GTM agency for B2B SaaS. AI-powered go-to-market strategy and execution with 4-channel ABM, Clay-based outbound, and GDPR-compliant systems.',
+      'Leading GTM agency in the UK specializing in Clay-powered ABM systems and 4-channel methodology for B2B SaaS companies. Expert go-to-market strategy and execution.',
     sameAs: [],
+    address: {
+      '@type': 'PostalAddress',
+      addressCountry: 'GB',
+      addressLocality: 'London',
+    },
+    areaServed: ['GB', 'US', 'EU'],
+    serviceArea: {
+      '@type': 'Place',
+      name: 'United Kingdom',
+    },
     contactPoint: {
       '@type': 'ContactPoint',
       contactType: 'customer service',
-      url: 'https://gtm.quest/dashboard',
+      url: 'https://gtm.quest/contact',
     },
     knowsAbout: [
+      'GTM agency services',
       'Go-to-market strategy',
-      'GTM agencies',
-      'B2B marketing',
-      'Demand generation',
+      'B2B SaaS marketing',
+      'Clay automation',
       'Account-based marketing',
+      'Demand generation',
       'Revenue operations',
     ],
   };
@@ -77,13 +89,16 @@ export function HomeSchema() {
   const serviceSchema = {
     '@context': 'https://schema.org',
     '@type': 'Service',
-    serviceType: 'GTM Agency Matching',
+    '@id': 'https://gtm.quest/#service',
+    serviceType: 'GTM Agency',
+    name: 'GTM Agency Services',
     provider: {
       '@type': 'Organization',
+      '@id': 'https://gtm.quest/#organization',
       name: 'GTM Agency Quest',
     },
     description:
-      'GTM agency services for B2B SaaS. Go-to-market strategy and execution with 4-channel ABM and Clay-based outbound. Plus directory of 200+ vetted GTM agencies.',
+      'Professional GTM agency services for B2B SaaS companies. Clay-powered ABM systems, 4-channel methodology, go-to-market strategy and execution with full handover.',
     areaServed: [
       { '@type': 'Country', name: 'United States' },
       { '@type': 'Country', name: 'United Kingdom' },

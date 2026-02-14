@@ -71,8 +71,9 @@ export function SEOContent({ featuredArticles, topAgencies }: SEOContentProps) {
           <h2 className="text-3xl font-bold mb-4">Go-To-Market Resources</h2>
           <p className="text-lg text-emerald-400 font-medium mb-2">GTM Agency Guides &amp; Tools</p>
           <p className="text-white/60 max-w-2xl mx-auto">
-            Expert guides, tool comparisons, and agency directories to help you build
-            and scale your B2B go-to-market strategy.
+            Expert guides, tool comparisons, and agency directories from the UK's leading GTM agency.
+            Find the best <Link href="/articles/best-gtm-agencies-london" className="text-emerald-400 hover:text-emerald-300 underline">GTM agencies in London</Link> and 
+            learn <Link href="/articles/what-is-a-gtm-agency" className="text-emerald-400 hover:text-emerald-300 underline">what makes a great GTM agency</Link>.
           </p>
         </div>
 
