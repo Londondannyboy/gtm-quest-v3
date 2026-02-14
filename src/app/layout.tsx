@@ -55,6 +55,18 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        {/* Google Analytics */}
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-DQFW6KQVZK"></script>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-DQFW6KQVZK');
+            `,
+          }}
+        />
         {/* Preload hero image for faster LCP */}
         <link rel="preload" href="/hero-bg.webp" as="image" type="image/webp" />
         {/* Favicon - GTM branding via RealFaviconGenerator */}
