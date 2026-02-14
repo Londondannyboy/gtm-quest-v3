@@ -63,7 +63,7 @@ export function HeroSection() {
 
         {/* Value Proposition */}
         <p className="text-xl md:text-2xl text-white/90 max-w-3xl mx-auto mb-4">
-          The UK's leading GTM agency building revenue engines that actually work.
+          Not hitting targets? GTM Agency Quest builds pipeline fast.
         </p>
 
         <p className="text-lg text-white/60 max-w-2xl mx-auto mb-10">

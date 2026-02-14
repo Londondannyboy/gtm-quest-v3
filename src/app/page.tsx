@@ -92,6 +92,11 @@ export default async function Home() {
       {/* Schema.org structured data */}
       <HomeSchema />
 
+      {/* SEO-optimized opening paragraph matching meta description */}
+      <div className="sr-only">
+        Not hitting targets? GTM Agency Quest builds pipeline fast. Free strategy call → 4-channel ABM, Clay outbound, results in 4 weeks.
+      </div>
+
       {/* 1. Hero - Agency-First Positioning */}
       <HomeClient />
 
