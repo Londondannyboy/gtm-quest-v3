@@ -214,7 +214,7 @@ export default async function AgencyPage({
     name: agency.name,
     description: fullDescription,
     url: agency.website,
-    image: agency.logo_url || 'https://gtm.quest/favicon.svg',
+    image: agency.logo_url || 'https://gtm.quest/gtm-agency-quest-favicon-blue.svg',
     address: {
       '@type': 'PostalAddress',
       addressLocality: agency.headquarters?.split(',')[0]?.trim(),

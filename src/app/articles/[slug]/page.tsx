@@ -190,7 +190,7 @@ export default async function ArticlePage({ params }: ArticlePageProps) {
                 <div className="bg-gradient-to-br from-blue-500/10 to-blue-600/10 border border-blue-500/20 rounded-xl p-5">
                   <div className="flex items-center gap-2 mb-3">
                     <Image
-                      src="/gtm-logo-blue.png"
+                      src="/gtm-agency-quest-logo-blue.png"
                       alt="GTM Agency Quest"
                       width={32}
                       height={32}

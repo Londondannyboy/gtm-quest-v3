@@ -8,7 +8,7 @@ export function HomeSchema() {
     name: 'GTM Agency Quest',
     alternateName: ['GTM Quest', 'GTM Agency UK'],
     url: 'https://gtm.quest',
-    logo: 'https://gtm.quest/favicon.svg',
+    logo: 'https://gtm.quest/gtm-agency-quest-favicon-blue.svg',
     description:
       'Leading GTM agency in the UK specializing in Clay-powered ABM systems and 4-channel methodology for B2B SaaS companies. Expert go-to-market strategy and execution.',
     sameAs: [],
