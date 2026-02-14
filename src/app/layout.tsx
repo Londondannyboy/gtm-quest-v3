@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import Script from "next/script";
 import { AuthProvider } from "@/components/AuthProvider";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
@@ -55,18 +56,6 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        {/* Google Analytics */}
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-DQFW6KQVZK"></script>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', 'G-DQFW6KQVZK');
-            `,
-          }}
-        />
         {/* Preload hero image for faster LCP */}
         <link rel="preload" href="/hero-bg.webp" as="image" type="image/webp" />
         {/* Favicon - GTM branding via RealFaviconGenerator */}
@@ -84,6 +73,20 @@ export default function RootLayout({
           - {children} (page content) is NOT wrapped by any client component
           - This ensures page content is server-rendered for SEO
         */}
+        {/* Google Analytics */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-DQFW6KQVZK"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-DQFW6KQVZK');
+          `}
+        </Script>
+
         <div className="flex flex-col min-h-screen">
           <AuthProvider>
             <Header />
