@@ -17,8 +17,8 @@ import { EngagementModelsSection } from '@/components/home/EngagementModelsSecti
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
-  title: 'GTM Agency 🚀 B2B SaaS Pipeline & Revenue Growth 2026',
-  description: 'Not hitting targets? GTM agency that builds pipeline fast. Free strategy call → 4-channel ABM, Clay outbound, results in 4 weeks. Book now.',
+  title: 'GTM Agency Quest 🚀 B2B SaaS Growth & Pipeline 2026',
+  description: 'Not hitting targets? GTM Agency Quest builds pipeline fast. Free strategy call → 4-channel ABM, Clay outbound, results in 4 weeks. Book now.',
   alternates: {
     canonical: 'https://gtm.quest',
     // Note: Removed invalid hreflang languages that were using fragment URLs.
@@ -26,8 +26,8 @@ export const metadata: Metadata = {
     // not for anchor links to sections on the same page.
   },
   openGraph: {
-    title: 'GTM Agency 🚀 B2B SaaS Pipeline & Revenue Growth 2026',
-    description: 'Not hitting targets? GTM agency that builds pipeline fast. Free strategy call → results in 4 weeks. Book now.',
+    title: 'GTM Agency Quest 🚀 B2B SaaS Growth & Pipeline 2026',
+    description: 'Not hitting targets? GTM Agency Quest builds pipeline fast. Free strategy call → results in 4 weeks. Book now.',
     type: 'website',
     url: 'https://gtm.quest',
     siteName: 'GTM Agency Quest',
@@ -42,8 +42,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'GTM Agency 🚀 B2B SaaS Pipeline & Revenue Growth 2026',
-    description: 'Not hitting targets? GTM agency that builds pipeline fast. Free strategy call → results in 4 weeks. Book now.',
+    title: 'GTM Agency Quest 🚀 B2B SaaS Growth & Pipeline 2026',
+    description: 'Not hitting targets? GTM Agency Quest builds pipeline fast. Free strategy call → results in 4 weeks. Book now.',
     images: ['https://gtm.quest/gtm-agency-quest-logo.png'],
   },
   keywords: [
